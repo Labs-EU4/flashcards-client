@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
+env:
+  global:
+    - DB_ENV=test
+   
+before_script:
+  - npm install make-coverage-badge
+script:
+  - npm test
+after_script:
+  - make-coverage-badge --output-path ./badges
+notifications:
+  email: false
