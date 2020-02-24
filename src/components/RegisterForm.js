@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { registerNewUser } from "../state/userData/userDataActionCreators";
+import { useHistory } from "react-router-dom";
 
 export function RegisterForm({ registerNewUser, userData }) {
+  let history = useHistory();
   const defaultInputs = {
     email: "",
     fullName: "",
@@ -20,8 +22,7 @@ export function RegisterForm({ registerNewUser, userData }) {
     console.log(user);
     registerNewUser(user);
     setUser(defaultInputs);
-    // registerUser(user);
-    // history.pushState("/");
+    history.push("/");
   };
   return (
     <div className="register">
