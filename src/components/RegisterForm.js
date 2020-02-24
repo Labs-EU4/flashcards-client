@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import {connect} from 'react-redux';
+import {registerNewUser} from '../state/userData/userDataActionCreators' 
 
-export function RegisterForm() {
+export function RegisterForm({registerNewUser, userData}) {
   const defaultInputs = {
     email: "",
-    username: "",
+    fullName: "",
     password: ""
   };
   const [user, setUser] = useState(defaultInputs);
@@ -16,13 +18,14 @@ export function RegisterForm() {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(user);
-    
+    registerNewUser(user)
     setUser(defaultInputs);
     // registerUser(user);
     // history.pushState("/");
   };
   return (
     <div className="register">
+      {console.log(userData)}
       <form onSubmit={event => handleSubmit(event)}>
         <label>
           Email:
@@ -37,8 +40,8 @@ export function RegisterForm() {
           Username:
           <input
             type="text"
-            name="username"
-            value={user.username}
+            name="fullName"
+            value={user.fullName}
             onChange={event => handleChange(event)}
           />
         </label>
@@ -56,3 +59,11 @@ export function RegisterForm() {
     </div>
   );
 }
+
+function mapStateToProps(state){
+    return {
+        userData: state.userData
+    }
+}
+
+export default connect(mapStateToProps, {registerNewUser})(RegisterForm)
