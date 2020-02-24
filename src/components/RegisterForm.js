@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 export function RegisterForm() {
-const defaultInputs = {
+  const defaultInputs = {
     email: "",
     username: "",
     password: ""
-  }
+  };
   const [user, setUser] = useState(defaultInputs);
   const handleChange = e => {
     setUser({
@@ -16,7 +16,8 @@ const defaultInputs = {
   const handleSubmit = e => {
     e.preventDefault();
     console.log(user);
-    setUser(defaultInputs)
+    
+    setUser(defaultInputs);
     // registerUser(user);
     // history.pushState("/");
   };
@@ -50,8 +51,8 @@ const defaultInputs = {
             onChange={event => handleChange(event)}
           />
         </label>
-        <button>Submit!</button>
+        <input type="submit" />
       </form>
     </div>
   );
-};
+}
