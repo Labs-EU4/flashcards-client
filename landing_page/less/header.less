@@ -1,0 +1,122 @@
+header {
+  background-image: url('../img/headerBackgroundImg.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  position: relative;
+  height: 80rem;
+  width: 100%;
+
+  @media @tablet {
+    height: auto;
+  }
+
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 55%;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+    @media @tablet {
+      width: 60%;
+      margin: auto 1.1rem;
+    }
+
+    @media @phone {
+      width: auto;
+    }
+
+    h1 {
+      font-size: 6.5rem;
+      font-weight: 500;
+      margin-top: 15rem;
+      line-height: 7rem;
+
+      @media @tablet {
+        font-size: 5.5rem;
+        font-weight: 500;
+        margin-top: 15rem;
+        line-height: 6rem;
+      }
+
+      @media @phone {
+        font-size: 6.5rem;
+        font-weight: 500;
+        margin-top: 18rem;
+        line-height: 7rem;
+      }
+    }
+
+    p {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-top: 5rem;
+      line-height: 3.7rem;
+
+      @media @tablet {
+        margin-top: 1rem;
+      }
+
+      @media @tablet {
+        font-size: 2rem;
+      }
+    }
+
+    .header-btn {
+      margin-top: 5rem;
+      display: flex;
+      flex: 1;
+      align-items: flex-start;
+      justify-content: space-evenly;
+
+      @media @phone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      button,
+      a.btn2 {
+        @media @phone {
+          margin: 0.5rem 0;
+        }
+
+        margin-right: 2rem;
+        width: 23rem;
+        height: 4.5rem;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 2.4rem;
+        line-height: 3.7rem;
+      }
+
+      button:hover,
+      a.btn2:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+          0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      .btn1 {
+        background: #d21f3c;
+        border-radius: 0.5rem;
+        color: #ffffff;
+      }
+
+      .btn2,
+      a.btn2 {
+        background: #ffffff;
+        border: 0.3rem solid #d21f3c;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+      }
+
+      a.btn2 {
+        text-align: center;
+        color: #000000;
+      }
+    }
+  }
+}
