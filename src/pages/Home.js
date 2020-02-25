@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <BasicLayout>
       <h1>This is Home!</h1>
-      <Button type="primary">Button</Button>
     </BasicLayout>
   )
 }
