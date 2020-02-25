@@ -1,62 +1,69 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Formik } from "formik";
+import { withFormik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import * as EmailValidator from "email-validator";
-function Login() {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: ""
-  });
 
-  const handleChange = e => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
+function Login(props) {
+  console.log(props);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    // make a POST request to the server
-    // the server will "authenticate" the user passed on their credentials
-    // If they can be authenticated the server will return a token
-    axios
-      .post("http://localhost:4003/api/auth/login")
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("token", res.data.payload);
-        props.history.push("/dashboard");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <Form>
+        <ErrorMessage name="email" render={msg => <div>{msg}</div>} />
         <label htmlFor="email_input">EMAIL</label>
-        <input
-          type="text"
+        <Field
+          type="email"
           placeholder="Enter a valid email"
           name="email"
           id="email_input"
-          onChange={handleChange}
-          value={email}
         />
 
         <label htmlFor="password_input">PASSWORD</label>
-        <input
+        <ErrorMessage name="password" render={msg => <div>{msg}</div>} />
+        <Field
           type="password"
           placeholder="Enter your password"
           name="password"
-          onChange={handleChange}
           id="password_input"
-          value={password}
         />
 
         <input type="submit" />
-      </form>
+      </Form>
       <span>Forgot password?</span>
     </div>
   );
 }
 
-export default Login;
+const LoginFormWithFormik = withFormik({
+  mapPropsToValues(...args) {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  validationSchema: Yup.object().shape({
+    email: Yup.string().required("Please enter an email address"),
+    password: Yup.string().required("Please enter a password")
+  }),
+
+  handleSubmit(values, tools) {
+    // console.log(args);
+    // These are the props we get when we submit our form
+    // values: the values we get back from the form
+    // tools: some helpful methods we can use to interact with the form
+    console.log(values, tools);
+    axios
+      .post("http://localhost:4003/api/auth/login", values)
+      .then(res => {
+        console.log(res);
+        tools.resetForm();
+        localStorage.setItem("token", res.data.payload);
+        // props.history.push("/dashboard");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+})(Login);
+export default LoginFormWithFormik;
