@@ -1,5 +1,6 @@
 import Home from '../pages/Home';
 import PageNotFound from '../pages/404';
+import dashboard from '../components/dashboard';
 
 /*
   Routes config must be ordered the same way you'd 
@@ -16,6 +17,10 @@ const RoutesConfig = [
     path: "*",
     component: PageNotFound
   },
+  {
+    path: "/dashboard",
+    component: dashboard
+  }
 ];
 
 export default RoutesConfig;
