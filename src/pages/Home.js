@@ -1,6 +1,5 @@
 import React from 'react';
 import BasicLayout from '../layout/BasicLayout';
-import { Button } from 'antd';
 
 const Home = () => {
   return (
