@@ -1,6 +1,6 @@
-import Home from '../pages/Home';
-import PageNotFound from '../pages/404';
-import ForgotPassword from '../components/ForgotPassword/ForgotPassword';
+import Home from "../pages/Home";
+import PageNotFound from "../pages/404";
+import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -11,15 +11,15 @@ import ForgotPassword from '../components/ForgotPassword/ForgotPassword';
 const RoutesConfig = [
   {
     path: "/",
-    component: Home
+    component: Home,
   },
   {
     path: "/reset-password",
-    component: ForgotPassword
+    component: ForgotPassword,
   },
   {
     path: "*",
-    component: PageNotFound
+    component: PageNotFound,
   },
 ];
 
