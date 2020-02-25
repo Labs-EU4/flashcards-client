@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { registerNewUser } from "../state/userData/userDataActionCreators";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Icon } from "antd";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 export function RegisterForm({ registerNewUser, ...props }) {
   let history = useHistory();
@@ -41,7 +41,7 @@ export function RegisterForm({ registerNewUser, ...props }) {
 
   const { getFieldDecorator } = props.form;
   return (
-    <div className="register">
+    <div className="register-container">
       <Form onSubmit={event => handleSubmit(event)} className="register-form">
         <Form.Item>
           {getFieldDecorator("email", {
