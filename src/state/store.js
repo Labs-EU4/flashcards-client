@@ -22,13 +22,13 @@
     }
 } */
 import thunk from "redux-thunk";
-import { combineReducers, createStore, applyMiddleware, compose } from "redux";
+import {combineReducers, createStore, applyMiddleware, compose} from "redux";
 import isLoggedInReducer from "./IsLoggedIn/isLoggedInReducer";
 import userDataReducer from "./userData/userDataReducer";
 
 const mainReducer = combineReducers({
   isLoggedIn: isLoggedInReducer,
-  userData: userDataReducer
+  userData: userDataReducer,
 });
 
 const store = createStore(
