@@ -1,5 +1,5 @@
-import React from "react";
-import BasicLayout from "../layout/BasicLayout";
+import React from 'react';
+import BasicLayout from '../layout/BasicLayout';
 
 const Home = () => {
   return (
