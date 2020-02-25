@@ -1,5 +1,6 @@
 import Home from '../pages/Home';
 import PageNotFound from '../pages/404';
+import ForgotPassword from '../components/ForgotPassword/ForgotPassword';
 
 /*
   Routes config must be ordered the same way you'd 
@@ -11,6 +12,10 @@ const RoutesConfig = [
   {
     path: "/",
     component: Home
+  },
+  {
+    path: "/reset-password",
+    component: ForgotPassword
   },
   {
     path: "*",
