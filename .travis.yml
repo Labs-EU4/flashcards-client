@@ -9,7 +9,7 @@ env:
     - DB_ENV=test
    
 before_script:
-  - npm install make-coverage-badge
+  - npm install && npm install make-coverage-badge
 script:
   - npm test
 after_script:
