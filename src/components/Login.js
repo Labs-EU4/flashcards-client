@@ -4,7 +4,7 @@ import axios from "axios";
 function Login() {
   const [credentials, setCredentials] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleChange = e => {
@@ -21,7 +21,7 @@ function Login() {
       .then(res => {
         console.log(res);
         localStorage.setItem("token", res.data.payload);
-        props.history.push('/dashboard')
+        props.history.push("/dashboard");
       })
       .catch(err => {
         console.log(err);
@@ -30,24 +30,28 @@ function Login() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>EMAIL</label>
+        <label htmlFor="email_input">EMAIL</label>
         <input
           type="text"
           placeholder="Enter a valid email"
           name="email"
+          id="email_input"
           onChange={handleChange}
         />
+        <div></div>
 
-        <label>PASSWORD</label>
+        <label htmlFor="password_input">PASSWORD</label>
         <input
           type="password"
           placeholder="Enter your password"
           name="password"
           onChange={handleChange}
+          id="password_input"
         />
 
         <input type="submit" />
       </form>
+      <span>Forgot password?</span>
     </div>
   );
 }
