@@ -30,25 +30,26 @@ export function RegisterForm({ registerNewUser, ...props }) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        console.log(user);
+        registerNewUser(user);
+        setUser(defaultInputs);
+      } else {
+        console.log("Received error of form: ", err);
       }
     });
-    console.log(user);
-    registerNewUser(user);
-
-    setUser(defaultInputs);
-    history.push("/");
   }
 
   const { getFieldDecorator } = props.form;
   return (
     <div className="register">
-      <Form onSubmit={event => handleSubmit(event)} className="login-form">
-        <Form.Item label="Email">
-          {getFieldDecorator("Email", {
-            rules: [{ required: true, message: "Please input your email!" }]
+      <Form onSubmit={event => handleSubmit(event)} className="register-form">
+        <Form.Item>
+          {getFieldDecorator("email", {
+            rules: [{ required: true, message: "Please input your email." }]
           })(
             <Input
+              prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="email"
               type="text"
               name="email"
               setfieldvalue={user.email}
@@ -56,11 +57,13 @@ export function RegisterForm({ registerNewUser, ...props }) {
             />
           )}
         </Form.Item>
-        <Form.Item label="Username">
+        <Form.Item>
           {getFieldDecorator("username", {
-            rules: [{ required: true, message: "Please input your username!" }]
+            rules: [{ required: true, message: "Please input your username." }]
           })(
             <Input
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="username"
               type="text"
               name="fullName"
               setfieldvalue={user.fullName}
@@ -68,9 +71,9 @@ export function RegisterForm({ registerNewUser, ...props }) {
             />
           )}
         </Form.Item>
-        <Form.Item label="Password">
+        <Form.Item>
           {getFieldDecorator("password", {
-            rules: [{ required: true, message: "Please input your password!" }]
+            rules: [{ required: true, message: "Please input your password." }]
           })(
             <Input
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -83,7 +86,11 @@ export function RegisterForm({ registerNewUser, ...props }) {
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="register-form-button"
+          >
             Register
           </Button>
           Or <a href="/login">Login Here!</a>
