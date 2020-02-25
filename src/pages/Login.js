@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { Formik } from "formik";
+import * as Yup from "yup";
+import * as EmailValidator from "email-validator";
 function Login() {
   const [credentials, setCredentials] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const handleChange = e => {
@@ -37,8 +39,8 @@ function Login() {
           name="email"
           id="email_input"
           onChange={handleChange}
+          value={email}
         />
-        <div></div>
 
         <label htmlFor="password_input">PASSWORD</label>
         <input
@@ -47,6 +49,7 @@ function Login() {
           name="password"
           onChange={handleChange}
           id="password_input"
+          value={password}
         />
 
         <input type="submit" />

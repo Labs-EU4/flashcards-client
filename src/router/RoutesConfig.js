@@ -1,6 +1,6 @@
-import Home from '../pages/Home';
-import PageNotFound from '../pages/404';
-import dashboard from '../components/dashboard';
+import Home from "../pages/Home";
+import PageNotFound from "../pages/404";
+import Login from "../pages/Login";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -13,13 +13,14 @@ const RoutesConfig = [
     path: "/",
     component: Home
   },
+
+  {
+    path: "/login",
+    component: Login
+  },
   {
     path: "*",
     component: PageNotFound
-  },
-  {
-    path: "/dashboard",
-    component: dashboard
   }
 ];
 
