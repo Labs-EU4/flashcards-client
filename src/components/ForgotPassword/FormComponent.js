@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "antd/dist/antd.css";
 import {Form, Icon, Input, Button} from "antd";
 import axios from "axios";
 
