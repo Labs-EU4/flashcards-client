@@ -29,7 +29,7 @@ const NormalLoginForm = props => {
   //necessary to change state values
   const handleChange = e => {
     setFormValues({
-      formValues,
+      ...formValues,
       [e.target.name]: e.target.value,
     });
   };
