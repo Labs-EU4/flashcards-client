@@ -22,7 +22,6 @@ const NormalLoginForm = props => {
       [e.target.name]: e.target.value,
     });
   };
-  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -31,11 +30,7 @@ const NormalLoginForm = props => {
   const {getFieldDecorator} = props.form;
   return (
     <Form onSubmit={handleSubmit} className="login-form">
-      <Form.Item
-        validateStatus={
-          emailRegex.test(formValues.email) === false ? "Error" : "validating"
-        }
-      >
+      <Form.Item>
         {getFieldDecorator("email", {
           rules: [
             {required: true, message: "Please input a valid email!"},
