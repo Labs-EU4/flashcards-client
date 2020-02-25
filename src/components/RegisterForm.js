@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { registerNewUser } from "../state/userData/userDataActionCreators";
 import { useHistory } from "react-router-dom";
 
-export function RegisterForm({ registerNewUser, userData }) {
+export function RegisterForm({ registerNewUser }) {
   let history = useHistory();
   const defaultInputs = {
     email: "",
@@ -11,19 +11,31 @@ export function RegisterForm({ registerNewUser, userData }) {
     password: ""
   };
   const [user, setUser] = useState(defaultInputs);
+
+  // useEffect(() => {
+  //   checkToken();
+  // }, []);
+
   const handleChange = e => {
     setUser({
       ...user,
       [e.target.name]: e.target.value
     });
   };
-  const handleSubmit = e => {
+
+  function handleSubmit(e) {
     e.preventDefault();
     console.log(user);
     registerNewUser(user);
+
     setUser(defaultInputs);
     history.push("/");
-  };
+  }
+
+  // function checkToken() {
+  //   localStorage.getItem("token") ? null : history.push("/");
+  // }
+
   return (
     <div className="register">
       <form onSubmit={event => handleSubmit(event)}>
