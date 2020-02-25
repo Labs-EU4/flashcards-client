@@ -34,7 +34,10 @@ const mainReducer = combineReducers({
 const store = createStore(
   mainReducer,
   {},
-  compose(applyMiddleware(thunk /* ,etc , other middlewares */), devTools)
+  compose(
+    applyMiddleware(thunk /* ,etc , other middlewares */),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 
 export default store;
