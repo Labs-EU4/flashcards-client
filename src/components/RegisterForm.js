@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { registerNewUser } from "../state/userData/userDataActionCreators";
 import { useHistory } from "react-router-dom";
-import { Form, Select, Input, Button, Icon } from "antd";
+import { Form, Input, Button, Icon } from "antd";
 import "antd/dist/antd.css";
 
 export function RegisterForm({ registerNewUser, ...props }) {
   let history = useHistory();
+
+  if (localStorage.getItem("token")) {
+    history.push("/");
+  }
+
   const defaultInputs = {
     email: "",
     fullName: "",
     password: ""
   };
   const [user, setUser] = useState(defaultInputs);
-
-  // useEffect(() => {
-  //   checkToken();
-  // }, []);
 
   const handleChange = e => {
     setUser({
@@ -27,6 +28,11 @@ export function RegisterForm({ registerNewUser, ...props }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+      }
+    });
     console.log(user);
     registerNewUser(user);
 
@@ -34,15 +40,12 @@ export function RegisterForm({ registerNewUser, ...props }) {
     history.push("/");
   }
 
-  // function checkToken() {
-  //   localStorage.getItem("token") ? null : history.push("/");
-  // }
   const { getFieldDecorator } = props.form;
   return (
     <div className="register">
       <Form onSubmit={event => handleSubmit(event)} className="login-form">
         <Form.Item label="Email">
-          {getFieldDecorator("email", {
+          {getFieldDecorator("Email", {
             rules: [{ required: true, message: "Please input your email!" }]
           })(
             <Input
@@ -79,36 +82,12 @@ export function RegisterForm({ registerNewUser, ...props }) {
             />
           )}
         </Form.Item>
-        {/* <label>
-          Email:
-          <Input
-            type="text"
-            name="email"
-            value={user.email}
-            onChange={event => handleChange(event)}
-          />
-        </label>
-        <label>
-          Username:
-          <Input
-            type="text"
-            name="fullName"
-            value={user.fullName}
-            onChange={event => handleChange(event)}
-          />
-        </label>
-        <label>
-          Password:
-          <Input
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={event => handleChange(event)}
-          />
-        </label> */}
-        <Button type="primary" htmlType="submit">
-          Register
-        </Button>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+          Or <a href="/login">Login Here!</a>
+        </Form.Item>
       </Form>
     </div>
   );
