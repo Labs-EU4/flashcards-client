@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import PageNotFound from "../pages/404";
-import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 /*
   Routes config must be ordered the same way you'd 

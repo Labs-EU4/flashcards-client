@@ -1,6 +1,6 @@
 import React from "react";
 
-import NormalLoginForm from "./FormComponent";
+import NormalLoginForm from "../../components/ForgotPassword/FormComponent";
 import "./index.css";
 
 const ForgotPassword = props => {
