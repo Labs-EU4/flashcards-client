@@ -1,6 +1,7 @@
 import Home from "../pages/Home";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login";
+import dashboard from "../components/dashboard";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -11,17 +12,22 @@ import Login from "../pages/Login";
 const RoutesConfig = [
   {
     path: "/",
-    component: Home
+    component: Home,
   },
 
   {
     path: "/login",
-    component: Login
+    component: Login,
   },
   {
+    path: "/dashboard",
+    component: dashboard,
+  },
+
+  {
     path: "*",
-    component: PageNotFound
-  }
+    component: PageNotFound,
+  },
 ];
 
 export default RoutesConfig;

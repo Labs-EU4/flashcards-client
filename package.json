@@ -9,8 +9,6 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^3.26.12",
     "axios": "^0.19.2",
-    "formik": "^2.1.4",
-    "formik-antd": "^1.8.1",
     "babel-plugin-import": "^1.13.0",
     "customize-cra": "^0.9.1",
     "less": "^3.11.1",
@@ -22,8 +20,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "yup": "^0.28.1"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "lint": "eslint .",
@@ -68,11 +65,13 @@
     ]
   },
   "devDependencies": {
+    "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "style-loader": "^1.1.3"
   }
 }

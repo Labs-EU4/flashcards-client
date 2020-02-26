@@ -703,3 +703,23 @@ footer .footer-container nav .social {
     width: 100%;
   }
 }
+
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+.ant-form-explain {
+    color: red;
+}
+.forgot-password h1{
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
