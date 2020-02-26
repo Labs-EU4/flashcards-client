@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import PageNotFound from "../pages/404";
-import RegisterForm from "../pages/RegisterForm";
+import Register from "../pages/Register";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -15,7 +15,7 @@ const RoutesConfig = [
   },
   {
     path: "/register",
-    component: RegisterForm,
+    component: Register,
   },
   {
     path: "*",
