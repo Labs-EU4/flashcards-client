@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {registerNewUser} from "../state/userData/userDataActionCreators";
 import {useHistory} from "react-router-dom";
 import {Form, Input, Button, Icon} from "antd";
+import styles from "./Register.module.css";
 
 export function RegisterForm({registerNewUser, ...props}) {
   let history = useHistory();
@@ -115,8 +116,8 @@ export function RegisterForm({registerNewUser, ...props}) {
   }
 
   return (
-    <div className="register-container">
-      <Form onSubmit={event => handleSubmit(event)} className="register-form">
+    <div className={styles.registerContainer}>
+      <Form onSubmit={event => handleSubmit(event)} className={styles.registerForm}>
         <Form.Item
           hasFeedback
           validateStatus={emailInfo.emailValidationStatus}
@@ -166,7 +167,7 @@ export function RegisterForm({registerNewUser, ...props}) {
           <Button
             type="primary"
             htmlType="submit"
-            className="register-form-button"
+            className={styles.registerFormButton}
             disabled={registerDisabled}
           >
             Register
