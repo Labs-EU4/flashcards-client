@@ -12,11 +12,11 @@ export const registerNewUser = newUser => dispatch => {
         localStorage.setItem("token", res.data.data.token);
         dispatch({
           type: types.UPDATE_USER_DETAILS,
-          payload: { userData: res.data.data.user }
+          payload: {userData: res.data.data.user},
         });
       });
     })
     .catch(err => {
-      console.log(err);
+      console.error(err);
     });
 };

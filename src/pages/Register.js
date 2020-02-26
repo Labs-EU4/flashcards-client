@@ -40,11 +40,13 @@ export function RegisterForm({registerNewUser, ...props}) {
     const {email, fullName, password} = e.target;
     if (email.value && fullName.value && password.value) {
       setRegisterDisabled(true);
-      setEmailInfo({...emailInfo, emailValidationStatus: "validating"});
-      setEmailInfo({...usernameInfo, usernameValidationStatus: "validating"});
-      setEmailInfo({...passwordInfo, passwordValidationStatus: "validating"});
+      // setEmailInfo({...emailInfo, emailValidationStatus: "validating"});
+      // setEmailInfo({...usernameInfo, usernameValidationStatus: "validating"});
+      // setEmailInfo({...passwordInfo, passwordValidationStatus: "validating"});
+
       registerNewUser(user);
       setUser(defaultInputs);
+      setRegisterDisabled(false);
     } else {
       if (!email.value) {
         setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
