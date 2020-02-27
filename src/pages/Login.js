@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import {Form, Icon, Input, Button} from "antd";
 import axios from "axios";
 import "../pages/Login.css";
+import {connect} from "react-redux";
+import {login} from "../state/IsLoggedIn/IsLoggedInActionCreators";
 
 const Login = props => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
   const handleChange = e => {
     setFormValues({
       ...formValues,
@@ -16,20 +19,9 @@ const Login = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    axios
-      .post("http://localhost:4003/api/auth/login", formValues)
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("token", res.data.payload);
-        setFormValues({
-          email: "",
-          password: "",
-        });
-        props.history.push("/dashboard");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log(props.login);
+
+    props.login(setError, formValues);
   };
   const {getFieldDecorator} = props.form;
   return (
@@ -85,5 +77,7 @@ const Login = props => {
     </Form>
   );
 };
-const WrappedNormalLoginForm = Form.create({name: "normal_login"})(Login);
-export default WrappedNormalLoginForm;
+
+export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(Login);
+
+export default connect(() => {}, {login})(WrappedNormalLoginForm);
