@@ -17,6 +17,7 @@ export function RegisterForm({registerNewUser, ...props}) {
     help: null,
   });
   const [registerDisabled, setRegisterDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (localStorage.getItem("token")) {
     history.push("/");
@@ -36,37 +37,37 @@ export function RegisterForm({registerNewUser, ...props}) {
     });
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     const {email, fullName, password} = e.target;
-    if (email.value && fullName.value && password.value) {
-      setRegisterDisabled(true);
-      // setEmailInfo({...emailInfo, emailValidationStatus: "validating"});
-      // setEmailInfo({...usernameInfo, usernameValidationStatus: "validating"});
-      // setEmailInfo({...passwordInfo, passwordValidationStatus: "validating"});
-
-      registerNewUser(user);
-      setUser(defaultInputs);
-      setRegisterDisabled(false);
-    } else {
-      if (!email.value) {
+    try {
+      if (email.value && fullName.value && password.value) {
+        setRegisterDisabled(true);
+        await registerNewUser(user);
+        setIsLoading(false);
+        setUser(defaultInputs);
+        setRegisterDisabled(false);
+      } else if (!email.value) {
         setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
         setRegisterDisabled(true);
-      }
-      if (!fullName.value) {
+      } else if (!fullName.value) {
         setUsernameInfo({
           usernameValidationStatus: "error",
           help: "Please enter a Username.",
         });
         setRegisterDisabled(true);
-      }
-      if (!password.value) {
+      } else if (!password.value) {
         setPasswordInfo({
           passwordValidationStatus: "error",
           help: "Please enter a Password.",
         });
         setRegisterDisabled(true);
       }
+    } catch (err) {
+      setIsLoading(false);
+      setRegisterDisabled(false);
+      console.error(err.response.data.message);
     }
   }
 
@@ -169,6 +170,7 @@ export function RegisterForm({registerNewUser, ...props}) {
             htmlType="submit"
             className={styles.registerFormButton}
             disabled={registerDisabled}
+            loading={isLoading}
           >
             Register
           </Button>
