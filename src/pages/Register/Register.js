@@ -198,6 +198,4 @@ function mapStateToProps(state) {
 
 const ConnectedForm = connect(mapStateToProps, {registerNewUser})(RegisterForm);
 
-// export default Form.create()(ConnectedForm);
-
 export default ConnectedForm;
