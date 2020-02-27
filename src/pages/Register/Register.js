@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import {registerNewUser} from "../../state/userData/userDataActionCreators";
-import {useHistory} from "react-router-dom";
+// import {useHistory} from "react-router-dom";
 import {Form, Input, Button, Icon} from "antd";
 import styles from "./Register.module.css";
 

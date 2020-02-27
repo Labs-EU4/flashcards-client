@@ -55,7 +55,6 @@ exports[`renders without crashing 1`] = `
                   data-testid="test_email_input"
                   name="email"
                   placeholder="email"
-                  setfieldvalue=""
                   type="text"
                   value=""
                 />
@@ -109,7 +108,6 @@ exports[`renders without crashing 1`] = `
                   data-testid="test_username_input"
                   name="fullName"
                   placeholder="username"
-                  setfieldvalue=""
                   type="text"
                   value=""
                 />
@@ -163,7 +161,6 @@ exports[`renders without crashing 1`] = `
                   data-testid="test_password_input"
                   name="password"
                   placeholder="password"
-                  setfieldvalue=""
                   type="password"
                   value=""
                 />
