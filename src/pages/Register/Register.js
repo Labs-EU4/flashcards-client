@@ -67,7 +67,12 @@ export function RegisterForm({registerNewUser, ...props}) {
     } catch (err) {
       setIsLoading(false);
       setRegisterDisabled(false);
-      console.error(err.response.data.message);
+      if (err.response.data.message === "User with this email already exists") {
+        setRegisterDisabled(true);
+        setEmailInfo({emailValidationStatus: "error", help: err.response.data.message});
+      } else {
+        console.error(err.response.data.message);
+      }
     }
   }
 
