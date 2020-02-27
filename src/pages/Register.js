@@ -1,75 +1,29 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
 import {registerNewUser} from "../state/userData/userDataActionCreators";
-import {useHistory} from "react-router-dom";
 import {Form, Input, Button, Icon} from "antd";
 import styles from "./Register.module.css";
 
 export function RegisterForm({registerNewUser, ...props}) {
-  let history = useHistory();
   const [emailInfo, setEmailInfo] = useState({emailValidationStatus: null, help: null});
   const [usernameInfo, setUsernameInfo] = useState({
     usernameValidationStatus: null,
     help: null,
   });
-  const [passwordInfo, setPasswordInfo] = useState({
-    passwordValidationStatus: null,
-    help: null,
-  });
-  const [registerDisabled, setRegisterDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  if (localStorage.getItem("token")) {
-    history.push("/");
-  }
 
   const defaultInputs = {
     email: "",
     fullName: "",
     password: "",
   };
+
+  const [passwordInfo, setPasswordInfo] = useState({
+    passwordValidationStatus: null,
+    help: null,
+  });
+  const [registerDisabled, setRegisterDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(defaultInputs);
-
-  const handleChange = e => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setIsLoading(true);
-    const {email, fullName, password} = e.target;
-    try {
-      if (email.value && fullName.value && password.value) {
-        setRegisterDisabled(true);
-        await registerNewUser(user);
-        setIsLoading(false);
-        setUser(defaultInputs);
-        setRegisterDisabled(false);
-      } else if (!email.value) {
-        setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
-        setRegisterDisabled(true);
-      } else if (!fullName.value) {
-        setUsernameInfo({
-          usernameValidationStatus: "error",
-          help: "Please enter a Username.",
-        });
-        setRegisterDisabled(true);
-      } else if (!password.value) {
-        setPasswordInfo({
-          passwordValidationStatus: "error",
-          help: "Please enter a Password.",
-        });
-        setRegisterDisabled(true);
-      }
-    } catch (err) {
-      setIsLoading(false);
-      setRegisterDisabled(false);
-      console.error(err.response.data.message);
-    }
-  }
 
   function emailValidation(e) {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -113,6 +67,47 @@ export function RegisterForm({registerNewUser, ...props}) {
         help: "Password must be at least 5 characters",
       });
       setRegisterDisabled(true);
+    }
+  }
+
+  const handleChange = e => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    const {email, fullName, password} = e.target;
+
+    try {
+      if (email.value && fullName.value && password.value) {
+        console.log(user);
+        await registerNewUser(user);
+        setIsLoading(false);
+        setRegisterDisabled(false);
+      } else if (!email.value) {
+        setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
+        setRegisterDisabled(true);
+      } else if (!fullName.value) {
+        setUsernameInfo({
+          usernameValidationStatus: "error",
+          help: "Please enter a Username.",
+        });
+        setRegisterDisabled(true);
+      } else if (!password.value) {
+        setPasswordInfo({
+          passwordValidationStatus: "error",
+          help: "Please enter a Password.",
+        });
+        setRegisterDisabled(true);
+      }
+    } catch (err) {
+      setIsLoading(false);
+      setRegisterDisabled(false);
+      console.error(err.response.data.message || "Something went wrong");
     }
   }
 
