@@ -17,6 +17,7 @@ export function RegisterForm({registerNewUser, ...props}) {
     help: null,
   });
   const [registerDisabled, setRegisterDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (localStorage.getItem("token")) {
     history.push("/");
@@ -36,37 +37,37 @@ export function RegisterForm({registerNewUser, ...props}) {
     });
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     const {email, fullName, password} = e.target;
-    if (email.value && fullName.value && password.value) {
-      setRegisterDisabled(true);
-      // setEmailInfo({...emailInfo, emailValidationStatus: "validating"});
-      // setEmailInfo({...usernameInfo, usernameValidationStatus: "validating"});
-      // setEmailInfo({...passwordInfo, passwordValidationStatus: "validating"});
-
-      registerNewUser(user);
-      setUser(defaultInputs);
-      setRegisterDisabled(false);
-    } else {
-      if (!email.value) {
+    try {
+      if (email.value && fullName.value && password.value) {
+        setRegisterDisabled(true);
+        await registerNewUser(user);
+        setIsLoading(false);
+        setUser(defaultInputs);
+        setRegisterDisabled(false);
+      } else if (!email.value) {
         setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
         setRegisterDisabled(true);
-      }
-      if (!fullName.value) {
+      } else if (!fullName.value) {
         setUsernameInfo({
           usernameValidationStatus: "error",
           help: "Please enter a Username.",
         });
         setRegisterDisabled(true);
-      }
-      if (!password.value) {
+      } else if (!password.value) {
         setPasswordInfo({
           passwordValidationStatus: "error",
           help: "Please enter a Password.",
         });
         setRegisterDisabled(true);
       }
+    } catch (err) {
+      setIsLoading(false);
+      setRegisterDisabled(false);
+      console.error(err.response.data.message);
     }
   }
 
@@ -116,20 +117,14 @@ export function RegisterForm({registerNewUser, ...props}) {
   }
 
   return (
-    <div className={styles.registerContainer} data-testid="test_register_container">
-      <Form
-        onSubmit={event => handleSubmit(event)}
-        className={styles.registerForm}
-        data-testid="test_register_form"
-      >
+    <div className={styles.registerContainer}>
+      <Form onSubmit={event => handleSubmit(event)} className={styles.registerForm}>
         <Form.Item
-          data-testid="test_email_form_item"
           hasFeedback
           validateStatus={emailInfo.emailValidationStatus}
           help={emailInfo.help}
         >
           <Input
-            data-testid="test_email_input"
             onBlur={e => emailValidation(e)}
             prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="email"
@@ -140,13 +135,11 @@ export function RegisterForm({registerNewUser, ...props}) {
           />
         </Form.Item>
         <Form.Item
-          data-testid="test_username_form_item"
           hasFeedback
           validateStatus={usernameInfo.usernameValidationStatus}
           help={usernameInfo.help}
         >
           <Input
-            data-testid="test_username_input"
             onBlur={e => usernameValidation(e)}
             prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="username"
@@ -157,13 +150,11 @@ export function RegisterForm({registerNewUser, ...props}) {
           />
         </Form.Item>
         <Form.Item
-          data-testid="test_password_form_item"
           hasFeedback
           validateStatus={passwordInfo.passwordValidationStatus}
           help={passwordInfo.help}
         >
           <Input
-            data-testid="test_password_input"
             onBlur={e => passwordValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="password"
@@ -173,13 +164,13 @@ export function RegisterForm({registerNewUser, ...props}) {
             onChange={event => handleChange(event)}
           />
         </Form.Item>
-        <Form.Item data-testid="test_submit_form_item">
+        <Form.Item>
           <Button
-            data-testid="test_submit_button"
             type="primary"
             htmlType="submit"
             className={styles.registerFormButton}
             disabled={registerDisabled}
+            loading={isLoading}
           >
             Register
           </Button>
@@ -198,4 +189,4 @@ function mapStateToProps(state) {
 
 const ConnectedForm = connect(mapStateToProps, {registerNewUser})(RegisterForm);
 
-export default ConnectedForm;
+export default Form.create()(ConnectedForm);
