@@ -6,17 +6,31 @@ import {Form, Input, Button, Icon} from "antd";
 import styles from "./Register.module.css";
 
 export function RegisterForm({registerNewUser, ...props}) {
-  const [emailInfo, setEmailInfo] = useState({emailValidationStatus: null, help: null});
+  //controls feedback messages for user
+  const [emailInfo, setEmailInfo] = useState({
+    emailValidationStatus: null,
+    help: null,
+  });
   const [usernameInfo, setUsernameInfo] = useState({
     usernameValidationStatus: null,
     help: null,
   });
+  const [passwordInfo, setPasswordInfo] = useState({
+    passwordValidationStatus: null,
+    help: null,
+  });
 
+  //default inputs for form
   const defaultInputs = {
     email: "",
     fullName: "",
     password: "",
   };
+  const [user, setUser] = useState(defaultInputs);
+
+  //control additional feedback for user
+  const [registerDisabled, setRegisterDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -26,8 +40,10 @@ export function RegisterForm({registerNewUser, ...props}) {
         setIsLoading(true);
         setRegisterDisabled(true);
         await registerNewUser(user);
+        console.log(user);
         setIsLoading(false);
         setUser(defaultInputs);
+        console.log(user);
         setRegisterDisabled(false);
       } else {
         if (!email.value) {
@@ -60,13 +76,6 @@ export function RegisterForm({registerNewUser, ...props}) {
       }
     }
   }
-  const [passwordInfo, setPasswordInfo] = useState({
-    passwordValidationStatus: null,
-    help: null,
-  });
-  const [registerDisabled, setRegisterDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(defaultInputs);
 
   function emailValidation(e) {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -120,40 +129,6 @@ export function RegisterForm({registerNewUser, ...props}) {
     });
   };
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   const {email, fullName, password} = e.target;
-
-  //   try {
-  //     if (email.value && fullName.value && password.value) {
-  //       console.log(user);
-  //       await registerNewUser(user);
-  //       setIsLoading(false);
-  //       setRegisterDisabled(false);
-  //     } else if (!email.value) {
-  //       setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
-  //       setRegisterDisabled(true);
-  //     } else if (!fullName.value) {
-  //       setUsernameInfo({
-  //         usernameValidationStatus: "error",
-  //         help: "Please enter a Username.",
-  //       });
-  //       setRegisterDisabled(true);
-  //     } else if (!password.value) {
-  //       setPasswordInfo({
-  //         passwordValidationStatus: "error",
-  //         help: "Please enter a Password.",
-  //       });
-  //       setRegisterDisabled(true);
-  //     }
-  //   } catch (err) {
-  //     setIsLoading(false);
-  //     setRegisterDisabled(false);
-  //     console.error(err.response.data.message || "Something went wrong");
-  //   }
-  // }
-
   return (
     <div className={styles.registerContainer} data-testid="test_register_container">
       <Form
@@ -174,7 +149,7 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="email"
             type="text"
             name="email"
-            setfieldvalue={user.email}
+            value={user.email}
             onChange={event => handleChange(event)}
           />
         </Form.Item>
@@ -191,7 +166,7 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="username"
             type="text"
             name="fullName"
-            setfieldvalue={user.fullName}
+            value={user.fullName}
             onChange={event => handleChange(event)}
           />
         </Form.Item>
@@ -208,7 +183,7 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="password"
             type="password"
             name="password"
-            setfieldvalue={user.password}
+            value={user.password}
             onChange={event => handleChange(event)}
           />
         </Form.Item>
