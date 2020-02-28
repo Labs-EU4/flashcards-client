@@ -10,7 +10,7 @@ const ResetPasswordForm = props => {
   const [state, setState] = useState({
     confirmDirty: false,
     isLoading: false,
-    tokenInvalid: false,
+    tokenInvalid: null,
   });
   const [formValues, setFormValues] = useState({
     newPassword: "",
@@ -35,8 +35,10 @@ const ResetPasswordForm = props => {
           })
           .then(res => {
             console.log(res);
-            setState({...state, isLoading: false});
-            props.history.push("/login");
+            setState({...state, isLoading: false, tokenInvalid: false});
+            setTimeout(() => {
+              history.push("/login");
+            }, 2000);
           })
           .catch(err => {
             setState({...state, isLoading: false, tokenInvalid: true});
@@ -73,60 +75,69 @@ const ResetPasswordForm = props => {
   const {getFieldDecorator} = props.form;
 
   return (
-    <Form onSubmit={handleSubmit} className="new-password-form">
-      <h1>Reset Password</h1>
-      <Form.Item hasFeedback>
-        {getFieldDecorator("password", {
-          rules: [
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-            {
-              validator: validateToNextPassword,
-            },
-          ],
-        })(
-          <Input.Password
-            placeholder="Password"
-            name="newPassword"
-            onChange={handleChange}
-            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+    <div className="form-container">
+      <Form onSubmit={handleSubmit} className="new-password-form">
+        <h1>Reset Password</h1>
+        <Form.Item hasFeedback>
+          {getFieldDecorator("password", {
+            rules: [
+              {
+                required: true,
+                message: "Password must be at least 5 characters",
+                min: 5,
+              },
+              {
+                validator: validateToNextPassword,
+              },
+            ],
+          })(
+            <Input.Password
+              placeholder="Password"
+              name="newPassword"
+              onChange={handleChange}
+              prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+            />
+          )}
+        </Form.Item>
+        <Form.Item hasFeedback>
+          {getFieldDecorator("confirm", {
+            rules: [
+              {
+                required: true,
+                message: "Please confirm your password!",
+              },
+              {
+                validator: compareToFirstPassword,
+              },
+            ],
+          })(
+            <Input.Password
+              placeholder="Confirm Password"
+              onBlur={handleConfirmBlur}
+              prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={state.isLoading}>
+            Reset
+          </Button>
+        </Form.Item>
+        {state.tokenInvalid ? (
+          <Alert
+            message="Token invalid"
+            description="The token you tried to use is invalid."
+            type="error"
           />
-        )}
-      </Form.Item>
-      <Form.Item hasFeedback>
-        {getFieldDecorator("confirm", {
-          rules: [
-            {
-              required: true,
-              message: "Please confirm your password!",
-            },
-            {
-              validator: compareToFirstPassword,
-            },
-          ],
-        })(
-          <Input.Password
-            placeholder="Confirm Password"
-            onBlur={handleConfirmBlur}
-            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+        ) : state.tokenInvalid === false ? (
+          <Alert
+            message="Success"
+            description="Your password was updated!"
+            type="success"
           />
-        )}
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" loading={state.isLoading}>
-          Reset
-        </Button>
-      </Form.Item>
-      {state.tokenInvalid ? (
-        <Alert
-          message="Token invalid"
-          description="The token you tried to use is invalid."
-          type="error"
-        />
-      ) : null}
-    </Form>
+        ) : null}
+      </Form>
+    </div>
   );
 };
 

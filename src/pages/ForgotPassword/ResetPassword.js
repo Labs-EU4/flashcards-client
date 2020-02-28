@@ -1,10 +1,10 @@
 import React from "react";
 import FormComponentChange from "../../components/ForgotPassword/FormComponentChangePassword";
-import "./index.css";
+import styles from "./ForgotPassword.module.css";
 
 const ResetPassword = props => {
   return (
-    <div className="forgot-password">
+    <div className={styles.forgotPassword}>
       <FormComponentChange />
     </div>
   );
