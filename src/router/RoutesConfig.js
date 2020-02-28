@@ -1,7 +1,10 @@
 import Home from "../pages/Home";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login";
-import dashboard from "../components/dashboard";
+import Dashboard from "../components/dashboard";
+import checkLoginState from "./checkLoginState";
+import {Redirect} from "react-router-dom";
+import React from "react";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -12,7 +15,7 @@ import dashboard from "../components/dashboard";
 const RoutesConfig = [
   {
     path: "/",
-    component: Home,
+    render: props => (checkLoginState() ? <Home /> : <Redirect to="/login" />),
   },
 
   {
@@ -21,7 +24,7 @@ const RoutesConfig = [
   },
   {
     path: "/dashboard",
-    component: dashboard,
+    render: props => (checkLoginState() ? <Dashboard /> : <Redirect to="/login" />),
   },
 
   {
