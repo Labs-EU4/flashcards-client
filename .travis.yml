@@ -7,11 +7,11 @@ cache:
 env:
   global:
     - DB_ENV=test
-   
+
 before_script:
   - npm install && npm install make-coverage-badge
 script:
-  - npm test
+  - npm test --watch=false
 after_script:
   - make-coverage-badge --output-path ./badges
 notifications:
