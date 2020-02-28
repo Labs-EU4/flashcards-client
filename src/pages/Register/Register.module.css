@@ -1,9 +1,10 @@
 .registerContainer {
   position: fixed;
   display: flex;
+  flex-direction: column;
   width: 100%;
-  justify-content: center;
-  margin: 35vh auto;
+  align-items: center;
+  margin: 30vh auto;
 }
 
 .registerForm {
@@ -15,4 +16,8 @@
 
 .registerFormButton {
   width: 100%;
+}
+
+h1 {
+  margin-bottom: 20%;
 }

@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import PageNotFound from "../pages/404";
-import Register from "../pages/Register";
+import Register from "../pages/Register/Register";
 
 /*
   Routes config must be ordered the same way you'd 
