@@ -12,10 +12,6 @@ beforeEach(() => {
 });
 
 describe("is the component rendering correctly", () => {
-  // it("renders fine without crashing", () => {
-  //   expect(wrapper.container).toMatchSnapshot();
-  // });
-
   it("renders the heading", () => {
     let queryValue = wrapper.queryByText(/Reset Password/);
     expect(queryValue).toBeDefined();
