@@ -23,8 +23,8 @@ const RoutesConfig = [
   {
     path: "/",
     //protected route takes path and a render prop
-    // render: createRenderCallback(Home),
-    component: Home,
+    render: createRenderCallback(Home),
+    // component: Home,
   },
 
   {
