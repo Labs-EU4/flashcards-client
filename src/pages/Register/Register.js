@@ -131,6 +131,7 @@ export function RegisterForm({registerNewUser, ...props}) {
 
   return (
     <div className={styles.registerContainer} data-testid="test_register_container">
+      <h1>Sign-up.</h1>
       <Form
         onSubmit={event => handleSubmit(event)}
         className={styles.registerForm}

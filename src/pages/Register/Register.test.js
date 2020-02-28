@@ -74,14 +74,6 @@ it("renders expected elements properly -> DEFAULT", () => {
   expect(SubmitButton()).toBeInTheDocument();
 });
 
-const mockedEvent = {
-  target: {
-    email: {value: "ferrydarragh@gmail.com"},
-    username: {value: "darragh"},
-    password: {value: "password"},
-  },
-};
-
 const newUser = {
   email: "darraghferry@hotmail.com",
   username: "darragh",
@@ -91,11 +83,8 @@ const newUser = {
 it("renders expected elements properly -> INPUT FIELD CHANGES", () => {
   rtl.fireEvent.change(EmailInput(), {target: {value: newUser.email}});
   expect(EmailInput().value).toBe(newUser.email);
-  // rtl.fireEvent.blur(EmailInput());
-  // expect(EmailInput().validateStatus).toBe("success");
   rtl.fireEvent.change(UsernameInput(), {target: {value: newUser.username}});
   expect(UsernameInput().value).toBe(newUser.username);
   rtl.fireEvent.change(PasswordInput(), {target: {value: newUser.password}});
   expect(PasswordInput().value).toBe(newUser.password);
-  // rtl.fireEvent.submit(RegisterFormTest());
 });
