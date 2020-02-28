@@ -6,18 +6,10 @@ import {Form, Input, Button, Icon} from "antd";
 import styles from "./Register.module.css";
 
 export function RegisterForm({registerNewUser, ...props}) {
-  //controls feedback messages for user
-  const [emailInfo, setEmailInfo] = useState({
-    emailValidationStatus: null,
-    help: null,
-  });
-  const [usernameInfo, setUsernameInfo] = useState({
-    usernameValidationStatus: null,
-    help: null,
-  });
-  const [passwordInfo, setPasswordInfo] = useState({
-    passwordValidationStatus: null,
-    help: null,
+  const [formInfo, setFormInfo] = useState({
+    email: {validationStatus: null, help: null},
+    username: {validationStatus: null, help: null},
+    password: {validationStatus: null, help: null},
   });
 
   //default inputs for form
@@ -29,7 +21,6 @@ export function RegisterForm({registerNewUser, ...props}) {
   const [user, setUser] = useState(defaultInputs);
 
   //control additional feedback for user
-  const [registerDisabled, setRegisterDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(e) {
@@ -38,39 +29,44 @@ export function RegisterForm({registerNewUser, ...props}) {
     try {
       if (email.value && fullName.value && password.value) {
         setIsLoading(true);
-        setRegisterDisabled(true);
         await registerNewUser(user);
         console.log(user);
         setIsLoading(false);
         setUser(defaultInputs);
         console.log(user);
-        setRegisterDisabled(false);
+        setFormInfo({
+          ...formInfo,
+          email: {validationStatus: null, help: null},
+          username: {validationStatus: null, help: null},
+          password: {validationStatus: null, help: null},
+        });
       } else {
         if (!email.value) {
-          setEmailInfo({emailValidationStatus: "error", help: "Please enter an Email."});
-          setRegisterDisabled(true);
+          setFormInfo({
+            ...formInfo,
+            email: {validationStatus: "error", help: "Please enter an Email"},
+          });
         }
         if (!fullName.value) {
-          setUsernameInfo({
-            usernameValidationStatus: "error",
-            help: "Please enter a Username.",
+          setFormInfo({
+            ...formInfo,
+            username: {validationStatus: "error", help: "Please enter a Username"},
           });
-          setRegisterDisabled(true);
         }
         if (!password.value) {
-          setPasswordInfo({
-            passwordValidationStatus: "error",
-            help: "Please enter a Password.",
+          setFormInfo({
+            ...formInfo,
+            password: {validationStatus: "error", help: "Please enter a Password"},
           });
-          setRegisterDisabled(true);
         }
       }
     } catch (err) {
       setIsLoading(false);
-      setRegisterDisabled(false);
       if (err.response.data.message === "User with this email already exists") {
-        setRegisterDisabled(true);
-        setEmailInfo({emailValidationStatus: "error", help: err.response.data.message});
+        setFormInfo({
+          ...formInfo,
+          email: {validationStatus: "error", help: err.response.data.message},
+        });
       } else {
         console.error(err.response.data.message);
       }
@@ -84,37 +80,37 @@ export function RegisterForm({registerNewUser, ...props}) {
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       const email = inputString.match(emailRegex);
       if (email) {
-        setEmailInfo({emailValidationStatus: "success", help: null});
+        setFormInfo({...formInfo, email: {validationStatus: "success", help: null}});
       } else {
-        setEmailInfo({emailValidationStatus: "warning", help: "Not a valid email"});
+        setFormInfo({
+          ...formInfo,
+          email: {validationStatus: "warning", help: "Not a valid email"},
+        });
       }
     } else if (inputType === "fullName") {
       if (inputString.length >= 5) {
-        setUsernameInfo({usernameValidationStatus: "success", help: null});
+        setFormInfo({...formInfo, username: {validationStatus: "success", help: null}});
       } else {
-        setUsernameInfo({
-          usernameValidationStatus: "warning",
-          help: "Username must be at least 5 characters",
+        setFormInfo({
+          ...formInfo,
+          username: {
+            validationStatus: "warning",
+            help: "Username must be at least 5 characters",
+          },
         });
       }
     } else if (inputType === "password") {
       if (inputString.length >= 5) {
-        setPasswordInfo({passwordValidationStatus: "success", help: null});
+        setFormInfo({...formInfo, password: {validationStatus: "success", help: null}});
       } else {
-        setPasswordInfo({
-          passwordValidationStatus: "warning",
-          help: "Password must be at least 5 characters",
+        setFormInfo({
+          ...formInfo,
+          password: {
+            validationStatus: "warning",
+            help: "Password must be at least 5 characters",
+          },
         });
       }
-    }
-    if (
-      emailInfo.emailValidationStatus != "success" ||
-      usernameInfo.usernameValidationStatus != "success" ||
-      passwordInfo.passwordValidationStatus != "success"
-    ) {
-      setRegisterDisabled(true);
-    } else {
-      setRegisterDisabled(false);
     }
   }
 
@@ -136,8 +132,8 @@ export function RegisterForm({registerNewUser, ...props}) {
         <Form.Item
           data-testid="test_email_form_item"
           hasFeedback
-          validateStatus={emailInfo.emailValidationStatus}
-          help={emailInfo.help}
+          validateStatus={formInfo.email.validationStatus}
+          help={formInfo.email.help}
         >
           <Input
             data-testid="test_email_input"
@@ -153,8 +149,8 @@ export function RegisterForm({registerNewUser, ...props}) {
         <Form.Item
           data-testid="test_username_form_item"
           hasFeedback
-          validateStatus={usernameInfo.usernameValidationStatus}
-          help={usernameInfo.help}
+          validateStatus={formInfo.username.validationStatus}
+          help={formInfo.username.help}
         >
           <Input
             data-testid="test_username_input"
@@ -170,8 +166,8 @@ export function RegisterForm({registerNewUser, ...props}) {
         <Form.Item
           data-testid="test_password_form_item"
           hasFeedback
-          validateStatus={passwordInfo.passwordValidationStatus}
-          help={passwordInfo.help}
+          validateStatus={formInfo.password.validationStatus}
+          help={formInfo.password.help}
         >
           <Input
             data-testid="test_password_input"
@@ -190,7 +186,13 @@ export function RegisterForm({registerNewUser, ...props}) {
             type="primary"
             htmlType="submit"
             className={styles.registerFormButton}
-            disabled={registerDisabled}
+            disabled={
+              formInfo.email.validationStatus != "success" ||
+              formInfo.username.validationStatus != "success" ||
+              formInfo.password.validationStatus != "success"
+                ? true
+                : false
+            }
             loading={isLoading}
           >
             Register
