@@ -77,48 +77,44 @@ export function RegisterForm({registerNewUser, ...props}) {
     }
   }
 
-  function emailValidation(e) {
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  function formValidation(e) {
     let inputString = e.target.value;
-
-    const email = inputString.match(emailRegex);
-
-    if (email) {
-      setEmailInfo({emailValidationStatus: "success", help: null});
-      setRegisterDisabled(false);
-    } else {
-      setEmailInfo({emailValidationStatus: "warning", help: "Not a valid email"});
-      setRegisterDisabled(true);
+    let inputType = e.target.name;
+    if (inputType === "email") {
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const email = inputString.match(emailRegex);
+      if (email) {
+        setEmailInfo({emailValidationStatus: "success", help: null});
+      } else {
+        setEmailInfo({emailValidationStatus: "warning", help: "Not a valid email"});
+      }
+    } else if (inputType === "fullName") {
+      if (inputString.length >= 5) {
+        setUsernameInfo({usernameValidationStatus: "success", help: null});
+      } else {
+        setUsernameInfo({
+          usernameValidationStatus: "warning",
+          help: "Username must be at least 5 characters",
+        });
+      }
+    } else if (inputType === "password") {
+      if (inputString.length >= 5) {
+        setPasswordInfo({passwordValidationStatus: "success", help: null});
+      } else {
+        setPasswordInfo({
+          passwordValidationStatus: "warning",
+          help: "Password must be at least 5 characters",
+        });
+      }
     }
-  }
-
-  function usernameValidation(e) {
-    let inputString = e.target.value;
-
-    if (inputString.length >= 5) {
-      setUsernameInfo({usernameValidationStatus: "success", help: null});
-      setRegisterDisabled(false);
-    } else {
-      setUsernameInfo({
-        usernameValidationStatus: "warning",
-        help: "Username must be at least 5 characters",
-      });
+    if (
+      emailInfo.emailValidationStatus != "success" ||
+      usernameInfo.usernameValidationStatus != "success" ||
+      passwordInfo.passwordValidationStatus != "success"
+    ) {
       setRegisterDisabled(true);
-    }
-  }
-
-  function passwordValidation(e) {
-    let inputString = e.target.value;
-
-    if (inputString.length >= 5) {
-      setPasswordInfo({passwordValidationStatus: "success", help: null});
-      setRegisterDisabled(false);
     } else {
-      setPasswordInfo({
-        passwordValidationStatus: "warning",
-        help: "Password must be at least 5 characters",
-      });
-      setRegisterDisabled(true);
+      setRegisterDisabled(false);
     }
   }
 
@@ -145,7 +141,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_email_input"
-            onBlur={e => emailValidation(e)}
+            onBlur={e => formValidation(e)}
             prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="email"
             type="text"
@@ -162,7 +158,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_username_input"
-            onBlur={e => usernameValidation(e)}
+            onBlur={e => formValidation(e)}
             prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="username"
             type="text"
@@ -179,7 +175,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_password_input"
-            onBlur={e => passwordValidation(e)}
+            onBlur={e => formValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="password"
             type="password"
