@@ -16,7 +16,7 @@ const NormalLoginForm = props => {
     e.preventDefault();
     setState({...state, isLoading: true});
     axios
-      .post("http://localhost:4003/api/auth/forgot_password", {
+      .post("http://flashdecks-staging.herokuapp.com/api/auth/forgot_password", {
         email: formValues.email,
       })
       .then(function(response) {

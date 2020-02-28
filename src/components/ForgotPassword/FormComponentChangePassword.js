@@ -29,10 +29,13 @@ const ResetPasswordForm = props => {
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         axios
-          .post(`http://localhost:4003/api/auth/reset_password/${token}`, {
-            password: formValues.newPassword,
-            confirmPassword: formValues.newPassword,
-          })
+          .post(
+            `http://flashdecks-staging.herokuapp.com/api/auth/reset_password/${token}`,
+            {
+              password: formValues.newPassword,
+              confirmPassword: formValues.newPassword,
+            }
+          )
           .then(res => {
             console.log(res);
             setState({...state, isLoading: false, tokenInvalid: false});
