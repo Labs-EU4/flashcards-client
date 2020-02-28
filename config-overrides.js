@@ -1,4 +1,10 @@
-const {override, fixBabelImports, addLessLoader} = require("customize-cra");
+const {
+  override,
+  fixBabelImports,
+  addLessLoader,
+  addWebpackModuleRule,
+} = require("customize-cra");
+const theme = require("./theme");
 
 module.exports = override(
   fixBabelImports("import", {
@@ -8,6 +14,24 @@ module.exports = override(
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: {"@primary-color": "#f7a707"},
+    modifyVars: theme,
+  }),
+  addWebpackModuleRule({
+    test: /\.module.less$/,
+    use: [
+      {
+        loader: "style-loader",
+      },
+      {
+        loader: "css-loader",
+        options: {
+          sourceMap: true,
+          modules: true,
+        },
+      },
+      {
+        loader: "less-loader",
+      },
+    ],
   })
 );
