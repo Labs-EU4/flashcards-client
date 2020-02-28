@@ -5,7 +5,6 @@ import "./index.css";
 const ResetPassword = props => {
   return (
     <div className="forgot-password">
-      <h1>Reset Password</h1>
       <FormComponentChange />
     </div>
   );

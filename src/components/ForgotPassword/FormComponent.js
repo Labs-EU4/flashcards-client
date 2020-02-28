@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Form, Icon, Input, Button} from "antd";
+import {Form, Icon, Input, Button, Alert} from "antd";
 import axios from "axios";
 
 const NormalLoginForm = props => {
@@ -7,9 +7,14 @@ const NormalLoginForm = props => {
   const [formValues, setFormValues] = useState({
     email: "",
   });
+  const [state, setState] = useState({
+    isLoading: false,
+    emailInvalid: false,
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
+    setState({...state, isLoading: true});
     axios
       .post("http://localhost:4003/api/auth/forgot_password", {
         email: formValues.email,
@@ -19,9 +24,11 @@ const NormalLoginForm = props => {
           email: "",
         });
         console.log(response);
+        setState({...state, isLoading: false});
       })
       .catch(function(error) {
         console.log(error);
+        setState({...state, isLoading: false, emailInvalid: true});
       });
   };
 
@@ -36,6 +43,7 @@ const NormalLoginForm = props => {
   const {getFieldDecorator} = props.form;
   return (
     <Form onSubmit={handleSubmit} className="login-form">
+      <h1>Reset Password</h1>
       <Form.Item>
         {getFieldDecorator("email", {
           //rules are for the form validation
@@ -58,10 +66,22 @@ const NormalLoginForm = props => {
         )}
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
+          loading={state.isLoading}
+        >
           Reset
         </Button>
       </Form.Item>
+      {state.emailInvalid ? (
+        <Alert
+          message="Email Invalid"
+          description="This email doesn't exist in our database!"
+          type="error"
+        />
+      ) : null}
     </Form>
   );
 };

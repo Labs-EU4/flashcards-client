@@ -1,17 +1,18 @@
 .login-form, .new-password-form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .login-form-forgot {
-    float: right;
-  }
-  .login-form-button {
+    max-width: 350px;
     width: 100%;
   }
 
   .ant-form-explain {
       color: red;
   }
+
+.forgot-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30vh;
+}
 
 .forgot-password h1{
       margin: 0 auto;
@@ -20,6 +21,6 @@
       font-size: 2rem;
 }
 
-.loading {
-  margin-left: 40%;
+.ant-btn-primary {
+  width: 100%;
 }
