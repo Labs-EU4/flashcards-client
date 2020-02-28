@@ -6,6 +6,9 @@ exports[`renders without crashing 1`] = `
     class="registerContainer"
     data-testid="test_register_container"
   >
+    <h1>
+      Sign-up.
+    </h1>
     <form
       class="ant-form ant-form-horizontal registerForm"
       data-testid="test_register_form"
@@ -185,6 +188,7 @@ exports[`renders without crashing 1`] = `
               <button
                 class="ant-btn registerFormButton ant-btn-primary"
                 data-testid="test_submit_button"
+                disabled=""
                 type="submit"
               >
                 <span>
