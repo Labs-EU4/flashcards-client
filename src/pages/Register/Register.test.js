@@ -59,6 +59,7 @@ let SubmitButton = () => {
 
 it("renders without crashing", () => {
   expect(wrapper.container).toMatchSnapshot();
+  // wrapper.debug();
 });
 
 it("renders expected elements properly -> DEFAULT", () => {
@@ -87,4 +88,9 @@ it("renders expected elements properly -> INPUT FIELD CHANGES", () => {
   expect(UsernameInput().value).toBe(newUser.username);
   rtl.fireEvent.change(PasswordInput(), {target: {value: newUser.password}});
   expect(PasswordInput().value).toBe(newUser.password);
+  // EmailInput().simulate("keydown", {which: "r"});
+  // expect(wrapper.container).toMatchSnapshot();
+  // const onSubmit = jest.fn();
+  // rtl.fireEvent.submit(SubmitButton());
+  // expect(onSubmit).toHaveBeenCalledTimes(1);
 });
