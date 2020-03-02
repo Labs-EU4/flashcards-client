@@ -95,7 +95,7 @@ const ResetPasswordForm = props => {
             ],
           })(
             <Input.Password
-              placeholder="Password"
+              placeholder="New Password"
               name="newPassword"
               onChange={handleChange}
               prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
