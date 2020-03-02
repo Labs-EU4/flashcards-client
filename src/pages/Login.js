@@ -1,89 +1,99 @@
 import React, {useState} from "react";
-import {Form, Icon, Input, Button} from "antd";
-import axios from "axios";
+import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../pages/Login.css";
+import {connect} from "react-redux";
+import {login} from "../state/IsLoggedIn/IsLoggedInActionCreators";
 
-const Login = props => {
+export const Login = props => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleChange = e => {
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    axios
-      .post("http://localhost:4003/api/auth/login", formValues)
-      .then(res => {
-        console.log(res);
-        localStorage.setItem("token", res.data.payload);
-        setFormValues({
-          email: "",
-          password: "",
-        });
-        props.history.push("/dashboard");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    setLoading(true);
+    try {
+      await props.login(formValues);
+    } catch (error) {
+      setError(error);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
   const {getFieldDecorator} = props.form;
   return (
-    <Form onSubmit={handleSubmit} className="login-form">
-      <Form.Item>
-        {getFieldDecorator("email", {
-          //rules are for the form validation
-          rules: [
-            {required: true, message: "Please input a email!"},
-            {
-              type: "email",
-              message: "Invalid email",
-            },
-          ],
-        })(
-          <Input
-            name="email"
-            setFieldsValue={formValues.email}
-            onChange={handleChange}
-            //form icon in the email field, change type for different icons, see antdesign docs
-            prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
-            placeholder="Email"
+    <Spin spinning={loading} delay={300}>
+      <Form onSubmit={handleSubmit} className="login-form">
+        <Form.Item>
+          {getFieldDecorator("email", {
+            //rules are for the form validation
+            rules: [
+              {required: true, message: "Please input a email!"},
+              {
+                type: "email",
+                message: "Invalid email",
+              },
+            ],
+          })(
+            <Input
+              name="email"
+              setFieldsValue={formValues.email}
+              onChange={handleChange}
+              //form icon in the email field, change type for different icons, see antdesign docs
+              prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
+              placeholder="Email"
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator("password", {
+            //rules are for the form validation
+            rules: [
+              {required: true, message: "Please input a password!"},
+              {
+                type: "string",
+                message: "Invalid password",
+              },
+            ],
+          })(
+            <Input
+              name="password"
+              type="password"
+              setFieldsValue={formValues.password}
+              onChange={handleChange}
+              //form icon in the email field, change type for different icons, see antdesign docs
+              prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+              placeholder="Password"
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-form-button">
+            Login
+          </Button>
+        </Form.Item>
+        {error && (
+          <Alert
+            message={error}
+            type="error"
+            closable
+            afterClose={() => setError(null)}
           />
         )}
-      </Form.Item>
-      <Form.Item>
-        {getFieldDecorator("password", {
-          //rules are for the form validation
-          rules: [
-            {required: true, message: "Please input a password!"},
-            {
-              type: "string",
-              message: "Invalid password",
-            },
-          ],
-        })(
-          <Input
-            name="password"
-            type="password"
-            setFieldsValue={formValues.password}
-            onChange={handleChange}
-            //form icon in the email field, change type for different icons, see antdesign docs
-            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
-            placeholder="Password"
-          />
-        )}
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Login
-        </Button>
-      </Form.Item>
-    </Form>
+      </Form>
+    </Spin>
   );
 };
-const WrappedNormalLoginForm = Form.create({name: "normal_login"})(Login);
-export default WrappedNormalLoginForm;
+
+export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(Login);
+
+export default connect(() => {}, {login})(WrappedNormalLoginForm);
