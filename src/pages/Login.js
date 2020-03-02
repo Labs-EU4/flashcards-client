@@ -39,7 +39,7 @@ export const Login = props => {
             {getFieldDecorator("email", {
               //rules are for the form validation
               rules: [
-                {required: true, message: "Please input a email!"},
+                {required: true, message: "Please input a valid email!"},
                 {
                   type: "email",
                   message: "Invalid email",
