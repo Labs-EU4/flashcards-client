@@ -1,11 +1,10 @@
 import React from "react";
 import NormalLoginForm from "../../components/ForgotPassword/FormComponent";
-import "./index.css";
+import styles from "./ForgotPassword.module.css";
 
 const ForgotPassword = props => {
   return (
-    <div className="forgot-password">
-      <h1>Reset Password</h1>
+    <div className={styles.forgotPassword}>
       <NormalLoginForm />
     </div>
   );
