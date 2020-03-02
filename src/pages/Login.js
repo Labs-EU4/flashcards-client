@@ -82,7 +82,8 @@ export const Login = props => {
             <Button type="primary" htmlType="submit" className="login-form-button">
               Login
             </Button>
-            Or <a href="/register">Register Here!</a>
+            Forgot password? <a href="/reset-password">click here to reset! </a>
+            Or <a href="/register">register here!</a>
           </Form.Item>
           {error && (
             <Alert
