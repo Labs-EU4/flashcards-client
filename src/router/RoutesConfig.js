@@ -1,6 +1,7 @@
-import Home from '../pages/Home';
-import PageNotFound from '../pages/404';
-
+import Home from "../pages/Home";
+import PageNotFound from "../pages/404";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 /*
   Routes config must be ordered the same way you'd 
   do inside a `<Switch>`. The last route object is 
@@ -10,11 +11,19 @@ import PageNotFound from '../pages/404';
 const RoutesConfig = [
   {
     path: "/",
-    component: Home
+    component: Home,
+  },
+  {
+    path: "/reset-password",
+    component: ForgotPassword,
+  },
+  {
+    path: "/reset/:id",
+    component: ResetPassword,
   },
   {
     path: "*",
-    component: PageNotFound
+    component: PageNotFound,
   },
 ];
 
