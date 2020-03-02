@@ -17,3 +17,15 @@
       margin-bottom: 30px;
       font-size: 2rem;
   }
+  .login-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 30vh auto;
+  }
+  h1{
+    display: flex;
+    justify-content: center;
+  }
