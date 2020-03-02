@@ -1,0 +1,12 @@
+.mainComponent {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 40vh;
+    display: flex;
+    justify-content: center;
+}
+
+.mainComponent div{
+    margin-bottom: 20px;
+}
+
