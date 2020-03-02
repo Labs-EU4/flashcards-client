@@ -30,7 +30,7 @@ const ResetPasswordForm = props => {
       if (!err) {
         axios
           .post(
-            `http://flashdecks-staging.herokuapp.com/api/auth/reset_password/${token}`,
+            `https://flashdecks-staging.herokuapp.com/api/auth/reset_password/${token}`,
             {
               password: formValues.newPassword,
               confirmPassword: formValues.newPassword,
