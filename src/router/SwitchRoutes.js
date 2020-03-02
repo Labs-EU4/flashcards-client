@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React from "react";
+import {Route, Switch} from "react-router-dom";
 
 /*
   SwitchRoutes takes in the routes from a routes config, 
@@ -8,7 +8,7 @@ import { Route, Switch } from 'react-router-dom';
   component. Must be used witha Switch import
 */
 
-const SwitchRoutes = ({ routes }) => {
+const SwitchRoutes = ({routes}) => {
   return (
     <Switch>
       {routes.map((route, index) => {
@@ -17,14 +17,16 @@ const SwitchRoutes = ({ routes }) => {
             exact={route.path === "/" ? true : null}
             key={index}
             path={route.path}
-            render={props => (
-              <route.component {...props} routes={route.routes} />
-            )}
+            render={
+              route.render
+                ? route.render
+                : props => <route.component {...props} routes={route.routes} />
+            }
           />
-        )
+        );
       })}
     </Switch>
-  )
-}
+  );
+};
 
 export default SwitchRoutes;
