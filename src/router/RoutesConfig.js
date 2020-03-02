@@ -3,7 +3,7 @@ import PageNotFound from "../pages/404";
 import Register from "../pages/Register/Register";
 
 import Login from "../pages/Login";
-import Dashboard from "../components/dashboard";
+import Dashboard from "../pages/Dashboard/dashboard";
 import {Redirect} from "react-router-dom";
 import React from "react";
 //This function is connected directly to the store and checks if user is logged in or not.
