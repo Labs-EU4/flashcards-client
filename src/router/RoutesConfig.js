@@ -1,5 +1,7 @@
 import Home from "../pages/Home";
 import PageNotFound from "../pages/404";
+import Register from "../pages/Register/Register";
+
 import Login from "../pages/Login";
 import Dashboard from "../components/dashboard";
 import {Redirect} from "react-router-dom";
@@ -37,6 +39,10 @@ const RoutesConfig = [
   {
     path: "/dashboard",
     render: createRenderCallback(Dashboard),
+  },
+  {
+    path: "/register",
+    component: Register,
   },
   {
     path: "/reset-password",
