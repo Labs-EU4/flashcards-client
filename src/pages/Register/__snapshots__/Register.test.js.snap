@@ -188,6 +188,7 @@ exports[`renders without crashing 1`] = `
               <button
                 class="ant-btn registerFormButton ant-btn-primary"
                 data-testid="test_submit_button"
+                disabled=""
                 type="submit"
               >
                 <span>
