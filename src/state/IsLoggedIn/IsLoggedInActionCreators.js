@@ -7,7 +7,7 @@ export const login = loginData => async dispatch => {
   dispatch(action(types.LOGIN_START));
   try {
     const response = await axios.post(
-      "http://flashdecks-staging.herokuapp.com/api/auth/login",
+      "https://flashdecks-staging.herokuapp.com/api/auth/login",
       loginData
     );
     const userData = response.data.data.user;

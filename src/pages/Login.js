@@ -17,6 +17,7 @@ export const Login = props => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
@@ -48,7 +49,7 @@ export const Login = props => {
             })(
               <Input
                 name="email"
-                setFieldsValue={formValues.email}
+                setfieldsvalue={formValues.email}
                 onChange={handleChange}
                 //form icon in the email field, change type for different icons, see antdesign docs
                 prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
@@ -70,7 +71,7 @@ export const Login = props => {
               <Input
                 name="password"
                 type="password"
-                setFieldsValue={formValues.password}
+                setfieldsvalue={formValues.password}
                 onChange={handleChange}
                 //form icon in the email field, change type for different icons, see antdesign docs
                 prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}

@@ -1,9 +1,4 @@
-import {
-  LOGIN_FAILURE,
-  LOGIN_START,
-  LOGIN_SUCCESS,
-  LOGOUT
-} from "./isLoggedInActionTypes";
+import {LOGIN_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGOUT} from "./isLoggedInActionTypes";
 
 const initialLoggedInState = false;
 export default function isLoggedInReducer(state = initialLoggedInState, action) {

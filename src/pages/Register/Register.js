@@ -187,9 +187,9 @@ export function RegisterForm({registerNewUser, ...props}) {
             htmlType="submit"
             className={styles.registerFormButton}
             disabled={
-              formInfo.email.validationStatus != "success" ||
-              formInfo.username.validationStatus != "success" ||
-              formInfo.password.validationStatus != "success"
+              formInfo.email.validationStatus !== "success" ||
+              formInfo.username.validationStatus !== "success" ||
+              formInfo.password.validationStatus !== "success"
                 ? true
                 : false
             }
