@@ -25,9 +25,9 @@ export function RegisterForm({registerNewUser, ...props}) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const {email, fullName, password} = e.target;
+    const {email, fullName, password} = user;
     try {
-      if (email.value && fullName.value && password.value) {
+      if (email && fullName && password) {
         setIsLoading(true);
         await registerNewUser(user);
         console.log(user);
@@ -41,19 +41,19 @@ export function RegisterForm({registerNewUser, ...props}) {
           password: {validationStatus: null, help: null},
         });
       } else {
-        if (!email.value) {
+        if (!email) {
           setFormInfo({
             ...formInfo,
             email: {validationStatus: "error", help: "Please enter an Email"},
           });
         }
-        if (!fullName.value) {
+        if (!fullName) {
           setFormInfo({
             ...formInfo,
             username: {validationStatus: "error", help: "Please enter a Username"},
           });
         }
-        if (!password.value) {
+        if (!password) {
           setFormInfo({
             ...formInfo,
             password: {validationStatus: "error", help: "Please enter a Password"},
