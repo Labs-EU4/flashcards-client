@@ -1,14 +1,14 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import ForgotPassword from "./ForgotPassword.js";
+import FormComponent from "../../components/ForgotPassword/FormComponent";
 
 afterEach(rtl.cleanup);
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = rtl.render(<ForgotPassword />);
+  wrapper = rtl.render(<FormComponent />);
 });
 
 describe("is the component rendering correctly", () => {
@@ -28,37 +28,25 @@ describe("is the component rendering correctly", () => {
   });
 });
 
-describe("the input field is working", () => {
-  it("responds to text input", () => {
-    let input = wrapper.getByPlaceholderText(/Email/);
-    rtl.fireEvent.click(input);
-    rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
-    rtl.fireEvent.keyDown(input, {key: "B", code: 66, charCode: 66});
-    rtl.fireEvent.keyDown(input, {key: "C", code: 67, charCode: 67});
-    let formValue = wrapper.queryByText(/ABC/);
-    expect(formValue).toBeDefined();
-  });
-
-  it("shows an validation error if input field is empty", () => {
-    let input = wrapper.getByPlaceholderText(/Email/);
-    rtl.fireEvent.click(input);
-    rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
-    rtl.fireEvent.keyDown(input, {key: "B", code: 66, charCode: 66});
-    rtl.fireEvent.keyDown(input, {key: "C", code: 67, charCode: 67});
-    rtl.fireEvent.keyDown(input, {key: "backspace", code: 8});
-    rtl.fireEvent.keyDown(input, {key: "backspace", code: 8});
-    rtl.fireEvent.keyDown(input, {key: "backspace", code: 8});
-    let error = wrapper.queryByText(/Please input a valid email!/);
-    expect(error).toBeDefined();
-  });
-
+describe("the input field + validation is working", () => {
   it("shows an validation error if input field has an invalid email", () => {
-    let input = wrapper.getByPlaceholderText(/Email/);
-    rtl.fireEvent.click(input);
-    rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
-    rtl.fireEvent.keyDown(input, {key: "B", code: 66, charCode: 66});
-    rtl.fireEvent.keyDown(input, {key: "C", code: 67, charCode: 67});
+    rtl.fireEvent.change(wrapper.getByTestId("email"), {
+      target: {value: "randomemail"},
+    });
     let error = wrapper.queryByText(/Invalid email/);
-    expect(error).toBeDefined();
+    expect(error).toHaveTextContent(/invalid/i);
+  });
+});
+
+describe("submit tests", () => {
+  it("gives an alert if email is not in database", async () => {
+    rtl.fireEvent.change(wrapper.getByTestId("email"), {
+      target: {value: "randomemail@email.com"},
+    });
+
+    rtl.fireEvent.click(wrapper.getByTestId("button"));
+    await rtl.wait(() => {
+      expect(wrapper.getByTestId("alertInvalid")).toHaveTextContent(/Email invalid/);
+    });
   });
 });
