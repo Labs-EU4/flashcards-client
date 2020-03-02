@@ -1,0 +1,17 @@
+.deckLibraryContainer {
+  margin: 0 auto;
+  height: 900px;
+  width: 300px;
+  overflow: auto;
+}
+
+.placeholder {
+  margin: 30px auto;
+  text-align: center;
+  background-color: #f7f19d !important;
+  border-radius: 10px;
+}
+
+.placeholder:nth-of-type(2n) {
+  background-color: #f5b8bf !important;
+}
