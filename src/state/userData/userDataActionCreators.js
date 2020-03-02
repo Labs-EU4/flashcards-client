@@ -5,7 +5,7 @@ import * as types from "./userDataActionTypes";
 export const registerNewUser = newUser => async dispatch => {
   try {
     const res = await axios.post(
-      "http://flashdecks-staging.herokuapp.com/api/auth/register",
+      "https://flashdecks-staging.herokuapp.com/api/auth/register",
       newUser
     );
     localStorage.setItem("token", res.data.data.token);
