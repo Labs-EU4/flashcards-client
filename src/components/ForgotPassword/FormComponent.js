@@ -49,7 +49,7 @@ const NormalLoginForm = props => {
         })(
           <Input
             name="email"
-            setFieldsValue={formValues.email}
+            setfieldsvalue={formValues.email}
             onChange={handleChange}
             //form icon in the email field, change type for different icons, see antdesign docs
             prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
