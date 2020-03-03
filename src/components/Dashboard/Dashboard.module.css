@@ -1,0 +1,43 @@
+.dashboardLeft {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 270px;
+  height: 100vh;
+  border-right: solid 1px #e8e8e8;
+}
+
+.logo {
+  position: absolute;
+  margin-top: 3vh;
+}
+
+.greeting {
+  position: absolute;
+  margin-top: 10vh;
+}
+
+.menu {
+  margin-top: 27vh;
+}
+
+.logoutButton {
+  position: absolute;
+  width: 122px;
+  height: 4vh;
+  border-radius: 15px;
+  margin-top: 32vh;
+}
+
+.footer {
+  position: absolute;
+  text-align: center;
+  color: black;
+  margin-top: 85vh;
+  line-height: 0.3;
+}
+
+.settings {
+    margin-top: 6vh;
+}

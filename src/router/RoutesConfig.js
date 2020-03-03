@@ -3,7 +3,7 @@ import PageNotFound from "../pages/404";
 import Register from "../pages/Register/Register";
 
 import Login from "../pages/Login";
-import Dashboard from "../components/Dashboard";
+import Dashboard from "../components/Dashboard/Dashboard";
 import {Redirect} from "react-router-dom";
 import React from "react";
 //This function is connected directly to the store and checks if user is logged in or not.
@@ -38,7 +38,7 @@ const RoutesConfig = [
   },
   {
     path: "/dashboard",
-    render: createRenderCallback(Dashboard),
+    component: Dashboard,
   },
   {
     path: "/register",
