@@ -48,6 +48,7 @@ function AddCard(props) {
             })(
               <Input
                 name="question"
+                type="text"
                 setFieldsValue={formValues.question}
                 //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
