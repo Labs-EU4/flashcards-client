@@ -43,14 +43,14 @@ function AddCard(props) {
               rules: [
                 {required: true, message: "Please enter your question here"},
                 {
-                  type: "question",
+                  type: "string",
                   message: "type a question",
                 },
               ],
             })(
               <Input
                 name="question"
-                type="text"
+                type="string"
                 setFieldsValue={formValues.question}
                 //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
@@ -72,7 +72,7 @@ function AddCard(props) {
             })(
               <Input
                 name="answer"
-                type="text"
+                type="string"
                 setFieldsValue={formValues.answer}
                 //form icon in the answer field, change type for different icons, see antdesign docs
                 prefix={<Icon type="edit" style={{color: "rgba(0,0,0,.25)"}} />}
