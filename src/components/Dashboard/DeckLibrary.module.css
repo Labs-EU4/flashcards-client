@@ -1,17 +1,21 @@
 .deckLibraryContainer {
-  margin: 0 auto;
-  height: 900px;
-  width: 300px;
+  margin: 20px auto;
+  height: auto;
+  max-height: 60vh;
+  width: 25vw;
   overflow: auto;
 }
 
-.placeholder {
-  margin: 30px auto;
+.deckCard {
   text-align: center;
   background-color: #f7f19d !important;
-  border-radius: 10px;
 }
 
-.placeholder:nth-of-type(2n) {
+.deckCard:nth-of-type(2n) {
   background-color: #f5b8bf !important;
+}
+
+.editDeck {
+  color: rgba(14, 12, 12, 0.6);
+  width: 100%;
 }

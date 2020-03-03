@@ -1,43 +1,45 @@
 import React, {useState, useEffect} from "react";
 import axiosWithAuth from "../../helpers/axiosWithAuth";
 import styles from "./DeckLibrary.module.css";
-import {List, Card, Icon} from "antd";
-import {EditOutlined, EllipsisOutlined, SettingOutlined} from "@ant-design/icons";
+import {Link} from "react-router-dom";
+import {Card, Icon} from "antd";
 
 export default function DeckLibrary() {
-  const [decks, setDecks] = useState([{}, {}, {}, {}, {}]);
+  const [decks, setDecks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      axiosWithAuth()
-        .get("http://localhost:4003/api/decks")
-        .then(res => {
-          console.log(res);
-          setDecks(res.data.data);
-          return res;
-        })
-        .then(res => {
-          setLoading(false);
-        });
-    }, 3000);
+    axiosWithAuth()
+      .get("http://localhost:4003/api/decks")
+      .then(res => {
+        console.log(res);
+        setDecks(res.data.data);
+        return res;
+      })
+      .then(res => {
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   return (
-    <div className={styles.deckLibraryContainer}>
+    <div className={styles.deckLibraryContainer} data-testid="LibraryContainer">
       {decks.map(deck => {
         return (
           <Card
+            role="deck"
+            data-testid={`Card${deck.deck_id}`}
+            key={deck.deck_id}
             actions={[
-              //   <Icon type="setting" style={{color: "rgba(14,12,12,.60)"}} />,
-              <Icon type="edit" style={{color: "rgba(14,12,12,.60)"}} key="edit" />,
-              <Icon type="delete" style={{color: "rgba(14,12,12,.60)"}} />,
-              //   <SettingOutlined key="setting" />,
-              //   <EditOutlined key="edit" />,
-              //   <EllipsisOutlined key="ellipsis" />,
+              <Link to={`/decks/${deck.deck_id}`}>
+                <Icon className={styles.editDeck} type="edit" key="edit" />
+              </Link>,
+              <Icon type="delete" style={{color: "rgba(14,12,12,.60)"}} key="delete" />,
             ]}
             loading={loading}
-            className={styles.placeholder}
+            className={styles.deckCard}
           >
             {deck.deck_name}
           </Card>
