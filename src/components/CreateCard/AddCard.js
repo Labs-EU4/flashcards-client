@@ -17,14 +17,16 @@ function AddCard(props) {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
     // Call the server
     axios
-      .post(`https://flashdecks-staging.herokuapp.com/api/cards/`)
+      .post(`https://flashdecks-staging.herokuapp.com/api/cards/`, formValues)
       .then(res => {
         console.log(res);
+        // props.history.push('')
       })
       .catch(err => {
         console.log(err);
