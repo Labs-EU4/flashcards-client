@@ -84,7 +84,6 @@ it("Calls correct action on submit", () => {
     target: {value: "123456789"},
   });
   rtl.fireEvent.submit(Form());
-
   expect(mockRegister).toHaveBeenCalledTimes(1);
   expect(mockRegister.mock.calls[0]).toMatchInlineSnapshot(`
     Array [

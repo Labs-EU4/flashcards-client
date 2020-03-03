@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import {Provider} from "react-redux";
 import store from "./state/store";
-
 //Import an instance of Sentry browser SDK
 import * as Sentry from "@sentry/browser";
 
