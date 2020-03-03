@@ -1,13 +1,13 @@
 import React from "react";
+import "antd/dist/antd.css";
 import AppRouter from "./router";
-import { Provider } from "react-redux";
-import store from "./state/store";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App = () => {
   return (
-    <Provider store={store}>
+    <ErrorBoundary render={() => <h1>Oops</h1>}>
       <AppRouter />
-    </Provider>
+    </ErrorBoundary>
   );
 };
 
