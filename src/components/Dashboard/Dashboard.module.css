@@ -8,36 +8,76 @@
   border-right: solid 1px #e8e8e8;
 }
 
+.toggleIcon {
+  align-self: flex-start;
+  margin: 2vh;
+}
+
 .logo {
   position: absolute;
-  margin-top: 3vh;
+  margin-top: 8vh;
 }
 
 .greeting {
   position: absolute;
-  margin-top: 10vh;
+  margin-top: 16vh;
 }
 
 .menu {
-  margin-top: 27vh;
+  position: absolute;
+  margin-top: 33vh;
 }
 
 .logoutButton {
   position: absolute;
   width: 122px;
   height: 4vh;
-  border-radius: 15px;
-  margin-top: 32vh;
+  margin-top: 75vh;
 }
 
 .footer {
   position: absolute;
   text-align: center;
   color: black;
-  margin-top: 85vh;
+  margin-top: 95vh;
   line-height: 0.3;
 }
-
-.settings {
+@media only screen and (max-width: 600px) {
+  .dashboardLeft {
+    width: 100%;
+    height: 52%;
+    border: solid 1px #e8e8e8;
+  }
+  .toggleIcon {
+    align-self: flex-start;
+    margin: 2vh;
+  }
+  .logo {
+    position: absolute;
     margin-top: 6vh;
+  }
+
+  .greeting {
+    position: absolute;
+    margin-top: 12vh;
+  }
+
+  .menu {
+    position: absolute;
+    margin-top: 20vh;
+  }
+
+  .logoutButton {
+    position: absolute;
+    width: 122px;
+    height: 4vh;
+    margin-top: 33vh;
+  }
+
+  .footer {
+    position: absolute;
+    text-align: center;
+    color: black;
+    margin-top: 48vh;
+  }
 }
