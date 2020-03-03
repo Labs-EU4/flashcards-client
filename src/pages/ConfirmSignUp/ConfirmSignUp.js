@@ -20,7 +20,7 @@ const ConfirmSignUp = props => {
     })
       .then(res => {
         setState({...state, tokenInvalid: false, isLoading: false});
-        console.log(res);
+        localStorage.setItem("token", res.data.token);
         setTimeout(() => {
           history.push("/dashboard");
         }, 2000);
@@ -33,7 +33,9 @@ const ConfirmSignUp = props => {
 
   return (
     <div className={styles.mainComponent}>
-      {state.isLoading === true ? <Spin className="loader" size="large" /> : null}
+      {state.isLoading === true ? (
+        <Spin data-testid="loader" className="loader" size="large" />
+      ) : null}
       {state.tokenInvalid === true ? (
         <div>
           <Alert
