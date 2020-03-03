@@ -84,6 +84,7 @@ export const Login = props => {
             </Button>
             Forgot password? <a href="/reset-password">click here to reset! </a>
             Or <a href="/register">register here!</a>
+            <a href={`${process.env.REACT_APP_API_HOST}/auth/google`}>Google Signup</a>
           </Form.Item>
           {error && (
             <Alert
