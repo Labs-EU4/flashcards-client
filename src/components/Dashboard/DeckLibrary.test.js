@@ -23,6 +23,9 @@ const DeckCard = () => {
 
 it("renders without crashing", () => {
   expect(wrapper.container).toMatchSnapshot();
+});
+
+it("renders correct elements before response is received", () => {
   expect(LibraryContainer()).toBeInTheDocument();
   expect(DeckCard()[0]).not.toBeDefined();
   expect(DeckCard()).toHaveLength(0);
