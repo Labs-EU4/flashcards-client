@@ -34,7 +34,7 @@ export default function DeckLibrary() {
             key={deck.deck_id}
             actions={[
               <Link to={`/decks/${deck.deck_id}`}>
-                <Icon className={styles.editDeck} type="edit" key="edit" />
+                <Icon style={{color: "rgba(14,12,12,.60)"}} type="edit" key="edit" />
               </Link>,
               <Icon type="delete" style={{color: "rgba(14,12,12,.60)"}} key="delete" />,
             ]}
