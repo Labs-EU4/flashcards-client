@@ -206,10 +206,7 @@ exports[`renders without crashing 1`] = `
         </div>
       </div>
     </form>
-<<<<<<< HEAD
     
-=======
->>>>>>> 4203a7d6da7c90938297402bc1f842b7f5f25df7
   </div>
 </div>
 `;
