@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
-import {connect} from "react-redux";
 import "../CreateCard/AddCard.css";
+import axios from "axios";
 
 function AddCard(props) {
   const [formValues, setFormValues] = useState({
@@ -11,11 +11,30 @@ function AddCard(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const {getFieldDecorator} = props.form;
+  const handleChange = e => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    setLoading(true);
+    // Call the server
+    axios
+      .post(`https://flashdecks-staging.herokuapp.com/api/cards/`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   return (
     <div className="card-container">
       <h1>Add a card</h1>
       <Spin spinning={loading} delay={300}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Item>
             {getFieldDecorator("question", {
               //rules are for the form validation
@@ -30,9 +49,10 @@ function AddCard(props) {
               <Input
                 name="question"
                 setFieldsValue={formValues.question}
-                //form icon in the email field, change type for different icons, see antdesign docs
+                //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Question text goes here"
+                onChange={handleChange}
               />
             )}
           </Form.Item>
@@ -51,9 +71,10 @@ function AddCard(props) {
                 name="answer"
                 type="text"
                 setFieldsValue={formValues.answer}
-                //form icon in the email field, change type for different icons, see antdesign docs
+                //form icon in the answer field, change type for different icons, see antdesign docs
                 prefix={<Icon type="edit" style={{color: "rgba(0,0,0,.25)"}} />}
-                placeholder="Type a correct answer"
+                placeholder="Enter a correct answer"
+                onChange={handleChange}
               />
             )}
           </Form.Item>
@@ -78,4 +99,4 @@ function AddCard(props) {
 
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(AddCard);
 
-export default connect(() => {}, {AddCard})(WrappedNormalLoginForm);
+export default WrappedNormalLoginForm;
