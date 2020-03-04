@@ -1,20 +1,32 @@
 import React from "react";
-import {Login} from "./Login";
-import decode from "jwt-decode";
+import {Spin} from "antd";
 import {isAccountCreationFinished, setToken} from "../utils/auth";
 import SetRecoveryPasswordForm from "../components/SetRecoveryPassword";
 import styles from "./GoogleLogin.module.less";
+import {connect} from "react-redux";
+import {addRecoveryPassword, googleAuthorized} from "../state/actions/auth";
 
-export default function GoogleLogin(props) {
-  const {match, history} = props;
-  // const decodedToken = decode(match.params.token);
-  if (isAccountCreationFinished(match.params.token)) {
-    setToken(match.params.token);
+export function GoogleLogin(props) {
+  const {match, history, addRecoveryPassword, googleAuthorized} = props;
+  const {token} = match.params;
+  if (isAccountCreationFinished(token)) {
+    googleAuthorized(token, history);
+    return <Spin spinning={true} />;
   } else {
     return (
       <div className={styles.registerContainer}>
-        <SetRecoveryPasswordForm />
+        <SetRecoveryPasswordForm
+          token={token}
+          addRecoveryPassword={addRecoveryPassword}
+          history={history}
+        />
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return state.authState.isLoggedIn;
+};
+
+export default connect(null, {addRecoveryPassword, googleAuthorized})(GoogleLogin);

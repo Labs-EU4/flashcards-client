@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
-import {connect} from "react-redux";
 import styles from "./SetRecoveryPassword.module.less";
 
 export function SetRecoveryPasswordForm(props) {
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [confirmDirty, setConfirmDirty] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -14,7 +13,7 @@ export function SetRecoveryPasswordForm(props) {
   const hasErrors = fieldsError => {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -23,7 +22,8 @@ export function SetRecoveryPasswordForm(props) {
     });
     setLoading(true);
     try {
-      // await props.login(formValues);
+      await props.addRecoveryPassword(formValues.password, props.token);
+      props.history.push("/");
     } catch (error) {
       setError(error);
       console.log(error);
@@ -144,20 +144,6 @@ export function SetRecoveryPasswordForm(props) {
     </Spin>
   );
 }
-export const wrapped = Form.create({name: "recovery"})(SetRecoveryPasswordForm);
+const wrapped = Form.create({name: "recovery"})(SetRecoveryPasswordForm);
 
-export const addRecoveryPassword = (userData, token) => async dispatch => {
-  /*   try {
-    const response = await axios.post("/auth/recovery", userData, {
-      headers: {Authorization: token},
-    });
-    const userData = response.data.data.user;
-    userData.token = response.data.data.token;
-    dispatch(action(types.LOGIN_SUCCESS), {userData});
-  } catch (error) {
-    console.error(error);
-    throw error;
-  } */
-};
-
-export default connect(null, {addRecoveryPassword})(wrapped);
+export default wrapped;
