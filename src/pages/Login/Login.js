@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
+import {baseURL} from "../../utils/axios";
 
 import {login} from "../../state/actions/auth";
 import "./Login.css";
@@ -88,6 +89,14 @@ export const Login = props => {
             </Button>
             Forgot password? <Link to="/reset-password">click here to reset! </Link>
             Or <Link to="/register">register here!</Link>
+            <a className="google-auth" href={`${baseURL}/auth/google`}>
+              <img
+                className="google-icon"
+                alt="google-icon"
+                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              />
+              SIGN IN WITH GOOGLE
+            </a>
           </Form.Item>
           {error && (
             <Alert
