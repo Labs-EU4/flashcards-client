@@ -11,6 +11,7 @@ import checkLoginState from "./checkLoginState";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
+
 /*
   Routes config must be ordered the same way you'd 
   do inside a `<Switch>`. The last route object is 
