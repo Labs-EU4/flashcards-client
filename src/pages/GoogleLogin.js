@@ -11,7 +11,7 @@ export function GoogleLogin(props) {
   const {token} = match.params;
   if (isAccountCreationFinished(token)) {
     googleAuthorized(token, history);
-    return <Spin spinning={true} />;
+    return <Spin spinning={true} data-testid="spinner" />;
   } else {
     return (
       <div className={styles.registerContainer}>

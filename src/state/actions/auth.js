@@ -17,12 +17,7 @@ export const googleAuthorized = (initialToken, history) => async dispatch => {
     history.push("/");
   } catch (error) {
     dispatch(action(types.LOGIN_FAILURE));
-    console.error(error);
-    if (error.response.data.error) {
-      throw error.response.data.error;
-    } else {
-      throw error.response.data.message;
-    }
+    throw error.message;
   }
 };
 
@@ -40,14 +35,7 @@ export const addRecoveryPassword = (password, intermediaryToken) => async dispat
     dispatch(action(types.LOGIN_SUCCESS, {user, token}));
   } catch (error) {
     dispatch(action(types.LOGIN_FAILURE));
-    console.log(JSON.stringify(error));
-    if (error.response.data.error) {
-      throw error.response.data.error;
-    } else if (error.response.data.message) {
-      throw error.response.data.message;
-    } else {
-      throw error.message;
-    }
+    throw error.message;
   }
 };
 
@@ -75,23 +63,20 @@ export const login = loginData => async dispatch => {
   });
   try {
     const response = await justAxios().post("/auth/login", loginData);
-    localStorage.setItem("token", response.data.data.token);
+    const {user, token} = response.data.data;
+    localStorage.setItem("token", token);
 
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: {
-        user: response.data.data.user,
-        token: response.data.data.token,
+        user,
+        token,
       },
     });
   } catch (error) {
     dispatch({
       type: types.LOGIN_FAILURE,
     });
-    if (error.response.data.error) {
-      throw error.response.data.error;
-    } else {
-      throw error.response.data.message;
-    }
+    throw error.message;
   }
 };
