@@ -1,4 +1,5 @@
 import React from "react";
+import {BrowserRouter} from "react-router-dom";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import {RegisterForm} from "./Register";
@@ -6,7 +7,11 @@ import {RegisterForm} from "./Register";
 const mockRegister = jest.fn().mockResolvedValue(10);
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<RegisterForm registerNewUser={mockRegister} />);
+  wrapper = rtl.render(
+    <BrowserRouter>
+      <RegisterForm registerNewUser={mockRegister} />
+    </BrowserRouter>
+  );
 });
 
 const FormContainer = () => {

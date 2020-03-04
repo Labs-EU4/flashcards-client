@@ -1,4 +1,5 @@
 import React from "react";
+import "antd/dist/antd.css";
 import AppRouter from "./router";
 import "antd/dist/antd.css";
 import ErrorBoundary from "./components/ErrorBoundary";
