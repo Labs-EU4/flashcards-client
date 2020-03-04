@@ -30,7 +30,7 @@ const ResetPasswordForm = props => {
       if (!err) {
         axios
           .post(
-            `http://flashdecks-staging.herokuapp.com/api/auth/reset_password/${token}`,
+            `https://flashdecks-staging.herokuapp.com/api/auth/reset_password/${token}`,
             {
               password: formValues.newPassword,
               confirmPassword: formValues.newPassword,
@@ -95,7 +95,7 @@ const ResetPasswordForm = props => {
             ],
           })(
             <Input.Password
-              placeholder="Password"
+              placeholder="New Password"
               name="newPassword"
               onChange={handleChange}
               prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
