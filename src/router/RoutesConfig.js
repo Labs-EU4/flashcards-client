@@ -3,6 +3,7 @@ import PageNotFound from "../pages/404";
 import Register from "../pages/Register/Register";
 
 import Login from "../pages/Login";
+import GoogleLogin from "../pages/GoogleLogin";
 import Dashboard from "../components/dashboard";
 import {Redirect} from "react-router-dom";
 import React from "react";
@@ -24,6 +25,10 @@ function createRenderCallback(Component) {
 }
 
 const RoutesConfig = [
+  {
+    path: "/login/google/:token",
+    component: GoogleLogin,
+  },
   {
     path: "/",
     //protected route takes path and a render prop

@@ -44,9 +44,9 @@ export const getToken = () => {
   }
 };
 
-export const setToken = payload => {
+export const setToken = token => {
   try {
-    const item = JSON.stringify(payload);
+    const item = JSON.stringify(token);
     localStorage.setItem(KEY, item);
     return true;
   } catch (error) {
@@ -69,4 +69,10 @@ export const getUserId = () => {
   const token = localStorage.getItem("token");
   const decoded = decode(token);
   return decoded;
+};
+
+export const isAccountCreationFinished = token => {
+  const decodedToken = decode(token);
+  console.log(decodedToken);
+  return decodedToken.subject ? true : false;
 };
