@@ -1,5 +1,18 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboardRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: red;
+}
+
 .dashboardLeft {
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,16 +36,21 @@
   margin-top: 16vh;
 }
 
+.menuContainer {
+  width: 270px;
+  margin-top: 28vh;
+}
+
 .menu {
+  width: 270px;
   position: absolute;
-  margin-top: 33vh;
 }
 
 .logoutButton {
   position: absolute;
   width: 122px;
   height: 4vh;
-  margin-top: 75vh;
+  margin-top: 47vh;
 }
 
 .footer {
@@ -43,10 +61,25 @@
   line-height: 0.3;
 }
 @media only screen and (max-width: 600px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dashboardRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2vh;
+    color: red;
+  }
+
   .dashboardLeft {
     width: 100%;
-    height: 52%;
-    border: solid 1px #e8e8e8;
+    height: 80%;
+    border-bottom: solid 1px #e8e8e8;
   }
   .toggleIcon {
     align-self: flex-start;
@@ -59,25 +92,31 @@
 
   .greeting {
     position: absolute;
-    margin-top: 12vh;
+    margin-top: 14vh;
+  }
+
+  .menuContainer {
+    width: 100%;
+    margin-top: 13vh;
   }
 
   .menu {
+    width: 100%;
     position: absolute;
-    margin-top: 20vh;
   }
 
   .logoutButton {
     position: absolute;
     width: 122px;
     height: 4vh;
-    margin-top: 33vh;
+    margin-top: 22vh;
+    margin-bottom: 7vh;
   }
 
   .footer {
     position: absolute;
     text-align: center;
     color: black;
-    margin-top: 48vh;
+    margin-top: 50vh;
   }
 }
