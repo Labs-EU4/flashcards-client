@@ -1,31 +1,45 @@
 .login-form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .login-form-forgot {
-    float: right;
-  }
-  .login-form-button {
-    width: 100%;
-  }
-  .ant-form-explain {
-      color: red;
-  }
-  .forgot-password h1{
-      margin: 0 auto;
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 2rem;
-  }
-  .login-container {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    margin: 30vh auto;
-  }
-  h1{
-    display: flex;
-    justify-content: center;
-  }
+  max-width: 400px;
+  margin: 0 auto;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+.ant-form-explain {
+  color: red;
+}
+.forgot-password h1 {
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+.login-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin: 30vh auto;
+}
+h1 {
+  display: flex;
+  justify-content: center;
+}
+.google-auth {
+  width: 100%;
+  display: flex;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0 10px;
+}
