@@ -5,6 +5,8 @@ import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 
 import {login} from "../../state/actions/auth";
 import "./Login.css";
+import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
+import FormHeader from "../../components/formStyleComponent/FormHeader";
 
 export const Login = props => {
   const [formValues, setFormValues] = useState({
@@ -35,70 +37,73 @@ export const Login = props => {
   };
   const {getFieldDecorator} = props.form;
   return (
-    <div className="login-container">
-      <Spin spinning={loading} delay={300}>
-        <h1>Login</h1>
-        <Form onSubmit={handleSubmit} className="login-form">
-          <Form.Item>
-            {getFieldDecorator("email", {
-              //rules are for the form validation
-              rules: [
-                {required: true, message: "Please input a valid email!"},
-                {
-                  type: "email",
-                  message: "Invalid email",
-                },
-              ],
-            })(
-              <Input
-                name="email"
-                setFieldsValue={formValues.email}
-                onChange={handleChange}
-                //form icon in the email field, change type for different icons, see antdesign docs
-                prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
-                placeholder="Email"
+    <div className={backgroundStyles.formStyle} data-testid="test_register_container">
+      <FormHeader />
+      <div>
+        <Spin spinning={loading} delay={300}>
+          <h1>Login</h1>
+          <Form onSubmit={handleSubmit} className="login-form">
+            <Form.Item>
+              {getFieldDecorator("email", {
+                //rules are for the form validation
+                rules: [
+                  {required: true, message: "Please input a valid email!"},
+                  {
+                    type: "email",
+                    message: "Invalid email",
+                  },
+                ],
+              })(
+                <Input
+                  name="email"
+                  setFieldsValue={formValues.email}
+                  onChange={handleChange}
+                  //form icon in the email field, change type for different icons, see antdesign docs
+                  prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
+                  placeholder="Email"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("password", {
+                //rules are for the form validation
+                rules: [
+                  {required: true, message: "Please input a password!"},
+                  {
+                    type: "string",
+                    message: "Invalid password",
+                  },
+                ],
+              })(
+                <Input
+                  name="password"
+                  type="password"
+                  setFieldsValue={formValues.password}
+                  onChange={handleChange}
+                  //form icon in the email field, change type for different icons, see antdesign docs
+                  prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+                  placeholder="Password"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="login-form-button">
+                Login
+              </Button>
+              Forgot password? <Link to="/reset-password">click here to reset! </Link>
+              Or <Link to="/register">register here!</Link>
+            </Form.Item>
+            {error && (
+              <Alert
+                message={error}
+                type="error"
+                closable
+                afterClose={() => setError(null)}
               />
             )}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator("password", {
-              //rules are for the form validation
-              rules: [
-                {required: true, message: "Please input a password!"},
-                {
-                  type: "string",
-                  message: "Invalid password",
-                },
-              ],
-            })(
-              <Input
-                name="password"
-                type="password"
-                setFieldsValue={formValues.password}
-                onChange={handleChange}
-                //form icon in the email field, change type for different icons, see antdesign docs
-                prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
-                placeholder="Password"
-              />
-            )}
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Login
-            </Button>
-            Forgot password? <Link to="/reset-password">click here to reset! </Link>
-            Or <Link to="/register">register here!</Link>
-          </Form.Item>
-          {error && (
-            <Alert
-              message={error}
-              type="error"
-              closable
-              afterClose={() => setError(null)}
-            />
-          )}
-        </Form>
-      </Spin>
+          </Form>
+        </Spin>
+      </div>
     </div>
   );
 };

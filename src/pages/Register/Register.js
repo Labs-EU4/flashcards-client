@@ -3,8 +3,9 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Form, Input, Button, Icon, Alert} from "antd";
 import {registerNewUser} from "../../state/actions/auth";
-
 import styles from "./Register.module.css";
+import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
+import FormHeader from "../../components/formStyleComponent/FormHeader";
 
 export function RegisterForm({registerNewUser, ...props}) {
   const [isLoading, setIsLoading] = useState(false);
@@ -120,13 +121,14 @@ export function RegisterForm({registerNewUser, ...props}) {
   }
 
   return (
-    <div className={styles.registerContainer} data-testid="test_register_container">
-      <h1>Sign-up.</h1>
+    <div className={backgroundStyles.formStyle} data-testid="test_register_container">
+      <FormHeader />
       <Form
         onSubmit={handleSubmit}
         className={styles.registerForm}
         data-testid="test_register_form"
       >
+        <h1>Sign-up.</h1>
         <Form.Item
           data-testid="test_email_form_item"
           hasFeedback
