@@ -1,45 +1,44 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
-import {registerNewUser} from "../../state/userData/userDataActionCreators";
-// import {useHistory} from "react-router-dom";
-import {Form, Input, Button, Icon} from "antd";
+import {Link} from "react-router-dom";
+import {Form, Input, Button, Icon, Alert} from "antd";
+import {registerNewUser} from "../../state/actions/auth";
+
 import styles from "./Register.module.css";
 
 export function RegisterForm({registerNewUser, ...props}) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const [formInfo, setFormInfo] = useState({
     email: {validationStatus: null, help: null},
     username: {validationStatus: null, help: null},
     password: {validationStatus: null, help: null},
   });
 
-  //default inputs for form
-  const defaultInputs = {
+  const [user, setUser] = useState({
     email: "",
     fullName: "",
     password: "",
+  });
+
+  const handleChange = e => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
   };
-  const [user, setUser] = useState(defaultInputs);
 
-  //control additional feedback for user
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function handleSubmit(e) {
+  const handleSubmit = async e => {
     e.preventDefault();
+
     const {email, fullName, password} = user;
+
     try {
       if (email && fullName && password) {
         setIsLoading(true);
         await registerNewUser(user);
-        console.log(user);
-        setIsLoading(false);
-        setUser(defaultInputs);
-        console.log(user);
-        setFormInfo({
-          ...formInfo,
-          email: {validationStatus: null, help: null},
-          username: {validationStatus: null, help: null},
-          password: {validationStatus: null, help: null},
-        });
+        props.history.push("/");
       } else {
         if (!email) {
           setFormInfo({
@@ -60,18 +59,24 @@ export function RegisterForm({registerNewUser, ...props}) {
           });
         }
       }
-    } catch (err) {
+    } catch (error) {
+      error.response
+        ? setError(error.response.data.message)
+        : setError("Something went wrong!");
+    } finally {
       setIsLoading(false);
-      if (err.response.data.message === "User with this email already exists") {
-        setFormInfo({
-          ...formInfo,
-          email: {validationStatus: "error", help: err.response.data.message},
-        });
-      } else {
-        console.error(err.response.data.message);
-      }
+      setUser({
+        email: "",
+        fullName: "",
+        password: "",
+      });
+      setFormInfo({
+        email: {validationStatus: null, help: null},
+        username: {validationStatus: null, help: null},
+        password: {validationStatus: null, help: null},
+      });
     }
-  }
+  };
 
   function formValidation(e) {
     let inputString = e.target.value;
@@ -114,18 +119,11 @@ export function RegisterForm({registerNewUser, ...props}) {
     }
   }
 
-  const handleChange = e => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
     <div className={styles.registerContainer} data-testid="test_register_container">
       <h1>Sign-up.</h1>
       <Form
-        onSubmit={event => handleSubmit(event)}
+        onSubmit={handleSubmit}
         className={styles.registerForm}
         data-testid="test_register_form"
       >
@@ -197,19 +195,16 @@ export function RegisterForm({registerNewUser, ...props}) {
           >
             Register
           </Button>
-          Or <a href="/login">Login Here!</a>
+          Or <Link to="/login">Login Here!</Link>
         </Form.Item>
       </Form>
+      {error && (
+        <Alert message={error} type="error" closable afterClose={() => setError(null)} />
+      )}
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    userData: state.userData,
-  };
-}
-
-const ConnectedForm = connect(mapStateToProps, {registerNewUser})(RegisterForm);
+const ConnectedForm = connect(null, {registerNewUser})(RegisterForm);
 
 export default Form.create()(ConnectedForm);

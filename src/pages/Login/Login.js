@@ -1,8 +1,10 @@
 import React, {useState} from "react";
-import {Form, Icon, Input, Button, Spin, Alert} from "antd";
-import "../pages/Login.css";
 import {connect} from "react-redux";
-import {login} from "../state/IsLoggedIn/IsLoggedInActionCreators";
+import {Link} from "react-router-dom";
+import {Form, Icon, Input, Button, Spin, Alert} from "antd";
+
+import {login} from "../../state/actions/auth";
+import "./Login.css";
 
 export const Login = props => {
   const [formValues, setFormValues] = useState({
@@ -21,13 +23,15 @@ export const Login = props => {
   const handleSubmit = async e => {
     e.preventDefault();
     setLoading(true);
+
     try {
       await props.login(formValues);
+      props.history.push("/");
     } catch (error) {
       setError(error);
-      console.log(error);
     } finally {
       setLoading(false);
+      props.form.resetFields();
     }
   };
   const {getFieldDecorator} = props.form;
@@ -83,8 +87,8 @@ export const Login = props => {
             <Button type="primary" htmlType="submit" className="login-form-button">
               Login
             </Button>
-            Forgot password? <a href="/reset-password">click here to reset! </a>
-            Or <a href="/register">register here!</a>
+            Forgot password? <Link to="/reset-password">click here to reset! </Link>
+            Or <Link to="/register">register here!</Link>
           </Form.Item>
           {error && (
             <Alert
@@ -102,4 +106,4 @@ export const Login = props => {
 
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(Login);
 
-export default connect(() => {}, {login})(WrappedNormalLoginForm);
+export default connect(null, {login})(WrappedNormalLoginForm);
