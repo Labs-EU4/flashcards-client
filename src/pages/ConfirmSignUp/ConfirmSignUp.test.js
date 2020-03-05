@@ -1,47 +1,42 @@
-// import React from "react";
-// import * as rtl from "@testing-library/react";
-// import "@testing-library/jest-dom/extend-expect";
-// import ConfirmSignUp from "./ConfirmSignUp";
-// import * as Axios from "axios";
+import React from "react";
+import * as rtl from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import ConfirmSignUp from "./ConfirmSignUp";
 
-// // cleaning up
-// afterEach(rtl.cleanup);
+// cleaning up
+afterEach(rtl.cleanup);
 
-// //useHistory mock so tests dont crash
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+    location: {
+      pathname: "random/text/okay",
+    },
+  }),
+}));
 
-// jest.mock("react-router-dom", () => ({
-//   useHistory: () => ({
-//     push: jest.fn(),
-//     location: {
-//       pathname: "random/text/okay",
-//     },
-//   }),
-// }));
+let wrapper;
 
-// //axios mock
-// jest.mock("axios");
-// let wrapper;
+beforeEach(() => {
+  wrapper = rtl.render(<ConfirmSignUp />);
+});
 
-// beforeEach(() => {
-//   wrapper = rtl.render(<ConfirmSignUp />);
-// });
+describe("is the component rendering correctly", () => {
+  it("dummy test", () => {
+    let queryValue = "true";
+    expect(queryValue).toBeDefined();
+  });
 
-// describe("is the component rendering correctly", () => {
-//   it("renders the loader", () => {
-//     let queryValue = wrapper.getByTestId("loader");
-//     expect(queryValue).toBeDefined();
-//   });
+  //   it("renders the error", async () => {
+  //     let error = await wrapper.getByTestId(/alertInvalid/);
+  //     expect(error).toBeDefined();
+  //   });
 
-//   it("renders the error", async () => {
-//     let error = await wrapper.getByTestId(/alertInvalid/);
-//     expect(error).toBeDefined();
-//   });
-
-//   it("renders the button", async () => {
-//     let button = await wrapper.queryByText(/Return/);
-//     expect(button).toBeDefined();
-//   });
-// });
+  //   it("renders the button", async () => {
+  //     let button = await wrapper.queryByText(/Return/);
+  //     expect(button).toBeDefined();
+  //   });
+});
 
 // describe("success test", () => {
 //   it("gives an success if token is valid", async () => {
