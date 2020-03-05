@@ -1,0 +1,64 @@
+.formStyle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #396afc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2948ff,
+    #396afc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2948ff,
+    #396afc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.formStyle form{
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  padding: 2rem 1rem 0.5rem 1rem;
+  max-width: 400px;
+}
+
+.formStyle h1{
+  color: white;
+}
+
+.ant-form-explain {
+  color: red;
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+
+button {
+  width: 100%;
+}
+
+.returnSignUp {
+  margin-top: 20px;
+}
+
+.google-auth {
+  width: 100%;
+  display: flex;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0 10px;
+}

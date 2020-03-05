@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import styles from "./ConfirmSignUp.module.css";
+import styles from "../../components/formStyleComponent/FormStyleComponent.module.css";
 import {useHistory} from "react-router-dom";
 import {Spin, Alert, Button} from "antd";
 import Axios from "axios";
 import {Link} from "react-router-dom";
+import FormHeader from "../../components/formStyleComponent/FormHeader";
 
 const ConfirmSignUp = props => {
   const history = useHistory();
@@ -29,10 +30,12 @@ const ConfirmSignUp = props => {
         setState({...state, tokenInvalid: true, isLoading: false});
         console.log(err);
       });
-  }, [history, state, token]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div className={styles.mainComponent}>
+    <div className={styles.formStyle}>
+      <FormHeader />
       {state.isLoading === true ? (
         <Spin data-testid="loader" className="loader" size="large" />
       ) : null}
@@ -49,7 +52,7 @@ const ConfirmSignUp = props => {
               type="primary"
               htmlType="submit"
               data-testid="button"
-              className="login-form-button"
+              className={styles.returnSignUp}
               loading={state.isLoading}
             >
               Return to SignUp

@@ -1,11 +1,12 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import ResetPassword from "./ResetPassword.js";
+import ResetPassword from "../../components/ForgotPassword/FormComponentChangePassword";
 
 afterEach(rtl.cleanup);
 
 let wrapper;
+
 beforeEach(() => {
   wrapper = rtl.render(<ResetPassword />);
 });
@@ -20,11 +21,6 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("is the component rendering correctly", () => {
-  it("renders the heading", () => {
-    let queryValue = wrapper.queryByText(/Reset Password/);
-    expect(queryValue).toBeDefined();
-  });
-
   it("renders the form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/New Password/);
     expect(queryValue).toBeDefined();
@@ -71,7 +67,7 @@ describe("the input field is working", () => {
     expect(error).toBeDefined();
   });
 
-  it("shows an validation error if input field has apasswort shorter than 5 characters", () => {
+  it("shows an validation error if input field has a password shorter than 5 characters", () => {
     let input = wrapper.getByPlaceholderText(/New Password/);
     rtl.fireEvent.click(input);
     rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
