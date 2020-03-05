@@ -18,7 +18,7 @@ const Dashboard = props => {
 
   return (
     <div>
-      <Layout>
+      <Layout className={styles.dashboard}>
         <div
           className={
             state.collapsed ? styles.dashboardLeftCollapsed : styles.dashboardLeft
@@ -31,8 +31,9 @@ const Dashboard = props => {
             collapsed={state.collapsed}
           >
             <div
-              className={styles.logoAndCollapse}
-              style={state.collapsed ? {flexDirection: "column"} : null}
+              className={
+                state.collapsed ? styles.logoAndCollapseCollapsed : styles.logoAndCollapse
+              }
             >
               <h1 className={styles.logo}>Logo</h1>
               <Icon
@@ -48,29 +49,28 @@ const Dashboard = props => {
             >
               Welcome Username!
             </h3>
-            <div>
-              <Menu
-                className={state.collapsed ? styles.menuCollapsed : styles.menu}
-                theme="light"
-                mode="inline"
-                defaultSelectedKeys={["1"]}
-              >
-                <Menu.Item key="1">
-                  <Icon type="home" />
-                  <span>Home</span>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  {" "}
-                  <Icon type="block" />
-                  <span>Deck Library</span>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  {" "}
-                  <Icon type="global" />
-                  <span>Discover Decks</span>
-                </Menu.Item>
-              </Menu>
-            </div>
+
+            <Menu
+              className={state.collapsed ? styles.menuCollapsed : styles.menu}
+              theme="light"
+              mode="inline"
+              defaultSelectedKeys={["1"]}
+            >
+              <Menu.Item key="1">
+                <Icon type="home" />
+                <span>Home</span>
+              </Menu.Item>
+              <Menu.Item key="2">
+                {" "}
+                <Icon type="block" />
+                <span>Deck Library</span>
+              </Menu.Item>
+              <Menu.Item key="3">
+                {" "}
+                <Icon type="global" />
+                <span>Discover Decks</span>
+              </Menu.Item>
+            </Menu>
             <footer
               className={styles.footer}
               style={state.collapsed ? {display: "none"} : null}
@@ -91,7 +91,7 @@ const Dashboard = props => {
               width: "100%",
             }}
           >
-            {props.children}
+            {props.child}
           </Content>
         </Layout>
       </Layout>
