@@ -3,11 +3,12 @@ import {Redirect} from "react-router-dom";
 
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
-import Dashboard from "../components/dashboard";
+import Dashboard from "../pages/Dashboard/dashboard";
 import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import DeckCards from "../components/deckData/deckCard";
+import DeckLibrary from "../components/Dashboard/DeckLibrary";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -33,6 +34,10 @@ const RoutesConfig = [
   {
     path: "/decks",
     component: DeckCards,
+  },
+  {
+    path: "/decklibrary",
+    component: DeckLibrary,
   },
   {
     path: "/register",

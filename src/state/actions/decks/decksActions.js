@@ -1,29 +1,12 @@
 import axiosWithAuth from "../auth";
-import types from "../../types";
+import types from "../../types/index";
 
-export const getExperience = id => dispatch => {
+export const getAllDecks = id => dispatch => {
   //almost always need dispatch as making axios call so using thunk
   axiosWithAuth()
-    .get("/experiences/" + id)
-
+    .get("/api/decks")
     // this is a promise
-
-    .then(response => {
-      console.log(response.data);
-      dispatch({
-        //call dispatch function pass in object
-        type: types.EDIT, //types tell you what action is
-        payload: {
-          experience: response.data,
-        },
-      });
-      dispatch({
-        type: types.SET_EXPERIENCE,
-        payload: {
-          experience: response.data,
-        },
-      });
-    })
+    .then()
     .catch(() => {
       console.log("error!!!");
     });
