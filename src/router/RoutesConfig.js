@@ -1,6 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
+import GoogleLogin from "../pages/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
 import Dashboard from "../components/dashboard";
@@ -20,6 +21,10 @@ function createPrivateRoute(Component) {
 }
 
 const RoutesConfig = [
+  {
+    path: "/login/google/:token",
+    component: GoogleLogin,
+  },
   {
     path: "/",
     render: () => createPrivateRoute(Dashboard),
