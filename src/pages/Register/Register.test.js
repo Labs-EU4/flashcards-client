@@ -3,7 +3,6 @@ import {BrowserRouter} from "react-router-dom";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import {RegisterForm} from "./Register";
-
 const mockRegister = jest.fn().mockResolvedValue(10);
 let wrapper;
 beforeEach(() => {
@@ -13,47 +12,42 @@ beforeEach(() => {
     </BrowserRouter>
   );
 });
-
 const FormContainer = () => {
   return wrapper.queryByTestId("test_register_container");
 };
-
 const Form = () => {
   return wrapper.queryByTestId("test_register_form");
 };
-
 const EmailInput = () => {
   return wrapper.queryByTestId("test_email_input");
 };
-
 const UsernameInput = () => {
   return wrapper.queryByTestId("test_username_input");
 };
-
 const PasswordInput = () => {
   return wrapper.queryByTestId("test_password_input");
 };
-
+const confirmPasswordInput = () => {
+  return wrapper.queryByTestId("test_confirmPassword_input");
+};
 const Button = () => {
   return wrapper.queryByTestId("test_submit_button");
 };
-
 const EmailWarning = () => {
   return wrapper.queryByText("Not a valid email");
 };
-
 const UsernameWarning = () => {
   return wrapper.queryByText("Username must be at least 5 characters");
 };
-
 const PasswordWarning = () => {
   return wrapper.queryByText("Password must be at least 5 characters");
 };
-
+const confirmPasswordWarning = () => {
+  return wrapper.queryByText("Passwords do not match");
+};
 it("renders without crashing", () => {
   expect(wrapper.container).toMatchSnapshot();
 });
-
 it("renders all expected elements", () => {
   expect(FormContainer()).toBeInTheDocument();
   expect(Form()).toBeInTheDocument();
@@ -62,17 +56,14 @@ it("renders all expected elements", () => {
   expect(PasswordInput()).toBeInTheDocument();
   expect(Button()).toBeInTheDocument();
 });
-
 it("does not submit due to submit button being disabled", () => {
   rtl.fireEvent.click(Button());
   expect(mockRegister).toHaveBeenCalledTimes(0);
 });
-
 it("does not make an axios call if some input fields are left blank", () => {
   rtl.fireEvent.submit(Form());
   expect(mockRegister).toHaveBeenCalledTimes(0);
 });
-
 it("Calls correct action on submit", () => {
   rtl.fireEvent.change(EmailInput(), {
     target: {value: "darragh@test.com"},
@@ -81,6 +72,9 @@ it("Calls correct action on submit", () => {
     target: {value: "Darragh Ferry"},
   });
   rtl.fireEvent.change(PasswordInput(), {
+    target: {value: "123456789"},
+  });
+  rtl.fireEvent.change(confirmPasswordInput(), {
     target: {value: "123456789"},
   });
   rtl.fireEvent.submit(Form());
@@ -95,14 +89,14 @@ it("Calls correct action on submit", () => {
     ]
   `);
 });
-
 it("Displays correct warning messages on input fields", () => {
-  rtl.fireEvent.blur(EmailInput());
+  rtl.fireEvent.keyUp(EmailInput(), {key: "A", code: 65, charCode: 65});
   expect(EmailWarning()).toBeInTheDocument();
-  rtl.fireEvent.blur(UsernameInput());
+  rtl.fireEvent.keyUp(UsernameInput(), {key: "A", code: 65, charCode: 65});
   expect(UsernameWarning()).toBeInTheDocument();
-  rtl.fireEvent.blur(PasswordInput());
+  rtl.fireEvent.keyUp(PasswordInput(), {key: "A", code: 65, charCode: 65});
   expect(PasswordWarning()).toBeInTheDocument();
+  rtl.fireEvent.keyUp(confirmPasswordInput(), {key: "B", code: 66, charCode: 66});
+  expect(confirmPasswordWarning()).not.toBeInTheDocument();
 });
-
 afterEach(rtl.cleanup);

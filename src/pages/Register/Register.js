@@ -7,38 +7,33 @@ import {baseURL} from "../../utils/axios";
 import styles from "./Register.module.css";
 import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
 import FormHeader from "../../components/formStyleComponent/FormHeader";
-
 export function RegisterForm({registerNewUser, ...props}) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
   const [formInfo, setFormInfo] = useState({
     email: {validationStatus: null, help: null},
     username: {validationStatus: null, help: null},
     password: {validationStatus: null, help: null},
+    confirmPassword: {validationStatus: null, help: null},
   });
-
   const [user, setUser] = useState({
     email: "",
     fullName: "",
     password: "",
   });
-
   const handleChange = e => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = async e => {
     e.preventDefault();
-
-    const {email, fullName, password} = user;
-
+    const {email, fullName, password, confirmPassword} = user;
     try {
-      if (email && fullName && password) {
+      if (email && fullName && password && confirmPassword) {
         setIsLoading(true);
+        delete user.confirmPassword;
         await registerNewUser(user);
       } else {
         if (!email) {
@@ -59,6 +54,15 @@ export function RegisterForm({registerNewUser, ...props}) {
             password: {validationStatus: "error", help: "Please enter a Password"},
           });
         }
+        if (!confirmPassword) {
+          setFormInfo({
+            ...formInfo,
+            confirmPassword: {
+              validationStatus: "error",
+              help: "Please confirm your Password",
+            },
+          });
+        }
       }
     } catch (error) {
       error.response
@@ -66,19 +70,14 @@ export function RegisterForm({registerNewUser, ...props}) {
         : setError("Something went wrong!");
     } finally {
       setIsLoading(false);
-      setUser({
-        email: "",
-        fullName: "",
-        password: "",
-      });
       setFormInfo({
         email: {validationStatus: null, help: null},
         username: {validationStatus: null, help: null},
         password: {validationStatus: null, help: null},
+        confirmPassword: {validationStatus: null, help: null},
       });
     }
   };
-
   function formValidation(e) {
     let inputString = e.target.value;
     let inputType = e.target.name;
@@ -117,9 +116,23 @@ export function RegisterForm({registerNewUser, ...props}) {
           },
         });
       }
+    } else if (inputType === "confirmPassword") {
+      if (inputString === user.password) {
+        setFormInfo({
+          ...formInfo,
+          confirmPassword: {validationStatus: "success", help: null},
+        });
+      } else {
+        setFormInfo({
+          ...formInfo,
+          confirmPassword: {
+            validationStatus: "warning",
+            help: "Passwords do not match",
+          },
+        });
+      }
     }
   }
-
   return (
     <div className={backgroundStyles.formStyle} data-testid="test_register_container">
       <FormHeader />
@@ -137,7 +150,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_email_input"
-            onBlur={e => formValidation(e)}
+            onKeyUp={e => formValidation(e)}
             prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="email"
             type="text"
@@ -154,7 +167,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_username_input"
-            onBlur={e => formValidation(e)}
+            onKeyUp={e => formValidation(e)}
             prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="username"
             type="text"
@@ -171,12 +184,29 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_password_input"
-            onBlur={e => formValidation(e)}
+            onKeyUp={e => formValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="password"
             type="password"
             name="password"
             value={user.password}
+            onChange={event => handleChange(event)}
+          />
+        </Form.Item>
+        <Form.Item
+          data-testid="test_confirmPassword_form_item"
+          hasFeedback
+          validateStatus={formInfo.confirmPassword.validationStatus}
+          help={formInfo.confirmPassword.help}
+        >
+          <Input
+            data-testid="test_confirmPassword_input"
+            onKeyUp={e => formValidation(e)}
+            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+            placeholder="confirm password"
+            type="password"
+            name="confirmPassword"
+            value={user.confirmPassword}
             onChange={event => handleChange(event)}
           />
         </Form.Item>
@@ -189,7 +219,8 @@ export function RegisterForm({registerNewUser, ...props}) {
             disabled={
               formInfo.email.validationStatus !== "success" ||
               formInfo.username.validationStatus !== "success" ||
-              formInfo.password.validationStatus !== "success"
+              formInfo.password.validationStatus !== "success" ||
+              formInfo.confirmPassword.validationStatus !== "success"
                 ? true
                 : false
             }
@@ -209,12 +240,16 @@ export function RegisterForm({registerNewUser, ...props}) {
         </Form.Item>
       </Form>
       {error && (
-        <Alert message={error} type="error" closable afterClose={() => setError(null)} />
+        <Alert
+          data-testid="test_alert"
+          message={error}
+          type="error"
+          closable
+          afterClose={() => setError(null)}
+        />
       )}
     </div>
   );
 }
-
 const ConnectedForm = connect(null, {registerNewUser})(RegisterForm);
-
 export default Form.create()(ConnectedForm);
