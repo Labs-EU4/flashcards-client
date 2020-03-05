@@ -44,7 +44,6 @@ const NormalLoginForm = props => {
   return (
     <div className="form-container">
       <Form onSubmit={handleSubmit} className="login-form">
-        <h1>Reset Password</h1>
         <Form.Item>
           {getFieldDecorator("email", {
             //rules are for the form validation

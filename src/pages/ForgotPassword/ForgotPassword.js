@@ -7,6 +7,7 @@ const ForgotPassword = props => {
   return (
     <div className={styles.formStyle}>
       <FormHeader />
+      <h1>Reset Password</h1>
       <NormalLoginForm />
     </div>
   );

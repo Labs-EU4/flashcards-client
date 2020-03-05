@@ -2,7 +2,7 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import FormComponent from "../../components/ForgotPassword/FormComponent";
-
+import FormHeader from "../../components/formStyleComponent/FormHeader";
 // cleaning up
 afterEach(rtl.cleanup);
 
@@ -13,11 +13,6 @@ beforeEach(() => {
 });
 
 describe("is the component rendering correctly", () => {
-  it("renders the heading", () => {
-    let queryValue = wrapper.queryByText(/Reset Password/);
-    expect(queryValue).toBeDefined();
-  });
-
   it("renders the form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/Email/);
     expect(queryValue).toBeDefined();

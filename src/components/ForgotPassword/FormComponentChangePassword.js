@@ -80,7 +80,6 @@ const ResetPasswordForm = props => {
   return (
     <div className="form-container">
       <Form onSubmit={handleSubmit} className="new-password-form">
-        <h1>Reset Password</h1>
         <Form.Item hasFeedback>
           {getFieldDecorator("password", {
             rules: [

@@ -3,9 +3,22 @@
 exports[`renders without crashing 1`] = `
 <div>
   <div
-    class="registerContainer"
+    class="formStyle"
     data-testid="test_register_container"
   >
+    <div
+      class="header"
+    >
+      <a
+        href="/"
+      >
+        <img
+          alt="logo"
+          src="https://i.imgur.com/UphXAvj.png"
+          width="60px"
+        />
+      </a>
+    </div>
     <h1>
       Sign-up.
     </h1>

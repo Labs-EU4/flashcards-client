@@ -1,31 +1,31 @@
 .formStyle {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
   text-align: center;
+  background: #396afc; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-      315deg,
-      hsla(191.32, 61.09%, 54.13%, 1) 0%,
-      hsla(191.32, 61.09%, 54.13%, 0) 70%
-    ),
-    -webkit-linear-gradient(205deg, hsla(236.6, 80.26%, 54.51%, 1) 100%, hsla(
-            236.6,
-            80.26%,
-            54.51%,
-            0
-          )
-          70%);
+    to right,
+    #2948ff,
+    #396afc
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-      135deg,
-      hsla(191.32, 61.09%, 54.13%, 1) 0%,
-      hsla(191.32, 61.09%, 54.13%, 0) 70%
-    ),
-    linear-gradient(
-      245deg,
-      hsla(236.6, 80.26%, 54.51%, 1) 100%,
-      hsla(236.6, 80.26%, 54.51%, 0) 70%
-    );
+    to right,
+    #2948ff,
+    #396afc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.formStyle form{
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem 1rem 0.5rem 1rem;
+}
+
+.formStyle h1{
+  color: white;
 }
 
 .ant-form-explain {

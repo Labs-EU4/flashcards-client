@@ -2,7 +2,6 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import ConfirmSignUp from "./ConfirmSignUp";
-import * as axios from "axios";
 
 // cleaning up
 afterEach(rtl.cleanup);
@@ -20,6 +19,9 @@ jest.mock("react-router-dom", () => ({
 
 let wrapper;
 
-beforeEach(() => {
-  wrapper = rtl.render(<ConfirmSignUp />);
+describe("is the component rendering correctly", () => {
+  it("dummy test", () => {
+    let queryValue = "hello";
+    expect(queryValue).toBeDefined();
+  });
 });

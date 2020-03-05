@@ -2,10 +2,11 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import ResetPassword from "./ResetPassword.js";
-
+import FormHeader from "../../components/formStyleComponent/FormHeader";
 afterEach(rtl.cleanup);
 
 let wrapper;
+
 beforeEach(() => {
   wrapper = rtl.render(<ResetPassword />);
 });
@@ -20,11 +21,6 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("is the component rendering correctly", () => {
-  it("renders the heading", () => {
-    let queryValue = wrapper.queryByText(/Reset Password/);
-    expect(queryValue).toBeDefined();
-  });
-
   it("renders the form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/New Password/);
     expect(queryValue).toBeDefined();

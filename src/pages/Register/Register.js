@@ -123,12 +123,12 @@ export function RegisterForm({registerNewUser, ...props}) {
   return (
     <div className={backgroundStyles.formStyle} data-testid="test_register_container">
       <FormHeader />
+      <h1>Sign-up.</h1>
       <Form
         onSubmit={handleSubmit}
         className={styles.registerForm}
         data-testid="test_register_form"
       >
-        <h1>Sign-up.</h1>
         <Form.Item
           data-testid="test_email_form_item"
           hasFeedback
