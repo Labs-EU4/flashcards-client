@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../layout/Dashboard/Dashboard";
 import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";

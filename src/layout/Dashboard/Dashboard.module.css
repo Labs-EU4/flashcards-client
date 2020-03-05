@@ -1,0 +1,56 @@
+.dashboardLeft {
+  width: 235px;
+}
+
+.dashboardLeftCollapsed {
+  width: 80px;
+}
+
+.sider {
+  background-color: white;
+  width: 235px !important;
+  max-width: 235px !important;
+  height: 100vh;
+  border: solid 1px #e8e8e8;
+}
+
+.siderCollapsed {
+  background-color: white;
+  height: 100vh;
+  border: solid 1px #e8e8e8;
+}
+
+.logoAndCollapse {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  margin-top: 5vh;
+}
+
+.greeting {
+  margin-top: 5vh;
+  text-align: center;
+}
+
+.menu {
+  margin-top: 20vh;
+  width: 234px;
+}
+
+.menuCollapsed {
+  margin-top: 25vh;
+  width: 79px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25vh;
+  color: black;
+}
+
+.logoutButton {
+  width: 144px;
+  margin-bottom: 5vh;
+}
