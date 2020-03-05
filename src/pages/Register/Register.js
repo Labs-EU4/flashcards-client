@@ -20,6 +20,7 @@ export function RegisterForm({registerNewUser, ...props}) {
     email: "",
     fullName: "",
     password: "",
+    confirmPassword: "",
   });
   const handleChange = e => {
     setUser({
@@ -68,14 +69,15 @@ export function RegisterForm({registerNewUser, ...props}) {
       error.response
         ? setError(error.response.data.message)
         : setError("Something went wrong!");
+      setUser({...user, confirmPassword: user.password});
     } finally {
       setIsLoading(false);
-      setFormInfo({
-        email: {validationStatus: null, help: null},
-        username: {validationStatus: null, help: null},
-        password: {validationStatus: null, help: null},
-        confirmPassword: {validationStatus: null, help: null},
-      });
+      // setFormInfo({
+      //   email: {validationStatus: null, help: null},
+      //   username: {validationStatus: null, help: null},
+      //   password: {validationStatus: null, help: null},
+      //   confirmPassword: {validationStatus: null, help: null},
+      // });
     }
   };
   function formValidation(e) {
@@ -105,14 +107,30 @@ export function RegisterForm({registerNewUser, ...props}) {
         });
       }
     } else if (inputType === "password") {
-      if (inputString.length >= 5) {
-        setFormInfo({...formInfo, password: {validationStatus: "success", help: null}});
-      } else {
+      if (inputString.length >= 5 && inputString === user.confirmPassword) {
+        setFormInfo({
+          ...formInfo,
+          password: {validationStatus: "success", help: null},
+          confirmPassword: {validationStatus: "success", help: null},
+        });
+      } else if (inputString.length < 5) {
         setFormInfo({
           ...formInfo,
           password: {
             validationStatus: "warning",
-            help: "Password must be at least 5 characters",
+            help: "Passwords must be at least 5 characters",
+          },
+        });
+      } else if (inputString !== user.confirmPassword) {
+        setFormInfo({
+          ...formInfo,
+          confirmPassword: {
+            validationStatus: "warning",
+            help: "Passwords do not match",
+          },
+          password: {
+            validationStatus: "success",
+            help: null,
           },
         });
       }
@@ -121,6 +139,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         setFormInfo({
           ...formInfo,
           confirmPassword: {validationStatus: "success", help: null},
+          password: {validationStatus: "success", help: null},
         });
       } else {
         setFormInfo({
