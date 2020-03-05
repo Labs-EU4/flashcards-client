@@ -214,6 +214,17 @@ exports[`renders without crashing 1`] = `
               >
                 Login Here!
               </a>
+              <a
+                class="google-auth"
+                href="http://localhost:4003/api/auth/google"
+              >
+                <img
+                  alt="google-icon"
+                  class="google-icon"
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                />
+                SIGN UP WITH GOOGLE
+              </a>
             </span>
           </div>
         </div>

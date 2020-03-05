@@ -1,6 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
+import GoogleLogin from "../pages/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
@@ -20,6 +21,10 @@ function createPrivateRoute(Component) {
 }
 
 const RoutesConfig = [
+  {
+    path: "/login/google/:token",
+    component: GoogleLogin,
+  },
   {
     path: "/login",
     //Unprotected route takes path and a component prop
