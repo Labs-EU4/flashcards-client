@@ -60,6 +60,7 @@ const NormalLoginForm = props => {
               name="email"
               setfieldsvalue={formValues.email}
               onChange={handleChange}
+              data-testid="email"
               className="email-input"
               //form icon in the email field, change type for different icons, see antdesign docs
               prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
@@ -71,6 +72,7 @@ const NormalLoginForm = props => {
           <Button
             type="primary"
             htmlType="submit"
+            data-testid="button"
             className="login-form-button"
             loading={state.isLoading}
           >
@@ -82,12 +84,14 @@ const NormalLoginForm = props => {
             message="Email invalid"
             description="The email you tried to use is not in our database."
             type="error"
+            data-testid="alertInvalid"
           />
         ) : state.emailInvalid === false ? (
           <Alert
             message="Success"
             description="You will receive an email!"
             type="success"
+            data-testid="alertSuccess"
           />
         ) : null}
       </Form>
