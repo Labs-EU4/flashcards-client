@@ -21,7 +21,7 @@ export default function authReducer(state = initialState, action) {
 
     case types.LOGIN_FAILURE:
     case types.LOGOUT:
-      return false;
+      return initialState;
 
     default:
       return state;

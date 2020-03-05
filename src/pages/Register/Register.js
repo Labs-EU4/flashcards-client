@@ -3,8 +3,10 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Form, Input, Button, Icon, Alert} from "antd";
 import {registerNewUser} from "../../state/actions/auth";
-
+import {baseURL} from "../../utils/axios";
 import styles from "./Register.module.css";
+import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
+import FormHeader from "../../components/formStyleComponent/FormHeader";
 
 export function RegisterForm({registerNewUser, ...props}) {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +40,6 @@ export function RegisterForm({registerNewUser, ...props}) {
       if (email && fullName && password) {
         setIsLoading(true);
         await registerNewUser(user);
-        props.history.push("/");
       } else {
         if (!email) {
           setFormInfo({
@@ -120,7 +121,8 @@ export function RegisterForm({registerNewUser, ...props}) {
   }
 
   return (
-    <div className={styles.registerContainer} data-testid="test_register_container">
+    <div className={backgroundStyles.formStyle} data-testid="test_register_container">
+      <FormHeader />
       <h1>Sign-up.</h1>
       <Form
         onSubmit={handleSubmit}
@@ -196,6 +198,14 @@ export function RegisterForm({registerNewUser, ...props}) {
             Register
           </Button>
           Or <Link to="/login">Login Here!</Link>
+          <a className="google-auth" href={`${baseURL}/auth/google`}>
+            <img
+              className="google-icon"
+              alt="google-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            />
+            SIGN UP WITH GOOGLE
+          </a>
         </Form.Item>
       </Form>
       {error && (
