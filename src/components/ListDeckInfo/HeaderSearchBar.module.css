@@ -1,0 +1,19 @@
+.searchContainer {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  background-color: gray;
+}
+
+.heading {
+  margin: 0 5vw;
+  width: 25vw;
+  /* max-width: 15vw; */
+}
+
+.filters {
+  width: 75vw;
+  display: flex;
+  /* justify-content: space-between; */
+  margin: 0 10vw;
+}
