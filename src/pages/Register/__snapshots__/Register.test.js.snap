@@ -3,9 +3,22 @@
 exports[`renders without crashing 1`] = `
 <div>
   <div
-    class="registerContainer"
+    class="formStyle"
     data-testid="test_register_container"
   >
+    <div
+      class="header"
+    >
+      <a
+        href="/"
+      >
+        <img
+          alt="logo"
+          src="https://i.imgur.com/UphXAvj.png"
+          width="60px"
+        />
+      </a>
+    </div>
     <h1>
       Sign-up.
     </h1>
@@ -200,6 +213,17 @@ exports[`renders without crashing 1`] = `
                 href="/login"
               >
                 Login Here!
+              </a>
+              <a
+                class="google-auth"
+                href="https://flashdecks-staging.herokuapp.com/api/auth/google"
+              >
+                <img
+                  alt="google-icon"
+                  class="google-icon"
+                  src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                />
+                SIGN UP WITH GOOGLE
               </a>
             </span>
           </div>
