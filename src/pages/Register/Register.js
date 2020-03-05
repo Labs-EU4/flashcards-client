@@ -118,7 +118,7 @@ export function RegisterForm({registerNewUser, ...props}) {
           ...formInfo,
           password: {
             validationStatus: "warning",
-            help: "Passwords must be at least 5 characters",
+            help: "Password must be at least 5 characters",
           },
         });
       } else if (inputString !== user.confirmPassword) {
