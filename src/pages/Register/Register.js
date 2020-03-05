@@ -38,7 +38,6 @@ export function RegisterForm({registerNewUser, ...props}) {
       if (email && fullName && password) {
         setIsLoading(true);
         await registerNewUser(user);
-        props.history.push("/");
       } else {
         if (!email) {
           setFormInfo({

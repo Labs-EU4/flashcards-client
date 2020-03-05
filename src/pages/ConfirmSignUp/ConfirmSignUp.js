@@ -59,7 +59,7 @@ const ConfirmSignUp = props => {
       ) : state.tokenInvalid === false ? (
         <Alert
           message="Success"
-          description="Account activated, you will get redirected to login!"
+          description="Account activated, you will get redirected to dashboard!"
           type="success"
           data-testid="alertSuccess"
         />
