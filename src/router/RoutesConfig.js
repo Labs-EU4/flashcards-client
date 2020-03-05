@@ -7,6 +7,7 @@ import Dashboard from "../components/dashboard";
 import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
+import DeckCards from "../components/deckData/deckCard";
 
 /*
   Routes config must be ordered the same way you'd 
@@ -28,6 +29,10 @@ const RoutesConfig = [
     path: "/login",
     //Unprotected route takes path and a component prop
     component: Login,
+  },
+  {
+    path: "/decks",
+    component: DeckCards,
   },
   {
     path: "/register",

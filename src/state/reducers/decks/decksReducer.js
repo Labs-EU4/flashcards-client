@@ -1,4 +1,4 @@
-import * as types from "./deckActionTypes";
+import * as types from "../../types/decks";
 
 const initialState = {};
 
