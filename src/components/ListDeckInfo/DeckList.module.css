@@ -15,12 +15,23 @@
   align-items: center;
 }
 
+.header {
+}
+
+.info {
+  display: flex;
+}
+
+.info_headings {
+  margin-right: 2rem;
+}
+
 .deckOverview {
-  margin-bottom: 5vh;
-  /* width: 95vw; */
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
+  padding: 1rem;
 }
 
 .card {
