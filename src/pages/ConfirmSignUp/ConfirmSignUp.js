@@ -23,7 +23,7 @@ const ConfirmSignUp = props => {
         setState({...state, tokenInvalid: false, isLoading: false});
         localStorage.setItem("token", res.data.token);
         setTimeout(() => {
-          history.push("/dashboard");
+          history.push("/");
         }, 2000);
       })
       .catch(err => {
@@ -62,7 +62,7 @@ const ConfirmSignUp = props => {
       ) : state.tokenInvalid === false ? (
         <Alert
           message="Success"
-          description="Account activated, you will get redirected to login!"
+          description="Account activated, you will get redirected to dashboard!"
           type="success"
           data-testid="alertSuccess"
         />
