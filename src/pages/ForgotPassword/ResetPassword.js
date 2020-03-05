@@ -6,7 +6,7 @@ import FormHeader from "../../components/formStyleComponent/FormHeader";
 const ResetPassword = props => {
   return (
     <div className={styles.formStyle}>
-      {/* <FormHeader /> */}
+      <FormHeader />
       <h1>Reset Password</h1>
       <FormComponentChange />
     </div>

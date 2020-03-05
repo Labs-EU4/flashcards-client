@@ -1,8 +1,8 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import ResetPassword from "./ResetPassword.js";
-import FormHeader from "../../components/formStyleComponent/FormHeader";
+import ResetPassword from "../../components/ForgotPassword/FormComponentChangePassword";
+
 afterEach(rtl.cleanup);
 
 let wrapper;
@@ -67,7 +67,7 @@ describe("the input field is working", () => {
     expect(error).toBeDefined();
   });
 
-  it("shows an validation error if input field has apasswort shorter than 5 characters", () => {
+  it("shows an validation error if input field has a password shorter than 5 characters", () => {
     let input = wrapper.getByPlaceholderText(/New Password/);
     rtl.fireEvent.click(input);
     rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});

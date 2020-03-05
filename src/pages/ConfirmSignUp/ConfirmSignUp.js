@@ -30,7 +30,8 @@ const ConfirmSignUp = props => {
         setState({...state, tokenInvalid: true, isLoading: false});
         console.log(err);
       });
-  }, [history, state, token]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.formStyle}>

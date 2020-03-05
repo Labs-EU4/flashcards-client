@@ -21,7 +21,9 @@
 .formStyle form{
   background-color: white;
   border-radius: 8px;
+  width: 100%;
   padding: 2rem 1rem 0.5rem 1rem;
+  max-width: 400px;
 }
 
 .formStyle h1{
