@@ -15,9 +15,6 @@
   align-items: center;
 }
 
-.header {
-}
-
 .info {
   display: flex;
 }
@@ -38,4 +35,15 @@
   height: 34vh;
   min-width: 25vw;
   max-width: 25vw;
+}
+
+.actions {
+  width: 10vw;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.gameOptions {
+  display: flex;
 }

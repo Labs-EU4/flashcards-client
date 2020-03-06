@@ -18,8 +18,8 @@ export default function HeaderSearchBar({page}) {
         <div>
           Sort By:
           <Select defaultValue="Home" style={{width: "10vw"}}>
-            <Option value="Home">Home Hwllo</Option>
-            <Option value="Company">Company</Option>
+            <Option value="Home">Option 1</Option>
+            <Option value="Company">Option2</Option>
           </Select>
         </div>
       </div>
