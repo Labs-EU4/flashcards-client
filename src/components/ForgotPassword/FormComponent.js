@@ -42,56 +42,57 @@ const NormalLoginForm = props => {
 
   const {getFieldDecorator} = props.form;
   return (
-    <div className="form-container">
-      <Form onSubmit={handleSubmit} className="login-form">
-        <h1>Reset Password</h1>
-        <Form.Item>
-          {getFieldDecorator("email", {
-            //rules are for the form validation
-            rules: [
-              {required: true, message: "Please input a valid email!"},
-              {
-                type: "email",
-                message: "Invalid email",
-              },
-            ],
-          })(
-            <Input
-              name="email"
-              setfieldsvalue={formValues.email}
-              onChange={handleChange}
-              className="email-input"
-              //form icon in the email field, change type for different icons, see antdesign docs
-              prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
-              placeholder="Email"
-            />
-          )}
-        </Form.Item>
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-            loading={state.isLoading}
-          >
-            Reset
-          </Button>
-        </Form.Item>
-        {state.emailInvalid ? (
-          <Alert
-            message="Email invalid"
-            description="The email you tried to use is not in our database."
-            type="error"
+    <Form onSubmit={handleSubmit} className="login-form">
+      <Form.Item>
+        {getFieldDecorator("email", {
+          //rules are for the form validation
+          rules: [
+            {required: true, message: "Please input a valid email!"},
+            {
+              type: "email",
+              message: "Invalid email",
+            },
+          ],
+        })(
+          <Input
+            name="email"
+            setfieldsvalue={formValues.email}
+            onChange={handleChange}
+            data-testid="email"
+            className="email-input"
+            //form icon in the email field, change type for different icons, see antdesign docs
+            prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
+            placeholder="Email"
           />
-        ) : state.emailInvalid === false ? (
-          <Alert
-            message="Success"
-            description="You will receive an email!"
-            type="success"
-          />
-        ) : null}
-      </Form>
-    </div>
+        )}
+      </Form.Item>
+      <Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          data-testid="button"
+          className="login-form-button"
+          loading={state.isLoading}
+        >
+          Reset
+        </Button>
+      </Form.Item>
+      {state.emailInvalid ? (
+        <Alert
+          message="Email invalid"
+          description="The email you tried to use is not in our database."
+          type="error"
+          data-testid="alertInvalid"
+        />
+      ) : state.emailInvalid === false ? (
+        <Alert
+          message="Success"
+          description="You will receive an email!"
+          type="success"
+          data-testid="alertSuccess"
+        />
+      ) : null}
+    </Form>
   );
 };
 //necessary for ant design functionality, reasoning in docs

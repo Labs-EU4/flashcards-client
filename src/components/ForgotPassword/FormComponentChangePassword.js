@@ -78,69 +78,66 @@ const ResetPasswordForm = props => {
   const {getFieldDecorator} = props.form;
 
   return (
-    <div className="form-container">
-      <Form onSubmit={handleSubmit} className="new-password-form">
-        <h1>Reset Password</h1>
-        <Form.Item hasFeedback>
-          {getFieldDecorator("password", {
-            rules: [
-              {
-                required: true,
-                message: "Password must be at least 5 characters",
-                min: 5,
-              },
-              {
-                validator: validateToNextPassword,
-              },
-            ],
-          })(
-            <Input.Password
-              placeholder="New Password"
-              name="newPassword"
-              onChange={handleChange}
-              prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
-            />
-          )}
-        </Form.Item>
-        <Form.Item hasFeedback>
-          {getFieldDecorator("confirm", {
-            rules: [
-              {
-                required: true,
-                message: "Please confirm your password!",
-              },
-              {
-                validator: compareToFirstPassword,
-              },
-            ],
-          })(
-            <Input.Password
-              placeholder="Confirm Password"
-              onBlur={handleConfirmBlur}
-              prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
-            />
-          )}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={state.isLoading}>
-            Reset
-          </Button>
-        </Form.Item>
-        {state.tokenInvalid ? (
-          <Alert
-            message="Token invalid"
-            description="The token you tried to use is invalid."
-            type="error"
+    <Form onSubmit={handleSubmit} className="new-password-form">
+      <Form.Item hasFeedback>
+        {getFieldDecorator("password", {
+          rules: [
+            {
+              required: true,
+              message: "Password must be at least 5 characters",
+              min: 5,
+            },
+            {
+              validator: validateToNextPassword,
+            },
+          ],
+        })(
+          <Input.Password
+            placeholder="New Password"
+            name="newPassword"
+            onChange={handleChange}
+            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
           />
-        ) : state.tokenInvalid === false ? (
-          <Alert
-            message="Success"
-            description="Your password was updated!"
-            type="success"
+        )}
+      </Form.Item>
+      <Form.Item hasFeedback>
+        {getFieldDecorator("confirm", {
+          rules: [
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
+            {
+              validator: compareToFirstPassword,
+            },
+          ],
+        })(
+          <Input.Password
+            placeholder="Confirm Password"
+            onBlur={handleConfirmBlur}
+            prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
           />
-        ) : null}
-      </Form>
-    </div>
+        )}
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" loading={state.isLoading}>
+          Reset
+        </Button>
+      </Form.Item>
+      {state.tokenInvalid ? (
+        <Alert
+          message="Token invalid"
+          description="The token you tried to use is invalid."
+          type="error"
+        />
+      ) : state.tokenInvalid === false ? (
+        <Alert
+          message="Success"
+          description="Your password was updated!"
+          type="success"
+        />
+      ) : null}
+    </Form>
   );
 };
 
