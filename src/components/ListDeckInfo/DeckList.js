@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axiosWithAuth from "../../helpers/axiosWithAuth";
+import {axiosWithAuth} from "../../utils/axios";
 import DeckCard from "./DeckCard";
 
 export default function DecksList({requestAddrs}) {
