@@ -14,7 +14,8 @@ exports[`renders without crashing 1`] = `
       >
         <img
           alt="logo"
-          src="https://i.imgur.com/UphXAvj.png"
+          data-testid="logo"
+          src="https://i.imgur.com/tuS7kwh.png"
           width="60px"
         />
       </a>

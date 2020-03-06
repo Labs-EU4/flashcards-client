@@ -78,7 +78,7 @@ const ResetPasswordForm = props => {
   const {getFieldDecorator} = props.form;
 
   return (
-    <Form onSubmit={handleSubmit} className="new-password-form">
+    <Form onSubmit={handleSubmit} className="new-password-form" data-testid="form">
       <Form.Item hasFeedback>
         {getFieldDecorator("password", {
           rules: [
@@ -95,6 +95,7 @@ const ResetPasswordForm = props => {
           <Input.Password
             placeholder="New Password"
             name="newPassword"
+            data-testid="inputPassword"
             onChange={handleChange}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
           />
@@ -114,6 +115,7 @@ const ResetPasswordForm = props => {
         })(
           <Input.Password
             placeholder="Confirm Password"
+            data-testid="inputPasswordConfirm"
             onBlur={handleConfirmBlur}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
           />
