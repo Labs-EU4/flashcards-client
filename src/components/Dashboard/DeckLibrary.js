@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import axiosWithAuth from "../../helpers/axiosWithAuth";
+import {axiosWithAuth} from "../../utils/axios";
 import styles from "./DeckLibrary.module.css";
 import {Link} from "react-router-dom";
 import {Card, Icon} from "antd";
@@ -10,7 +10,7 @@ export default function DeckLibrary() {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("http://localhost:4003/api/decks")
+      .get("/decks")
       .then(res => {
         console.log(res);
         setDecks(res.data.data);
