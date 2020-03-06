@@ -10,6 +10,7 @@ import React from "react";
 import checkLoginState from "./checkLoginState";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
+import Public from "../pages/PublicDecks/PublicDecks";
 /*
   Routes config must be ordered the same way you'd 
   do inside a `<Switch>`. The last route object is 
@@ -43,6 +44,10 @@ const RoutesConfig = [
   {
     path: "/register",
     component: Register,
+  },
+  {
+    path: "/public-decks",
+    render: createRenderCallback(Public),
   },
   {
     path: "/reset-password",
