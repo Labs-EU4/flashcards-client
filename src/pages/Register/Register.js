@@ -36,7 +36,11 @@ export function RegisterForm({registerNewUser, ...props}) {
         setIsLoading(true);
         delete user.confirmPassword;
         await registerNewUser(user);
-        await setAlert({message: "Account successfully created", type: "success"});
+        await setAlert({
+          message:
+            "Account successflly created. Please check your email to verify your account.",
+          type: "success",
+        });
         setUser({email: "", fullName: "", password: "", confirmPassword: ""});
         setFormInfo({
           email: {validationStatus: null, help: null},
@@ -268,6 +272,7 @@ export function RegisterForm({registerNewUser, ...props}) {
       </Form>
       {alert.message && (
         <Alert
+          className={styles.alertBox}
           data-testid="test_alert"
           message={alert.message}
           type={alert.type}
