@@ -35,6 +35,10 @@ const RoutesConfig = [
     component: Register,
   },
   {
+    path: "/",
+    component: Dashboard,
+  },
+  {
     path: "/confirm/:id",
     component: ConfirmSignUp,
   },

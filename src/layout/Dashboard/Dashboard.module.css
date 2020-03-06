@@ -34,7 +34,7 @@
 .logoAndCollapseCollapsed {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center !important;
   align-items: stretch;
   margin-top: 5vh;
 }

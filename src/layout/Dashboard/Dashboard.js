@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 
 import {Layout, Menu, Icon, Button} from "antd";
@@ -75,9 +76,11 @@ const Dashboard = props => {
               className={styles.footer}
               style={state.collapsed ? {display: "none"} : null}
             >
-              <Button type="primary" className={styles.logoutButton}>
-                Logout
-              </Button>
+              <Link to="/login">
+                <Button type="primary" className={styles.logoutButton}>
+                  Logout
+                </Button>
+              </Link>
               <p>
                 <Icon type="setting" /> Profile Settings
               </p>
@@ -100,82 +103,3 @@ const Dashboard = props => {
 };
 
 export default Dashboard;
-
-// import {Menu, Icon, Button} from "antd";
-// import styles from "./Dashboard.module.css";
-
-// const Dashboard = props => {
-//   const [collapsed, setCollapsed] = useState(false);
-
-//   const toggle = () => {
-//     setCollapsed(!collapsed);
-//   };
-
-//   if (collapsed === true) {
-//     return (
-//       <>
-//         <div className={styles.toggleIcon}>
-//           <Icon
-//             type="menu"
-//             style={{fontSize: "30px"}}
-//             theme="outlined"
-//             onClick={() => toggle()}
-//           />
-//         </div>
-
-//         <div className={styles.dashboardRight}>{props.children}</div>
-//       </>
-//     );
-//   } else {
-//     return (
-//       <div className={styles.dashboard}>
-//         <div className={styles.dashboardLeft}>
-//           <div className={styles.toggleIcon}>
-//             <Icon
-//               type="menu"
-//               style={{fontSize: "30px"}}
-//               theme="outlined"
-//               onClick={() => toggle()}
-//             />
-//           </div>
-//           <h1 className={styles.logo}>Logo</h1>
-//           <h3 className={styles.greeting}>Welcome Username!</h3>
-//           <div className={styles.menuContainer}>
-//             <Menu
-//               className={styles.menu}
-//               defaultSelectedKeys={["1"]}
-//               defaultOpenKeys={["sub1"]}
-//             >
-//               <Menu.Item key="1">
-//                 <Icon type="home" />
-//                 Home
-//               </Menu.Item>
-
-//               <Menu.Item key="2">
-//                 {" "}
-//                 <Icon type="block" />
-//                 Deck Library
-//               </Menu.Item>
-//               <Menu.Item key="3">
-//                 {" "}
-//                 <Icon type="global" />
-//                 Discover Decks
-//               </Menu.Item>
-//             </Menu>
-//           </div>
-//           <Button type="primary" className={styles.logoutButton}>
-//             Logout
-//           </Button>
-//           <footer className={styles.footer}>
-//             <p>
-//               <Icon type="setting" /> Profile Settings
-//             </p>
-//           </footer>
-//         </div>
-//         <div className={styles.dashboardRight}>{props.children}</div>
-//       </div>
-//     );
-//   }
-// };
-
-// export default Dashboard;
