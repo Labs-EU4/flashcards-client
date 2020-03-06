@@ -272,7 +272,6 @@ export function RegisterForm({registerNewUser, ...props}) {
       </Form>
       {alert.message && (
         <Alert
-          className={styles.alertBox}
           data-testid="test_alert"
           message={alert.message}
           type={alert.type}
