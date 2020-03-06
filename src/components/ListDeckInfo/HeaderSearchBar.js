@@ -5,10 +5,10 @@ import styles from "./HeaderSearchBar.module.css";
 const Search = Input.Search;
 const Option = Select.Option;
 
-export default function HeaderSearchBar() {
+export default function HeaderSearchBar({page}) {
   return (
     <div className={styles.searchContainer}>
-      <h1 className={styles.heading}>Public Decks</h1>
+      <h1 className={styles.heading}>{page}</h1>
       <div className={styles.filters}>
         <Search
           placeholder="Search"

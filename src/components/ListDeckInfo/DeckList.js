@@ -2,24 +2,25 @@ import React, {useEffect, useState} from "react";
 import axiosWithAuth from "../../helpers/axiosWithAuth";
 import DeckCard from "./DeckCard";
 
-export default function DecksList() {
+export default function DecksList({requestAddrs}) {
   const [decks, setDecks] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
-      .get("http://localhost:4003/api/decks/public")
+      .get(requestAddrs)
       .then(res => {
         console.log(res);
-        setDecks(
-          res.data.data.filter(deck => {
-            return deck.flashcards[0] !== null;
-          })
-        );
+        // setDecks(
+        //   res.data.data.filter(deck => {
+        //     return deck.flashcards[0] !== null;
+        //   })
+        // );
+        setDecks(res.data.data);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [requestAddrs]);
 
   return (
     <div>

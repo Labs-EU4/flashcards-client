@@ -5,8 +5,8 @@ import Header from "../../components/ListDeckInfo/HeaderSearchBar";
 export default function PublicDecks() {
   return (
     <div style={{backgroundColor: "gray"}}>
-      <Header />
-      <List />
+      <Header page={"Public Decks"} />
+      <List requestAddrs={"http://localhost:4003/api/decks/public"} />
     </div>
   );
 }
