@@ -24,12 +24,19 @@ export default function DecksList({requestAddrs}) {
 
   return (
     <div>
-      {console.log(decks)}
+      {/* {console.log(decks)}
       {decks.map(deck => {
         if (deck.flashcards.length >= 1) {
           return <DeckCard deck={deck} />;
         }
-      })}
+      })} */}
+      {decks.length > 0 ? (
+        decks.map(deck => {
+          return <DeckCard deck={deck} />;
+        })
+      ) : (
+        <h2>You have no decks right now</h2>
+      )}
     </div>
   );
 }
