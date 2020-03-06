@@ -9,7 +9,7 @@ import backgroundStyles from "../../components/formStyleComponent/FormStyleCompo
 import FormHeader from "../../components/formStyleComponent/FormHeader";
 export function RegisterForm({registerNewUser, ...props}) {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [alert, setAlert] = useState({message: null, type: null});
   const [formInfo, setFormInfo] = useState({
     email: {validationStatus: null, help: null},
     username: {validationStatus: null, help: null},
@@ -36,6 +36,14 @@ export function RegisterForm({registerNewUser, ...props}) {
         setIsLoading(true);
         delete user.confirmPassword;
         await registerNewUser(user);
+        await setAlert({message: "Account successfully created", type: "success"});
+        setUser({email: "", fullName: "", password: "", confirmPassword: ""});
+        setFormInfo({
+          email: {validationStatus: null, help: null},
+          username: {validationStatus: null, help: null},
+          password: {validationStatus: null, help: null},
+          confirmPassword: {validationStatus: null, help: null},
+        });
       } else {
         if (!email) {
           setFormInfo({
@@ -67,8 +75,8 @@ export function RegisterForm({registerNewUser, ...props}) {
       }
     } catch (error) {
       error.response
-        ? setError(error.response.data.message)
-        : setError("Something went wrong!");
+        ? setAlert({message: error.response.data.message, type: "error"})
+        : setAlert({message: "Something went wrong!", type: "error"});
       setUser({...user, confirmPassword: user.password});
     } finally {
       setIsLoading(false);
@@ -258,13 +266,13 @@ export function RegisterForm({registerNewUser, ...props}) {
           </a>
         </Form.Item>
       </Form>
-      {error && (
+      {alert.message && (
         <Alert
           data-testid="test_alert"
-          message={error}
-          type="error"
+          message={alert.message}
+          type={alert.type}
           closable
-          afterClose={() => setError(null)}
+          afterClose={() => setAlert({message: null, type: null})}
         />
       )}
     </div>
