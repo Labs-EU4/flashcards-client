@@ -6,7 +6,7 @@ const FormHeader = props => {
   return (
     <div className={styles.header}>
       <Link to="/">
-        <img src="https://i.imgur.com/UphXAvj.png" alt="logo" width="60px" />
+        <img src="https://i.imgur.com/tuS7kwh.png" alt="logo" width="60px" />
       </Link>
     </div>
   );
