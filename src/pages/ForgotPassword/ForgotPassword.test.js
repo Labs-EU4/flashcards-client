@@ -2,9 +2,14 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import FormComponent from "../../components/ForgotPassword/FormComponent";
-import FormHeader from "../../components/formStyleComponent/FormHeader";
 // cleaning up
 afterEach(rtl.cleanup);
+
+jest.mock("axios", () => {
+  return {
+    post: jest.fn().mockRejectedValue("boo!"),
+  };
+});
 
 let wrapper;
 
