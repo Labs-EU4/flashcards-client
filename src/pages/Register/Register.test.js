@@ -89,7 +89,7 @@ it("Calls correct action on submit", () => {
     ]
   `);
 });
-it("Displays correct warning messages on input fields", () => {
+it("Displays correct warning messages on input fields", async () => {
   rtl.fireEvent.keyUp(EmailInput(), {key: "A", code: 65, charCode: 65});
   expect(EmailWarning()).toBeInTheDocument();
   rtl.fireEvent.keyUp(UsernameInput(), {key: "A", code: 65, charCode: 65});
@@ -97,6 +97,6 @@ it("Displays correct warning messages on input fields", () => {
   rtl.fireEvent.keyUp(PasswordInput(), {key: "A", code: 65, charCode: 65});
   expect(PasswordWarning()).toBeInTheDocument();
   rtl.fireEvent.keyUp(confirmPasswordInput(), {key: "B", code: 66, charCode: 66});
-  expect(confirmPasswordWarning()).not.toBeInTheDocument();
+  expect(await rtl.waitForElement(() => EmailWarning())).toBeInTheDocument();
 });
 afterEach(rtl.cleanup);
