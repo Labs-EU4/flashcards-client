@@ -1,0 +1,144 @@
+.dashboard {
+  display: flex !important;
+}
+
+.dashboardLeft {
+  width: 235px;
+}
+
+.dashboardLeftCollapsed {
+  width: 80px;
+}
+
+.sider {
+  background-color: white;
+  width: 235px !important;
+  max-width: 235px !important;
+  height: 100vh;
+  border-right: solid 1px #e8e8e8;
+}
+
+.siderCollapsed {
+  background-color: white;
+  height: 100vh;
+  border-right: solid 1px #e8e8e8;
+}
+
+.logoAndCollapse {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  margin-top: 5vh;
+}
+
+.logoAndCollapseCollapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  align-items: stretch;
+  margin-top: 5vh;
+}
+
+.greeting {
+  margin-top: 5vh;
+  text-align: center;
+}
+
+.menu {
+  margin-top: 20vh;
+  width: 235px;
+}
+
+.menuCollapsed {
+  margin-top: 25vh;
+  width: 80px;
+}
+
+.footer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  top: 80vh;
+  color: black;
+}
+
+.logoutButton {
+  width: 144px;
+  margin-bottom: 5vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .dashboardLeft {
+    width: 100%;
+  }
+
+  .dashboardLeftCollapsed {
+    width: 100%;
+  }
+
+  .sider {
+    background-color: white;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 60vh;
+    border-bottom: solid 1px #e8e8e8;
+    border-right: none;
+  }
+
+  .siderCollapsed {
+    background-color: white;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    border-bottom: solid 1px #e8e8e8;
+  }
+
+  .logoAndCollapse {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-top: 5vh;
+  }
+
+  .logoAndCollapseCollapsed {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-top: 5vh;
+  }
+
+  .greeting {
+    margin-top: 5vh;
+    text-align: center;
+  }
+
+  .menu {
+    position: absolute;
+    top: 0vh;
+    width: 100%;
+    border-right: none;
+  }
+
+  .menuCollapsed {
+    display: none;
+  }
+
+  .footer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    top: 45vh;
+    color: black;
+  }
+}
