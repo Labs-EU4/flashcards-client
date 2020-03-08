@@ -4,9 +4,10 @@ import {Redirect} from "react-router-dom";
 import GoogleLogin from "../pages/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
+import Dashboard from "../layout/Dashboard/Dashboard";
 import Register from "../pages/Register/Register";
 
-import Dashboard from "../pages/Dashboard/dashboard";
+// import Dashboard from "../pages/Dashboard/dashboard";
 //This function is connected directly to the store and checks if user is logged in or not.
 import Public from "../pages/PublicDecks/PublicDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
@@ -40,6 +41,10 @@ const RoutesConfig = [
   {
     path: "/public-decks",
     component: Public,
+  },
+  {
+    path: "/",
+    render: () => createPrivateRoute(Dashboard),
   },
   {
     path: "/confirm/:id",
