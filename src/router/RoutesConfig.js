@@ -36,7 +36,7 @@ const RoutesConfig = [
   },
   {
     path: "/",
-    component: () => createPrivateRoute(Dashboard),
+    render: () => createPrivateRoute(Dashboard),
   },
   {
     path: "/confirm/:id",
