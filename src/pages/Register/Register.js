@@ -7,6 +7,7 @@ import {baseURL} from "../../utils/axios";
 import styles from "./Register.module.css";
 import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
 import FormHeader from "../../components/formStyleComponent/FormHeader";
+
 export function RegisterForm({registerNewUser, ...props}) {
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({message: null, type: null});
@@ -78,18 +79,16 @@ export function RegisterForm({registerNewUser, ...props}) {
         }
       }
     } catch (error) {
-      error.response
-        ? setAlert({message: error.response.data.message, type: "error"})
-        : setAlert({message: "Something went wrong!", type: "error"});
+      if (error.response.data.error) {
+        setAlert({message: error.response.data.error, type: "error"});
+      } else if (error.response.data.message) {
+        setAlert({message: error.response.data.message, type: "error"});
+      } else {
+        setAlert({message: "Something went wrong!", type: "error"});
+      }
       setUser({...user, confirmPassword: user.password});
     } finally {
       setIsLoading(false);
-      // setFormInfo({
-      //   email: {validationStatus: null, help: null},
-      //   username: {validationStatus: null, help: null},
-      //   password: {validationStatus: null, help: null},
-      //   confirmPassword: {validationStatus: null, help: null},
-      // });
     }
   };
   function formValidation(e) {
@@ -269,16 +268,16 @@ export function RegisterForm({registerNewUser, ...props}) {
             SIGN UP WITH GOOGLE
           </a>
         </Form.Item>
+        {alert.message && (
+          <Alert
+            data-testid="test_alert"
+            message={alert.message}
+            type={alert.type}
+            closable
+            afterClose={() => setAlert({message: null, type: null})}
+          />
+        )}
       </Form>
-      {alert.message && (
-        <Alert
-          data-testid="test_alert"
-          message={alert.message}
-          type={alert.type}
-          closable
-          afterClose={() => setAlert({message: null, type: null})}
-        />
-      )}
     </div>
   );
 }
