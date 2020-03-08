@@ -15,13 +15,17 @@ jest.mock("../../../utils/axios", () => {
   return {
     axiosWithAuth: jest.fn(() => {
       return {
-        get: jest.fn().mockResolvedValue([
-          {
-            deck_name: "Test Deck",
-            author: "John Doe",
-            flashcards: ["just", "mock", "data"],
+        get: jest.fn().mockResolvedValue({
+          data: {
+            data: [
+              {
+                deck_name: "Test Deck",
+                author: "John Doe",
+                flashcards: ["just", "mock", "data"],
+              },
+            ],
           },
-        ]),
+        }),
       };
     }),
   };
@@ -32,8 +36,8 @@ beforeEach(() => {
   wrapper = rtl.render(<DeckList requestAddrs="/test" />);
 });
 
-it("renders without crashing", () => {
+it("renders without crashing", async () => {
   expect(wrapper.container).toMatchSnapshot();
-  expect(NoDecksMessage()).toBeInTheDocument();
-  //   expect(await rtl.waitForElement(() => DeckCard())).toBeInTheDocument();
+  // expect(DeckCard()).toBeInTheDocument();
+  expect(await rtl.waitForElement(() => DeckCard())).toBeInTheDocument();
 });
