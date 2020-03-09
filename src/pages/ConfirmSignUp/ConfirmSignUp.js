@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styles from "../../components/formStyleComponent/FormStyleComponent.module.css";
 import {useHistory} from "react-router-dom";
 import {Spin, Alert, Button} from "antd";
-import Axios from "axios";
+import axios from "axios";
 import {Link} from "react-router-dom";
 import FormHeader from "../../components/formStyleComponent/FormHeader";
 
@@ -16,9 +16,10 @@ const ConfirmSignUp = props => {
   });
 
   useEffect(() => {
-    Axios.post("https://flashdecks.herokuapp.com/api/auth/confirm_email", {
-      token: token,
-    })
+    axios
+      .post("https://flashdecks.herokuapp.com/api/auth/confirm_email", {
+        token: token,
+      })
       .then(res => {
         setState({...state, tokenInvalid: false, isLoading: false});
         localStorage.setItem("token", res.data.token);
