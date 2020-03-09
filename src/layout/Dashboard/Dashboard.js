@@ -36,7 +36,13 @@ const Dashboard = props => {
                 state.collapsed ? styles.logoAndCollapseCollapsed : styles.logoAndCollapse
               }
             >
-              <h1 className={styles.logo}>Logo</h1>
+              <Link to="/">
+                <img
+                  src="https://i.imgur.com/tuS7kwh.png"
+                  alt="logo"
+                  className={state.collapsed ? styles.logoCollapsed : styles.logo}
+                />
+              </Link>
               <Icon
                 className="trigger"
                 type={state.collapsed ? "menu-unfold" : "menu-fold"}
