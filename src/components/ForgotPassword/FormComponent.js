@@ -24,11 +24,9 @@ const NormalLoginForm = props => {
         setFormValues({
           email: "",
         });
-        console.log(response);
         setState({...state, isLoading: false, emailInvalid: false});
       })
       .catch(function(error) {
-        console.log(error);
         setState({...state, isLoading: false, emailInvalid: true});
       });
   };

@@ -34,7 +34,6 @@ const ResetPasswordForm = props => {
             confirmPassword: formValues.newPassword,
           })
           .then(res => {
-            console.log(res);
             setState({...state, isLoading: false, tokenInvalid: false});
             setTimeout(() => {
               history.push("/login");
@@ -42,7 +41,6 @@ const ResetPasswordForm = props => {
           })
           .catch(err => {
             setState({...state, isLoading: false, tokenInvalid: true});
-            console.log(err);
           });
       } else {
         setState({...state, isLoading: false});

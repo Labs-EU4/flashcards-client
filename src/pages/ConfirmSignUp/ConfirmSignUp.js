@@ -29,7 +29,6 @@ const ConfirmSignUp = props => {
       })
       .catch(err => {
         setState({...state, tokenInvalid: true, isLoading: false});
-        console.log(err);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
