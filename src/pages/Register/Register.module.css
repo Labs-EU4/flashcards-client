@@ -1,0 +1,18 @@
+.registerContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin: 30vh auto;
+}
+
+.registerForm {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.registerFormButton {
+  width: 100%;
+}

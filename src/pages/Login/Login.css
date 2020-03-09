@@ -1,0 +1,15 @@
+
+.google-auth {
+  width: 100%;
+  display: flex;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0 10px;
+}
