@@ -122,7 +122,12 @@ const ResetPasswordForm = props => {
         )}
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" loading={state.isLoading}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={state.isLoading}
+          data-testid="button"
+        >
           Reset
         </Button>
       </Form.Item>
@@ -131,6 +136,7 @@ const ResetPasswordForm = props => {
           message="Token invalid"
           description="The token you tried to use is invalid."
           type="error"
+          data-testid="alertInvalid"
         />
       ) : state.tokenInvalid === false ? (
         <Alert
