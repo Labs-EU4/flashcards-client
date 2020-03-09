@@ -4,16 +4,19 @@ import "../CreateCard/AddCard.css";
 import axios from "axios";
 import {withAuth} from "../../utils/axios";
 
-function AddCard(props) {
+function UpdateCard(props) {
   const [formValues, setFormValues] = useState({
-    // deckId:null,
+    id: "",
     questionText: "",
     answerText: "",
   });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const {getFieldDecorator} = props.form;
+
   const handleChange = e => {
+    console.log(props.location.state.id);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -22,21 +25,25 @@ function AddCard(props) {
 
   const handleSubmit = e => {
     const newCard = {
-      deckId: 1,
+      deckId: props.location.state.deckId,
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
-
     e.preventDefault();
     setLoading(true);
-    // Call the server
-
+    // Call the server after authentication
     withAuth()
-      .post(`/cards`, newCard)
+      .put(`/cards/${props.location.state.id}`, newCard)
       .then(res => {
-        console.log(res);
         setLoading(false);
         props.history.push("/cards");
+        setFormValues(...formValues, [
+          {
+            id: res.data.cards.id,
+            questionText: res.data.cards.question,
+            answerText: res.data.cards.id,
+          },
+        ]);
       })
       .catch(err => {
         console.log(err);
@@ -44,7 +51,7 @@ function AddCard(props) {
   };
   return (
     <div className="card-container">
-      <h1>Add a card</h1>
+      <h1>Update a card</h1>
       <Spin spinning={loading} delay={300}>
         <Form onSubmit={handleSubmit}>
           <Form.Item>
@@ -93,7 +100,7 @@ function AddCard(props) {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
-              ADD YOUR CARD
+              Edit card
             </Button>
           </Form.Item>
           {error && (
@@ -110,6 +117,6 @@ function AddCard(props) {
   );
 }
 
-export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(AddCard);
+export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(UpdateCard);
 
 export default WrappedNormalLoginForm;

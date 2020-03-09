@@ -13,6 +13,7 @@ export const justAxios = () => {
 
 export const withAuth = () => {
   const token = localStorage.getItem("token");
+  console.log(token);
 
   const instance = axios.create({
     baseURL: "https://flashdecks-staging.herokuapp.com/api",

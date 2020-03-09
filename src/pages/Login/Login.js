@@ -25,7 +25,7 @@ export const Login = props => {
 
     try {
       await props.login(formValues);
-      props.history.push("/");
+      props.history.push("/cards");
     } catch (error) {
       setError(error);
     } finally {

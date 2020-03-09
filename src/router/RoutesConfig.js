@@ -9,6 +9,8 @@ import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import AddCard from "../components/CreateCard/AddCard";
 import Cards from "../components/CreateCard/Cards";
+import UpdateCard from "../components/CreateCard/UpdateCard";
+
 /*
   Routes config must be ordered the same way you'd 
   do inside a `<Switch>`. The last route object is 
@@ -42,6 +44,7 @@ const RoutesConfig = [
     path: "/reset-password",
     component: ForgotPassword,
   },
+  {path: "/updatecard", component: UpdateCard},
   {
     path: "/reset/:id",
     component: ResetPassword,
