@@ -2,16 +2,18 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {GoogleLogin} from "./GoogleLogin";
+let wrapper;
 
-beforeEach(rtl.cleanup);
 jest.mock("../utils/auth.js", () => {
   return {
-    isAccountCreationFinished: () => true,
+    isAccountCreationFinished: jest
+      .fn()
+      .mockReturnValueOnce(true)
+      .mockReturnValueOnce(false),
   };
 });
 describe("GoogleLogin.js ", () => {
-  let wrapper;
-  test("Renders a spinner if account creation is finished", () => {
+  beforeEach(() => {
     wrapper = rtl.render(
       <BrowserRouter>
         <GoogleLogin
@@ -27,7 +29,11 @@ describe("GoogleLogin.js ", () => {
         />
       </BrowserRouter>
     );
+  });
+  test("Renders a spinner if account creation is finished", () => {
     expect(wrapper.getByTestId("spinner")).toBeVisible();
-    wrapper.debug();
+  });
+  test("Renders a spinner if account creation is finished", () => {
+    expect(wrapper.queryByTestId("spinner")).toBeNull();
   });
 });
