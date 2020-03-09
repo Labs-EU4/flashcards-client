@@ -17,6 +17,10 @@ const Dashboard = props => {
     });
   };
 
+  function logout() {
+    localStorage.clear();
+  }
+
   return (
     <div>
       <Layout className={styles.dashboard}>
@@ -83,7 +87,11 @@ const Dashboard = props => {
               style={state.collapsed ? {display: "none"} : null}
             >
               <Link to="/login">
-                <Button type="primary" className={styles.logoutButton}>
+                <Button
+                  onClick={() => logout()}
+                  type="primary"
+                  className={styles.logoutButton}
+                >
                   Logout
                 </Button>
               </Link>
