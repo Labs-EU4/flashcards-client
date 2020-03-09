@@ -34,9 +34,7 @@ export const Login = props => {
       await props.login(formValues);
       props.history.push("/");
     } catch (error) {
-      console.log(JSON.stringify(error));
-
-      setError(error);
+      setError(error.response.data.message || "Something went wrong");
     } finally {
       setLoading(false);
       props.form.resetFields();

@@ -16,7 +16,7 @@ const ConfirmSignUp = props => {
   });
 
   useEffect(() => {
-    Axios.post("https://flashdecks-staging.herokuapp.com/api/auth/confirm_email", {
+    Axios.post("https://flashdecks.herokuapp.com/api/auth/confirm_email", {
       token: token,
     })
       .then(res => {
