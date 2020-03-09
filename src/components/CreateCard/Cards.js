@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {withAuth} from "../../utils/axios";
+import {axiosWithAuth} from "../../utils/axios";
 import {Card, Button} from "antd";
 import {Link} from "react-router-dom";
 
@@ -7,8 +7,9 @@ function Cards(props) {
   // set the cards to state
   const [cards, setCards] = useState([{}]);
   //   Fetch cards after authentication
+
   useEffect(() => {
-    withAuth()
+    axiosWithAuth()
       .get(`/cards`)
       .then(res => {
         console.log(res);
@@ -21,7 +22,7 @@ function Cards(props) {
 
   // Function for deleting cards
   const handleDelete = id => {
-    withAuth()
+    axiosWithAuth()
       .delete(`/cards/${id}`)
       .then(res => {
         console.log(res);

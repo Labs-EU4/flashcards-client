@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.css";
 import axios from "axios";
-import {withAuth} from "../../utils/axios";
+import {axiosWithAuth} from "../../utils/axios";
 
 function AddCard(props) {
   const [formValues, setFormValues] = useState({
@@ -31,7 +31,7 @@ function AddCard(props) {
     setLoading(true);
     // Call the server
 
-    withAuth()
+    axiosWithAuth()
       .post(`/cards`, newCard)
       .then(res => {
         console.log(res);

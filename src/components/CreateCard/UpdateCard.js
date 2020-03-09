@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.css";
 import axios from "axios";
-import {withAuth} from "../../utils/axios";
+import {axiosWithAuth} from "../../utils/axios";
 
 function UpdateCard(props) {
   const [formValues, setFormValues] = useState({
@@ -32,7 +32,7 @@ function UpdateCard(props) {
     e.preventDefault();
     setLoading(true);
     // Call the server after authentication
-    withAuth()
+    axiosWithAuth()
       .put(`/cards/${props.location.state.id}`, newCard)
       .then(res => {
         setLoading(false);
