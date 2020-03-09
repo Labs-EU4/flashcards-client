@@ -11,6 +11,17 @@ beforeEach(() => {
   wrapper = rtl.render(<FormComponent />);
 });
 
+// useHistory mock so tests dont crash
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+    location: {
+      pathname: "random/text/okay/token",
+    },
+  }),
+  Link: "a",
+}));
+
 describe("is the component rendering correctly", () => {
   it("renders the form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/Email/);
