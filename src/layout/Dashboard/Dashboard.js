@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
+import decode from "jwt-decode";
 
 import {Layout, Menu, Icon, Button} from "antd";
 
@@ -10,6 +11,10 @@ const Dashboard = props => {
   const [state, setState] = useState({
     collapsed: false,
   });
+
+  const token = localStorage.getItem("token");
+  const decoded = decode(token);
+  const userName = decoded.name;
 
   const toggle = () => {
     setState({
@@ -58,7 +63,7 @@ const Dashboard = props => {
               className={styles.greeting}
               style={state.collapsed ? {display: "none"} : null}
             >
-              Welcome Username!
+              Welcome, {userName}!
             </h3>
 
             <Menu
