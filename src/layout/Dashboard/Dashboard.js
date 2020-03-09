@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
+import decode from "jwt-decode";
 
 import {Layout, Menu, Icon, Button} from "antd";
 
@@ -11,11 +12,22 @@ const Dashboard = props => {
     collapsed: false,
   });
 
+  const token = localStorage.getItem("token");
+
+  if (token !== null) {
+    const decoded = decode(token);
+    var userName = decoded.name;
+  }
+
   const toggle = () => {
     setState({
       collapsed: !state.collapsed,
     });
   };
+
+  function logout() {
+    localStorage.clear();
+  }
 
   return (
     <div>
@@ -36,7 +48,13 @@ const Dashboard = props => {
                 state.collapsed ? styles.logoAndCollapseCollapsed : styles.logoAndCollapse
               }
             >
-              <h1 className={styles.logo}>Logo</h1>
+              <Link to="/">
+                <img
+                  src="https://i.imgur.com/tuS7kwh.png"
+                  alt="logo"
+                  className={state.collapsed ? styles.logoCollapsed : styles.logo}
+                />
+              </Link>
               <Icon
                 className="trigger"
                 type={state.collapsed ? "menu-unfold" : "menu-fold"}
@@ -48,7 +66,7 @@ const Dashboard = props => {
               className={styles.greeting}
               style={state.collapsed ? {display: "none"} : null}
             >
-              Welcome Username!
+              Welcome, {userName}!
             </h3>
 
             <Menu
@@ -77,7 +95,11 @@ const Dashboard = props => {
               style={state.collapsed ? {display: "none"} : null}
             >
               <Link to="/login">
-                <Button type="primary" className={styles.logoutButton}>
+                <Button
+                  onClick={() => logout()}
+                  type="primary"
+                  className={styles.logoutButton}
+                >
                   Logout
                 </Button>
               </Link>
