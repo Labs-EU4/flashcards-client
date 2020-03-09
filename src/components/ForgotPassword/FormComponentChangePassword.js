@@ -75,7 +75,7 @@ const ResetPasswordForm = props => {
   const {getFieldDecorator} = props.form;
 
   return (
-    <Form onSubmit={handleSubmit} className="new-password-form">
+    <Form onSubmit={handleSubmit} className="new-password-form" data-testid="form">
       <Form.Item hasFeedback>
         {getFieldDecorator("password", {
           rules: [
@@ -92,6 +92,7 @@ const ResetPasswordForm = props => {
           <Input.Password
             placeholder="New Password"
             name="newPassword"
+            data-testid="inputPassword"
             onChange={handleChange}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
           />
@@ -111,13 +112,19 @@ const ResetPasswordForm = props => {
         })(
           <Input.Password
             placeholder="Confirm Password"
+            data-testid="inputPasswordConfirm"
             onBlur={handleConfirmBlur}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
           />
         )}
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" loading={state.isLoading}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={state.isLoading}
+          data-testid="button"
+        >
           Reset
         </Button>
       </Form.Item>
@@ -126,6 +133,7 @@ const ResetPasswordForm = props => {
           message="Token invalid"
           description="The token you tried to use is invalid."
           type="error"
+          data-testid="alertInvalid"
         />
       ) : state.tokenInvalid === false ? (
         <Alert

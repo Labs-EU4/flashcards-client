@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Alert} from "antd";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const NormalLoginForm = props => {
   //State for the form values
@@ -76,6 +77,7 @@ const NormalLoginForm = props => {
         >
           Reset
         </Button>
+        <Link to="/login">Back to login</Link>
       </Form.Item>
       {state.emailInvalid ? (
         <Alert
