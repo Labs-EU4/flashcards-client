@@ -3,6 +3,9 @@ import {BrowserRouter} from "react-router-dom";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import {RegisterForm} from "./Register";
+
+afterEach(rtl.cleanup);
+
 const mockRegister = jest.fn().mockResolvedValue(10);
 let wrapper;
 beforeEach(() => {
@@ -97,6 +100,15 @@ it("Displays correct warning messages on input fields", () => {
   rtl.fireEvent.change(PasswordInput(), {target: {value: "A"}});
   expect(PasswordWarning()).toBeInTheDocument();
   rtl.fireEvent.change(confirmPasswordInput(), {target: {value: "B"}});
-  expect(EmailWarning()).toBeInTheDocument();
+  expect(confirmPasswordWarning()).toBeInTheDocument();
 });
-afterEach(rtl.cleanup);
+
+it("Displays correct success messages on input fields", () => {
+  rtl.fireEvent.change(EmailInput(), {target: {value: "test@email.com"}});
+  rtl.fireEvent.change(UsernameInput(), {target: {value: "tester"}});
+  rtl.fireEvent.change(PasswordInput(), {target: {value: "password"}});
+  rtl.fireEvent.change(confirmPasswordInput(), {target: {value: "password"}});
+  rtl.fireEvent.click(Button());
+  //second time mockRegister has been called in these tests
+  expect(mockRegister).toHaveBeenCalledTimes(2);
+});
