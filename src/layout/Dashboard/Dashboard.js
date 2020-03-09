@@ -13,8 +13,11 @@ const Dashboard = props => {
   });
 
   const token = localStorage.getItem("token");
-  const decoded = decode(token);
-  const userName = decoded.name;
+
+  if (token !== null) {
+    const decoded = decode(token);
+    var userName = decoded.name;
+  }
 
   const toggle = () => {
     setState({
