@@ -44,7 +44,7 @@ describe("is the component rendering correctly", () => {
     expect(queryValue).toBeInTheDocument();
   });
 
-  it("renders the form placeholder", () => {
+  it("renders the second form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/Confirm Password/);
     expect(queryValue).toBeInTheDocument();
   });
@@ -102,5 +102,42 @@ describe("the input field validation is working", () => {
     });
     let error = await wrapper.queryByText(/The passwords have to match!/);
     expect(error).not.toBeInTheDocument();
+  });
+});
+
+describe("form renders input values", () => {
+  it("shows the value put in the first form field", () => {
+    let input = wrapper.queryByTestId("inputPassword");
+    rtl.fireEvent.change(input, {
+      target: {value: "123456"},
+    });
+    let field = wrapper.queryByTestId("inputPassword");
+    let fieldValue = field.value;
+    expect(fieldValue).toBe("123456");
+  });
+  it("shows the value put in the confirm password form field", () => {
+    let input = wrapper.queryByTestId("inputPasswordConfirm");
+    rtl.fireEvent.change(input, {
+      target: {value: "123456"},
+    });
+    let field = wrapper.queryByTestId("inputPasswordConfirm");
+    let fieldValue = field.value;
+    expect(fieldValue).toBe("123456");
+  });
+});
+
+describe("form renders an alert", () => {
+  it("renders that the token is invalid", async () => {
+    let input = wrapper.queryByTestId("inputPassword");
+    rtl.fireEvent.change(input, {
+      target: {value: "123456"},
+    });
+    let inputConfirm = wrapper.queryByTestId("inputPasswordConfirm");
+    rtl.fireEvent.change(inputConfirm, {
+      target: {value: "123456"},
+    });
+    rtl.fireEvent.click(wrapper.queryByTestId("button"));
+    let alert = await rtl.waitForElement(() => wrapper.queryByTestId("alertInvalid"));
+    expect(alert).toBeInTheDocument();
   });
 });
