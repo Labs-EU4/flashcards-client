@@ -1,0 +1,16 @@
+.deckLibraryContainer {
+  margin: 20px auto;
+  height: auto;
+  max-height: 60vh;
+  width: 25vw;
+  overflow: auto;
+}
+
+.deckCard {
+  text-align: center;
+  background-color: #f7f19d !important;
+}
+
+.deckCard:nth-of-type(2n) {
+  background-color: #f5b8bf !important;
+}

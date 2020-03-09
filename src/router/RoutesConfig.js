@@ -6,6 +6,9 @@ import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
 import Dashboard from "../layout/Dashboard/Dashboard";
 import Register from "../pages/Register/Register";
+
+//This function is connected directly to the store and checks if user is logged in or not.
+import Public from "../pages/PublicDecks/PublicDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
@@ -33,6 +36,10 @@ const RoutesConfig = [
   {
     path: "/register",
     component: Register,
+  },
+  {
+    path: "/public-decks",
+    component: Public,
   },
   {
     path: "/",
