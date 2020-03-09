@@ -12,6 +12,7 @@ import Public from "../pages/PublicDecks/PublicDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
+import Personal from "../pages/PersonalDecks/PersonalDecks";
 /*
   Routes config must be ordered the same way you'd 
   do inside a `<Switch>`. The last route object is 
@@ -40,6 +41,10 @@ const RoutesConfig = [
   {
     path: "/public-decks",
     component: Public,
+  },
+  {
+    path: "/decks",
+    component: Personal,
   },
   {
     path: "/",
