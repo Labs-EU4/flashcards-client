@@ -1,7 +1,7 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import FormComponent from "../../components/ForgotPassword/FormComponent";
+import FormComponent from "./ForgotPassword";
 // cleaning up
 afterEach(rtl.cleanup);
 
@@ -54,5 +54,29 @@ describe("submit tests", () => {
     await rtl.wait(() => {
       expect(wrapper.getByTestId("alertInvalid")).toHaveTextContent(/Email invalid/);
     });
+  });
+});
+
+describe("form renders an alert", () => {
+  it("renders that the email is invalid", async () => {
+    let input = wrapper.queryByTestId("email");
+    rtl.fireEvent.change(input, {
+      target: {value: "jhkjdsfkjsdfhkjdsfhkjsdfsdk@gmail.com"},
+    });
+    rtl.fireEvent.click(wrapper.queryByTestId("button"));
+    let alert = await rtl.waitForElement(() => wrapper.queryByTestId("alertInvalid"));
+    expect(alert).toBeInTheDocument();
+  });
+});
+
+describe("form renders input value", () => {
+  it("shows the value put in the first form field", () => {
+    let input = wrapper.queryByTestId("email");
+    rtl.fireEvent.change(input, {
+      target: {value: "oidjsajdkasjkad@gmail.com"},
+    });
+    let field = wrapper.queryByTestId("email");
+    let fieldValue = field.value;
+    expect(fieldValue).toBe("oidjsajdkasjkad@gmail.com");
   });
 });
