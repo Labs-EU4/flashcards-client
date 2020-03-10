@@ -55,8 +55,6 @@ const Dashboard = props => {
 
   switchPage();
 
-  console.log(current);
-
   return (
     <div>
       <Layout className={styles.dashboard}>

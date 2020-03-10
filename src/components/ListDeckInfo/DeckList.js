@@ -1,26 +1,29 @@
 import React, {useEffect, useState} from "react";
 import {axiosWithAuth} from "../../utils/axios";
 import DeckCard from "./DeckCard";
+import {getDecks} from "../../state/actions/decks";
+import {connect} from "react-redux";
 
-export default function DecksList({requestAddrs}) {
-  const [decks, setDecks] = useState([]);
+export function DecksList({requestAddrs, getDecks, decks}) {
+  // const [decks, setDecks] = useState([]);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(requestAddrs)
-      .then(res => {
-        console.log(res);
-        // setDecks(
-        //   res.data.data.filter(deck => {
-        //     return deck.flashcards[0] !== null;
-        //   })
-        // );
-        setDecks(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [requestAddrs]);
+    // axiosWithAuth()
+    //   .get(requestAddrs)
+    //   .then(res => {
+    //     console.log(res);
+    //     // setDecks(
+    //     //   res.data.data.filter(deck => {
+    //     //     return deck.flashcards[0] !== null;
+    //     //   })
+    //     // );
+    //     setDecks(res.data.data);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    getDecks(requestAddrs);
+  }, [getDecks, requestAddrs]);
 
   return (
     <div>
@@ -40,3 +43,14 @@ export default function DecksList({requestAddrs}) {
     </div>
   );
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    decks: state.deckState,
+    requestAddrs: ownProps.requestAddrs,
+  };
+}
+
+const ConnectedDeckList = connect(mapStateToProps, {getDecks})(DecksList);
+
+export default ConnectedDeckList;
