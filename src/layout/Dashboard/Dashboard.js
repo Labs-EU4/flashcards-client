@@ -116,7 +116,7 @@ const Dashboard = props => {
               width: "100%",
             }}
           >
-            {props.child}
+            {props.children}
           </Content>
         </Layout>
       </Layout>
