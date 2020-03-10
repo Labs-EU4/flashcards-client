@@ -1,22 +1,34 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import ForgotPassword from "./ForgotPassword.js";
-
+import FormComponent from "./ForgotPassword";
+// cleaning up
 afterEach(rtl.cleanup);
+
+jest.mock("axios", () => {
+  return {
+    post: jest.fn().mockRejectedValue("boo!"),
+  };
+});
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = rtl.render(<ForgotPassword />);
+  wrapper = rtl.render(<FormComponent />);
 });
 
-describe("is the component rendering correctly", () => {
-  it("renders the heading", () => {
-    let queryValue = wrapper.queryByText(/Reset Password/);
-    expect(queryValue).toBeDefined();
-  });
+// useHistory mock so tests dont crash
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+    location: {
+      pathname: "random/text/okay/token",
+    },
+  }),
+  Link: "a",
+}));
 
+describe("is the component rendering correctly", () => {
   it("renders the form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/Email/);
     expect(queryValue).toBeDefined();
@@ -28,37 +40,49 @@ describe("is the component rendering correctly", () => {
   });
 });
 
-describe("the input field is working", () => {
-  it("responds to text input", () => {
-    let input = wrapper.getByPlaceholderText(/Email/);
-    rtl.fireEvent.click(input);
-    rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
-    rtl.fireEvent.keyDown(input, {key: "B", code: 66, charCode: 66});
-    rtl.fireEvent.keyDown(input, {key: "C", code: 67, charCode: 67});
-    let formValue = wrapper.queryByText(/ABC/);
-    expect(formValue).toBeDefined();
-  });
-
-  it("shows an validation error if input field is empty", () => {
-    let input = wrapper.getByPlaceholderText(/Email/);
-    rtl.fireEvent.click(input);
-    rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
-    rtl.fireEvent.keyDown(input, {key: "B", code: 66, charCode: 66});
-    rtl.fireEvent.keyDown(input, {key: "C", code: 67, charCode: 67});
-    rtl.fireEvent.keyDown(input, {key: "backspace", code: 8});
-    rtl.fireEvent.keyDown(input, {key: "backspace", code: 8});
-    rtl.fireEvent.keyDown(input, {key: "backspace", code: 8});
-    let error = wrapper.queryByText(/Please input a valid email!/);
-    expect(error).toBeDefined();
-  });
-
+describe("the input field + validation is working", () => {
   it("shows an validation error if input field has an invalid email", () => {
-    let input = wrapper.getByPlaceholderText(/Email/);
-    rtl.fireEvent.click(input);
-    rtl.fireEvent.keyDown(input, {key: "A", code: 65, charCode: 65});
-    rtl.fireEvent.keyDown(input, {key: "B", code: 66, charCode: 66});
-    rtl.fireEvent.keyDown(input, {key: "C", code: 67, charCode: 67});
+    rtl.fireEvent.change(wrapper.getByTestId("email"), {
+      target: {value: "randomemail"},
+    });
     let error = wrapper.queryByText(/Invalid email/);
-    expect(error).toBeDefined();
+    expect(error).toHaveTextContent(/invalid/i);
+  });
+});
+
+describe("submit tests", () => {
+  it("gives an alert if email is not in database", async () => {
+    rtl.fireEvent.change(wrapper.getByTestId("email"), {
+      target: {value: "randomemail@email.com"},
+    });
+
+    rtl.fireEvent.click(wrapper.getByTestId("button"));
+    await rtl.wait(() => {
+      expect(wrapper.getByTestId("alertInvalid")).toHaveTextContent(/Email invalid/);
+    });
+  });
+});
+
+describe("form renders an alert", () => {
+  it("renders that the email is invalid", async () => {
+    let input = wrapper.queryByTestId("email");
+    rtl.fireEvent.change(input, {
+      target: {value: "jhkjdsfkjsdfhkjdsfhkjsdfsdk@gmail.com"},
+    });
+    rtl.fireEvent.click(wrapper.queryByTestId("button"));
+    let alert = await rtl.waitForElement(() => wrapper.queryByTestId("alertInvalid"));
+    expect(alert).toBeInTheDocument();
+  });
+});
+
+describe("form renders input value", () => {
+  it("shows the value put in the first form field", () => {
+    let input = wrapper.queryByTestId("email");
+    rtl.fireEvent.change(input, {
+      target: {value: "oidjsajdkasjkad@gmail.com"},
+    });
+    let field = wrapper.queryByTestId("email");
+    let fieldValue = field.value;
+    expect(fieldValue).toBe("oidjsajdkasjkad@gmail.com");
   });
 });
