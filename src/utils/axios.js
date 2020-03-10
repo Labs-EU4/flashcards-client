@@ -1,6 +1,5 @@
 import axios from "axios";
-export const baseURL =
-  process.env.REACT_APP_API_HOST || "https://flashdecks-staging.herokuapp.com/api";
+export const baseURL = process.env.REACT_APP_API_HOST || "http://localhost:4003/api/";
 export const justAxios = () => {
   const instance = axios.create({
     baseURL,

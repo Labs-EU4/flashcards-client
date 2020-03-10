@@ -1,27 +1,18 @@
 import React, {useState, useEffect} from "react";
-import axiosWithAuth from "../../helpers/axiosWithAuth";
+import {getAllDecks} from "../../state/actions/decks/decksActions";
+import {connect} from "react-redux";
 import styles from "./DeckLibrary.module.css";
 import {Link} from "react-router-dom";
 import {Card, Icon} from "antd";
 
-export default function DeckLibrary() {
-  const [decks, setDecks] = useState([]);
+export function DeckLibrary() {
+  const [decks, setDecks] = useState([{}]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get("http://localhost:4003/api/decks")
-      .then(res => {
-        console.log(res);
-        setDecks(res.data.data);
-        return res;
-      })
-      .then(res => {
-        setLoading(false);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log("hi");
+
+    getAllDecks()();
   }, []);
 
   return (
@@ -50,4 +41,4 @@ export default function DeckLibrary() {
   );
 }
 
-// export default connect(state => state)(DeckLibrary);
+export default connect(state => state, {getAllDecks})(DeckLibrary);
