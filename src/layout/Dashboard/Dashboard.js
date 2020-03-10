@@ -112,13 +112,11 @@ const Dashboard = props => {
           </Sider>
         </div>
         <Layout>
-          <Content
-            style={{
-              background: "#040032",
-              width: "100%",
-            }}
-          >
-            <RecentDecks />
+          <Content className={styles.content}>
+            <div className={styles.leftContent}>Your decks</div>
+            <div className={styles.rightContent}>
+              <RecentDecks />
+            </div>
             {props.child}
           </Content>
         </Layout>
