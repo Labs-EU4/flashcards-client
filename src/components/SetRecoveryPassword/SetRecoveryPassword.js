@@ -38,7 +38,7 @@ export function SetRecoveryPasswordForm(props) {
   const compareToFirstPassword = (rule, value, callback) => {
     const {form} = props;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("Passwords do not match!");
     } else {
       callback();
     }
@@ -125,6 +125,7 @@ export function SetRecoveryPasswordForm(props) {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            data-testid="submit"
             disabled={
               hasErrors(getFieldsError()) || !formValues.password || !formValues.confirm
             }

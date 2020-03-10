@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react";
 import {Card, Avatar} from "antd";
 import {getAllDecks} from "../../state/actions/decks/decksActions";
-import {EditOutlined, EllipsisOutlined, SettingOutlined} from "@ant-design/icons";
+import {EditOutlined, DeleteOutlined, PlayCircleOutlined} from "@ant-design/icons";
+import styles from "./deckCard.module.css";
 
 const {Meta} = Card;
 
 const DeckCard = () => {
   const [decks, setDecks] = useState([{}, {}, {}]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log("hi");
@@ -14,30 +16,22 @@ const DeckCard = () => {
     getAllDecks()();
   }, []);
   return (
-    <div>
-      <h1>My Decks</h1>
+    <div className={styles.DeckCardContainer}>
+      <h1 className={styles.MyDecks}>My Decks</h1>
       {decks.map(deck => {
         return (
-          // <li>
           <Card
             style={{width: 300}}
-            cover={
-              <img
-                alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              />
-            }
             actions={[
-              <SettingOutlined key="setting" />,
+              <PlayCircleOutlined key="play" />,
               <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <DeleteOutlined key="delete" />,
             ]}
+            loading={loading}
+            className={styles.deckCard}
           >
             <Meta
-              avatar={
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              }
-              title={deck.title}
+              avatar={<Avatar src="logo192.png" />}
               description="This is the description"
             />
           </Card>
