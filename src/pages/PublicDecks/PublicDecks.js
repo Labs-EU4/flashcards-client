@@ -4,13 +4,19 @@ import Header from "../../components/ListDeckInfo/HeaderSearchBar";
 import styles from "./PublicDecks.module.css";
 import Dashboard from "../../layout/Dashboard/Dashboard";
 
-export default function PublicDecks() {
+export function PublicDecks() {
+  return (
+    <div className={styles.public}>
+      <Header page={"Public Decks"} />
+      <List requestAddrs={"/decks/public"} />
+    </div>
+  );
+}
+
+export default function Public() {
   return (
     <Dashboard>
-      <div className={styles.public}>
-        <Header page={"Public Decks"} />
-        <List requestAddrs={"/decks/public"} />
-      </div>
+      <PublicDecks />
     </Dashboard>
   );
 }
