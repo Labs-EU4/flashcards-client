@@ -5,6 +5,8 @@ import decode from "jwt-decode";
 
 import {Layout, Menu, Icon, Button} from "antd";
 
+import RecentDecks from "../../components/RecentDecks/RecentDecks";
+
 const {Sider, Content} = Layout;
 
 const Dashboard = props => {
@@ -112,10 +114,11 @@ const Dashboard = props => {
         <Layout>
           <Content
             style={{
-              background: "#fff",
+              background: "#040032",
               width: "100%",
             }}
           >
+            <RecentDecks />
             {props.child}
           </Content>
         </Layout>
