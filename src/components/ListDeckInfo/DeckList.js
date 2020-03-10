@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import {axiosWithAuth} from "../../utils/axios";
+import React, {useEffect} from "react";
 import DeckCard from "./DeckCard";
 import {getDecks} from "../../state/actions/decks";
 import {connect} from "react-redux";
@@ -44,10 +43,9 @@ export function DecksList({requestAddrs, getDecks, decks}) {
   );
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     decks: state.deckState,
-    requestAddrs: ownProps.requestAddrs,
   };
 }
 
