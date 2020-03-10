@@ -39,7 +39,7 @@ const RoutesConfig = [
   },
   {
     path: "/public-decks",
-    component: createPrivateRoute(Public),
+    render: () => createPrivateRoute(Public),
   },
   {
     path: "/",
