@@ -30,10 +30,9 @@ const Dashboard = props => {
   function logout() {
     localStorage.clear();
   }
-  // console.log(props.children.type.name);
-  // const currentPage = props.children.type.name || "Home";
 
   if (props.children) {
+    console.log(props.children.type.name);
     current = props.children.type.name;
   } else {
     current = "Home";
@@ -47,7 +46,7 @@ const Dashboard = props => {
       case "PublicDecks":
         page = "3";
         break;
-      default:
+      case "PersonalDecks":
         page = "2";
         break;
     }

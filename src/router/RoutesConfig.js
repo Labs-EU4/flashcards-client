@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 
 //This function is connected directly to the store and checks if user is logged in or not.
 import Public from "../pages/PublicDecks/PublicDecks";
+import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
@@ -36,6 +37,10 @@ const RoutesConfig = [
   {
     path: "/register",
     component: Register,
+  },
+  {
+    path: "/decks",
+    render: () => createPrivateRoute(Personal),
   },
   {
     path: "/public-decks",
