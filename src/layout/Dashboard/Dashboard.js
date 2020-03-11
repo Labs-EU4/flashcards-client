@@ -32,7 +32,6 @@ const Dashboard = props => {
   }
 
   if (props.children) {
-    console.log(props.children.type.name);
     current = props.children.type.name;
   } else {
     current = "Home";
