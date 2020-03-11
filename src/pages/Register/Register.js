@@ -180,13 +180,16 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_email_input"
-            onKeyUp={e => formValidation(e)}
+            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="email"
             type="text"
             name="email"
             value={user.email}
-            onChange={event => handleChange(event)}
+            onChange={event => {
+              handleChange(event);
+              formValidation(event);
+            }}
           />
         </Form.Item>
         <Form.Item
@@ -197,13 +200,16 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_username_input"
-            onKeyUp={e => formValidation(e)}
+            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="username"
             type="text"
             name="fullName"
             value={user.fullName}
-            onChange={event => handleChange(event)}
+            onChange={event => {
+              handleChange(event);
+              formValidation(event);
+            }}
           />
         </Form.Item>
         <Form.Item
@@ -214,13 +220,16 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_password_input"
-            onKeyUp={e => formValidation(e)}
+            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="password"
             type="password"
             name="password"
             value={user.password}
-            onChange={event => handleChange(event)}
+            onChange={event => {
+              handleChange(event);
+              formValidation(event);
+            }}
           />
         </Form.Item>
         <Form.Item
@@ -231,13 +240,16 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_confirmPassword_input"
-            onKeyUp={e => formValidation(e)}
+            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="confirm password"
             type="password"
             name="confirmPassword"
             value={user.confirmPassword}
-            onChange={event => handleChange(event)}
+            onChange={event => {
+              handleChange(event);
+              formValidation(event);
+            }}
           />
         </Form.Item>
         <Form.Item data-testid="test_submit_form_item">
