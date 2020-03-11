@@ -1,7 +1,9 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import PublicDecks from "./PublicDecks";
+import {PublicDecks} from "./PublicDecks";
+import {Provider} from "react-redux";
+import store from "../../state/store";
 
 const PageHeader = () => {
   return wrapper.queryByText("Public Decks");
@@ -13,7 +15,11 @@ const NoDecksMessage = () => {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<PublicDecks />);
+  wrapper = rtl.render(
+    <Provider store={store}>
+      <PublicDecks />
+    </Provider>
+  );
 });
 
 it("renders without crashing", () => {

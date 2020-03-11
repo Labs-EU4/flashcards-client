@@ -1,7 +1,7 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import DeckList from "../DeckList";
+import {DecksList} from "../DeckList";
 
 const NoDecksMessage = () => {
   return wrapper.queryByText("You have no decks right now");
@@ -31,9 +31,21 @@ jest.mock("../../../utils/axios", () => {
   };
 });
 
+const mockGetDecks = jest.fn(() => true);
+
+const mockDecks = [
+  {
+    deck_name: "Test Deck",
+    author: "Test",
+    flashcards: ["test", "the", "flashcards"],
+  },
+];
+
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<DeckList requestAddrs="/test" />);
+  wrapper = rtl.render(
+    <DecksList requestAddrs="/test" getDecks={mockGetDecks} decks={mockDecks} />
+  );
 });
 
 it("renders without crashing", async () => {
