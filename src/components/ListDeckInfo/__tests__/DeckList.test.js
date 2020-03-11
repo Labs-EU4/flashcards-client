@@ -31,14 +31,6 @@ jest.mock("../../../utils/axios", () => {
   };
 });
 
-// jest.mock("../../../state/actions/decks", () => {
-// return [{
-//   deck_name: 'Test Deck',
-//   author: Test,
-//   flashcards: ['test', 'the', 'flashcards']
-// }]
-// })
-
 const mockGetDecks = jest.fn(() => true);
 
 const mockDecks = [
