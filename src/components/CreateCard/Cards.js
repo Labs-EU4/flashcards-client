@@ -51,8 +51,10 @@ function Cards(props) {
       <div className="search-div">
         <h2 className="deck-name">Deck name</h2>
 
-        <HeaderSearchBar />
-        <Button onClick={() => setModalIsOpen(true)}>Add a Card</Button>
+        <HeaderSearchBar className="search" />
+        <Button className="btn" type="dashed" onClick={() => setModalIsOpen(true)}>
+          Add a Card
+        </Button>
         <AddModal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
           <AddCard />
           <div>

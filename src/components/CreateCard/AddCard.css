@@ -5,6 +5,15 @@
 
 .search-div {
   display: flex;
-  flex-direction: row;
-  /* margin-top: -50px; */
+width: 100%;
+align-items: center;
+margin-top: -550px;
+/* justify-content: space-around; */
+}
+.btn {
+  width: 100px;
+}
+
+.deck-name{
+  margin-right: 15px;
 }
