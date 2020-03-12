@@ -142,7 +142,7 @@ const Dashboard = props => {
           </Sider>
         </div>
         <Layout>
-          <Content className={styles.content}>
+          <Content className={state.collapsed ? styles.contentCollapsed : styles.content}>
             <div className={styles.leftContent}></div>
             <div className={styles.rightContent}>
               <RecentDecks />

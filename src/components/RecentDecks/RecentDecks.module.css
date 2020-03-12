@@ -1,11 +1,10 @@
 .container {
   width: 100%;
-  height: 48.5%;
+  min-height: 48.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f9f9f9;
-  border: solid 1.25px #198fff;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
@@ -31,6 +30,7 @@
     align-items: center;
     margin-right: 2%;
     height: auto;
+    min-height: auto;
   }
   .heading {
     font-size: 3vw;

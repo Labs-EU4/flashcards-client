@@ -11,6 +11,7 @@
 }
 
 .sider {
+  position: fixed;
   background-color: white;
   width: 235px !important;
   max-width: 235px !important;
@@ -19,6 +20,7 @@
 }
 
 .siderCollapsed {
+  position: fixed;
   background-color: white;
   height: 100vh;
   border-right: solid 1px #e8e8e8;
@@ -82,7 +84,15 @@
   display: flex;
   background: white;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  padding: 1.5%;
+}
+
+.contentCollapsed {
+  display: flex;
+  background: white;
+  width: 100%;
+  min-height: 100vh;
   padding: 1.5%;
 }
 
@@ -90,7 +100,6 @@
   width: 100%;
   background-color: #f9f9f9;
   margin-right: 2%;
-  border: solid 1.25px #198fff;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
@@ -105,6 +114,11 @@
 
 @media only screen and (max-width: 1024px) {
   .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentCollapsed {
     display: flex;
     flex-direction: column;
   }
@@ -148,8 +162,9 @@
     background-color: white;
     width: 100% !important;
     max-width: 100% !important;
-    height: auto;
     border-bottom: solid 1px #e8e8e8;
+    border-right: none;
+    height: 12vh;
   }
 
   .logoAndCollapse {
@@ -196,5 +211,13 @@
     width: 100%;
     top: 45vh;
     color: black;
+  }
+
+  .content {
+    margin-top: 60vh;
+  }
+
+  .contentCollapsed {
+    margin-top: 12vh;
   }
 }
