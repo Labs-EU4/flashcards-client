@@ -4,9 +4,16 @@ import * as styles from "./PlayMode.module.less";
 import "./Playmode.css";
 import FlipCard from "./FlipCard";
 import SummaryModal from "./SummaryModal";
+import {connect} from "react-redux";
+import {clearDeckInPlaySession, storeUnfinishedSession} from "../../state/actions/decks";
 const RadioGroup = Radio.Group;
 
-export default function PlayMode(props) {
+export default function PlayMode({
+  deckInPlaySession,
+  clearDeckInPlaySession,
+  storeUnfinishedSession,
+  history,
+}) {
   const deckData = {
     deck: {
       deck_id: 1,
@@ -49,7 +56,9 @@ export default function PlayMode(props) {
   };
   // all the cards in the deck, needs to be in the state
   // for future purposes of adding mastery rating to cards
-  const [cards, setCards] = useState(deckData.deck.flashcards);
+  const [cards, setCards] = useState(
+    deckInPlaySession ? deckInPlaySession : deckData.deck.flashcards
+  );
   //current card displayed to the user
   const [current, setCurrent] = useState(0);
   // whether or not the deck was finished, display summary if it was
@@ -82,19 +91,30 @@ export default function PlayMode(props) {
     setShowAnswer(!showAnswer);
   }
 
+  function closeSession() {
+    storeUnfinishedSession({current, numOfRightAnswers, deckInPlaySession});
+    history.back();
+  }
+
+  function finishSession() {
+    clearDeckInPlaySession();
+    setFinished(false);
+    history.back();
+  }
+
   return (
     <>
       <div className="progress-block">
         <PageHeader
           title="Deck name"
-          onBack={() => null}
+          onBack={closeSession}
           backIcon={<Icon type="close" />}
         />
         <Progress percent={finished ? 100 : Math.floor((current / cards.length) * 100)} />
         <SummaryModal
           visible={finished}
-          handleOk={() => setFinished(false)}
-          handleCancel={() => setFinished(false)}
+          handleOk={finishSession}
+          handleCancel={finishSession}
           numOfCards={cards.length}
           numOfRightAnswers={numOfRightAnswers}
         />
@@ -160,3 +180,11 @@ export default function PlayMode(props) {
     </>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    deckInPlaySession: state.decks.deckInPlaySession,
+  };
+};
+
+connect(mapStateToProps, {clearDeckInPlaySession, storeUnfinishedSession})(PlayMode);
