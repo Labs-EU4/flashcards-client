@@ -42,7 +42,11 @@ h1 {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1205px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
   .heading {
     width: 100%;
   }
@@ -53,6 +57,21 @@ h1 {
   .filters {
     justify-content: space-around;
     margin: 0 auto;
-    width: 100vw;
+    width: 100%;
   }
 }
+
+/* @media (max-width: 750px) {
+  .heading {
+    width: 100%;
+  }
+
+  .searchContainer {
+    flex-direction: column;
+  }
+  .filters {
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 100%;
+  }
+} */
