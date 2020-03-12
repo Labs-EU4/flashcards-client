@@ -106,13 +106,13 @@ const Dashboard = props => {
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/decks" onClick={() => switchPage("Decks")}>
+                <Link to="/deck-library" onClick={() => switchPage("Decks")}>
                   <Icon type="block" />
                   <span>Deck Library</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/public-decks" onClick={() => switchPage("PublicDecks")}>
+                <Link to="/discover-decks" onClick={() => switchPage("PublicDecks")}>
                   <Icon type="global" />
                   <span>Discover Decks</span>
                 </Link>

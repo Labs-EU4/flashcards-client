@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import DeckCard from "./DeckCard";
 import {getDecks} from "../../state/actions/decks";
 import {connect} from "react-redux";
+import styles from "./DeckList.module.css";
 
 export function DecksList({requestAddrs, getDecks, decks}) {
   useEffect(() => {
@@ -9,7 +10,7 @@ export function DecksList({requestAddrs, getDecks, decks}) {
   }, [getDecks, requestAddrs]);
 
   return (
-    <div>
+    <div className={styles.main_content}>
       {decks.length > 0 ? (
         decks.map(deck => {
           return <DeckCard deck={deck} />;

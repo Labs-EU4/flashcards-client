@@ -6,7 +6,7 @@ import Dashboard from "../../layout/Dashboard/Dashboard";
 
 export function PersonalDecks() {
   return (
-    <div className={styles.public}>
+    <div className={styles.personal}>
       <Header page={"Deck Library"} />
       <List requestAddrs={"/decks"} />
     </div>
