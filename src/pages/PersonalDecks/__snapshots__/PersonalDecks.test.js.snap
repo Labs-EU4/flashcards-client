@@ -3,7 +3,7 @@
 exports[`renders without crashing 1`] = `
 <div>
   <div
-    class="public"
+    class="personal"
   >
     <div
       class="searchContainer"
@@ -56,7 +56,6 @@ exports[`renders without crashing 1`] = `
           Sort By:
           <div
             class="ant-select ant-select-enabled"
-            style="width: 10vw;"
           >
             <div
               aria-autocomplete="list"
@@ -109,7 +108,9 @@ exports[`renders without crashing 1`] = `
         </div>
       </div>
     </div>
-    <div>
+    <div
+      class="main_content"
+    >
       <h2>
         You have no decks right now
       </h2>
