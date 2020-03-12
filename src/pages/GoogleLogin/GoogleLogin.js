@@ -1,10 +1,10 @@
 import React from "react";
 import {Spin} from "antd";
-import {isAccountCreationFinished, setToken} from "../utils/auth";
-import SetRecoveryPasswordForm from "../components/SetRecoveryPassword/SetRecoveryPassword";
+import {isAccountCreationFinished, setToken} from "../../utils/auth";
+import SetRecoveryPasswordForm from "../../components/SetRecoveryPassword/SetRecoveryPassword";
 import styles from "./GoogleLogin.module.less";
 import {connect} from "react-redux";
-import {addRecoveryPassword, googleAuthorized} from "../state/actions/auth";
+import {addRecoveryPassword, googleAuthorized} from "../../state/actions/auth";
 
 export function GoogleLogin(props) {
   const {match, history, addRecoveryPassword, googleAuthorized} = props;

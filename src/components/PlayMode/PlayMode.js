@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Progress, Button, Icon, Radio, PageHeader} from "antd";
 import * as styles from "./PlayMode.module.less";
 import "./Playmode.css";
+import FlipCard from "./FlipCard";
+import SummaryModal from "./SummaryModal";
 const RadioGroup = Radio.Group;
 
 export default function PlayMode(props) {
@@ -50,20 +52,23 @@ export default function PlayMode(props) {
   const [cards, setCards] = useState(deckData.deck.flashcards);
   //current card displayed to the user
   const [current, setCurrent] = useState(0);
-  // whether or not the deck was finished, summary display if it is
+  // whether or not the deck was finished, display summary if it was
   const [finished, setFinished] = useState(false);
   // next button state, will brobably be expanded when more interactive play is added
   const [answered, setAnswered] = useState(false);
   const [answer, setAnswer] = useState(null);
+  const [numOfRightAnswers, setNumOfRightAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
 
   function next(e) {
     if (current !== cards.length - 1) {
       setCurrent(current + 1);
       setAnswered(false);
+      if (answer) setNumOfRightAnswers(numOfRightAnswers + 1);
       setAnswer(null);
       setShowAnswer(false);
     } else {
+      if (answer) setNumOfRightAnswers(numOfRightAnswers + 1);
       setFinished(true);
     }
   }
@@ -86,19 +91,22 @@ export default function PlayMode(props) {
           backIcon={<Icon type="close" />}
         />
         <Progress percent={finished ? 100 : Math.floor((current / cards.length) * 100)} />
+        <SummaryModal
+          visible={finished}
+          handleOk={() => setFinished(false)}
+          handleCancel={() => setFinished(false)}
+          numOfCards={cards.length}
+          numOfRightAnswers={numOfRightAnswers}
+        />
       </div>
       {!finished && (
-        <div className={styles.card_block}>
-          <div className="scene" onClick={revealAnswer}>
-            <div className={`card${showAnswer ? " is-flipped" : ""}`}>
-              <h1 className="card__face card__face--front">{cards[current].question}</h1>
-              <h1 className="card__face card__face--back">{cards[current].answer}</h1>
-            </div>
-          </div>
-        </div>
+        <FlipCard
+          card={cards[current]}
+          showAnswer={showAnswer}
+          revealAnswer={revealAnswer}
+        />
       )}
       <div className={styles.bottom_block}>
-        bottom block
         <div className={styles.correct_buttons}>
           <RadioGroup
             size="medium"
@@ -137,9 +145,16 @@ export default function PlayMode(props) {
               Show answer
             </Button>
           )}
-          <Button onClick={next} className={styles.play_button} size="large" type="ghost">
-            Skip
-          </Button>
+          {!answered && (
+            <Button
+              onClick={next}
+              className={styles.play_button}
+              size="large"
+              type="ghost"
+            >
+              Skip
+            </Button>
+          )}
         </div>
       </div>
     </>

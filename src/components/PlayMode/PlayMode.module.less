@@ -1,13 +1,16 @@
 .play_button {
   min-width: 150px;
   width: auto;
-  grid-column: 5/auto;
+  grid-column: 5 / auto;
   grid-row: 1;
   justify-self: start;
   align-self: end;
   margin-bottom: 20px;
-  &:last-of-type{
+  &:last-of-type {
     grid-column: 1;
+  }
+  &:only-of-type {
+    grid-column: 5 / auto;
   }
 }
 
@@ -26,18 +29,18 @@
   max-width: 1000px;
 }
 
-.correct_buttons{
-    display: flex;
-    justify-content: space-around;
+.correct_buttons {
+  display: flex;
+  justify-content: space-around;
 }
 
-.bottom_block{
+.bottom_block {
   position: absolute;
   bottom: 0;
   width: 100%;
   min-height: 140px;
 }
 
-.card_block{
+.card_block {
   text-align: center;
 }

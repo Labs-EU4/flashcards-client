@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
-import GoogleLogin from "../pages/GoogleLogin";
+import GoogleLogin from "../pages/GoogleLogin/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
 import Dashboard from "../layout/Dashboard/Dashboard";
