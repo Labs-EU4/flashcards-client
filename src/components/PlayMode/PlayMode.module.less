@@ -1,0 +1,43 @@
+.play_button {
+  min-width: 150px;
+  width: auto;
+  grid-column: 5/auto;
+  grid-row: 1;
+  justify-self: start;
+  align-self: end;
+  margin-bottom: 20px;
+  &:last-of-type{
+    grid-column: 1;
+  }
+}
+
+.controls_block {
+  display: grid;
+  gap: 8px 16px;
+  margin: 0 auto;
+  justify-items: stretch;
+  justify-content: space-between;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: auto;
+  align-items: center;
+  grid-template-rows: 100%;
+  padding: 0 40px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.correct_buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom_block{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 140px;
+}
+
+.card_block{
+  text-align: center;
+}
