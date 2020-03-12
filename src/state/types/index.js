@@ -15,3 +15,4 @@ export const DELETE_CARD = "DELETE_CARD";
 export const UPDATE_CARD = "UPDATE_CARD";
 
 export const FETCH_CARDS = "FETCH_CARDS";
+export const GET_DECKS_DATA = "GET_DECKS_DATA";
