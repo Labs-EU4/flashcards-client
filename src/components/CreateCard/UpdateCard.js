@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.css";
-import axios from "axios";
 import {axiosWithAuth} from "../../utils/axios";
+import {updateCard} from "../../state/actions/CardAction";
+import {connect} from "react-redux";
 
 function UpdateCard(props) {
   const [formValues, setFormValues] = useState({
@@ -29,25 +30,29 @@ function UpdateCard(props) {
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
+
     e.preventDefault();
     setLoading(true);
+    console.log(props.id);
+
+    props.updateCard(props.location.state.id, newCard);
     // Call the server after authentication
-    axiosWithAuth()
-      .put(`/cards/${props.location.state.id}`, newCard)
-      .then(res => {
-        setLoading(false);
-        props.history.push("/cards");
-        setFormValues(...formValues, [
-          {
-            id: res.data.cards.id,
-            questionText: res.data.cards.question,
-            answerText: res.data.cards.id,
-          },
-        ]);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // // axiosWithAuth()
+    // //   .put(`/cards/${props.location.state.id}`, newCard)
+    // //   .then(res => {
+    setLoading(false);
+    props.history.push("/cards");
+    // //     setFormValues(...formValues, [
+    // //       {
+    // //         id: res.data.cards.id,
+    // //         questionText: res.data.cards.question,
+    // //         answerText: res.data.cards.id,
+    // //       },
+    // //     ]);
+    // //   })
+    // //   .catch(err => {
+    // //     console.log(err);
+    //   });
   };
   return (
     <div className="card-container">
@@ -117,6 +122,12 @@ function UpdateCard(props) {
   );
 }
 
+function mapStateToProps(state, ownprops) {
+  return {
+    card: state.card,
+    id: ownprops.location.state.id,
+  };
+}
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(UpdateCard);
 
-export default WrappedNormalLoginForm;
+export default connect(mapStateToProps, {updateCard})(WrappedNormalLoginForm);

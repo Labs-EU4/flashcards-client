@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {axiosWithAuth} from "../../utils/axios";
 import {Card, Button} from "antd";
 import {Link} from "react-router-dom";
+import {getCards} from "../../state/actions/CardAction";
+import {connect} from "react-redux";
 
 function Cards(props) {
   // set the cards to state
@@ -9,16 +11,17 @@ function Cards(props) {
   //   Fetch cards after authentication
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`/cards`)
-      .then(res => {
-        console.log(res);
-        setCards(res.data.cards);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+    // axiosWithAuth()
+    //   .get(`/cards`)
+    //   .then(res => {
+    //     console.log(res);
+    //     setCards(res.data.cards);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    props.getCards();
+  }, [props]);
 
   // Function for deleting cards
   const handleDelete = id => {
@@ -66,4 +69,10 @@ function Cards(props) {
   );
 }
 
-export default Cards;
+function mapStateToProps(state) {
+  return {
+    card: state.card,
+  };
+}
+
+export default connect(mapStateToProps, {getCards})(Cards);
