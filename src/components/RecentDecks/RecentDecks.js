@@ -1,12 +1,17 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
+import {Card, Avatar} from "antd";
 import {axiosWithAuth} from "../../utils/axios";
 import styles from "./RecentDecks.module.css";
 
+const {Meta} = Card;
+
 const RecentDecks = props => {
   const [recentDecks, setRecentDecks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   axiosWithAuth()
-    .get("https://flashdecks-staging.herokuapp.com/api/decks/access/")
+    .get("/decks/access/")
     .then(res => {
       setRecentDecks(res.data.data);
     })
@@ -22,7 +27,21 @@ const RecentDecks = props => {
           <div className={styles.noDecks}>You haven't completed a session yet!</div>
         ) : (
           recentDecks.map((deck, index) => {
-            return <div>LOL</div>;
+            return (
+              <Card
+                style={{width: 300}}
+                actions={[<Link to={`/decks/${deck.deck_id}`}>Play</Link>]}
+                loading={loading}
+                className={styles.deckCard}
+                key={index}
+              >
+                <Meta
+                  avatar={<Avatar src="logo192.png" />}
+                  description="This is the description"
+                  cardNumber="52"
+                />
+              </Card>
+            );
           })
         )}
       </div>

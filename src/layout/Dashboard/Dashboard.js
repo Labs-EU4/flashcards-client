@@ -143,7 +143,7 @@ const Dashboard = props => {
         </div>
         <Layout>
           <Content className={styles.content}>
-            <div className={styles.leftContent}>Your decks</div>
+            <div className={styles.leftContent}></div>
             <div className={styles.rightContent}>
               <RecentDecks />
             </div>

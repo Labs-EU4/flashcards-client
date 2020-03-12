@@ -34,9 +34,10 @@ export const Login = props => {
       await props.login(formValues);
       props.history.push("/");
     } catch (error) {
-      console.log(JSON.stringify(error));
+      // console.log(JSON.stringify(error));
 
-      setError(error);
+      setError(error.response.data.message);
+      console.log(error.response.data.message);
     } finally {
       setLoading(false);
       props.form.resetFields();

@@ -80,7 +80,7 @@
 
 .content {
   display: flex;
-  background: #040032;
+  background: white;
   width: 100%;
   height: 100%;
   padding: 1.5%;
@@ -88,8 +88,12 @@
 
 .leftContent {
   width: 100%;
-  background-color: #c4c4c4;
+  background-color: #f9f9f9;
   margin-right: 2%;
+  border: solid 1.25px #198fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
 }
 
 .rightContent {
@@ -106,7 +110,6 @@
   }
   .leftContent {
     width: 96%;
-    background-color: #c4c4c4;
     margin: 2%;
   }
 
@@ -193,8 +196,5 @@
     width: 100%;
     top: 45vh;
     color: black;
-  }
-  body {
-    background-color: #040032;
   }
 }
