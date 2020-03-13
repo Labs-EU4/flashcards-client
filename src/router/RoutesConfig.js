@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
+import Test from "../components/NewDeckForm/NewDeckForm";
 /*
   Routes config must be ordered the same way you'd 
   do inside a `<Switch>`. The last route object is 
@@ -37,6 +38,11 @@ const RoutesConfig = [
   {
     path: "/",
     render: () => createPrivateRoute(Dashboard),
+  },
+  {
+    path: "/hellotest",
+    //Unprotected route takes path and a component prop
+    component: Test,
   },
   {
     path: "/confirm/:id",
