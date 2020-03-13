@@ -36,7 +36,7 @@ export const Login = props => {
     } catch (error) {
       console.log(JSON.stringify(error));
 
-      setError(error);
+      setError(error.response.data.message);
     } finally {
       setLoading(false);
       props.form.resetFields();

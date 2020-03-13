@@ -1,17 +1,32 @@
 import {axiosWithAuth} from "../../../utils/axios";
-import types from "../../types/index";
+import types, {READ_DECK, DELETE_DECK} from "../../types/index";
 
-export const getAllDecks = id => dispatch => {
-  console.log(dispatch);
-
-  //almost always need dispatch as making axios call so using thunk
+export const getAllDecks = () => dispatch => {
   axiosWithAuth()
     .get("/decks")
-    // this is a promise
     .then(res => {
-      console.log(res.data);
+      console.log("HIIII", res.data.data);
+      dispatch({
+        type: READ_DECK,
+        payload: res.data.data,
+      });
     })
     .catch(() => {
       console.log("error!!!");
+    });
+};
+
+export const deleteDeck = id => dispatch => {
+  axiosWithAuth()
+    .delete("/decks/" + id)
+    .then(res => {
+      console.log(res.data.data);
+      dispatch({
+        type: DELETE_DECK,
+        payload: id,
+      });
+    })
+    .catch(() => {
+      console.log("error");
     });
 };

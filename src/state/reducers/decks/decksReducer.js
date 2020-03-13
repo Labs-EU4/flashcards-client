@@ -1,8 +1,8 @@
-import * as types from "../../types/decks";
+import * as types from "../../types";
 
 const initialState = {
-  decks: [],
-  id: null,
+  userDecks: [],
+  publicDecks: [],
 };
 
 export function decksReducer(state = initialState, action) {
@@ -10,17 +10,17 @@ export function decksReducer(state = initialState, action) {
     case types.CREATE_DECK:
       return {
         ...state,
-        decks: [...state.decks, action.payload.deck],
+        userDecks: [...state.userDecks, action.payload.deck],
       };
     case types.READ_DECK:
       return {
         ...state,
-        decks: action.payload.deck,
+        userDecks: action.payload,
       };
     case types.DELETE_DECK:
       return {
         ...state,
-        decks: state.decks.filter(deck => deck.id !== action.payload.deck.id),
+        userDecks: state.userDecks.filter(deck => deck.id !== action.payload),
       };
     default:
       return state;
