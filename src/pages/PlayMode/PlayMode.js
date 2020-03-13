@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {Progress, Button, Icon, Radio, PageHeader} from "antd";
 import * as styles from "./PlayMode.module.less";
-import "./Playmode.css";
-import FlipCard from "./FlipCard";
-import SummaryModal from "./SummaryModal";
+import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
+import SummaryModal from "../../components/PlayMode/SummaryModal";
+import UserAnswerButtons from "../../components/PlayMode/UserAnswerButtons/UserAnswerButtons";
 import {connect} from "react-redux";
 import {clearDeckInPlaySession, storeUnfinishedSession} from "../../state/actions/decks";
 const RadioGroup = Radio.Group;
 
-export default function PlayMode({
+export function PlayMode({
   deckInPlaySession,
   clearDeckInPlaySession,
   storeUnfinishedSession,
@@ -64,7 +64,6 @@ export default function PlayMode({
   // whether or not the deck was finished, display summary if it was
   const [finished, setFinished] = useState(false);
   // next button state, will brobably be expanded when more interactive play is added
-  const [answered, setAnswered] = useState(false);
   const [answer, setAnswer] = useState(null);
   const [numOfRightAnswers, setNumOfRightAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -72,7 +71,7 @@ export default function PlayMode({
   function next(e) {
     if (current !== cards.length - 1) {
       setCurrent(current + 1);
-      setAnswered(false);
+      setAnswer(null);
       if (answer) setNumOfRightAnswers(numOfRightAnswers + 1);
       setAnswer(null);
       setShowAnswer(false);
@@ -83,7 +82,6 @@ export default function PlayMode({
   }
 
   function handleAnswer(e) {
-    setAnswered(true);
     setAnswer(e.target.value);
   }
 
@@ -93,13 +91,13 @@ export default function PlayMode({
 
   function closeSession() {
     storeUnfinishedSession({current, numOfRightAnswers, deckInPlaySession});
-    history.back();
+    history.goBack();
   }
 
   function finishSession() {
     clearDeckInPlaySession();
     setFinished(false);
-    history.back();
+    history.goBack();
   }
 
   return (
@@ -127,31 +125,19 @@ export default function PlayMode({
         />
       )}
       <div className={styles.bottom_block}>
-        <div className={styles.correct_buttons}>
-          <RadioGroup
-            size="medium"
-            onChange={handleAnswer}
-            value={answer}
-            disabled={!showAnswer}
-          >
-            <Radio.Button value={true}>
-              <Icon type="like" theme="twoTone" twoToneColor="#52c41a" />
-              Got it right!
-            </Radio.Button>
-            <Radio.Button value={false}>
-              <Icon type="dislike" theme="twoTone" twoToneColor="#ff6666" />
-              Got it wrong...
-            </Radio.Button>
-          </RadioGroup>
-        </div>
+        <UserAnswerButtons
+          handleAnswer={handleAnswer}
+          answer={answer}
+          showAnswer={showAnswer}
+        />
         <div className={styles.controls_block}>
-          {answered || showAnswer ? (
+          {answer !== null || showAnswer ? (
             <Button
               onClick={next}
               className={styles.play_button}
               size="large"
               type="primary"
-              disabled={!answered}
+              disabled={answer === null}
             >
               Next
             </Button>
@@ -165,7 +151,7 @@ export default function PlayMode({
               Show answer
             </Button>
           )}
-          {!answered && (
+          {answer === null && (
             <Button
               onClick={next}
               className={styles.play_button}
@@ -183,8 +169,13 @@ export default function PlayMode({
 
 const mapStateToProps = state => {
   return {
-    deckInPlaySession: state.decks.deckInPlaySession,
+    deckInPlaySession: state.deckState.deckInPlaySession,
   };
 };
 
-connect(mapStateToProps, {clearDeckInPlaySession, storeUnfinishedSession})(PlayMode);
+const connectedPlayMode = connect(mapStateToProps, {
+  clearDeckInPlaySession,
+  storeUnfinishedSession,
+})(PlayMode);
+
+export default connectedPlayMode;

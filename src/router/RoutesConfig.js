@@ -11,7 +11,7 @@ import Register from "../pages/Register/Register";
 import Public from "../pages/PublicDecks/PublicDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
-import PlayMode from "../components/PlayMode/PlayMode";
+import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
 /*
   Routes config must be ordered the same way you'd 
