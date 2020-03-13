@@ -2,6 +2,7 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import NewDeckForm from "./NewDeckForm";
+
 // cleaning up
 afterEach(rtl.cleanup);
 
@@ -22,6 +23,10 @@ jest.mock("react-router-dom", () => ({
   Link: "a",
 }));
 
+jest.mock("react-redux", () => ({
+  useDispatch: jest.fn(),
+}));
+
 describe("is the component rendering correctly", () => {
   it("renders the form placeholder", () => {
     let queryValue = wrapper.getByPlaceholderText(/Deckname/);
@@ -31,6 +36,16 @@ describe("is the component rendering correctly", () => {
   it("renders the button", () => {
     let button = wrapper.queryByText(/^Create Deck$/i);
     expect(button).toBeDefined();
+  });
+
+  it("renders the checkbox", () => {
+    let input = wrapper.queryByTestId("inputCheck");
+    expect(input).toBeDefined();
+  });
+
+  it("renders the checkbox", () => {
+    let input = wrapper.queryByTestId("inputSelect");
+    expect(input).toBeDefined();
   });
 });
 

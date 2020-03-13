@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Alert, Checkbox, Select} from "antd";
+// import {useDispatch} from "react−redux";
 import {deckTags} from "../../utils/deckTags";
 import {axiosWithAuth} from "../../utils/axios";
+
 const NewDeckForm = props => {
   const [formValues, setFormValues] = useState({
     name: "",
     tags: [],
     isPublic: false,
   });
+
+  // const dispatch = useDispatch();
 
   const [state, setState] = useState({
     success: null,
@@ -29,6 +33,9 @@ const NewDeckForm = props => {
             tags: [],
             isPublic: false,
           });
+          // THIS IS WHERE I WOULD PUT MY REDUX ACTION.... IF I HAD ONE!
+          // https://i.imgur.com/sOE11EE.jpg
+          // dispatch()
         })
         .catch(err => {
           setState({
@@ -48,6 +55,9 @@ const NewDeckForm = props => {
             tags: [],
             isPublic: false,
           });
+          // THIS IS WHERE I WOULD PUT MY REDUX ACTION.... IF I HAD ONE!
+          // https://i.imgur.com/sOE11EE.jpg
+          // dispatch()
         })
         .catch(err => {
           setState({
@@ -107,12 +117,15 @@ const NewDeckForm = props => {
           style={{width: "100%"}}
           onChange={handleChangeSelection}
           tokenSeparators={[","]}
+          data-testid="inputSelect"
         >
           {children}
         </Select>
       </Form.Item>
       <Form.Item>
-        <Checkbox onChange={changeCheckbox}>Public</Checkbox>
+        <Checkbox data-testid="inputCheck" onChange={changeCheckbox}>
+          Public
+        </Checkbox>
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" data-testid="button">
