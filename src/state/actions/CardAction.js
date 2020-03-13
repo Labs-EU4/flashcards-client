@@ -1,4 +1,4 @@
-import {ADD_CARD, UPDATE_CARD, DELETE_CARD, FETCH_CARDS} from "../types";
+import {ADD_CARD, UPDATE_CARD, DELETE_CARD, FETCH_CARDS, GET_SINGLE_DECK} from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
 export const addCard = newCard => dispatch => {
@@ -7,7 +7,7 @@ export const addCard = newCard => dispatch => {
     .then(res => {
       dispatch({
         type: ADD_CARD,
-        payload: res.data.card,
+        payload: res.data.deck,
       });
     })
     .catch(err => {
@@ -29,11 +29,19 @@ export const updateCard = (id, newCard) => dispatch => {
     });
 };
 
-// export function deleteCard() {
-//   return {
-//     type: DELETE_CARD,
-//   };
-// }
+export const deleteCard = id => dispatch => {
+  axiosWithAuth()
+    .delete(`/cards/${id}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_CARD,
+        payload: res.data.deck,
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
 export const getCards = () => dispatch => {
   axiosWithAuth()
@@ -42,6 +50,21 @@ export const getCards = () => dispatch => {
       dispatch({
         type: FETCH_CARDS,
         payload: res.data.card,
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getDeckId = id => dispatch => {
+  axiosWithAuth()
+    .get(`/decks/${id}`)
+    .then(res => {
+      console.log(res.data.deck);
+      dispatch({
+        type: GET_SINGLE_DECK,
+        payload: res.data.deck,
       });
     })
     .catch(err => {

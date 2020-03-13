@@ -1,4 +1,4 @@
-import {FETCH_CARDS, UPDATE_CARD} from "../types";
+import {FETCH_CARDS, UPDATE_CARD, DELETE_CARD} from "../types";
 
 const initialForm = [];
 
@@ -7,7 +7,11 @@ const CardReducer = (state = initialForm, action) => {
     case FETCH_CARDS:
       return action.payload;
     case UPDATE_CARD:
-      return [...state, action.payload];
+      return [action.payload, ...state];
+
+    case DELETE_CARD:
+      return [...state, state.filter(card => card.id !== action.payload.card.id)];
+
     default:
       return state;
   }

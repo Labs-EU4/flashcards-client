@@ -30,19 +30,9 @@ function AddCard(props) {
 
     e.preventDefault();
     setLoading(true);
-    // Call the server
-
-    // axiosWithAuth()
-    //   .post(`/cards`)
-    //   .then(res => {
-    //     console.log(res);
-    //     setLoading(false);
-    //     props.history.push("/cards");
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-    props.addCard();
+    props.addCard(newCard);
+    setLoading(false);
+    props.history.push("/cards");
   };
   return (
     <div className="card-container">

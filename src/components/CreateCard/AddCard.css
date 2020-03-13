@@ -7,13 +7,25 @@
   display: flex;
 width: 100%;
 align-items: center;
-margin-top: -550px;
-/* justify-content: space-around; */
-}
+margin-top: -550px; 
+justify-content: space-around;
+ }
+ 
 .btn {
   width: 100px;
+} 
+
+.mapped-card{
+margin-top: 1500px;
+display: flex;
 }
 
 .deck-name{
   margin-right: 15px;
 }
+
+/* .heading {
+  background-color: red;
+  /* margin: 2vh 5vw 0 5vw; */
+  /* width: 25vw; */
+  /* max-width: 15vw; */

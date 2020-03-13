@@ -2,92 +2,97 @@ import React, {useEffect, useState} from "react";
 import {axiosWithAuth} from "../../utils/axios";
 import {Card, Button, Icon, Popover, Modal} from "antd";
 import {Link} from "react-router-dom";
-import {getCards} from "../../state/actions/CardAction";
+import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import "./AddCard.css";
 import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import Dashboard from "../../layout/Dashboard/Dashboard";
 import AddCard from "./AddCard";
-import AddModal from "react-modal";
+import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 
 function Cards(props) {
   // set the cards to state
-  const [cards, setCards] = useState([{}]);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [cards, setCards] = useState([{}]);
+
+  const [visible, setVisible] = useState(false);
+
+  function showModal() {
+    setVisible(true);
+  }
+
+  function handleOk() {
+    setVisible(false);
+  }
+
+  function handleCancel() {
+    setVisible(false);
+  }
 
   //   Fetch cards after authentication
   useEffect(() => {
-    // axiosWithAuth()
-    //   .get(`/cards`)
-    //   .then(res => {
-    //     console.log(res);
-    //     setCards(res.data.cards);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-    props.getCards();
+    props.getDeckId(1);
+    console.log(props.currentDeck.flashcards);
   }, [props]);
 
   // Function for deleting cards
   const handleDelete = id => {
-    axiosWithAuth()
-      .delete(`/cards/${id}`)
-      .then(res => {
-        console.log(res);
-        // Set deleted cards to state after filtering
-        setCards(cards.filter(card => card.id !== id));
-        props.history.push("/cards");
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    props.deleteCard(id);
+    props.history.push("/cards");
   };
 
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
+
     <div className="card-div">
       <Dashboard />
       <div className="search-div">
-        <h2 className="deck-name">Deck name</h2>
+        <h2 className="heading">Deck name</h2>
 
         <HeaderSearchBar className="search" />
-        <Button className="btn" type="dashed" onClick={() => setModalIsOpen(true)}>
-          Add a Card
+        <Button type="dashed" onClick={showModal}>
+          Add a card
         </Button>
-        <AddModal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-          <AddCard />
-          <div>
-            <Button onClick={() => setModalIsOpen(false)}>Close</Button>
-          </div>
-        </AddModal>
+        <Modal
+          title="Want a new card?"
+          visible={visible}
+          footer={null}
+          // onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <AddCard history={props.history} />
+        </Modal>
       </div>
 
-      <div>
-        {cards.map(currentCard => {
-          return (
-            <Card
-              title="Default size card"
-              extra={
-                <Link
-                  to={{
-                    pathname: `/updatecard`,
-                    state: {id: currentCard.id, deckId: currentCard.deck_id},
-                  }}
-                >
-                  Edit
-                </Link>
-              }
-              style={{width: 300}}
-            >
-              <Button type="danger" onClick={() => handleDelete(currentCard.id)}>
-                Delete
-              </Button>
-              <p>Question:{currentCard.question} </p>
-              <p>Answer:{currentCard.answer} </p>
-            </Card>
-          );
-        })}
+      <div className="mapped-card">
+        {props.currentDeck.flashcards && props.currentDeck.flashcards.length > 0 ? (
+          props.currentDeck.flashcards.map(currentCard => {
+            return (
+              <Card
+                // src="logo192.png"
+                extra={
+                  <Link
+                    to={{
+                      pathname: `/updatecard`,
+                      state: {id: currentCard.id, deckId: currentCard.deck_id},
+                    }}
+                  >
+                    <EditOutlined key="edit" />,
+                  </Link>
+                }
+                style={{width: 300}}
+              >
+                <DeleteOutlined
+                  key="delete"
+                  onClick={() => handleDelete(currentCard.id)}
+                />
+                <p>Question:{currentCard.question} </p>
+                <p>Answer:{currentCard.answer} </p>
+              </Card>
+            );
+          })
+        ) : (
+          <h1>THERE ARE NO CARDS TO DISPLAY</h1>
+        )}
       </div>
     </div>
   );
@@ -95,8 +100,8 @@ function Cards(props) {
 
 function mapStateToProps(state) {
   return {
-    card: state.card,
+    currentDeck: state.currentDeckState,
   };
 }
 
-export default connect(mapStateToProps, {getCards})(Cards);
+export default connect(mapStateToProps, {getCards, deleteCard, getDeckId})(Cards);
