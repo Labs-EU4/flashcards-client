@@ -6,7 +6,7 @@ import Dashboard from "../../layout/Dashboard/Dashboard";
 import {getPublicDecks} from "../../state/actions/decks";
 import {connect} from "react-redux";
 
-export function PublicDecks({getPublicDecks, decks}) {
+export function TestPublicDecks({getPublicDecks, decks}) {
   useEffect(() => {
     getPublicDecks();
   }, [getPublicDecks]);
@@ -19,18 +19,33 @@ export function PublicDecks({getPublicDecks, decks}) {
   );
 }
 
+export function PublicDecks({getPublicDecks, decks}) {
+  useEffect(() => {
+    getPublicDecks();
+  }, [getPublicDecks]);
+
+  return (
+    <Dashboard>
+      <div className={styles.public}>
+        <Header page={"Public Decks"} />
+        <List decks={decks} />
+      </div>
+    </Dashboard>
+  );
+}
+
 function mapStateToProps(state) {
   return {
     decks: state.publicDeckState,
   };
 }
 
-const ConnectedDecksPage = connect(mapStateToProps, {getPublicDecks})(PublicDecks);
+export default connect(mapStateToProps, {getPublicDecks})(PublicDecks);
 
-export default function Public() {
-  return (
-    <Dashboard>
-      <ConnectedDecksPage />
-    </Dashboard>
-  );
-}
+// export default function Public() {
+//   return (
+//     <Dashboard>
+//       <ConnectedDecksPage />
+//     </Dashboard>
+//   );
+// }

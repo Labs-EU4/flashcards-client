@@ -1,7 +1,7 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import {PersonalDecks} from "./PersonalDecks";
+import {TestPersonalDecks} from "./PersonalDecks";
 
 // const mockDecks = [
 //   {
@@ -23,7 +23,7 @@ const NoDecksMessage = () => {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<PersonalDecks getPersonalDecks={mockGetDecks} decks={[]} />);
+  wrapper = rtl.render(<TestPersonalDecks getPersonalDecks={mockGetDecks} decks={[]} />);
 });
 
 it("renders without crashing", () => {

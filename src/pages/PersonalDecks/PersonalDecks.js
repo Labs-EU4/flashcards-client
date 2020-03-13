@@ -6,7 +6,7 @@ import Dashboard from "../../layout/Dashboard/Dashboard";
 import {getPersonalDecks} from "../../state/actions/decks";
 import {connect} from "react-redux";
 
-export function PersonalDecks({getPersonalDecks, decks}) {
+export function TestPersonalDecks({getPersonalDecks, decks}) {
   useEffect(() => {
     getPersonalDecks();
   }, [getPersonalDecks]);
@@ -19,18 +19,33 @@ export function PersonalDecks({getPersonalDecks, decks}) {
   );
 }
 
+export function PersonalDecks({getPersonalDecks, decks}) {
+  useEffect(() => {
+    getPersonalDecks();
+  }, [getPersonalDecks]);
+
+  return (
+    <Dashboard>
+      <div className={styles.personal}>
+        <Header page={"Deck Library"} />
+        <List decks={decks} />
+      </div>
+    </Dashboard>
+  );
+}
+
 function mapStateToProps(state) {
   return {
     decks: state.personalDeckState,
   };
 }
 
-const ConnectedDecksPage = connect(mapStateToProps, {getPersonalDecks})(Personal);
+export default connect(mapStateToProps, {getPersonalDecks})(PersonalDecks);
 
-export default function Personal() {
-  return (
-    <Dashboard>
-      <ConnectedDecksPage />
-    </Dashboard>
-  );
-}
+// export default function Personal() {
+//   return (
+//     <Dashboard>
+//       <ConnectedDecksPage />
+//     </Dashboard>
+//   );
+// }

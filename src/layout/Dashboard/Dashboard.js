@@ -32,10 +32,12 @@ const Dashboard = props => {
   }
 
   if (props.children) {
-    current = props.children.type.name;
+    current = props.children._owner.type.name;
   } else {
     current = "Home";
   }
+
+  // console.log(props.children._owner.type.name, "PROPS");
 
   function switchPage() {
     switch (current) {
