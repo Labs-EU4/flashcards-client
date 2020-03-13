@@ -1,12 +1,11 @@
 import React, {useState} from "react";
-import {Progress, Button, Icon, Radio, PageHeader} from "antd";
+import {Progress, Button, Icon, PageHeader} from "antd";
 import * as styles from "./PlayMode.module.less";
 import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
 import SummaryModal from "../../components/PlayMode/SummaryModal";
 import UserAnswerButtons from "../../components/PlayMode/UserAnswerButtons/UserAnswerButtons";
 import {connect} from "react-redux";
 import {clearDeckInPlaySession, storeUnfinishedSession} from "../../state/actions/decks";
-const RadioGroup = Radio.Group;
 
 export function PlayMode({
   deckInPlaySession,
@@ -15,49 +14,49 @@ export function PlayMode({
   history,
 }) {
   const deckData = {
-    deck: {
-      deck_id: 1,
-      user_id: 1,
-      deck_name: "Statistical Learning",
-      public: true,
-      created_at: "2020-03-05T10:31:48.748Z",
-      updated_at: "2020-03-05T10:31:48.748Z",
-      tags: [
-        {
-          id: 1,
-          name: "Accounting & Finance",
-        },
-        {
-          id: 2,
-          name: "Aeronautical & Manufacturing Engineering",
-        },
-      ],
-      flashcards: [
-        {
-          id: 1,
-          deck_id: 1,
-          user_id: 1,
-          question: "What is data mining?",
-          answer: "Its when biotech and infotech merge and people become data mines",
-          created_at: "2020-01-08T10:44:38.761+00:00",
-          updated_at: "2020-01-08T10:44:38.761+00:00",
-        },
-        {
-          id: 2,
-          deck_id: 1,
-          user_id: 1,
-          question: "Hey Anna hehe sup",
-          answer: "How you doing?",
-          created_at: "2020-01-08T10:45:05.269+00:00",
-          updated_at: "2020-01-08T10:45:05.269+00:00",
-        },
-      ],
-    },
+    deck_id: 1,
+    user_id: 1,
+    deck_name: "Statistical Learning",
+    public: true,
+    created_at: "2020-03-05T10:31:48.748Z",
+    updated_at: "2020-03-05T10:31:48.748Z",
+    tags: [
+      {
+        id: 1,
+        name: "Accounting & Finance",
+      },
+      {
+        id: 2,
+        name: "Aeronautical & Manufacturing Engineering",
+      },
+    ],
+    flashcards: [
+      {
+        id: 1,
+        deck_id: 1,
+        user_id: 1,
+        question: "What is data mining?",
+        answer: "Its when biotech and infotech merge and people become data mines",
+        created_at: "2020-01-08T10:44:38.761+00:00",
+        updated_at: "2020-01-08T10:44:38.761+00:00",
+      },
+      {
+        id: 2,
+        deck_id: 1,
+        user_id: 1,
+        question: "Hey Anna hehe sup",
+        answer: "How you doing?",
+        created_at: "2020-01-08T10:45:05.269+00:00",
+        updated_at: "2020-01-08T10:45:05.269+00:00",
+      },
+    ],
   };
+
   // all the cards in the deck, needs to be in the state
   // for future purposes of adding mastery rating to cards
+  // Also could be loaded on demand if initialized from router
   const [cards, setCards] = useState(
-    deckInPlaySession ? deckInPlaySession : deckData.deck.flashcards
+    deckInPlaySession ? deckInPlaySession.flashcards : deckData.flashcards
   );
   //current card displayed to the user
   const [current, setCurrent] = useState(0);

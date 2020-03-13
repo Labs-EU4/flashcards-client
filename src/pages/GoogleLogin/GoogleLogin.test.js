@@ -4,7 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import {GoogleLogin} from "./GoogleLogin";
 let wrapper;
 
-jest.mock("../utils/auth.js", () => {
+jest.mock("../../utils/auth.js", () => {
   return {
     isAccountCreationFinished: jest
       .fn()

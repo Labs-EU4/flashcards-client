@@ -1,6 +1,7 @@
 import {CLEAR_DECK_IN_SESSION, GET_DECKS_DATA} from "../types";
-
-export const playModeReducer = (state, action) => {
+import {combineReducers} from "redux";
+const initialPlayModeState = null;
+export const playModeReducer = (state = initialPlayModeState, action) => {
   switch (action.type) {
     case CLEAR_DECK_IN_SESSION:
       return null;
@@ -11,7 +12,7 @@ export const playModeReducer = (state, action) => {
 };
 export const initialDecks = [];
 
-export default function decksReducer(state = initialDecks, action) {
+export function decksReducer(state = initialDecks, action) {
   switch (action.type) {
     case GET_DECKS_DATA:
       return action.payload;
@@ -19,3 +20,7 @@ export default function decksReducer(state = initialDecks, action) {
       return state;
   }
 }
+
+export default combineReducers({
+  deckInPlaySession: playModeReducer,
+});
