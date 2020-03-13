@@ -16,16 +16,19 @@ function Cards(props) {
 
   const [visible, setVisible] = useState(false);
 
-  function showModal() {
-    setVisible(true);
-  }
+  // function showModal() {
+  //   setVisible(true);
+  // }
 
-  function handleOk() {
-    setVisible(false);
-  }
+  // function handleOk() {
+  //   setVisible(false);
+  // }
 
-  function handleCancel() {
-    setVisible(false);
+  // function handleCancel() {
+  //   setVisible(false);
+  // }
+  function toggleModal() {
+    setVisible(!visible);
   }
 
   //   Fetch cards after authentication
@@ -46,20 +49,23 @@ function Cards(props) {
     <div className="card-div">
       <Dashboard />
       <div className="search-div">
-        <h2 className="heading">Deck name</h2>
+        <div className="title-div">
+          <h2 className="heading">Deck name</h2>
 
-        <HeaderSearchBar className="search" />
-        <Button type="dashed" onClick={showModal}>
-          Add a card
-        </Button>
+          <HeaderSearchBar className="search" />
+          <Button className="btn" type="dashed" onClick={toggleModal}>
+            Add a card
+          </Button>
+        </div>
+
         <Modal
           title="Want a new card?"
           visible={visible}
           footer={null}
           // onOk={handleOk}
-          onCancel={handleCancel}
+          // onCancel={handleCancel}
         >
-          <AddCard history={props.history} />
+          <AddCard toggleModal={toggleModal} />
         </Modal>
       </div>
 
@@ -76,7 +82,7 @@ function Cards(props) {
                       state: {id: currentCard.id, deckId: currentCard.deck_id},
                     }}
                   >
-                    <EditOutlined key="edit" />,
+                    <EditOutlined key="edit" />
                   </Link>
                 }
                 style={{width: 300}}

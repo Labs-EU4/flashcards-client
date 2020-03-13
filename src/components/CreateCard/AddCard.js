@@ -32,7 +32,8 @@ function AddCard(props) {
     setLoading(true);
     props.addCard(newCard);
     setLoading(false);
-    props.history.push("/cards");
+    // props.history.push("/cards");
+    props.toggleModal();
   };
   return (
     <div className="card-container">

@@ -5,9 +5,11 @@ export const addCard = newCard => dispatch => {
   axiosWithAuth()
     .post(`/cards`, newCard)
     .then(res => {
+      console.log(res);
+
       dispatch({
         type: ADD_CARD,
-        payload: res.data.deck,
+        payload: res.data.card,
       });
     })
     .catch(err => {
@@ -35,7 +37,7 @@ export const deleteCard = id => dispatch => {
     .then(res => {
       dispatch({
         type: DELETE_CARD,
-        payload: res.data.deck,
+        payload: id,
       });
     })
     .catch(err => {

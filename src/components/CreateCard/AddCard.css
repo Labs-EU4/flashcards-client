@@ -1,4 +1,4 @@
-.card-div {
+/* .card-div {
   display: flex;
   width: 100%;
 }
@@ -22,10 +22,32 @@ display: flex;
 
 .deck-name{
   margin-right: 15px;
-}
+} */
 
 /* .heading {
   background-color: red;
   /* margin: 2vh 5vw 0 5vw; */
   /* width: 25vw; */
   /* max-width: 15vw; */
+.btn{
+  width:100px;
+  margin-left: -45px;
+}
+
+.search-div{
+  background-color: red;
+  width: 1400px;
+  margin-left: 180px;
+}
+/* .heading{
+  margin-top: 85px;
+
+} */
+
+/* .search{
+  margin-left: -75px;
+} */
+.title-div{
+  /* width: 600px; */
+  display: inline;
+}
