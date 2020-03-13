@@ -17,7 +17,7 @@ const ConfirmSignUp = props => {
 
   useEffect(() => {
     axios
-      .post("https://flashdecks-staging.herokuapp.com/api/auth/confirm_email", {
+      .post("https://flashdecks.herokuapp.com/api/auth/confirm_email", {
         token: token,
       })
       .then(res => {
@@ -29,7 +29,6 @@ const ConfirmSignUp = props => {
       })
       .catch(err => {
         setState({...state, tokenInvalid: true, isLoading: false});
-        console.log(err);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

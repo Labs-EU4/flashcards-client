@@ -5,6 +5,12 @@ import FormComponent from "./ForgotPassword";
 // cleaning up
 afterEach(rtl.cleanup);
 
+jest.mock("axios", () => {
+  return {
+    post: jest.fn().mockRejectedValue("boo!"),
+  };
+});
+
 let wrapper;
 
 beforeEach(() => {

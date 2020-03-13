@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
-import styles from "./SetRecoveryPassword.module.less";
 
 export function SetRecoveryPasswordForm(props) {
   const [error, setError] = useState(null);
@@ -25,8 +24,7 @@ export function SetRecoveryPasswordForm(props) {
       await props.addRecoveryPassword(formValues.password, props.token);
       props.history.push("/");
     } catch (error) {
-      setError(error);
-      console.log(error);
+      setError("Something went wrong! Try again");
     } finally {
       setLoading(false);
     }
@@ -38,7 +36,7 @@ export function SetRecoveryPasswordForm(props) {
   const compareToFirstPassword = (rule, value, callback) => {
     const {form} = props;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("Passwords do not match!");
     } else {
       callback();
     }
@@ -125,6 +123,7 @@ export function SetRecoveryPasswordForm(props) {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            data-testid="submit"
             disabled={
               hasErrors(getFieldsError()) || !formValues.password || !formValues.confirm
             }

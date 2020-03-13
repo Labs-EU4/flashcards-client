@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {Form, Icon, Input, Button, Spin, Alert} from "antd";
+import {Form, Icon, Input, Button, Alert} from "antd";
 import {baseURL} from "../../utils/axios";
 
 import {login} from "../../state/actions/auth";
@@ -34,9 +34,7 @@ export const Login = props => {
       await props.login(formValues);
       props.history.push("/");
     } catch (error) {
-      console.log(JSON.stringify(error));
-
-      setError(error);
+      setError(error.response.data.message || "Something went wrong");
     } finally {
       setLoading(false);
       props.form.resetFields();

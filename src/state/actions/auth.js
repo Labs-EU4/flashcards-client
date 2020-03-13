@@ -86,6 +86,6 @@ export const login = loginData => async dispatch => {
     dispatch({
       type: types.LOGIN_FAILURE,
     });
-    throw error.message;
+    throw error;
   }
 };
