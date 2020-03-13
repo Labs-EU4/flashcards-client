@@ -1,7 +1,10 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import {TestPublicDecks} from "./PublicDecks";
+import {TestPublicDecks, PublicDecks} from "./PublicDecks";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import store from "../../state/store";
 
 // const mockDecks = [
 //   {
@@ -33,6 +36,17 @@ it("renders without crashing", () => {
 it("displays the right text", () => {
   expect(PageHeader()).toBeInTheDocument();
   expect(NoDecksMessage()).toBeInTheDocument();
+});
+
+it("renders without crashing v2", () => {
+  const wrapper2 = rtl.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <PublicDecks getPublicDecks={mockGetDecks} decks={[]} />
+      </BrowserRouter>
+    </Provider>
+  );
+  expect(wrapper2.container).toMatchSnapshot();
 });
 
 afterEach(rtl.cleanup);
