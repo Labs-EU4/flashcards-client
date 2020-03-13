@@ -51,3 +51,10 @@
 .gameOptions {
   display: flex;
 }
+
+@media (max-width: 750px) {
+  .actions {
+    flex-direction: column;
+    height: 100%;
+  }
+}

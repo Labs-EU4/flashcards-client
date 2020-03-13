@@ -2,8 +2,16 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import {PublicDecks} from "./PublicDecks";
-import {Provider} from "react-redux";
-import store from "../../state/store";
+
+// const mockDecks = [
+//   {
+//     deck_name: "Test Deck",
+//     author: "Test",
+//     flashcards: ["test", "the", "flashcards"],
+//   },
+// ];
+
+const mockGetDecks = jest.fn(() => true);
 
 const PageHeader = () => {
   return wrapper.queryByText("Public Decks");
@@ -15,11 +23,7 @@ const NoDecksMessage = () => {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(
-    <Provider store={store}>
-      <PublicDecks />
-    </Provider>
-  );
+  wrapper = rtl.render(<PublicDecks getPublicDecks={mockGetDecks} decks={[]} />);
 });
 
 it("renders without crashing", () => {
