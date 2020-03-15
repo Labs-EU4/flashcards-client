@@ -81,6 +81,7 @@ const Dashboard = props => {
                   src="https://i.imgur.com/tuS7kwh.png"
                   alt="logo"
                   className={state.collapsed ? styles.logoCollapsed : styles.logo}
+                  data-testid="logo"
                 />
               </Link>
               <Icon
@@ -88,6 +89,7 @@ const Dashboard = props => {
                 type={state.collapsed ? "menu-unfold" : "menu-fold"}
                 onClick={toggle}
                 style={{fontSize: "24px"}}
+                data-testid="toggle-icon"
               />
             </div>
             <h3
@@ -102,6 +104,7 @@ const Dashboard = props => {
               theme="light"
               mode="inline"
               defaultSelectedKeys={[page]}
+              data-testid="menu"
             >
               <Menu.Item key="1">
                 <Link to="/" onClick={() => switchPage("Home")}>
@@ -125,12 +128,14 @@ const Dashboard = props => {
             <footer
               className={styles.footer}
               style={state.collapsed ? {display: "none"} : null}
+              data-testid="footer"
             >
               <Link to="/login">
                 <Button
                   onClick={() => logout()}
                   type="primary"
                   className={styles.logoutButton}
+                  data-testid="logout-button"
                 >
                   Logout
                 </Button>
