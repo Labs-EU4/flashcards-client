@@ -12,6 +12,7 @@ import Public from "../pages/PublicDecks/PublicDecks";
 import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
+import DeckCards from "../components/deckData/deckCard";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
 import Test from "../components/NewDeckForm/NewDeckForm";
 /*
@@ -34,6 +35,10 @@ const RoutesConfig = [
     path: "/login",
     //Unprotected route takes path and a component prop
     component: Login,
+  },
+  {
+    path: "/decks",
+    component: DeckCards,
   },
   {
     path: "/register",

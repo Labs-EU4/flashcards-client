@@ -146,15 +146,7 @@ const Dashboard = props => {
             </footer>
           </Sider>
         </div>
-        <Layout>
-          <Content className={state.collapsed ? styles.contentCollapsed : styles.content}>
-            <div className={styles.leftContent}></div>
-            <div className={styles.rightContent}>
-              <RecentDecks />
-            </div>
-            {props.child}
-          </Content>
-        </Layout>
+        <Layout>{props.children}</Layout>
       </Layout>
     </div>
   );
