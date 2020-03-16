@@ -1,3 +1,7 @@
+.main_content {
+  height: 100%;
+}
+
 .deckCard {
   border: 3px solid blue;
   border-radius: 5px;
@@ -8,10 +12,10 @@
 .horizontalList {
   display: flex;
   /* width: 95vw; */
-  height: 40vh;
+  /* height: 40vh; */
   overflow-y: hidden;
   /* margin: 5vh auto; */
-  background-color: gray;
+  /* background-color: gray; */
   align-items: center;
 }
 
@@ -46,4 +50,11 @@
 
 .gameOptions {
   display: flex;
+}
+
+@media (max-width: 750px) {
+  .actions {
+    flex-direction: column;
+    height: 100%;
+  }
 }

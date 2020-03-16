@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  min-height: 48.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+}
+
+.heading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2vw;
+  text-align: center;
+  padding-top: 2vh;
+}
+
+.noDecks {
+  font-size: 1.5vw;
+  padding-top: 12vh;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 2%;
+    height: auto;
+    min-height: auto;
+  }
+  .heading {
+    font-size: 3vw;
+  }
+  .noDecks {
+    font-size: 2vw;
+    padding: 4vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heading {
+    font-size: 4vw;
+  }
+  .noDecks {
+    font-size: 4vw;
+    padding: 4vh;
+  }
+}

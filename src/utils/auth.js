@@ -74,6 +74,5 @@ export const getUserId = () => {
 
 export const isAccountCreationFinished = token => {
   const decodedToken = decode(token);
-  console.log(decodedToken);
   return decodedToken.subject ? true : false;
 };

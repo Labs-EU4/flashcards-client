@@ -53,7 +53,6 @@ exports[`renders without crashing 1`] = `
         Sort By:
         <div
           class="ant-select ant-select-enabled"
-          style="width: 10vw;"
         >
           <div
             aria-autocomplete="list"

@@ -1,4 +1,9 @@
-import {CLEAR_DECK_IN_SESSION, GET_DECKS_DATA, SET_DECK_IN_SESSION} from "../types";
+import {
+  CLEAR_DECK_IN_SESSION,
+  SET_DECK_IN_SESSION,
+  GET_PUBLIC_DECKS,
+  GET_PERSONAL_DECKS,
+} from "../types";
 import {combineReducers} from "redux";
 const initialPlayModeState = null;
 export const playModeReducer = (state = initialPlayModeState, action) => {
@@ -11,11 +16,20 @@ export const playModeReducer = (state = initialPlayModeState, action) => {
       return state;
   }
 };
-export const initialDecks = [];
+const initialDecks = [];
 
-export function decksReducer(state = initialDecks, action) {
+export function publicDecksReducer(state = initialDecks, action) {
   switch (action.type) {
-    case GET_DECKS_DATA:
+    case GET_PUBLIC_DECKS:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export function personalDecksReducer(state = initialDecks, action) {
+  switch (action.type) {
+    case GET_PERSONAL_DECKS:
       return action.payload;
     default:
       return state;

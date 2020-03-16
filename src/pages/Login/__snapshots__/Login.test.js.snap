@@ -188,8 +188,31 @@ exports[`renders without crashing 1`] = `
                       SIGN IN WITH GOOGLE
                     </a>
                   </span>
-                </div>
-              </div>
+                </button>
+                Forgot password? 
+                <a
+                  href="/reset-password"
+                >
+                  click here to reset! 
+                </a>
+                Or 
+                <a
+                  href="/register"
+                >
+                  register here!
+                </a>
+                <a
+                  class="google-auth"
+                  href="https://flashdecks.herokuapp.com/api/auth/google"
+                >
+                  <img
+                    alt="google-icon"
+                    class="google-icon"
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                  />
+                  SIGN IN WITH GOOGLE
+                </a>
+              </span>
             </div>
           </form>
         </div>

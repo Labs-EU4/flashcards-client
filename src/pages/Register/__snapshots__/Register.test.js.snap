@@ -270,7 +270,7 @@ exports[`renders without crashing 1`] = `
               </a>
               <a
                 class="google-auth"
-                href="http://localhost:4003/api/auth/google"
+                href="https://flashdecks.herokuapp.com/api/auth/google"
               >
                 <img
                   alt="google-icon"
