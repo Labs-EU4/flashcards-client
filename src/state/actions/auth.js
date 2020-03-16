@@ -23,7 +23,7 @@ export const googleAuthorized = (initialToken, history) => async dispatch => {
 
 export const addRecoveryPassword = (password, intermediaryToken) => async dispatch => {
   try {
-    const response = await justAxios.post(
+    const response = await justAxios().post(
       "/auth/recovery",
       {password},
       {
@@ -42,7 +42,7 @@ export const addRecoveryPassword = (password, intermediaryToken) => async dispat
 //creates a new user and if successful, logs them in and sets token in local storage
 export const registerNewUser = newUser => async dispatch => {
   try {
-    const response = await justAxios.post("/auth/register", newUser);
+    const response = await justAxios().post("/auth/register", newUser);
     localStorage.setItem("token", response.data.data.token);
 
     dispatch({
@@ -62,7 +62,7 @@ export const login = loginData => async dispatch => {
     type: types.LOGIN_START,
   });
   try {
-    const response = await justAxios.post("/auth/login", loginData);
+    const response = await justAxios().post("/auth/login", loginData);
     const {user, token} = response.data.data;
     localStorage.setItem("token", token);
 
@@ -77,6 +77,6 @@ export const login = loginData => async dispatch => {
     dispatch({
       type: types.LOGIN_FAILURE,
     });
-    throw new Error(error.message);
+    throw error;
   }
 };
