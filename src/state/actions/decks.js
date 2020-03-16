@@ -54,6 +54,19 @@ export const deleteDeck = id => async dispatch => {
   }
 };
 
+export const createDeck = payload => async dispatch => {
+  try {
+    const response = await axiosWithAuth().post(`/decks`, payload);
+    dispatch({
+      type: types.CREATE_DECK,
+      payload: payload,
+    });
+    return response;
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const getDeckById = id => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks/" + id);

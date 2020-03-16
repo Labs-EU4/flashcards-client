@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Form, Icon, Input, Button, Alert, Checkbox, Select} from "antd";
 import {useDispatch} from "react-redux";
 import {deckTags} from "../../utils/deckTags";
-import {axiosWithAuth} from "../../utils/axios";
+import {createDeck} from "../../state/actions/decks";
 
 const NewDeckForm = props => {
   const [formValues, setFormValues] = useState({
@@ -21,10 +21,8 @@ const NewDeckForm = props => {
     e.preventDefault();
     const numberTags = formValues.tags.map(x => parseInt(x));
     if (formValues.isPublic === true) {
-      axiosWithAuth()
-        .post(`/decks`, {...formValues, tags: numberTags, isPublic: "1"})
+      dispatch(createDeck({...formValues, tags: numberTags, isPublic: "1"}))
         .then(res => {
-          console.log(res);
           setState({
             success: true,
           });
@@ -33,9 +31,6 @@ const NewDeckForm = props => {
             tags: [],
             isPublic: false,
           });
-          // THIS IS WHERE I WOULD PUT MY REDUX ACTION.... IF I HAD ONE!
-          // https://i.imgur.com/sOE11EE.jpg
-          // dispatch()
         })
         .catch(err => {
           setState({
@@ -43,10 +38,8 @@ const NewDeckForm = props => {
           });
         });
     } else if (formValues.isPublic === false) {
-      axiosWithAuth()
-        .post(`/decks`, {...formValues, tags: numberTags, isPublic: "0"})
+      dispatch(createDeck({...formValues, tags: numberTags, isPublic: "0"}))
         .then(res => {
-          console.log(res);
           setState({
             success: true,
           });
@@ -55,9 +48,6 @@ const NewDeckForm = props => {
             tags: [],
             isPublic: false,
           });
-          // THIS IS WHERE I WOULD PUT MY REDUX ACTION.... IF I HAD ONE!
-          // https://i.imgur.com/sOE11EE.jpg
-          // dispatch()
         })
         .catch(err => {
           setState({
@@ -80,7 +70,6 @@ const NewDeckForm = props => {
 
   function handleChangeSelection(value) {
     setFormValues({...formValues, tags: value});
-    console.log(formValues.tags);
   }
 
   const {Option} = Select;
@@ -142,7 +131,7 @@ const NewDeckForm = props => {
       ) : state.success === false ? (
         <Alert
           message="Error"
-          description="Not able to create Deck!"
+          description="Not able to create Deck! Please make sure you are authed."
           type="error"
           data-testid="alertInvalid"
         />
