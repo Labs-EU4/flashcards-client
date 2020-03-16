@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import {Form, Icon, Input, Button, Alert, Checkbox, Select} from "antd";
+import {Form, Input, Button, Alert, Checkbox, Select} from "antd";
 import {useDispatch} from "react-redux";
 import {deckTags} from "../../utils/deckTags";
 import {createDeck} from "../../state/actions/decks";
+import styles from "../../components/RecentDecks/RecentDecks.module.css";
 
 const NewDeckForm = props => {
   const [formValues, setFormValues] = useState({
@@ -81,62 +82,67 @@ const NewDeckForm = props => {
     children.push(<Option key={index}>{curr}</Option>);
   });
   return (
-    <Form onSubmit={handleSubmit} className="login-form">
-      <Form.Item hasFeedback>
-        {getFieldDecorator("text", {
-          rules: [
-            {
-              required: true,
-              message: "Deckname must be atleast 4 characters long",
-              min: 4,
-            },
-          ],
-        })(
-          <Input
-            placeholder="Deckname"
-            name="name"
-            data-testid="inputDeckName"
-            onChange={handleChange}
+    <div className={styles.containerCreateDeck}>
+      <h1 className={styles.heading}>Create New Deck</h1>
+      <Form onSubmit={handleSubmit} className="login-form">
+        <Form.Item hasFeedback>
+          {getFieldDecorator("text", {
+            rules: [
+              {
+                required: true,
+                message: "Deckname must be atleast 4 characters long",
+                min: 4,
+              },
+            ],
+          })(
+            <Input
+              placeholder="Deckname"
+              name="name"
+              data-testid="inputDeckName"
+              onChange={handleChange}
+              value={formValues.name}
+            />
+          )}
+        </Form.Item>
+        <Form.Item>
+          <Select
+            mode="tags"
+            style={{width: "100%"}}
+            onChange={handleChangeSelection}
+            tokenSeparators={[","]}
+            data-testid="inputSelect"
+            value={formValues.tags}
+          >
+            {children}
+          </Select>
+        </Form.Item>
+        <Form.Item>
+          <Checkbox data-testid="inputCheck" onChange={changeCheckbox}>
+            Public
+          </Checkbox>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" data-testid="button">
+            Create Deck
+          </Button>
+        </Form.Item>
+        {state.success ? (
+          <Alert
+            message="Success"
+            data-testid="alertSuccess"
+            description="Deck created!"
+            type="success"
           />
-        )}
-      </Form.Item>
-      <Form.Item>
-        <Select
-          mode="tags"
-          style={{width: "100%"}}
-          onChange={handleChangeSelection}
-          tokenSeparators={[","]}
-          data-testid="inputSelect"
-        >
-          {children}
-        </Select>
-      </Form.Item>
-      <Form.Item>
-        <Checkbox data-testid="inputCheck" onChange={changeCheckbox}>
-          Public
-        </Checkbox>
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" data-testid="button">
-          Create Deck
-        </Button>
-      </Form.Item>
-      {state.success ? (
-        <Alert
-          message="Success"
-          data-testid="alertSuccess"
-          description="Deck created!"
-          type="success"
-        />
-      ) : state.success === false ? (
-        <Alert
-          message="Error"
-          description="Not able to create Deck! Please make sure you are authed."
-          type="error"
-          data-testid="alertInvalid"
-        />
-      ) : null}
-    </Form>
+        ) : state.success === false ? (
+          <Alert
+            message="Error"
+            description="Not able to create Deck! Please make sure you are authed."
+            type="error"
+            data-testid="alertInvalid"
+          />
+        ) : null}
+      </Form>
+    </div>
   );
 };
 

@@ -18,7 +18,6 @@ export const getPersonalDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks");
     console.log("personal", response);
-
     dispatch({
       type: types.GET_PERSONAL_DECKS,
       payload: response.data.data,

@@ -5,11 +5,7 @@ import decode from "jwt-decode";
 
 import {Layout, Menu, Icon, Button} from "antd";
 
-import RecentDecks from "../../components/RecentDecks/RecentDecks";
-
 const {Sider, Content} = Layout;
-let current = "Home";
-let page;
 
 const Dashboard = props => {
   const [state, setState] = useState({
@@ -32,30 +28,6 @@ const Dashboard = props => {
   function logout() {
     localStorage.clear();
   }
-
-  if (props.children) {
-    current = props.children._owner.type.name;
-  } else {
-    current = "Home";
-  }
-
-  // console.log(props.children._owner.type.name, "PROPS");
-
-  function switchPage() {
-    switch (current) {
-      case "Home":
-        page = "1";
-        break;
-      case "PublicDecks":
-        page = "3";
-        break;
-      case "PersonalDecks":
-        page = "2";
-        break;
-    }
-  }
-
-  switchPage();
 
   return (
     <div>
@@ -103,23 +75,23 @@ const Dashboard = props => {
               className={state.collapsed ? styles.menuCollapsed : styles.menu}
               theme="light"
               mode="inline"
-              defaultSelectedKeys={[page]}
+              defaultSelectedKeys="1"
               data-testid="menu"
             >
               <Menu.Item key="1">
-                <Link to="/" onClick={() => switchPage("Home")}>
+                <Link to="/">
                   <Icon type="home" />
                   <span>Home</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/deck-library" onClick={() => switchPage("Decks")}>
+                <Link to="/deck-library">
                   <Icon type="block" />
                   <span>Deck Library</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/discover-decks" onClick={() => switchPage("PublicDecks")}>
+                <Link to="/discover-decks">
                   <Icon type="global" />
                   <span>Discover Decks</span>
                 </Link>
@@ -146,7 +118,11 @@ const Dashboard = props => {
             </footer>
           </Sider>
         </div>
-        <Layout>{props.children}</Layout>
+        <Layout>
+          <Content className={state.collapsed ? styles.contentCollapsed : styles.content}>
+            {props.children}
+          </Content>
+        </Layout>
       </Layout>
     </div>
   );
