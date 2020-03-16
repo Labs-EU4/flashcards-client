@@ -2,10 +2,9 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import decode from "jwt-decode";
+import Home from "../../components/Home/Home";
 
 import {Layout, Menu, Icon, Button} from "antd";
-
-import RecentDecks from "../../components/RecentDecks/RecentDecks";
 
 const {Sider, Content} = Layout;
 let current = "Home";
@@ -148,11 +147,7 @@ const Dashboard = props => {
         </div>
         <Layout>
           <Content className={state.collapsed ? styles.contentCollapsed : styles.content}>
-            <div className={styles.leftContent}></div>
-            <div className={styles.rightContent}>
-              <RecentDecks />
-            </div>
-            {props.child}
+            <Home />
           </Content>
         </Layout>
       </Layout>
