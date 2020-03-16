@@ -1,11 +1,12 @@
 import thunk from "redux-thunk";
 import {combineReducers, createStore, applyMiddleware, compose} from "redux";
 import authReducer from "./reducers/auth";
-import {decksReducer} from "./reducers/decks/decksReducer";
+import {decksReducer, currentDeckReducer} from "./reducers/decks/decksReducer";
 
 const mainReducer = combineReducers({
   authState: authReducer,
   deckState: decksReducer,
+  currentDeckState: currentDeckReducer,
 });
 
 const devTools =

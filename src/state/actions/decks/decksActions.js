@@ -1,5 +1,5 @@
 import {axiosWithAuth} from "../../../utils/axios";
-import types, {READ_DECK, DELETE_DECK} from "../../types/index";
+import types, {READ_DECK, DELETE_DECK, GET_DECK_BY_ID} from "../../types/index";
 
 export const getAllDecks = () => dispatch => {
   axiosWithAuth()
@@ -24,6 +24,21 @@ export const deleteDeck = id => dispatch => {
       dispatch({
         type: DELETE_DECK,
         payload: id,
+      });
+    })
+    .catch(() => {
+      console.log("error");
+    });
+};
+
+export const getDeckById = id => dispatch => {
+  axiosWithAuth()
+    .get("/decks/" + id)
+
+    .then(res => {
+      dispatch({
+        type: GET_DECK_BY_ID,
+        payload: res.data.deck,
       });
     })
     .catch(() => {
