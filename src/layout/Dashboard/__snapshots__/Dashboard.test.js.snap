@@ -63,7 +63,7 @@ exports[`should take a snapshot 1`] = `
               role="menu"
             >
               <li
-                class="ant-menu-item"
+                class="ant-menu-item ant-menu-item-selected"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
