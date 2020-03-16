@@ -29,15 +29,11 @@ const ResetPasswordForm = props => {
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         axios
-          .post(
-            `https://flashdecks-staging.herokuapp.com/api/auth/reset_password/${token}`,
-            {
-              password: formValues.newPassword,
-              confirmPassword: formValues.newPassword,
-            }
-          )
+          .post(`https://flashdecks.herokuapp.com/api/auth/reset_password/${token}`, {
+            password: formValues.newPassword,
+            confirmPassword: formValues.newPassword,
+          })
           .then(res => {
-            console.log(res);
             setState({...state, isLoading: false, tokenInvalid: false});
             setTimeout(() => {
               history.push("/login");
@@ -45,7 +41,6 @@ const ResetPasswordForm = props => {
           })
           .catch(err => {
             setState({...state, isLoading: false, tokenInvalid: true});
-            console.log(err);
           });
       } else {
         setState({...state, isLoading: false});

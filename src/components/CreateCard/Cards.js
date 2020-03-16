@@ -54,7 +54,8 @@ function Cards(props) {
       <div className={styles.container}>
         <div className={styles.title}>
           <h2 className={styles.heading}>Deck name</h2>
-          <Search
+          <HeaderSearchBar />
+          {/* <Search
             placeholder="Search"
             onSearch={value => console.log(value)}
             style={{width: "10vw"}}
@@ -65,7 +66,7 @@ function Cards(props) {
               <Option value="Home">Option 1</Option>
               <Option value="Company">Option2</Option>
             </Select>
-          </div>
+          </div> */}
 
           <Button className={styles.btn} type="dashed" onClick={toggleModal}>
             Add a card

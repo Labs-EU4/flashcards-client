@@ -1,11 +1,26 @@
 import {axiosWithAuth} from "../../utils/axios";
 import * as types from "../types";
 
-export const getDecks = requestAddr => async dispatch => {
+export const getPublicDecks = () => async dispatch => {
   try {
-    const response = await axiosWithAuth().get(requestAddr);
+    const response = await axiosWithAuth().get("/decks/public");
+    console.log("public", response);
     dispatch({
-      type: types.GET_DECKS_DATA,
+      type: types.GET_PUBLIC_DECKS,
+      payload: response.data.data,
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const getPersonalDecks = () => async dispatch => {
+  try {
+    const response = await axiosWithAuth().get("/decks");
+    console.log("personal", response);
+
+    dispatch({
+      type: types.GET_PERSONAL_DECKS,
       payload: response.data.data,
     });
   } catch (err) {

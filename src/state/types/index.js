@@ -17,3 +17,5 @@ export const UPDATE_CARD = "UPDATE_CARD";
 export const FETCH_CARDS = "FETCH_CARDS";
 export const GET_DECKS_DATA = "GET_DECKS_DATA";
 export const GET_SINGLE_DECK = "GET_SINGLE_DECK";
+export const GET_PUBLIC_DECKS = "GET_PUBLIC_DECKS";
+export const GET_PERSONAL_DECKS = "GET_PERSONAL_DECKS";

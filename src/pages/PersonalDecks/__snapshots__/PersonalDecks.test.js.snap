@@ -3,7 +3,7 @@
 exports[`renders without crashing 1`] = `
 <div>
   <div
-    class="public"
+    class="personal"
   >
     <div
       class="searchContainer"
@@ -12,7 +12,7 @@ exports[`renders without crashing 1`] = `
         class="heading"
         data-testid="page"
       >
-        Public Decks
+        Deck Library
       </h1>
       <div
         class="filters"
@@ -215,7 +215,7 @@ exports[`renders without crashing v2 1`] = `
                 </a>
               </li>
               <li
-                class="ant-menu-item"
+                class="ant-menu-item ant-menu-item-selected"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
@@ -247,7 +247,7 @@ exports[`renders without crashing v2 1`] = `
                 </a>
               </li>
               <li
-                class="ant-menu-item ant-menu-item-selected"
+                class="ant-menu-item"
                 role="menuitem"
                 style="padding-left: 24px;"
               >

@@ -6,6 +6,8 @@ import Cards from "../../components/CreateCard/Cards";
 
 import {Layout, Menu, Icon, Button} from "antd";
 
+import RecentDecks from "../../components/RecentDecks/RecentDecks";
+
 const {Sider, Content} = Layout;
 let current = "Home";
 let page;
@@ -31,14 +33,14 @@ const Dashboard = props => {
   function logout() {
     localStorage.clear();
   }
-  // console.log(props.children.type.name);
-  // const currentPage = props.children.type.name || "Home";
 
   if (props.children) {
-    current = props.children.type.name;
+    current = props.children._owner.type.name;
   } else {
     current = "Home";
   }
+
+  // console.log(props.children._owner.type.name, "PROPS");
 
   function switchPage() {
     switch (current) {
@@ -48,7 +50,7 @@ const Dashboard = props => {
       case "PublicDecks":
         page = "3";
         break;
-      default:
+      case "PersonalDecks":
         page = "2";
         break;
     }
@@ -80,6 +82,7 @@ const Dashboard = props => {
                   src="https://i.imgur.com/tuS7kwh.png"
                   alt="logo"
                   className={state.collapsed ? styles.logoCollapsed : styles.logo}
+                  data-testid="logo"
                 />
               </Link>
               <Icon
@@ -87,6 +90,7 @@ const Dashboard = props => {
                 type={state.collapsed ? "menu-unfold" : "menu-fold"}
                 onClick={toggle}
                 style={{fontSize: "24px"}}
+                data-testid="toggle-icon"
               />
             </div>
             <h3
@@ -101,6 +105,7 @@ const Dashboard = props => {
               theme="light"
               mode="inline"
               defaultSelectedKeys={[page]}
+              data-testid="menu"
             >
               <Menu.Item key="1">
                 <Link to="/" onClick={() => switchPage("Home")}>
@@ -109,13 +114,13 @@ const Dashboard = props => {
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/decks" onClick={() => switchPage("Decks")}>
+                <Link to="/deck-library" onClick={() => switchPage("Decks")}>
                   <Icon type="block" />
                   <span>Deck Library</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/public-decks" onClick={() => switchPage("PublicDecks")}>
+                <Link to="/discover-decks" onClick={() => switchPage("PublicDecks")}>
                   <Icon type="global" />
                   <span>Discover Decks</span>
                 </Link>
@@ -124,12 +129,14 @@ const Dashboard = props => {
             <footer
               className={styles.footer}
               style={state.collapsed ? {display: "none"} : null}
+              data-testid="footer"
             >
               <Link to="/login">
                 <Button
                   onClick={() => logout()}
                   type="primary"
                   className={styles.logoutButton}
+                  data-testid="logout-button"
                 >
                   Logout
                 </Button>
@@ -140,16 +147,7 @@ const Dashboard = props => {
             </footer>
           </Sider>
         </div>
-        <Layout>
-          <Content
-            style={{
-              background: "#fff",
-              width: "100%",
-            }}
-          >
-            {props.children}
-          </Content>
-        </Layout>
+        <Layout>{props.children}</Layout>
       </Layout>
     </div>
   );
