@@ -38,4 +38,6 @@ export function personalDecksReducer(state = initialDecks, action) {
 
 export default combineReducers({
   deckInPlaySession: playModeReducer,
+  publicDeckState: publicDecksReducer,
+  personalDeckState: personalDecksReducer,
 });

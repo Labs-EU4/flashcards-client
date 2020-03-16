@@ -47,7 +47,7 @@ export const getToken = () => {
 
 export const setToken = token => {
   try {
-    const item = JSON.stringify(token);
+    const item = token;
     localStorage.setItem(KEY, item);
     return true;
   } catch (error) {
