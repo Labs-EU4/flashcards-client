@@ -3,7 +3,6 @@ export const REGISTER_SUCCESS = "REGISTER_SUCESS";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGIN_START = "LOGIN_START";
-
 export const LOGOUT = "LOGOUT";
 
 export const GET_DASHBOARD_DATA = "GET_DASHBOARD_DATA";
@@ -12,3 +11,9 @@ export const GET_DASHBOARD_DATA_FAILURE = "GET_DASHBOARD_DATA_FAILURE";
 
 export const GET_PUBLIC_DECKS = "GET_PUBLIC_DECKS";
 export const GET_PERSONAL_DECKS = "GET_PERSONAL_DECKS";
+
+export const CREATE_DECK = "CREATE_DECK";
+export const READ_DECK = "READ_DECK";
+export const UPDATE_DECK = "UPDATE_DECK";
+export const DELETE_DECK = "DELETE_DECK";
+export const GET_DECK_BY_ID = "GET_DECK_BY_ID";
