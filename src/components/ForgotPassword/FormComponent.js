@@ -17,18 +17,16 @@ const NormalLoginForm = props => {
     e.preventDefault();
     setState({...state, isLoading: true});
     axios
-      .post("https://flashdecks-staging.herokuapp.com/api/auth/forgot_password", {
+      .post("https://flashdecks.herokuapp.com/api/auth/forgot_password", {
         email: formValues.email,
       })
       .then(function(response) {
         setFormValues({
           email: "",
         });
-        console.log(response);
         setState({...state, isLoading: false, emailInvalid: false});
       })
       .catch(function(error) {
-        console.log(error);
         setState({...state, isLoading: false, emailInvalid: true});
       });
   };
