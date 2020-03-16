@@ -8,9 +8,11 @@ const Option = Select.Option;
 export default function HeaderSearchBar({page}) {
   return (
     <div className={styles.searchContainer}>
+      {/* <div> */}
       <h1 className={styles.heading} data-testid="page">
         {page}
       </h1>
+      {/* </div> */}
       <div className={styles.filters}>
         <Search
           placeholder="Search"
@@ -19,7 +21,7 @@ export default function HeaderSearchBar({page}) {
         />
         <div>
           Sort By:
-          <Select defaultValue="Home" style={{width: "10vw"}}>
+          <Select defaultValue="Home">
             <Option value="Home">Option 1</Option>
             <Option value="Company">Option2</Option>
           </Select>

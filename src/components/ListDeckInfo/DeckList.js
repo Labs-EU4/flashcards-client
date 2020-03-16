@@ -1,15 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import DeckCard from "./DeckCard";
-import {getDecks} from "../../state/actions/decks";
-import {connect} from "react-redux";
+import styles from "./DeckList.module.css";
 
-export function DecksList({requestAddrs, getDecks, decks}) {
-  useEffect(() => {
-    getDecks(requestAddrs);
-  }, [getDecks, requestAddrs]);
-
+export default function DecksList({decks}) {
   return (
-    <div>
+    <div className={styles.main_content}>
       {decks.length > 0 ? (
         decks.map(deck => {
           return <DeckCard deck={deck} />;
@@ -20,13 +15,3 @@ export function DecksList({requestAddrs, getDecks, decks}) {
     </div>
   );
 }
-
-function mapStateToProps(state) {
-  return {
-    decks: state.deckState,
-  };
-}
-
-const ConnectedDeckList = connect(mapStateToProps, {getDecks})(DecksList);
-
-export default ConnectedDeckList;
