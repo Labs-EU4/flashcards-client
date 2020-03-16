@@ -2,13 +2,10 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import decode from "jwt-decode";
-import Home from "../../components/Home/Home";
 
 import {Layout, Menu, Icon, Button} from "antd";
 
 const {Sider, Content} = Layout;
-let current = "Home";
-let page;
 
 const Dashboard = props => {
   const [state, setState] = useState({
@@ -78,7 +75,7 @@ const Dashboard = props => {
               className={state.collapsed ? styles.menuCollapsed : styles.menu}
               theme="light"
               mode="inline"
-              defaultSelectedKeys={[page]}
+              defaultSelectedKeys="1"
               data-testid="menu"
             >
               <Menu.Item key="1">
