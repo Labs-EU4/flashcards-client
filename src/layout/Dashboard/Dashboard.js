@@ -6,6 +6,8 @@ import decode from "jwt-decode";
 import {Layout, Menu, Icon, Button} from "antd";
 
 const {Sider, Content} = Layout;
+let current = "Home";
+let page;
 
 const Dashboard = props => {
   const [state, setState] = useState({
@@ -28,6 +30,30 @@ const Dashboard = props => {
   function logout() {
     localStorage.clear();
   }
+
+  if (props.children) {
+    current = props.children._owner.type.name;
+  } else {
+    current = "Home";
+  }
+
+  // console.log(props.children._owner.type.name, "PROPS");
+
+  function switchPage() {
+    switch (current) {
+      case "Home":
+        page = "1";
+        break;
+      case "PublicDecks":
+        page = "3";
+        break;
+      case "PersonalDecks":
+        page = "2";
+        break;
+    }
+  }
+
+  switchPage();
 
   return (
     <div>
@@ -73,21 +99,25 @@ const Dashboard = props => {
               className={state.collapsed ? styles.menuCollapsed : styles.menu}
               theme="light"
               mode="inline"
-              defaultSelectedKeys={["1"]}
+              defaultSelectedKeys={[page]}
             >
               <Menu.Item key="1">
-                <Icon type="home" />
-                <span>Home</span>
+                <Link to="/" onClick={() => switchPage("Home")}>
+                  <Icon type="home" />
+                  <span>Home</span>
+                </Link>
               </Menu.Item>
-              <Menu.Item key="2">
-                {" "}
-                <Icon type="block" />
-                <span>Deck Library</span>
+              <Menu.Item key="2" selected={true}>
+                <Link to="/deck-library" onClick={() => switchPage("Decks")}>
+                  <Icon type="block" />
+                  <span>Deck Library</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                {" "}
-                <Icon type="global" />
-                <span>Discover Decks</span>
+                <Link to="/discover-decks" onClick={() => switchPage("PublicDecks")}>
+                  <Icon type="global" />
+                  <span>Discover Decks</span>
+                </Link>
               </Menu.Item>
             </Menu>
             <footer
@@ -116,7 +146,7 @@ const Dashboard = props => {
               width: "100%",
             }}
           >
-            {props.child}
+            {props.children}
           </Content>
         </Layout>
       </Layout>
