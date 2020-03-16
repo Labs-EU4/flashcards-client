@@ -20,7 +20,7 @@ export default function DeckCard({deck}) {
           <h2 data-testid="deck_name">{deck.deck_name}</h2>
           <div className={styles.info}>
             <h3 className={styles.info_headings} data-testid="author">
-              Author: {deck.author}
+              Author: {deck.author ? deck.author : "You"}
             </h3>
             <h3 className={styles.info_headings} data-testid="flashcards_count">
               No. of Cards: {deck.flashcards.length}
