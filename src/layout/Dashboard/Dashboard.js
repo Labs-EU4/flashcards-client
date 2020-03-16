@@ -32,30 +32,6 @@ const Dashboard = props => {
     localStorage.clear();
   }
 
-  if (props.children) {
-    current = props.children._owner.type.name;
-  } else {
-    current = "Home";
-  }
-
-  // console.log(props.children._owner.type.name, "PROPS");
-
-  function switchPage() {
-    switch (current) {
-      case "Home":
-        page = "1";
-        break;
-      case "PublicDecks":
-        page = "3";
-        break;
-      case "PersonalDecks":
-        page = "2";
-        break;
-    }
-  }
-
-  switchPage();
-
   return (
     <div>
       <Layout className={styles.dashboard}>
@@ -106,19 +82,19 @@ const Dashboard = props => {
               data-testid="menu"
             >
               <Menu.Item key="1">
-                <Link to="/" onClick={() => switchPage("Home")}>
+                <Link to="/">
                   <Icon type="home" />
                   <span>Home</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/deck-library" onClick={() => switchPage("Decks")}>
+                <Link to="/deck-library">
                   <Icon type="block" />
                   <span>Deck Library</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/discover-decks" onClick={() => switchPage("PublicDecks")}>
+                <Link to="/discover-decks">
                   <Icon type="global" />
                   <span>Discover Decks</span>
                 </Link>
@@ -147,7 +123,7 @@ const Dashboard = props => {
         </div>
         <Layout>
           <Content className={state.collapsed ? styles.contentCollapsed : styles.content}>
-            <Home />
+            {props.children}
           </Content>
         </Layout>
       </Layout>

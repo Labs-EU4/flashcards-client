@@ -63,7 +63,7 @@ exports[`should take a snapshot 1`] = `
               role="menu"
             >
               <li
-                class="ant-menu-item ant-menu-item-selected"
+                class="ant-menu-item"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
@@ -207,34 +207,7 @@ exports[`should take a snapshot 1`] = `
       >
         <main
           class="content ant-layout-content"
-        >
-          <div
-            class="leftContent"
-          />
-          <div
-            class="rightContent"
-          >
-            <div
-              class="container"
-            >
-              <h1
-                class="heading"
-                data-testid="heading"
-              >
-                Recently played
-              </h1>
-              <div
-                data-testid="decks"
-              >
-                <div
-                  class="noDecks"
-                >
-                  You haven't completed a session yet!
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
+        />
       </section>
     </section>
   </div>

@@ -4,7 +4,7 @@ import {Redirect} from "react-router-dom";
 import GoogleLogin from "../pages/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
-import Dashboard from "../layout/Dashboard/Dashboard";
+import Home from "../components/Home/Home";
 import Register from "../pages/Register/Register";
 
 //This function is connected directly to the store and checks if user is logged in or not.
@@ -48,7 +48,7 @@ const RoutesConfig = [
   },
   {
     path: "/",
-    render: () => createPrivateRoute(Dashboard),
+    render: () => createPrivateRoute(Home),
   },
   {
     path: "/confirm/:id",
