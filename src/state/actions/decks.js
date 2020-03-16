@@ -30,12 +30,14 @@ export const getPersonalDecks = () => async dispatch => {
 
 export const getAllDecks = () => async dispatch => {
   try {
+    console.log("decks");
     const response = await axiosWithAuth().get("/decks");
     dispatch({
       type: types.READ_DECK,
       payload: response.data.data,
     });
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };

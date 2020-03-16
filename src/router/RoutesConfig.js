@@ -13,7 +13,6 @@ import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import DeckCards from "../components/deckData/deckCard";
-import DeckLibrary from "../components/Dashboard/DeckLibrary";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
 /*
   Routes config must be ordered the same way you'd 
@@ -39,10 +38,6 @@ const RoutesConfig = [
   {
     path: "/decks",
     component: DeckCards,
-  },
-  {
-    path: "/decklibrary",
-    component: DeckLibrary,
   },
   {
     path: "/register",
