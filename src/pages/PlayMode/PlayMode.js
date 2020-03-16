@@ -5,59 +5,21 @@ import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
 import SummaryModal from "../../components/PlayMode/SummaryModal";
 import UserAnswerButtons from "../../components/PlayMode/UserAnswerButtons/UserAnswerButtons";
 import {connect} from "react-redux";
-import {clearDeckInPlaySession, storeUnfinishedSession} from "../../state/actions/decks";
+import {
+  clearDeckInPlaySession,
+  storeUnfinishedSession,
+  fetchDeckById,
+} from "../../state/actions/decks";
+import {useEffect} from "react";
 
 export function PlayMode({
   deckInPlaySession,
   clearDeckInPlaySession,
+  fetchDeckById,
   storeUnfinishedSession,
   history,
+  match,
 }) {
-  const deckData = {
-    deck_id: 1,
-    user_id: 1,
-    deck_name: "Statistical Learning",
-    public: true,
-    created_at: "2020-03-05T10:31:48.748Z",
-    updated_at: "2020-03-05T10:31:48.748Z",
-    tags: [
-      {
-        id: 1,
-        name: "Accounting & Finance",
-      },
-      {
-        id: 2,
-        name: "Aeronautical & Manufacturing Engineering",
-      },
-    ],
-    flashcards: [
-      {
-        id: 1,
-        deck_id: 1,
-        user_id: 1,
-        question: "What is data mining?",
-        answer: "Its when biotech and infotech merge and people become data mines",
-        created_at: "2020-01-08T10:44:38.761+00:00",
-        updated_at: "2020-01-08T10:44:38.761+00:00",
-      },
-      {
-        id: 2,
-        deck_id: 1,
-        user_id: 1,
-        question: "Hey Anna hehe sup",
-        answer: "How you doing?",
-        created_at: "2020-01-08T10:45:05.269+00:00",
-        updated_at: "2020-01-08T10:45:05.269+00:00",
-      },
-    ],
-  };
-
-  // all the cards in the deck, needs to be in the state
-  // for future purposes of adding mastery rating to cards
-  // Also could be loaded on demand if initialized from router
-  const [cards, setCards] = useState(
-    deckInPlaySession ? deckInPlaySession.flashcards : deckData.flashcards
-  );
   //current card displayed to the user
   const [current, setCurrent] = useState(0);
   // whether or not the deck was finished, display summary if it was
@@ -67,8 +29,12 @@ export function PlayMode({
   const [numOfRightAnswers, setNumOfRightAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
 
+  useEffect(() => {
+    fetchDeckById(match.params.deckId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   function next(e) {
-    if (current !== cards.length - 1) {
+    if (current !== deckInPlaySession.flashcards.length - 1) {
       setCurrent(current + 1);
       setAnswer(null);
       if (answer) setNumOfRightAnswers(numOfRightAnswers + 1);
@@ -98,30 +64,40 @@ export function PlayMode({
     setFinished(false);
     history.goBack();
   }
-
+  console.log(deckInPlaySession);
+  const progress = deckInPlaySession
+    ? Math.floor((current / deckInPlaySession.flashcards.length) * 100)
+    : 100;
+  if (deckInPlaySession === null) {
+    return <h1>Loading</h1>;
+  }
   return (
     <>
       <div className="progress-block">
         <PageHeader
-          title="Deck name"
+          title={deckInPlaySession.deck_name}
           onBack={closeSession}
           backIcon={<Icon type="close" />}
         />
-        <Progress percent={finished ? 100 : Math.floor((current / cards.length) * 100)} />
+        <Progress percent={finished ? 100 : progress} />
         <SummaryModal
           visible={finished}
           handleOk={finishSession}
           handleCancel={finishSession}
-          numOfCards={cards.length}
+          numOfCards={deckInPlaySession.flashcards.length}
           numOfRightAnswers={numOfRightAnswers}
         />
       </div>
-      {!finished && (
-        <FlipCard
-          card={cards[current]}
-          showAnswer={showAnswer}
-          revealAnswer={revealAnswer}
-        />
+      {deckInPlaySession.flashcards.length ? (
+        !finished && (
+          <FlipCard
+            card={deckInPlaySession.flashcards[current]}
+            showAnswer={showAnswer}
+            revealAnswer={revealAnswer}
+          />
+        )
+      ) : (
+        <h1>No cards in the deck</h1>
       )}
       <div className={styles.bottom_block}>
         <UserAnswerButtons
@@ -175,6 +151,7 @@ const mapStateToProps = state => {
 const connectedPlayMode = connect(mapStateToProps, {
   clearDeckInPlaySession,
   storeUnfinishedSession,
+  fetchDeckById,
 })(PlayMode);
 
 export default connectedPlayMode;

@@ -35,7 +35,7 @@ const RoutesConfig = [
     component: Login,
   },
   {
-    path: "/play",
+    path: "/play/:deckId",
     //Unprotected route takes path and a component prop
     component: PlayMode,
   },

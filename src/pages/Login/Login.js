@@ -53,7 +53,6 @@ export const Login = props => {
   }, [validateFields]);
   const emailError = isFieldTouched("email") && getFieldError("email");
   const passwordError = isFieldTouched("password") && getFieldError("password");
-  debugger;
   return (
     <div className={backgroundStyles.formStyle}>
       <FormHeader />

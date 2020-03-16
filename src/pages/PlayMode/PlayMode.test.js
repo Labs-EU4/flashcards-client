@@ -21,6 +21,8 @@ test("It renders", () => {
       clearDeckInPlaySession={() => null}
       storeUnfinishedSession={() => null}
       history={() => null}
+      fetchDeckById={() => null}
+      match={{params: {id: 1}}}
     />
   );
   // Act
