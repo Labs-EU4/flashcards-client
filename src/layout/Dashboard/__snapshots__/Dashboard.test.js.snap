@@ -100,7 +100,7 @@ exports[`should take a snapshot 1`] = `
                 style="padding-left: 24px;"
               >
                 <a
-                  to="/decks"
+                  to="/deck-library"
                 >
                   <i
                     aria-label="icon: block"
@@ -132,7 +132,7 @@ exports[`should take a snapshot 1`] = `
                 style="padding-left: 24px;"
               >
                 <a
-                  to="/public-decks"
+                  to="/discover-decks"
                 >
                   <i
                     aria-label="icon: global"

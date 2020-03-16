@@ -180,7 +180,6 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_email_input"
-            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="email"
             type="text"
@@ -200,7 +199,6 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_username_input"
-            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="username"
             type="text"
@@ -220,7 +218,6 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_password_input"
-            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="password"
             type="password"
@@ -240,7 +237,6 @@ export function RegisterForm({registerNewUser, ...props}) {
         >
           <Input
             data-testid="test_confirmPassword_input"
-            // onKeyUp={e => formValidation(e)}
             prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
             placeholder="confirm password"
             type="password"
