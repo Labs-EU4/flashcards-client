@@ -1,10 +1,10 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import {TestPublicDecks, PublicDecks} from "./PublicDecks";
-import {BrowserRouter} from "react-router-dom";
+import {TestPersonalDecks, PersonalDecks} from "./PersonalDecks";
 import {Provider} from "react-redux";
 import store from "../../state/store";
+import {BrowserRouter} from "react-router-dom";
 
 // const mockDecks = [
 //   {
@@ -17,7 +17,7 @@ import store from "../../state/store";
 const mockGetDecks = jest.fn(() => true);
 
 const PageHeader = () => {
-  return wrapper.queryByText("Public Decks");
+  return wrapper.queryByText("Deck Library");
 };
 
 const NoDecksMessage = () => {
@@ -26,7 +26,7 @@ const NoDecksMessage = () => {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<TestPublicDecks getPublicDecks={mockGetDecks} decks={[]} />);
+  wrapper = rtl.render(<TestPersonalDecks getPersonalDecks={mockGetDecks} decks={[]} />);
 });
 
 it("renders without crashing", () => {
@@ -42,7 +42,7 @@ it("renders without crashing v2", () => {
   const wrapper2 = rtl.render(
     <Provider store={store}>
       <BrowserRouter>
-        <PublicDecks getPublicDecks={mockGetDecks} decks={[]} />
+        <PersonalDecks getPersonalDecks={mockGetDecks} decks={[]} />
       </BrowserRouter>
     </Provider>
   );

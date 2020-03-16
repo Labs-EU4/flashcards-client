@@ -30,14 +30,14 @@ const Dashboard = props => {
   function logout() {
     localStorage.clear();
   }
-  // console.log(props.children.type.name);
-  // const currentPage = props.children.type.name || "Home";
 
   if (props.children) {
-    current = props.children.type.name;
+    current = props.children._owner.type.name;
   } else {
     current = "Home";
   }
+
+  // console.log(props.children._owner.type.name, "PROPS");
 
   function switchPage() {
     switch (current) {
@@ -47,7 +47,7 @@ const Dashboard = props => {
       case "PublicDecks":
         page = "3";
         break;
-      default:
+      case "PersonalDecks":
         page = "2";
         break;
     }
@@ -108,13 +108,13 @@ const Dashboard = props => {
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/decks" onClick={() => switchPage("Decks")}>
+                <Link to="/deck-library" onClick={() => switchPage("Decks")}>
                   <Icon type="block" />
                   <span>Deck Library</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/public-decks" onClick={() => switchPage("PublicDecks")}>
+                <Link to="/discover-decks" onClick={() => switchPage("PublicDecks")}>
                   <Icon type="global" />
                   <span>Discover Decks</span>
                 </Link>

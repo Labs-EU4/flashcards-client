@@ -2,7 +2,9 @@
 
 exports[`renders without crashing 1`] = `
 <div>
-  <div>
+  <div
+    class="main_content"
+  >
     <div
       class="deckCard"
       data-testid="deck_card_container"
