@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import decode from "jwt-decode";
+import Cards from "../../components/CreateCard/Cards";
 
 import {Layout, Menu, Icon, Button} from "antd";
 

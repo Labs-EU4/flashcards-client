@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
-import "../CreateCard/AddCard.css";
+import "../CreateCard/AddCard.module.css";
 import {axiosWithAuth} from "../../utils/axios";
 import {updateCard} from "../../state/actions/CardAction";
 import {connect} from "react-redux";

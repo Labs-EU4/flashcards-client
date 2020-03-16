@@ -1,24 +1,32 @@
-.searchContainer {
+ .searchContainer {
   display: flex;
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  /* background-color: gray; */
-}
+   background-color: gray; 
+} 
 
 .heading {
   margin: 2vh 5vw 0 5vw;
   width: 25vw;
-  /* max-width: 15vw; */
+  max-width: 15vw;
 }
 
-/* .search {
+ .search {
   margin-right: 3vw;
-} */
+} 
 
-.filters {
+ .filters {
   width: 75vw;
   display: flex;
   justify-content: space-between;
   margin: 0 10vw;
-}
+} 
+
+.searchContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around; 
+   align-items: center; 
+ background-color: gray;  
+} 

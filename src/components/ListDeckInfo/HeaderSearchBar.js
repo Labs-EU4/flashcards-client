@@ -15,7 +15,7 @@ export default function HeaderSearchBar({page}) {
         <Search
           placeholder="Search"
           onSearch={value => console.log(value)}
-          style={{width: "20vw"}}
+          style={{width: "10vw"}}
         />
         <div>
           Sort By:

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
-import "../CreateCard/AddCard.css";
+import "../CreateCard/AddCard.module.css";
 import {axiosWithAuth} from "../../utils/axios";
 import {connect} from "react-redux";
 import {addCard} from "../../state/actions/CardAction";
@@ -32,8 +32,8 @@ function AddCard(props) {
     setLoading(true);
     props.addCard(newCard);
     setLoading(false);
-    // props.history.push("/cards");
     props.toggleModal();
+    // props.history.push("/cards");
   };
   return (
     <div className="card-container">

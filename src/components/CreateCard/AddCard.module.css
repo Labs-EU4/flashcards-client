@@ -1,0 +1,36 @@
+.cardDeck{
+  width:1350px;
+}
+
+.btn{
+  width: 100px;
+  margin-right: 25px;
+}
+
+.title{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-left: 260px;
+  margin-top: 15px;
+}
+.sort{
+  display: flex;
+}
+
+.mappedCard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 260px;
+}
+
+.card{
+  width: 33.3%;
+  margin-bottom: 15px;
+}
+
+h2{
+  margin-right: 10px;
+}

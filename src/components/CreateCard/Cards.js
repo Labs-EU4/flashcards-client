@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from "react";
 import {axiosWithAuth} from "../../utils/axios";
-import {Card, Button, Icon, Popover, Modal} from "antd";
+import {Card, Button, Icon, Popover, Modal, Input, Select} from "antd";
 import {Link} from "react-router-dom";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
-import "./AddCard.css";
+import styles from "./AddCard.module.css";
 import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import Dashboard from "../../layout/Dashboard/Dashboard";
 import AddCard from "./AddCard";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
+
+const Search = Input.Search;
+const Option = Select.Option;
 
 function Cards(props) {
   // set the cards to state
@@ -24,9 +27,9 @@ function Cards(props) {
   //   setVisible(false);
   // }
 
-  // function handleCancel() {
-  //   setVisible(false);
-  // }
+  function handleCancel() {
+    setVisible(false);
+  }
   function toggleModal() {
     setVisible(!visible);
   }
@@ -46,14 +49,25 @@ function Cards(props) {
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
 
-    <div className="card-div">
+    <div className={styles.cardDeck}>
       <Dashboard />
-      <div className="search-div">
-        <div className="title-div">
-          <h2 className="heading">Deck name</h2>
+      <div className={styles.container}>
+        <div className={styles.title}>
+          <h2 className={styles.heading}>Deck name</h2>
+          <Search
+            placeholder="Search"
+            onSearch={value => console.log(value)}
+            style={{width: "10vw"}}
+          />
+          <div className={styles.sort}>
+            <h2>Sort:</h2>
+            <Select defaultValue="Home" style={{width: "10vw"}}>
+              <Option value="Home">Option 1</Option>
+              <Option value="Company">Option2</Option>
+            </Select>
+          </div>
 
-          <HeaderSearchBar className="search" />
-          <Button className="btn" type="dashed" onClick={toggleModal}>
+          <Button className={styles.btn} type="dashed" onClick={toggleModal}>
             Add a card
           </Button>
         </div>
@@ -63,42 +77,43 @@ function Cards(props) {
           visible={visible}
           footer={null}
           // onOk={handleOk}
-          // onCancel={handleCancel}
+          onCancel={handleCancel}
         >
           <AddCard toggleModal={toggleModal} />
         </Modal>
-      </div>
 
-      <div className="mapped-card">
-        {props.currentDeck.flashcards && props.currentDeck.flashcards.length > 0 ? (
-          props.currentDeck.flashcards.map(currentCard => {
-            return (
-              <Card
-                // src="logo192.png"
-                extra={
-                  <Link
-                    to={{
-                      pathname: `/updatecard`,
-                      state: {id: currentCard.id, deckId: currentCard.deck_id},
-                    }}
+        <div className={styles.mappedCard}>
+          {props.currentDeck.flashcards && props.currentDeck.flashcards.length !== 0 ? (
+            props.currentDeck.flashcards.map(currentCard => {
+              return (
+                <div className={styles.card}>
+                  <Card
+                    extra={
+                      <Link
+                        to={{
+                          pathname: `/updatecard`,
+                          state: {id: currentCard.id, deckId: currentCard.deck_id},
+                        }}
+                      >
+                        <EditOutlined key="edit" />
+                      </Link>
+                    }
+                    style={{width: 250}}
                   >
-                    <EditOutlined key="edit" />
-                  </Link>
-                }
-                style={{width: 300}}
-              >
-                <DeleteOutlined
-                  key="delete"
-                  onClick={() => handleDelete(currentCard.id)}
-                />
-                <p>Question:{currentCard.question} </p>
-                <p>Answer:{currentCard.answer} </p>
-              </Card>
-            );
-          })
-        ) : (
-          <h1>THERE ARE NO CARDS TO DISPLAY</h1>
-        )}
+                    <DeleteOutlined
+                      key="delete"
+                      onClick={() => handleDelete(currentCard.id)}
+                    />
+                    <p>Question:{currentCard.question} </p>
+                    <p>Answer:{currentCard.answer} </p>
+                  </Card>
+                </div>
+              );
+            })
+          ) : (
+            <h1>THERE ARE NO CARDS TO DISPLAY</h1>
+          )}
+        </div>
       </div>
     </div>
   );
