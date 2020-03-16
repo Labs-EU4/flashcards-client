@@ -16,3 +16,5 @@ export const UPDATE_DECK = "UPDATE_DECK";
 export const DELETE_DECK = "DELETE_DECK";
 
 export const GET_DECK_BY_ID = "GET_DECK_BY_ID";
+export const GET_PUBLIC_DECKS = "GET_PUBLIC_DECKS";
+export const GET_PERSONAL_DECKS = "GET_PERSONAL_DECKS";

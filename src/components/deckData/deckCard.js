@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Card, Avatar, Modal, Button, Form, Input} from "antd";
-import {
-  getAllDecks,
-  deleteDeck,
-  getDeckById,
-} from "../../state/actions/decks/decksActions";
+import {getAllDecks, deleteDeck, getDeckById} from "../../state/actions/decks";
 import {EditOutlined, DeleteOutlined, PlayCircleOutlined} from "@ant-design/icons";
 import styles from "./deckCard.module.css";
 import {Link} from "react-router-dom";
@@ -41,7 +37,7 @@ const DeckCard = props => {
     });
   };
 
-  const [deckFormValue, setDeckFromValue] = useState(props.CurrentDeckState);
+  const [deckFormValue, setDeckFromValue] = useState(props.currentDeckState);
   const handleEdit = e => {
     console.log(props);
     setDeckFromValue(e.target.value);
@@ -50,10 +46,10 @@ const DeckCard = props => {
     <div className={styles.DeckCardContainer}>
       <h1 className={styles.MyDecks}>My Decks</h1>
 
-      {props.deckState.userDecks.length === 0 ? (
+      {props.personalDeckState.length === 0 ? (
         <h5>You have no decks</h5>
       ) : (
-        props.deckState.userDecks.map(deck => {
+        props.personalDeckState.map(deck => {
           return (
             <div>
               <Card
