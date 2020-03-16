@@ -3,8 +3,16 @@ import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import NewDeckForm from "./NewDeckForm";
 
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: () => mockDispatch,
+}));
+
 // cleaning up
-afterEach(rtl.cleanup);
+afterEach(() => {
+  rtl.cleanup();
+});
 
 let wrapper;
 

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Alert, Checkbox, Select} from "antd";
-// import {useDispatch} from "react−redux";
+import {useDispatch} from "react-redux";
 import {deckTags} from "../../utils/deckTags";
 import {axiosWithAuth} from "../../utils/axios";
 
@@ -11,7 +11,7 @@ const NewDeckForm = props => {
     isPublic: false,
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [state, setState] = useState({
     success: null,
