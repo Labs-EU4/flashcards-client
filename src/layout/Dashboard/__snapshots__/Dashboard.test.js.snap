@@ -219,10 +219,13 @@ exports[`should take a snapshot 1`] = `
             >
               <h1
                 class="heading"
+                data-testid="heading"
               >
                 Recently played
               </h1>
-              <div>
+              <div
+                data-testid="decks"
+              >
                 <div
                   class="noDecks"
                 >
