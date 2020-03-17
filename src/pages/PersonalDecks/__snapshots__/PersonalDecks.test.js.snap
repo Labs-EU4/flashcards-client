@@ -186,13 +186,13 @@ exports[`renders without crashing v2 1`] = `
               role="menu"
             >
               <li
-                class="ant-menu-item"
+                class="ant-menu-item menuItem"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
                 <a
                   aria-current="page"
-                  class="ant-menu-item-selected ant-menu-item"
+                  class="navItemSeleted"
                   href="/"
                 >
                   <i
