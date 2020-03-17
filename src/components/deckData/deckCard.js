@@ -16,7 +16,7 @@ const DeckCard = props => {
     props.getAllDecks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(props.personalDeckState);
   const showModal = () => {
     setState({
       visible: true,

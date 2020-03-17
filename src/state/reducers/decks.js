@@ -15,6 +15,7 @@ export function publicDecksReducer(state = initialDecks, action) {
 export function personalDecksReducer(state = initialDecks, action) {
   switch (action.type) {
     case types.GET_PERSONAL_DECKS:
+      return state;
     case types.READ_DECK:
       return action.payload;
     case types.CREATE_DECK:
