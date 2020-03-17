@@ -24,7 +24,7 @@
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --verbose --coverage --watchAll=false",
+    "test": "react-app-rewired test --verbose --coverage --watchAll=false -u",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
