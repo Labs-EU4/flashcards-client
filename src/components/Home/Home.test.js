@@ -2,20 +2,19 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Home from "./Home";
-
-jest.mock("react-router-dom", () => ({
-  Link: "a",
-}));
+import {BrowserRouter} from "react-router-dom";
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<Home />);
+  wrapper = rtl.render(
+    <BrowserRouter>
+      <Home />
+    </BrowserRouter>
+  );
 });
 
 afterEach(rtl.cleanup);
 
 it("should take a snapshot", () => {
-  const {asFragment} = rtl.render(<Home />);
-
-  expect(asFragment(<Home />)).toMatchSnapshot();
+  expect(wrapper.container).toMatchSnapshot();
 });

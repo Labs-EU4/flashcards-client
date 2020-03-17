@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders without crashing 1`] = `
+exports[`should take a snapshot 1`] = `
 <div>
   <div>
     <section
@@ -70,7 +70,9 @@ exports[`renders without crashing 1`] = `
                 style="padding-left: 24px;"
               >
                 <a
-                  href="/dashboard"
+                  aria-current="page"
+                  class="ant-menu-item-selected ant-menu-item"
+                  href="/"
                 >
                   <i
                     aria-label="icon: home"

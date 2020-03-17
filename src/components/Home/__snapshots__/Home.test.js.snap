@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should take a snapshot 1`] = `
-<DocumentFragment>
+<div>
   <div>
     <section
       class="dashboard ant-layout ant-layout-has-sider"
@@ -20,7 +20,7 @@ exports[`should take a snapshot 1`] = `
               class="logoAndCollapse"
             >
               <a
-                to="/"
+                href="/"
               >
                 <img
                   alt="logo"
@@ -54,8 +54,10 @@ exports[`should take a snapshot 1`] = `
             </div>
             <h3
               class="greeting"
+              data-testid="greeting"
             >
-              Welcome, !
+              Welcome, 
+              !
             </h3>
             <ul
               class="ant-menu menu ant-menu-light ant-menu-root ant-menu-inline"
@@ -63,12 +65,14 @@ exports[`should take a snapshot 1`] = `
               role="menu"
             >
               <li
-                class="ant-menu-item ant-menu-item-selected"
+                class="ant-menu-item"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
                 <a
-                  to="/"
+                  aria-current="page"
+                  class="ant-menu-item-selected ant-menu-item"
+                  href="/"
                 >
                   <i
                     aria-label="icon: home"
@@ -100,7 +104,7 @@ exports[`should take a snapshot 1`] = `
                 style="padding-left: 24px;"
               >
                 <a
-                  to="/deck-library"
+                  href="/deck-library"
                 >
                   <i
                     aria-label="icon: block"
@@ -132,7 +136,7 @@ exports[`should take a snapshot 1`] = `
                 style="padding-left: 24px;"
               >
                 <a
-                  to="/discover-decks"
+                  href="/discover-decks"
                 >
                   <i
                     aria-label="icon: global"
@@ -164,7 +168,7 @@ exports[`should take a snapshot 1`] = `
               data-testid="footer"
             >
               <a
-                to="/login"
+                href="/login"
               >
                 <button
                   class="ant-btn logoutButton ant-btn-primary"
@@ -238,5 +242,5 @@ exports[`should take a snapshot 1`] = `
       </section>
     </section>
   </div>
-</DocumentFragment>
+</div>
 `;

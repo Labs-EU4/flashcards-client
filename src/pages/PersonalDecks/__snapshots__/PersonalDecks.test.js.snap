@@ -191,7 +191,9 @@ exports[`renders without crashing v2 1`] = `
                 style="padding-left: 24px;"
               >
                 <a
-                  href="/dashboard"
+                  aria-current="page"
+                  class="ant-menu-item-selected ant-menu-item"
+                  href="/"
                 >
                   <i
                     aria-label="icon: home"
