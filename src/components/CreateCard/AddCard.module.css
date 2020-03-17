@@ -1,13 +1,13 @@
-.cardDeck{
-  width:1350px;
+.cardDeck {
+  /* min-width: 1350px; */
 }
 
-.btn{
+.btn {
   width: 100px;
   margin-right: 25px;
 }
 
-.title{
+.title {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -15,22 +15,57 @@
   margin-left: 260px;
   margin-top: 15px;
 }
-.sort{
+.sort {
   display: flex;
 }
 
-.mappedCard{
+.mappedCard {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-left: 260px;
 }
 
-.card{
+.card {
   width: 33.3%;
   margin-bottom: 15px;
 }
 
-h2{
+h2 {
   margin-right: 10px;
+}
+
+@media (max-width: 500px) {
+  .mappedCard {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 0px;
+    align-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 500px) {
+  .title {
+   display: flex;
+   margin-top: 420px;
+   background-color: red;
+   min-width: 420px;
+   justify-content: center;
+   margin-left: 8px;
+   align-items: flex-start;
+  }
 }

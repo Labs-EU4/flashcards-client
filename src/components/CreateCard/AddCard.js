@@ -4,6 +4,7 @@ import "../CreateCard/AddCard.module.css";
 import {axiosWithAuth} from "../../utils/axios";
 import {connect} from "react-redux";
 import {addCard} from "../../state/actions/CardAction";
+import styles from "./AddCard.module.css";
 
 function AddCard(props) {
   const [formValues, setFormValues] = useState({
@@ -22,24 +23,24 @@ function AddCard(props) {
   };
 
   const handleSubmit = e => {
+    e.preventDefault();
     const newCard = {
       deckId: 1,
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
 
-    e.preventDefault();
     setLoading(true);
     props.addCard(newCard);
     setLoading(false);
-    props.toggleModal();
+    props.toggleMode();
     // props.history.push("/cards");
   };
   return (
-    <div className="card-container">
+    <div className={styles.cardContainer}>
       <h1>Add a card</h1>
       <Spin spinning={loading} delay={300}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className={styles.cardForm}>
           <Form.Item>
             {getFieldDecorator("questionText", {
               //rules are for the form validation
@@ -87,7 +88,7 @@ function AddCard(props) {
             )}
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
               ADD YOUR CARD
             </Button>
           </Form.Item>
@@ -105,12 +106,12 @@ function AddCard(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    card: state.card,
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     card: state.card,
+//   };
+// }
 
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(AddCard);
 
-export default connect(mapStateToProps, {addCard})(WrappedNormalLoginForm);
+export default connect(null, {addCard})(WrappedNormalLoginForm);

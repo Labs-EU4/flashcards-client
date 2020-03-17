@@ -4,10 +4,11 @@ import "../CreateCard/AddCard.module.css";
 import {axiosWithAuth} from "../../utils/axios";
 import {updateCard} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
+import styles from "./AddCard.module.css";
 
 function UpdateCard(props) {
   const [formValues, setFormValues] = useState({
-    id: "",
+    deckId: "",
     questionText: "",
     answerText: "",
   });
@@ -17,7 +18,6 @@ function UpdateCard(props) {
   const {getFieldDecorator} = props.form;
 
   const handleChange = e => {
-    console.log(props.location.state.id);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -25,23 +25,26 @@ function UpdateCard(props) {
   };
 
   const handleSubmit = e => {
+    console.log(props);
+    e.preventDefault();
     const newCard = {
-      deckId: props.location.state.deckId,
+      deckId: props.currentDeckState.deck_id,
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
+    console.log(newCard);
 
-    e.preventDefault();
     setLoading(true);
     console.log(props.id);
 
-    props.updateCard(props.location.state.id, newCard);
+    props.updateCard(props.cardId, newCard);
+    props.toggleModal();
     // Call the server after authentication
     // // axiosWithAuth()
     // //   .put(`/cards/${props.location.state.id}`, newCard)
     // //   .then(res => {
     setLoading(false);
-    props.history.push("/cards");
+    // props.history.push("/cards");
     // //     setFormValues(...formValues, [
     // //       {
     // //         id: res.data.cards.id,
@@ -55,10 +58,10 @@ function UpdateCard(props) {
     //   });
   };
   return (
-    <div className="card-container">
+    <div className={styles.cardContainer}>
       <h1>Update a card</h1>
       <Spin spinning={loading} delay={300}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className={styles.cardForm}>
           <Form.Item>
             {getFieldDecorator("questionText", {
               //rules are for the form validation
@@ -104,7 +107,7 @@ function UpdateCard(props) {
             )}
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
               Edit card
             </Button>
           </Form.Item>
@@ -124,8 +127,8 @@ function UpdateCard(props) {
 
 function mapStateToProps(state, ownprops) {
   return {
-    card: state.card,
-    id: ownprops.location.state.id,
+    currentDeckState: state.currentDeckState,
+    // id: ownprops.location.state.card.id,
   };
 }
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(UpdateCard);

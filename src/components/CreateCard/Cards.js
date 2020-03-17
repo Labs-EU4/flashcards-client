@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {axiosWithAuth} from "../../utils/axios";
-import {Card, Button, Icon, Popover, Modal, Input, Select} from "antd";
+import {Card, Button, Icon, Popover, Modal, Input, Select, Avatar, Spin} from "antd";
 import {Link} from "react-router-dom";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
@@ -9,15 +9,17 @@ import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import Dashboard from "../../layout/Dashboard/Dashboard";
 import AddCard from "./AddCard";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
+import UpdateCard from "./UpdateCard";
 
-const Search = Input.Search;
-const Option = Select.Option;
+const {Meta} = Card;
 
 function Cards(props) {
   // set the cards to state
   // const [cards, setCards] = useState([{}]);
 
   const [visible, setVisible] = useState(false);
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // function showModal() {
   //   setVisible(true);
@@ -30,8 +32,17 @@ function Cards(props) {
   function handleCancel() {
     setVisible(false);
   }
+
+  function handleAdd() {
+    setShow(false);
+  }
+
   function toggleModal() {
     setVisible(!visible);
+  }
+
+  function toggleMode() {
+    setShow(!show);
   }
 
   //   Fetch cards after authentication
@@ -55,33 +66,21 @@ function Cards(props) {
         <div className={styles.title}>
           <h2 className={styles.heading}>Deck name</h2>
           <HeaderSearchBar />
-          {/* <Search
-            placeholder="Search"
-            onSearch={value => console.log(value)}
-            style={{width: "10vw"}}
-          />
-          <div className={styles.sort}>
-            <h2>Sort:</h2>
-            <Select defaultValue="Home" style={{width: "10vw"}}>
-              <Option value="Home">Option 1</Option>
-              <Option value="Company">Option2</Option>
-            </Select>
-          </div> */}
-
-          <Button className={styles.btn} type="dashed" onClick={toggleModal}>
-            Add a card
-          </Button>
         </div>
-
-        <Modal
-          title="Want a new card?"
-          visible={visible}
-          footer={null}
-          // onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <AddCard toggleModal={toggleModal} />
-        </Modal>
+        <Button className={styles.btn} type="dashed" onClick={toggleMode}>
+          Add a card
+        </Button>
+        <Spin spinning={loading} delay={300}>
+          <Modal
+            title="Want a new card?"
+            visible={show}
+            footer={null}
+            // onOk={handleOk}
+            onCancel={handleAdd}
+          >
+            <AddCard toggleMode={toggleMode} />
+          </Modal>
+        </Spin>
 
         <div className={styles.mappedCard}>
           {props.currentDeck.flashcards && props.currentDeck.flashcards.length !== 0 ? (
@@ -89,6 +88,43 @@ function Cards(props) {
               return (
                 <div className={styles.card}>
                   <Card
+                    style={{width: 300, marginTop: 16}}
+                    actions={[
+                      <DeleteOutlined
+                        key="delete"
+                        onClick={() => handleDelete(currentCard.id)}
+                      />,
+                      // <Link
+                      //   to={{
+                      //     pathname: `/updatecard`,
+                      //     state: {id: currentCard.id, deckId: currentCard.deck_id},
+                      //   }}
+                      // >
+                      //   <EditOutlined key="edit" />
+                      // </Link>,
+                      <EditOutlined onClick={toggleModal} />,
+                    ]}
+                  >
+                    <Meta
+                      avatar={<Avatar src="logo192.png" />}
+                      title={currentCard.question}
+                      description={currentCard.answer}
+                    />
+                  </Card>
+                  <Modal
+                    title="Are you sure you want to edit this card?"
+                    visible={visible}
+                    footer={null}
+                    // onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <UpdateCard toggleModal={toggleModal} cardId={currentCard.id} />
+                  </Modal>
+                  {/* <Card
+                  title={<DeleteOutlined
+                    key="delete"
+                    onClick={() => handleDelete(currentCard.id)}
+                  />}
                     extra={
                       <Link
                         to={{
@@ -101,13 +137,10 @@ function Cards(props) {
                     }
                     style={{width: 250}}
                   >
-                    <DeleteOutlined
-                      key="delete"
-                      onClick={() => handleDelete(currentCard.id)}
-                    />
+                    
                     <p>Question:{currentCard.question} </p>
                     <p>Answer:{currentCard.answer} </p>
-                  </Card>
+                  </Card> */}
                 </div>
               );
             })
