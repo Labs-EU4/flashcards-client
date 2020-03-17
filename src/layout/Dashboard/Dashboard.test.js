@@ -41,10 +41,10 @@ describe("is the component rendering correctly", () => {
     expect(queryValue).toBeInTheDocument();
   });
 
-  it("renders the logout-button", () => {
-    let queryValue = wrapper.getByTestId("logout-button");
-    expect(queryValue).toBeInTheDocument();
-  });
+  // it("renders the logout-button", () => {
+  //   let queryValue = wrapper.getByTestId("logout-button");
+  //   expect(queryValue).toBeInTheDocument();
+  // });
 });
 
 // describe("Are the functions working", () => {

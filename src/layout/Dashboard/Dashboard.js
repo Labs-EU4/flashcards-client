@@ -67,6 +67,7 @@ const Dashboard = props => {
             <h3
               className={styles.greeting}
               style={state.collapsed ? {display: "none"} : null}
+              data-testid="greeting"
             >
               Welcome, {userName}!
             </h3>

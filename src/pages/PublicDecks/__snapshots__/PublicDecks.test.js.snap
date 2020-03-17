@@ -111,7 +111,9 @@ exports[`renders without crashing 1`] = `
     <div
       class="main_content"
     >
-      <h2>
+      <h2
+        class="noName"
+      >
         You have no decks right now
       </h2>
     </div>
@@ -173,6 +175,7 @@ exports[`renders without crashing v2 1`] = `
             </div>
             <h3
               class="greeting"
+              data-testid="greeting"
             >
               Welcome, 
               !
@@ -183,12 +186,12 @@ exports[`renders without crashing v2 1`] = `
               role="menu"
             >
               <li
-                class="ant-menu-item ant-menu-item-selected"
+                class="ant-menu-item"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
                 <a
-                  href="/"
+                  href="/dashboard"
                 >
                   <i
                     aria-label="icon: home"
@@ -437,7 +440,9 @@ exports[`renders without crashing v2 1`] = `
             <div
               class="main_content"
             >
-              <h2>
+              <h2
+                class="noName"
+              >
                 You have no decks right now
               </h2>
             </div>
