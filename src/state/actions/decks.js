@@ -3,6 +3,9 @@ import {
   SET_DECK_IN_SESSION,
   GET_PUBLIC_DECKS,
   GET_PERSONAL_DECKS,
+  READ_DECK,
+  DELETE_DECK,
+  GET_DECK_BY_ID,
 } from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
@@ -62,7 +65,7 @@ export const getAllDecks = () => async dispatch => {
     console.log("decks");
     const response = await axiosWithAuth().get("/decks");
     dispatch({
-      type: types.READ_DECK,
+      type: READ_DECK,
       payload: response.data.data,
     });
   } catch (err) {
@@ -73,9 +76,9 @@ export const getAllDecks = () => async dispatch => {
 
 export const deleteDeck = id => async dispatch => {
   try {
-    const response = await axiosWithAuth().delete("/decks/" + id);
+    await axiosWithAuth().delete("/decks/" + id);
     dispatch({
-      type: types.DELETE_DECK,
+      type: DELETE_DECK,
       payload: id,
     });
   } catch (err) {
@@ -87,7 +90,7 @@ export const getDeckById = id => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks/" + id);
     dispatch({
-      type: types.GET_DECK_BY_ID,
+      type: GET_DECK_BY_ID,
       payload: response.data.deck,
     });
   } catch (err) {

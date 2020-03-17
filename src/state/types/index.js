@@ -8,10 +8,6 @@ export const LOGOUT = "LOGOUT";
 export const GET_DASHBOARD_DATA = "GET_DASHBOARD_DATA";
 export const GET_DASHBOARD_DATA_SUCCESS = "GET_DASHBOARD_DATA_SUCCESS";
 export const GET_DASHBOARD_DATA_FAILURE = "GET_DASHBOARD_DATA_FAILURE";
-//Play mode action types
-export const CLEAR_DECK_IN_SESSION = "CLEAR_DECK_IN_SESSION";
-export const SET_DECK_IN_SESSION = "SET_DECK_IN_SESSION";
-
 export const GET_PUBLIC_DECKS = "GET_PUBLIC_DECKS";
 export const GET_PERSONAL_DECKS = "GET_PERSONAL_DECKS";
 
@@ -20,3 +16,6 @@ export const READ_DECK = "READ_DECK";
 export const UPDATE_DECK = "UPDATE_DECK";
 export const DELETE_DECK = "DELETE_DECK";
 export const GET_DECK_BY_ID = "GET_DECK_BY_ID";
+//Play mode action types
+export const CLEAR_DECK_IN_SESSION = "CLEAR_DECK_IN_SESSION";
+export const SET_DECK_IN_SESSION = "SET_DECK_IN_SESSION";
