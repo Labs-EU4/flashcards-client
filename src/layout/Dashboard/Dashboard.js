@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import decode from "jwt-decode";
 
@@ -75,26 +75,36 @@ const Dashboard = props => {
               className={state.collapsed ? styles.menuCollapsed : styles.menu}
               theme="light"
               mode="inline"
-              defaultSelectedKeys="1"
+              // defaultSelectedKeys="1"
               data-testid="menu"
             >
               <Menu.Item key="1">
-                <Link to="/">
+                <NavLink
+                  to="/dashboard"
+                  activeClassName="ant-menu-item-selected ant-menu-item"
+                >
                   <Icon type="home" />
                   <span>Home</span>
-                </Link>
+                </NavLink>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/deck-library">
+                <NavLink
+                  to="/deck-library"
+                  style={{width: "100%", height: "100%"}}
+                  activeClassName="ant-menu-item-selected ant-menu-item"
+                >
                   <Icon type="block" />
                   <span>Deck Library</span>
-                </Link>
+                </NavLink>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/discover-decks">
+                <NavLink
+                  to="/discover-decks"
+                  activeClassName="ant-menu-item-selected ant-menu-item"
+                >
                   <Icon type="global" />
                   <span>Discover Decks</span>
-                </Link>
+                </NavLink>
               </Menu.Item>
             </Menu>
             <footer
