@@ -61,94 +61,68 @@ function Cards(props) {
     //   Map the fetched cards to an ant design cards component for display on the browser
 
     <div className={styles.cardDeck}>
-      <Dashboard />
-      <div className={styles.container}>
-        <div className={styles.title}>
-          <h2 className={styles.heading}>Deck name</h2>
-          <HeaderSearchBar />
-        </div>
-        <Button className={styles.btn} type="dashed" onClick={toggleMode}>
-          Add a card
-        </Button>
-        <Spin spinning={loading} delay={300}>
-          <Modal
-            title="Want a new card?"
-            visible={show}
-            footer={null}
-            // onOk={handleOk}
-            onCancel={handleAdd}
-          >
-            <AddCard toggleMode={toggleMode} />
-          </Modal>
-        </Spin>
-
-        <div className={styles.mappedCard}>
-          {props.currentDeck.flashcards && props.currentDeck.flashcards.length !== 0 ? (
-            props.currentDeck.flashcards.map(currentCard => {
-              return (
-                <div className={styles.card}>
-                  <Card
-                    style={{width: 300, marginTop: 16}}
-                    actions={[
-                      <DeleteOutlined
-                        key="delete"
-                        onClick={() => handleDelete(currentCard.id)}
-                      />,
-                      // <Link
-                      //   to={{
-                      //     pathname: `/updatecard`,
-                      //     state: {id: currentCard.id, deckId: currentCard.deck_id},
-                      //   }}
-                      // >
-                      //   <EditOutlined key="edit" />
-                      // </Link>,
-                      <EditOutlined onClick={toggleModal} />,
-                    ]}
-                  >
-                    <Meta
-                      avatar={<Avatar src="logo192.png" />}
-                      title={currentCard.question}
-                      description={currentCard.answer}
-                    />
-                  </Card>
-                  <Modal
-                    title="Are you sure you want to edit this card?"
-                    visible={visible}
-                    footer={null}
-                    // onOk={handleOk}
-                    onCancel={handleCancel}
-                  >
-                    <UpdateCard toggleModal={toggleModal} cardId={currentCard.id} />
-                  </Modal>
-                  {/* <Card
-                  title={<DeleteOutlined
-                    key="delete"
-                    onClick={() => handleDelete(currentCard.id)}
-                  />}
-                    extra={
-                      <Link
-                        to={{
-                          pathname: `/updatecard`,
-                          state: {id: currentCard.id, deckId: currentCard.deck_id},
-                        }}
+      <Dashboard>
+        <div className={styles.cardDeck}>
+          <div className={styles.container}>
+            <div className={styles.title}>
+              <h2 className={styles.heading}>Deck name</h2>
+              <HeaderSearchBar className={styles.head} />
+              <Button className={styles.btn} type="dashed" onClick={toggleMode}>
+                Add a card
+              </Button>
+            </div>
+            <Spin spinning={loading} delay={300}>
+              <Modal
+                title="Want a new card?"
+                visible={show}
+                footer={null}
+                // onOk={handleOk}
+                onCancel={handleAdd}
+              >
+                <AddCard toggleMode={toggleMode} />
+              </Modal>
+            </Spin>
+            <div className={styles.mappedCard}>
+              {props.currentDeck.flashcards &&
+              props.currentDeck.flashcards.length !== 0 ? (
+                props.currentDeck.flashcards.map(currentCard => {
+                  return (
+                    <div className={styles.card}>
+                      <Card
+                        style={{width: 300, marginTop: 16}}
+                        actions={[
+                          <DeleteOutlined
+                            key="delete"
+                            onClick={() => handleDelete(currentCard.id)}
+                          />,
+                          <EditOutlined onClick={toggleModal} />,
+                        ]}
                       >
-                        <EditOutlined key="edit" />
-                      </Link>
-                    }
-                    style={{width: 250}}
-                  >
-                    
-                    <p>Question:{currentCard.question} </p>
-                    <p>Answer:{currentCard.answer} </p>
-                  </Card> */}
-                </div>
-              );
-            })
-          ) : (
-            <h1>THERE ARE NO CARDS TO DISPLAY</h1>
-          )}
+                        <Meta
+                          avatar={<Avatar src="logo192.png" />}
+                          title={currentCard.question}
+                          description={currentCard.answer}
+                        />
+                      </Card>
+                      <Modal
+                        title="Are you sure you want to edit this card?"
+                        visible={visible}
+                        footer={null}
+                        // onOk={handleOk}
+                        onCancel={handleCancel}
+                      >
+                        <UpdateCard toggleModal={toggleModal} cardId={currentCard.id} />
+                      </Modal>
+                    </div>
+                  );
+                })
+              ) : (
+                <h1>THERE ARE NO CARDS TO DISPLAY</h1>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      </Dashboard>
     </div>
   );
 }

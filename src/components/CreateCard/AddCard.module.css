@@ -12,7 +12,7 @@
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 30px;
-  margin-left: 260px;
+  margin-left: 150px;
   margin-top: 15px;
 }
 .sort {
@@ -23,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-left: 260px;
+  margin-left: 150px;
 }
 
 .card {
@@ -58,14 +58,19 @@ h2 {
     flex-direction: column;
   }
 }
+
+@media (max-width: 500px) {
+  .btn {
+  margin-top: 27px;
+  }
+}
 @media (max-width: 500px) {
   .title {
    display: flex;
    margin-top: 420px;
-   background-color: red;
    min-width: 420px;
    justify-content: center;
-   margin-left: 8px;
+   margin-left: 12px;
    align-items: flex-start;
   }
 }
