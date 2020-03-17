@@ -124,7 +124,12 @@ const NewDeckForm = props => {
           </Checkbox>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" data-testid="button">
+          <Button
+            id="create-deck-button"
+            type="primary"
+            htmlType="submit"
+            data-testid="button"
+          >
             Create Deck
           </Button>
         </Form.Item>

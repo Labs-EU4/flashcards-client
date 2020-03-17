@@ -57,11 +57,6 @@ const RoutesConfig = [
     render: () => createPrivateRoute(Home),
   },
   {
-    path: "/hellotest",
-    //Unprotected route takes path and a component prop
-    component: Test,
-  },
-  {
     path: "/confirm/:id",
     component: ConfirmSignUp,
   },
