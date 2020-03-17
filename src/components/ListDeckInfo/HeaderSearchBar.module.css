@@ -11,6 +11,10 @@
   align-items: center;
   justify-content: center;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8beaa3c0c972729fe347055d4b9678c3e12204fd
 .filters {
   display: flex;
   justify-content: space-between;
@@ -22,6 +26,7 @@
 h1 {
   font-size: 2rem;
 }
+<<<<<<< HEAD
 
 @media (max-width: 1410px) {
   h1 {
@@ -47,3 +52,5 @@ h1 {
     width: 100%;
   }
 }
+=======
+>>>>>>> 8beaa3c0c972729fe347055d4b9678c3e12204fd
