@@ -13,15 +13,21 @@ export function publicDecksReducer(state = initialDecks, action) {
 }
 
 export function personalDecksReducer(state = initialDecks, action) {
+  console.log("dfg", action.payload);
   switch (action.type) {
     case types.GET_PERSONAL_DECKS:
+      console.log("hello");
       return state;
     case types.READ_DECK:
       return action.payload;
+    case types.UPDATE_DECK:
+      return state.map(deck =>
+        deck.deck_id === action.payload.deck_id ? action.payload : deck
+      );
     case types.CREATE_DECK:
       return [...state, action.payload.deck];
     case types.DELETE_DECK:
-      return state.filter(deck => deck.id !== action.payload);
+      return state.filter(deck => deck.deck_id !== action.payload);
     default:
       return state;
   }

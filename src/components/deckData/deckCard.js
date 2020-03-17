@@ -1,10 +1,17 @@
 import React, {useState, useEffect} from "react";
 import {Card, Avatar, Modal, Button, Form, Input} from "antd";
-import {getAllDecks, deleteDeck, getDeckById} from "../../state/actions/decks";
+import {
+  getAllDecks,
+  deleteDeck,
+  getDeckById,
+  updateDeck,
+} from "../../state/actions/decks";
 import {EditOutlined, DeleteOutlined, PlayCircleOutlined} from "@ant-design/icons";
 import styles from "./deckCard.module.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {axiosWithAuth} from "../../utils/axios";
+import {currentDeckReducer} from "../../state/reducers/decks";
 
 const {Meta} = Card;
 
@@ -16,7 +23,7 @@ const DeckCard = props => {
     props.getAllDecks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(props.personalDeckState);
+
   const showModal = () => {
     setState({
       visible: true,
@@ -24,7 +31,9 @@ const DeckCard = props => {
   };
 
   const handleOk = e => {
-    console.log(e);
+    console.log("e.t.v", e.target.value);
+    props.updateDeck(props.currentDeckState.deck_id, {name: deckFormValue});
+    console.log(props.currentDeckState.deck_id);
     setState({
       visible: false,
     });
@@ -37,11 +46,18 @@ const DeckCard = props => {
     });
   };
 
-  const [deckFormValue, setDeckFromValue] = useState(props.currentDeckState);
+  const [deckFormValue, setDeckFormValue] = useState("");
   const handleEdit = e => {
     console.log(props);
-    setDeckFromValue(e.target.value);
+    setDeckFormValue(e.target.value);
   };
+
+  useEffect(() => {
+    if (props.currentDeckState.deck_name) {
+      setDeckFormValue(props.currentDeckState.deck_name);
+    }
+  }, [props.currentDeckState]);
+
   return (
     <div className={styles.DeckCardContainer}>
       <h1 className={styles.MyDecks}>My Decks</h1>
@@ -59,10 +75,12 @@ const DeckCard = props => {
                     <PlayCircleOutlined key="play" />
                   </Link>,
                   <EditOutlined
-                    onClick={e => {
-                      console.log(deck);
-                      showModal();
-                      getDeckById(deck.deck_id);
+                    onClick={async e => {
+                      try {
+                        await props.getDeckById(deck.deck_id);
+                        showModal();
+                      } finally {
+                      }
                     }}
                     key="edit"
                   />,
@@ -102,4 +120,9 @@ const DeckCard = props => {
   );
 };
 
-export default connect(state => state, {getAllDecks, deleteDeck, getDeckById})(DeckCard);
+export default connect(state => state, {
+  getAllDecks,
+  deleteDeck,
+  getDeckById,
+  updateDeck,
+})(DeckCard);
