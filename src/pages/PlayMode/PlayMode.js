@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Progress, Button, Icon, PageHeader} from "antd";
+import {Progress, Button, Icon, PageHeader, Alert} from "antd";
 import * as styles from "./PlayMode.module.less";
 import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
 import SummaryModal from "../../components/PlayMode/SummaryModal";
@@ -22,6 +22,8 @@ export function PlayMode({
 }) {
   //current card displayed to the user
   const [current, setCurrent] = useState(0);
+  //error state in case of errors during fetching
+  const [error, setError] = useState(null);
   // whether or not the deck was finished, display summary if it was
   const [finished, setFinished] = useState(false);
   // next button state, will brobably be expanded when more interactive play is added
@@ -30,7 +32,7 @@ export function PlayMode({
   const [showAnswer, setShowAnswer] = useState(false);
 
   useEffect(() => {
-    fetchDeckById(match.params.deckId);
+    fetchDeckById(match.params.deckId).catch(error => setError(error));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function next(e) {
@@ -68,6 +70,17 @@ export function PlayMode({
   const progress = deckInPlaySession
     ? Math.floor((current / deckInPlaySession.flashcards.length) * 100)
     : 100;
+  if (error) {
+    return (
+      <Alert
+        message={error.message}
+        type="error"
+        data-testid="server-alert"
+        closable
+        afterClose={() => setError(null)}
+      />
+    );
+  }
   if (deckInPlaySession === null) {
     return <h1>Loading</h1>;
   }
