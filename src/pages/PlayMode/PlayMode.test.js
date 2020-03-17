@@ -21,7 +21,7 @@ test("It renders", () => {
       clearDeckInPlaySession={() => null}
       storeUnfinishedSession={() => null}
       history={() => null}
-      fetchDeckById={() => null}
+      fetchDeckById={jest.fn().mockResolvedValue(10)}
       match={{params: {id: 1}}}
     />
   );
