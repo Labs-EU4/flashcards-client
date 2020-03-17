@@ -10,7 +10,7 @@ export default function DecksList({decks}) {
           return <DeckCard deck={deck} />;
         })
       ) : (
-        <h2>You have no decks right now</h2>
+        <h2 className={styles.noName}>You have no decks right now</h2>
       )}
     </div>
   );

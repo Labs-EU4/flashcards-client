@@ -90,7 +90,6 @@ const Dashboard = props => {
               <Menu.Item key="2" selected={true}>
                 <NavLink
                   to="/deck-library"
-                  style={{width: "100%", height: "100%"}}
                   activeClassName="ant-menu-item-selected ant-menu-item"
                 >
                   <Icon type="block" />
@@ -101,6 +100,7 @@ const Dashboard = props => {
                 <NavLink
                   to="/discover-decks"
                   activeClassName="ant-menu-item-selected ant-menu-item"
+                  style={{padding: "0 !important"}}
                 >
                   <Icon type="global" />
                   <span>Discover Decks</span>
