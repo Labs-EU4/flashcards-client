@@ -106,12 +106,14 @@ const NewDeckForm = props => {
         </Form.Item>
         <Form.Item>
           <Select
-            mode="tags"
+            mode="multiple"
             style={{width: "100%"}}
             onChange={handleChangeSelection}
             tokenSeparators={[","]}
             data-testid="inputSelect"
             value={formValues.tags}
+            maxTagCount="3"
+            allowClear="true"
           >
             {children}
           </Select>
