@@ -75,7 +75,7 @@ function Cards(props) {
                 style={{width: "240px"}}
               />
               <div className={styles.sort}>
-                <h2>Sort By:</h2>
+                <h2 className={styles.describe}>Sort By:</h2>
                 <Select defaultValue="Home" style={{width: "150px", marginLeft: "10px"}}>
                   <Option value="Home">Option 1</Option>
                   <Option value="Company">Option2</Option>

@@ -17,8 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-left: 190px;
-
+  margin-left: 180px;
 }
 
 .card {
@@ -30,9 +29,10 @@
   /* padding-right: 20px; */
   display: flex;
   align-items: center;
+  margin-top: 12px;
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .mappedCard {
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
     margin-left: 0px;
     align-content: center;
   }
-}
+}  */
 
 @media (max-width: 500px) {
   .card {
@@ -50,25 +50,42 @@
 }
 
 @media (max-width: 500px) {
-  .card {
-    display: flex;
-    flex-direction: column;
+  .heading {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 500px) {
+  .describe {
+    font-size: 15px;
   }
 }
 
 @media (max-width: 500px) {
   .btn {
     margin-top: 27px;
+    width: 150px
   }
 }
+
 @media (max-width: 500px) {
   .title {
     display: flex;
+    flex-direction: column;
     margin-top: 420px;
-    min-width: 420px;
-    justify-content: center;
+
+    justify-content: space-between;
     margin-left: 12px;
     align-items: center;
-    background-color: red;
+    /* background-color: red; */
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .mappedCard {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: 120px;
   }
 }

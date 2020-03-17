@@ -32,7 +32,7 @@ export const currentDeckReducer = (state = currentDeck, action) => {
         flashcards: state.flashcards.filter(card => card.id != action.payload),
       };
     case types.ADD_CARD: {
-      return {...state, flashcards: [...state.flashcards, action.payload]};
+      return {...state, flashcards: [action.payload, ...state.flashcards]};
     }
     case types.UPDATE_CARD: {
       return {
