@@ -75,7 +75,7 @@ const Dashboard = props => {
               className={state.collapsed ? styles.menuCollapsed : styles.menu}
               theme="light"
               mode="inline"
-              defaultSelectedKeys="1"
+              defaultSelectedKeys={["1"]}
               data-testid="menu"
             >
               <Menu.Item key="1">
@@ -84,7 +84,7 @@ const Dashboard = props => {
                   <span>Home</span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="2" selected={true}>
+              <Menu.Item key="2">
                 <Link to="/deck-library">
                   <Icon type="block" />
                   <span>Deck Library</span>

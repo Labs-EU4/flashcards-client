@@ -42,7 +42,7 @@ const RecentDecks = props => {
                 <Meta
                   avatar={<Avatar src="logo192.png" />}
                   description="This is the description"
-                  cardNumber="52"
+                  cardnumber="52"
                 />
               </Card>
             );
