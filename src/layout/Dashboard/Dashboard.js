@@ -81,8 +81,9 @@ const Dashboard = props => {
             >
               <Menu.Item key="1">
                 <NavLink
-                  to="/dashboard"
+                  to="/"
                   activeClassName="ant-menu-item-selected ant-menu-item"
+                  exact
                 >
                   <Icon type="home" />
                   <span>Home</span>

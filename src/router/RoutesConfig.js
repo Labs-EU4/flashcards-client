@@ -47,7 +47,7 @@ const RoutesConfig = [
     render: () => createPrivateRoute(Public),
   },
   {
-    path: "/dashboard",
+    path: "/",
     render: () => createPrivateRoute(Home),
   },
   {
