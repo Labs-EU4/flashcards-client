@@ -12,6 +12,8 @@ import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import UpdateCard from "./UpdateCard";
 
 const {Meta} = Card;
+const Search = Input.Search;
+const Option = Select.Option;
 
 function Cards(props) {
   // set the cards to state
@@ -66,7 +68,20 @@ function Cards(props) {
           <div className={styles.container}>
             <div className={styles.title}>
               <h2 className={styles.heading}>Deck name</h2>
-              <HeaderSearchBar className={styles.head} />
+              {/* <HeaderSearchBar /> */}
+              <Search
+                placeholder="Search"
+                onSearch={value => console.log(value)}
+                style={{width: "240px"}}
+              />
+              <div className={styles.sort}>
+                <h2>Sort By:</h2>
+                <Select defaultValue="Home" style={{width: "150px", marginLeft: "10px"}}>
+                  <Option value="Home">Option 1</Option>
+                  <Option value="Company">Option2</Option>
+                </Select>
+              </div>
+
               <Button className={styles.btn} type="dashed" onClick={toggleMode}>
                 Add a card
               </Button>

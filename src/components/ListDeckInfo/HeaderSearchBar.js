@@ -8,16 +8,15 @@ const Option = Select.Option;
 export default function HeaderSearchBar({page}) {
   return (
     <div className={styles.searchContainer}>
-      {/* <div> */}
-      <h1 className={styles.heading} data-testid="page">
-        {page}
-      </h1>
-      {/* </div> */}
-      <div className={styles.filters}>
+      <div className={styles.cover}>
+        <h1 className={styles.heading} data-testid="page">
+          {page}
+        </h1>
+        {/* <div className={styles.filters}> */}
         <Search
           placeholder="Search"
           onSearch={value => console.log(value)}
-          style={{width: "10vw"}}
+          style={{minWidth: "100px", maxWidth: "500px"}}
         />
         <div>
           Sort By:
@@ -26,6 +25,7 @@ export default function HeaderSearchBar({page}) {
             <Option value="Company">Option2</Option>
           </Select>
         </div>
+        {/* </div> */}
       </div>
     </div>
   );
