@@ -9,7 +9,6 @@ const {Meta} = Card;
 const RecentDecks = props => {
   const [recentDecks, setRecentDecks] = useState([]);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     axiosWithAuth()
       .get("/decks/access/")
@@ -34,7 +33,7 @@ const RecentDecks = props => {
             return (
               <Card
                 style={{width: 300}}
-                actions={[<Link to={`/decks/${deck.deck_id}`}>Play</Link>]}
+                actions={[<Link to={`/play/${deck.deck_id}`}>Play</Link>]}
                 loading={loading}
                 className={styles.deckCard}
                 key={index}
@@ -42,7 +41,7 @@ const RecentDecks = props => {
                 <Meta
                   avatar={<Avatar src="logo192.png" />}
                   description="This is the description"
-                  cardNumber="52"
+                  cardnumber="52"
                 />
               </Card>
             );

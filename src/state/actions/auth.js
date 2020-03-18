@@ -51,7 +51,6 @@ export const addRecoveryPassword = (password, intermediaryToken) => async dispat
 export const registerNewUser = newUser => async dispatch => {
   try {
     const response = await justAxios().post("/auth/register", newUser);
-    localStorage.setItem("token", response.data.data.token);
 
     dispatch({
       type: types.REGISTER_SUCCESS,

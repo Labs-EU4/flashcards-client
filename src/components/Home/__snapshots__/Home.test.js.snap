@@ -54,6 +54,7 @@ exports[`should take a snapshot 1`] = `
             </div>
             <h3
               class="greeting"
+              data-testid="greeting"
             >
               Welcome, 
               !
@@ -64,11 +65,16 @@ exports[`should take a snapshot 1`] = `
               role="menu"
             >
               <li
-                class="ant-menu-item ant-menu-item-selected"
+                class="ant-menu-item menuItem"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
                 <a
+<<<<<<< HEAD
+=======
+                  aria-current="page"
+                  class="navItemSeleted"
+>>>>>>> 7869040872109e1bc1873b95d2ceb5e11bca50b4
                   href="/"
                 >
                   <i

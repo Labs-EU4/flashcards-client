@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
-import GoogleLogin from "../pages/GoogleLogin";
+import GoogleLogin from "../pages/GoogleLogin/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
 import Home from "../components/Home/Home";
@@ -13,6 +13,7 @@ import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import DeckCards from "../components/deckData/deckCard";
+import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
 import Test from "../components/NewDeckForm/NewDeckForm";
 /*
@@ -39,6 +40,9 @@ const RoutesConfig = [
   {
     path: "/decks",
     component: DeckCards,
+    path: "/play/:deckId",
+    //Unprotected route takes path and a component prop
+    component: PlayMode,
   },
   {
     path: "/register",

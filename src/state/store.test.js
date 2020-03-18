@@ -48,17 +48,22 @@ describe("Auth actions", () => {
       });
   });
 
-  // test("Login action throws on backend error", async () => {
-  //   //Arrange
-  //   //set axios mock to reject once
-  //   axiosMock.justAxios = () => {
-  //     return {
-  //       post: jest.fn().mockRejectedValueOnce({message: "ERROR!!!"}),
-  //     };
-  //   };
-  //   //Act & Assert
-  //   await expect(actions.login()(jest.fn())).rejects.toThrowError("ERROR!!!");
-  // });
+  test("Login action throws on backend error", async () => {
+    //Arrange
+    //set axios mock to reject once
+    axiosMock.justAxios = () => {
+      return {
+        post: jest.fn().mockRejectedValue({message: "ERROR!!!"}),
+      };
+    };
+    const spy = jest.fn();
+    await actions
+      .login()(() => null)
+      .catch(spy);
+    //Act & Assert
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith({message: "ERROR!!!"});
+  });
 
   test("registerNewUser action dispatches REGISTER SUCCESS on succesfull request", () => {
     //set axios mock to resolve once
