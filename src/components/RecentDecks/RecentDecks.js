@@ -7,19 +7,19 @@ import styles from "./RecentDecks.module.css";
 const {Meta} = Card;
 
 const RecentDecks = props => {
-  const [recentDecks, setRecentDecks] = useState([]);
+  const [recentDecks, setRecentDecks] = useState([{}, {}, {}, {}, {}]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get("/decks/access/")
-      .then(res => {
-        setRecentDecks(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get("/decks/access/")
+  //     .then(res => {
+  //       setRecentDecks(res.data.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <div className={styles.container}>
