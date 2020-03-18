@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import styles from "./Dashboard.module.css";
 import decode from "jwt-decode";
 
@@ -67,6 +67,7 @@ const Dashboard = props => {
             <h3
               className={styles.greeting}
               style={state.collapsed ? {display: "none"} : null}
+              data-testid="greeting"
             >
               Welcome, {userName}!
             </h3>
@@ -75,26 +76,26 @@ const Dashboard = props => {
               className={state.collapsed ? styles.menuCollapsed : styles.menu}
               theme="light"
               mode="inline"
-              defaultSelectedKeys="1"
+              // defaultSelectedKeys="1"
               data-testid="menu"
             >
-              <Menu.Item key="1">
-                <Link to="/">
+              <Menu.Item key="1" className={styles.menuItem}>
+                <NavLink to="/" activeClassName={styles.navItemSeleted} exact>
                   <Icon type="home" />
                   <span>Home</span>
-                </Link>
+                </NavLink>
               </Menu.Item>
               <Menu.Item key="2" selected={true}>
-                <Link to="/deck-library">
+                <NavLink to="/deck-library" activeClassName={styles.navItemSeleted}>
                   <Icon type="block" />
                   <span>Deck Library</span>
-                </Link>
+                </NavLink>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/discover-decks">
+                <NavLink to="/discover-decks" activeClassName={styles.navItemSeleted}>
                   <Icon type="global" />
                   <span>Discover Decks</span>
-                </Link>
+                </NavLink>
               </Menu.Item>
             </Menu>
             <footer
