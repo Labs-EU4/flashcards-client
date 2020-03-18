@@ -67,18 +67,6 @@ describe("the input field + validation is working", () => {
   });
 });
 
-describe("form renders an alert", () => {
-  it("renders that the deck couldnt be created", async () => {
-    let input = wrapper.queryByTestId("inputDeckName");
-    rtl.fireEvent.change(input, {
-      target: {value: "jhkjdsfkjsdfhkjdsfhkjsdfsd"},
-    });
-    rtl.fireEvent.click(wrapper.queryByTestId("button"));
-    let alert = await rtl.waitForElement(() => wrapper.queryByTestId("alertInvalid"));
-    expect(alert).toBeInTheDocument();
-  });
-});
-
 describe("form renders input value", () => {
   it("shows the value put in the first form field", () => {
     let input = wrapper.queryByTestId("inputDeckName");
