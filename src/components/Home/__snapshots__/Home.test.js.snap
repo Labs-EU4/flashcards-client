@@ -214,9 +214,11 @@ exports[`should take a snapshot 1`] = `
         >
           <div
             class="leftContent"
+            data-testid="content-left"
           />
           <div
             class="rightContent"
+            data-testid="content-right"
           >
             <div
               class="container"

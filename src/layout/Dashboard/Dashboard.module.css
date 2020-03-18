@@ -4,10 +4,12 @@
 
 .dashboardLeft {
   width: 235px;
+  z-index: 1;
 }
 
 .dashboardLeftCollapsed {
   width: 80px;
+  z-index: 1;
 }
 
 .sider {
