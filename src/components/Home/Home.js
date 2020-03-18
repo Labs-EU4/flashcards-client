@@ -7,8 +7,8 @@ const Home = () => {
   return (
     <>
       <Dashboard>
-        <div className={styles.leftContent}></div>
-        <div className={styles.rightContent}>
+        <div className={styles.leftContent} data-testid="content-left"></div>
+        <div className={styles.rightContent} data-testid="content-right">
           <RecentDecks />
         </div>
       </Dashboard>
