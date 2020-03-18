@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Progress, Button, Icon, PageHeader, Alert} from "antd";
+import {Progress, Button, Icon, PageHeader, Alert, Spin} from "antd";
 import * as styles from "./PlayMode.module.less";
 import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
 import SummaryModal from "../../components/PlayMode/SummaryModal";
@@ -11,6 +11,8 @@ import {
   fetchDeckById,
 } from "../../state/actions/decks";
 import {useEffect} from "react";
+import {Redirect} from "react-router-dom";
+import ErrorHandlingScreen from "../../components/PlayMode/ErrorHandlingScreen/ErrorHandlingScreen";
 
 export function PlayMode({
   deckInPlaySession,
@@ -20,6 +22,7 @@ export function PlayMode({
   history,
   match,
 }) {
+  const [loading, setLoading] = useState(false);
   //current card displayed to the user
   const [current, setCurrent] = useState(0);
   //error state in case of errors during fetching
@@ -32,7 +35,10 @@ export function PlayMode({
   const [showAnswer, setShowAnswer] = useState(false);
 
   useEffect(() => {
-    fetchDeckById(match.params.deckId).catch(error => setError(error));
+    setLoading(true);
+    fetchDeckById(match.params.deckId)
+      .catch(error => setError(error))
+      .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   function next(e) {
@@ -71,22 +77,24 @@ export function PlayMode({
     ? Math.floor((current / deckInPlaySession.flashcards.length) * 100)
     : 100;
   if (error) {
+    return <ErrorHandlingScreen history={history} error={error} />;
+  }
+  if (deckInPlaySession === null) {
+    return <Spin spinning={deckInPlaySession === null} delay={300}></Spin>;
+  }
+  if (deckInPlaySession.flashcards.length === 0) {
     return (
-      <Alert
-        message={error.message}
-        type="error"
-        data-testid="server-alert"
-        closable
-        afterClose={() => setError(null)}
+      <ErrorHandlingScreen
+        history={history}
+        deck_id={deckInPlaySession.deck_id}
+        author_id={deckInPlaySession.user_id}
+        user_id={deckInPlaySession.user_id}
       />
     );
   }
-  if (deckInPlaySession === null) {
-    return <h1>Loading</h1>;
-  }
   return (
     <>
-      <div className="progress-block">
+      <div className={styles.progress_block}>
         <PageHeader
           title={deckInPlaySession.deck_name}
           onBack={closeSession}
