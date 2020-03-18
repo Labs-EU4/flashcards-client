@@ -63,7 +63,7 @@ function Cards(props) {
     //   Map the fetched cards to an ant design cards component for display on the browser
 
     <div className={styles.cardDeck}>
-      <Dashboard>
+      <Dashboard className>
         <div className={styles.cardDeck}>
           <div className={styles.container}>
             <div className={styles.title}>
@@ -73,6 +73,7 @@ function Cards(props) {
                 placeholder="Search"
                 onSearch={value => console.log(value)}
                 style={{width: "240px"}}
+                className={styles.search}
               />
               <div className={styles.sort}>
                 <h2 className={styles.describe}>Sort By:</h2>
@@ -104,7 +105,8 @@ function Cards(props) {
                   return (
                     <div className={styles.card}>
                       <Card
-                        style={{width: 300, marginTop: 16}}
+                        style={{width: "100%", marginTop: 16}}
+                        className={styles.innerCard}
                         actions={[
                           <DeleteOutlined
                             key="delete"
