@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Icon, Popover, Button} from "antd";
 import styles from "./DeckList.module.css";
+import {Link} from "react-router-dom";
 
 export default function DeckCard({deck}) {
   const [visible, setVisible] = useState(false);
@@ -39,9 +40,11 @@ export default function DeckCard({deck}) {
                   <Button>Input</Button>
                   <Button>Cards</Button>
                 </div>
-                <Button type="primary" onClick={hide}>
-                  Start
-                </Button>
+                <Link to={`/play/${deck.deck_id}`}>
+                  <Button type="primary" onClick={hide}>
+                    Start
+                  </Button>
+                </Link>
               </div>
             }
             title="Title"

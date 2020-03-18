@@ -5,7 +5,8 @@ import axios from "axios";
 import decode from "jwt-decode";
 
 // Configs
-const baseUrl = process.env.REACT_APP_API_HOST;
+const baseUrl =
+  process.env.REACT_APP_API_HOST || "https://flashdecks-staging.herokuapp.com/api";
 
 const KEY = "token";
 
@@ -46,7 +47,7 @@ export const getToken = () => {
 
 export const setToken = token => {
   try {
-    const item = JSON.stringify(token);
+    const item = token;
     localStorage.setItem(KEY, item);
     return true;
   } catch (error) {

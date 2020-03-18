@@ -30,7 +30,7 @@ const Button = () => {
 };
 
 it("renders without crashing", () => {
-  expect(wrapper.container).toMatchSnapshot();
+  expect(wrapper.container).toBeInTheDocument();
 });
 
 it("renders all expected elements", () => {
