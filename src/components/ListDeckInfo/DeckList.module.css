@@ -3,7 +3,7 @@
 }
 
 .deckCard {
-  border: 3px solid blue;
+  border: 3px solid #2090ff;
   border-radius: 5px;
   margin: 5vh auto;
   width: 95%;
@@ -17,6 +17,12 @@
   /* margin: 5vh auto; */
   /* background-color: gray; */
   align-items: center;
+}
+
+.noName {
+  width: 100%;
+  margin: 10vh auto;
+  text-align: center;
 }
 
 .info {

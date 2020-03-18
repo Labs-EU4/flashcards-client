@@ -4,7 +4,6 @@
   justify-content: space-around;
   align-items: center;
 }
-
 .heading {
   display: flex;
   margin: 2vh 5vw 2vh 5vw;
@@ -12,7 +11,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .filters {
   display: flex;
   justify-content: space-between;
@@ -21,7 +19,31 @@
   margin: 0 auto;
   width: 100%;
 }
-
 h1 {
   font-size: 2rem;
+}
+
+@media (max-width: 1410px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 1205px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .heading {
+    width: 100%;
+  }
+
+  .searchContainer {
+    flex-direction: column;
+  }
+  .filters {
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 100%;
+  }
 }

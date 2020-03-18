@@ -90,6 +90,19 @@
   padding: 1.5%;
 }
 
+.navItemSeleted {
+  /* padding: 0; */
+  width: 100% !important;
+  background-color: #e6f6ff;
+  border-right: 3px solid #2090ff;
+  font-size: 1rem;
+}
+
+.menuItem {
+  padding: 0;
+  width: 100%;
+}
+
 .contentCollapsed {
   display: flex;
   background: white;
