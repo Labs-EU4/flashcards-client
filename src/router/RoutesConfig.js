@@ -24,9 +24,7 @@ import decode from "jwt-decode";
 function checkToken() {
   try {
     let token = localStorage.getItem("token");
-    console.log(token);
     const decoded = decode(token);
-    console.log(decoded, "decodedToken");
     if (
       decoded.hasOwnProperty("name") &&
       decoded.hasOwnProperty("subject") &&
