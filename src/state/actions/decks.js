@@ -92,7 +92,7 @@ export const createDeck = payload => async dispatch => {
     const response = await axiosWithAuth().post(`/decks`, payload);
     dispatch({
       type: CREATE_DECK,
-      payload: payload,
+      payload: response.data.deck,
     });
     return response;
   } catch (err) {
