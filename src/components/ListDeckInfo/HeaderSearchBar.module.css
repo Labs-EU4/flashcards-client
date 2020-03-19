@@ -3,33 +3,23 @@
 .cover{
   display: flex;
   justify-content: space-between;
-  background-color: red;
   align-items: center;
   padding: 0 30px;
 }
 .heading {
-  /* display: flex;
-  margin: 2vh 5vw 2vh 5vw;
-  width: 25vw;
-  align-items: center;
-  justify-content: center; */
   width: auto;
 }
 .filters {
-  /* display: flex;
-  justify-content: space-between;
-  margin: 0 10vw;
-  justify-content: space-around;
-  margin: 0 auto;
-  width: 100%; */
   display: flex;
   justify-content: space-between;
   margin-left: 20px;
 
+  width: 100%;
 }
 h1 {
   font-size: 2rem;
 }
+
 @media (max-width: 1410px) {
   h1 {
     font-size: 1.6rem;
@@ -54,3 +44,13 @@ h1 {
     
   }
 }
+
+  .searchContainer {
+    flex-direction: column;
+  }
+  .filters {
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 100%;
+  }
+
