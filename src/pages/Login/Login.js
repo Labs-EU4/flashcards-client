@@ -7,6 +7,7 @@ import {login} from "../../state/actions/auth";
 import * as styles from "./Login.module.css";
 import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
 import FormHeader from "../../components/formStyleComponent/FormHeader";
+import {axiosWithAuth} from "../../utils/axios";
 
 export const Login = props => {
   const [formValues, setFormValues] = useState({
@@ -47,8 +48,21 @@ export const Login = props => {
     getFieldError,
   } = props.form;
   useEffect(() => {
+    async function checkIfTokenValid() {
+      if (localStorage.getItem("token")) {
+        try {
+          const response = await axiosWithAuth().post("/auth/validate_token");
+          if (response.status === 201) {
+            props.history.push("/");
+          }
+        } catch (error) {
+          console.log("Token invalid or expired, please login again!");
+        }
+      }
+    }
+    checkIfTokenValid();
     validateFields();
-  }, [validateFields]);
+  }, [props.history, validateFields]);
   const emailError = isFieldTouched("email") && getFieldError("email");
   const passwordError = isFieldTouched("password") && getFieldError("password");
   return (
