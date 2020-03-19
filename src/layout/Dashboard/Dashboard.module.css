@@ -4,10 +4,12 @@
 
 .dashboardLeft {
   width: 235px;
+  z-index: 1;
 }
 
 .dashboardLeftCollapsed {
   width: 80px;
+  z-index: 1;
 }
 
 .sider {
@@ -88,28 +90,25 @@
   padding: 1.5%;
 }
 
+.navItemSeleted {
+  /* padding: 0; */
+  width: 100% !important;
+  background-color: #e6f6ff;
+  border-right: 3px solid #2090ff;
+  font-size: 1rem;
+}
+
+.menuItem {
+  padding: 0;
+  width: 100%;
+}
+
 .contentCollapsed {
   display: flex;
   background: white;
   width: 100%;
   min-height: 100vh;
   padding: 1.5%;
-}
-
-.leftContent {
-  width: 100%;
-  background-color: #f9f9f9;
-  margin-right: 2%;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  transition: 0.3s;
-}
-
-.rightContent {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-left: 2%;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -121,17 +120,6 @@
   .contentCollapsed {
     display: flex;
     flex-direction: column;
-  }
-  .leftContent {
-    width: 96%;
-    margin: 2%;
-  }
-
-  .rightContent {
-    display: flex;
-    flex-direction: column;
-    width: 96%;
-    margin: 2%;
   }
 }
 

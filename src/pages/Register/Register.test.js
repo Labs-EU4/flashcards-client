@@ -49,7 +49,7 @@ const confirmPasswordWarning = () => {
   return wrapper.queryByText("Passwords do not match");
 };
 it("renders without crashing", () => {
-  expect(wrapper.container).toMatchSnapshot();
+  expect(wrapper.container).toBeInTheDocument();
 });
 it("renders all expected elements", () => {
   expect(FormContainer()).toBeInTheDocument();

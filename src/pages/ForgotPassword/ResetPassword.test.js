@@ -126,7 +126,7 @@ describe("form renders input values", () => {
   });
 });
 
-describe("form renders an alert", () => {
+/* describe("form renders an alert", () => {
   it("renders that the token is invalid", async () => {
     let input = wrapper.queryByTestId("inputPassword");
     rtl.fireEvent.change(input, {
@@ -140,4 +140,4 @@ describe("form renders an alert", () => {
     let alert = await rtl.waitForElement(() => wrapper.queryByTestId("alertInvalid"));
     expect(alert).toBeInTheDocument();
   });
-});
+}); */

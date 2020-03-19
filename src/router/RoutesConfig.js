@@ -1,10 +1,10 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
-import GoogleLogin from "../pages/GoogleLogin";
+import GoogleLogin from "../pages/GoogleLogin/GoogleLogin";
 import PageNotFound from "../pages/404";
 import Login from "../pages/Login/Login";
-import Dashboard from "../layout/Dashboard/Dashboard";
+import Home from "../components/Home/Home";
 import Register from "../pages/Register/Register";
 
 //This function is connected directly to the store and checks if user is logged in or not.
@@ -12,7 +12,7 @@ import Public from "../pages/PublicDecks/PublicDecks";
 import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
-import DeckCards from "../components/deckData/deckCard";
+import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
 /*
   Routes config must be ordered the same way you'd 
@@ -36,8 +36,9 @@ const RoutesConfig = [
     component: Login,
   },
   {
-    path: "/decks",
-    component: DeckCards,
+    path: "/play/:deckId",
+    //Unprotected route takes path and a component prop
+    component: PlayMode,
   },
   {
     path: "/register",
@@ -53,7 +54,7 @@ const RoutesConfig = [
   },
   {
     path: "/",
-    render: () => createPrivateRoute(Dashboard),
+    render: () => createPrivateRoute(Home),
   },
   {
     path: "/confirm/:id",

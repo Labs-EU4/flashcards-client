@@ -16,7 +16,6 @@ export function personalDecksReducer(state = initialDecks, action) {
   console.log("dfg", action.payload);
   switch (action.type) {
     case types.GET_PERSONAL_DECKS:
-      console.log("hello");
       return state;
     case types.READ_DECK:
       return action.payload;
