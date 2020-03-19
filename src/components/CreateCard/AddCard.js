@@ -15,7 +15,6 @@ function AddCard(props) {
   const [error, setError] = useState("");
   const {getFieldDecorator} = props.form;
   const handleChange = e => {
-    // console.log(props.location.state.id);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -34,7 +33,6 @@ function AddCard(props) {
     props.addCard(newCard);
     setLoading(false);
     props.toggleMode();
-    // props.history.push("/cards");
   };
   return (
     <div className={styles.cardContainer}>
@@ -105,12 +103,6 @@ function AddCard(props) {
     </div>
   );
 }
-
-// function mapStateToProps(state) {
-//   return {
-//     card: state.card,
-//   };
-// }
 
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(AddCard);
 
