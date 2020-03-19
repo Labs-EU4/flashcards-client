@@ -39,23 +39,7 @@ function UpdateCard(props) {
 
     props.updateCard(props.cardId, newCard);
     props.toggleModal();
-    // Call the server after authentication
-    // // axiosWithAuth()
-    // //   .put(`/cards/${props.location.state.id}`, newCard)
-    // //   .then(res => {
     setLoading(false);
-    // props.history.push("/cards");
-    // //     setFormValues(...formValues, [
-    // //       {
-    // //         id: res.data.cards.id,
-    // //         questionText: res.data.cards.question,
-    // //         answerText: res.data.cards.id,
-    // //       },
-    // //     ]);
-    // //   })
-    // //   .catch(err => {
-    // //     console.log(err);
-    //   });
   };
   return (
     <div className={styles.cardContainer}>
@@ -127,7 +111,7 @@ function UpdateCard(props) {
 
 function mapStateToProps(state, ownprops) {
   return {
-    currentDeckState: state.currentDeckState,
+    currentDeckState: state.deckState.currentDeckState,
     // id: ownprops.location.state.card.id,
   };
 }

@@ -32,6 +32,10 @@ function AddCard(props) {
 
     setLoading(true);
     props.addCard(newCard);
+    setFormValues({
+      questionText: "",
+      answerText: "",
+    });
     setLoading(false);
     props.toggleMode();
     // props.history.push("/cards");
@@ -56,7 +60,7 @@ function AddCard(props) {
                 name="questionText"
                 type="string"
                 // setFieldsValue={formValues.questionText}
-                setFieldsValue={handleChange}
+                setFieldsValue={formValues.questionText}
                 //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Question text goes here"
@@ -79,7 +83,7 @@ function AddCard(props) {
                 name="answerText"
                 type="string"
                 // setFieldsValue={formValues.answerText}
-                setFieldsValue={handleChange}
+                setFieldsValue={formValues.answerText}
                 //form icon in the answer field, change type for different icons, see antdesign docs
                 prefix={<Icon type="edit" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Enter a correct answer"
