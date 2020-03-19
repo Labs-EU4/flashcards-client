@@ -72,7 +72,6 @@ export function PlayMode({
     setFinished(false);
     history.goBack();
   }
-  console.log(deckInPlaySession);
   const progress = deckInPlaySession
     ? Math.floor((current / deckInPlaySession.flashcards.length) * 100)
     : 100;
