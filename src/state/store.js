@@ -5,7 +5,6 @@ import {
   currentDeckReducer,
   publicDecksReducer,
   personalDecksReducer,
-  deckReducer,
 } from "./reducers/decks";
 
 const mainReducer = combineReducers({
@@ -13,7 +12,7 @@ const mainReducer = combineReducers({
   publicDeckState: publicDecksReducer,
   personalDeckState: personalDecksReducer,
   currentDeckState: currentDeckReducer,
-  deckState: deckReducer,
+  // deckState: deckReducer,
 });
 
 const devTools =

@@ -42,10 +42,14 @@ const RoutesConfig = [
   {
     path: "/cards",
     component: Cards,
+  },
+
+  {
     path: "/play/:deckId",
     //Unprotected route takes path and a component prop
     component: PlayMode,
   },
+
   {
     path: "/register",
     component: Register,
