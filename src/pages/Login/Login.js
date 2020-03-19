@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {Form, Icon, Input, Button, Alert} from "antd";
-import {baseURL} from "../../utils/axios";
-
+import {Form, Icon, Input, Button, Spin, Alert} from "antd";
+import GoogleButton from "../../components/GoogleLogin/GoogleButton";
 import {login} from "../../state/actions/auth";
-import "./Login.css";
+import * as styles from "./Login.module.css";
 import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
 import FormHeader from "../../components/formStyleComponent/FormHeader";
 
@@ -56,87 +55,82 @@ export const Login = props => {
     <div className={backgroundStyles.formStyle}>
       <FormHeader />
       <div>
-        <h1>Login</h1>
-        <Form onSubmit={handleSubmit} className="login-form">
-          <Form.Item
-            validateStatus={emailError ? "error" : ""}
-            hasFeedback
-            help={emailError || ""}
-          >
-            {getFieldDecorator("email", {
-              //rules are for the form validation
-              rules: [
-                {required: true, message: "Please input a valid email!"},
-                {
-                  type: "email",
-                  message: "Invalid email",
-                },
-              ],
-            })(
-              <Input
-                data-testid="email-input"
-                name="email"
-                setFieldsValue={formValues.email}
-                onInput={handleChange}
-                //form icon in the email field, change type for different icons, see antdesign docs
-                prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
-                placeholder="Email"
-              />
-            )}
-          </Form.Item>
-          <Form.Item
-            validateStatus={passwordError ? "error" : ""}
-            help={passwordError || ""}
-            hasFeedback
-          >
-            {getFieldDecorator("password", {
-              //rules are for the form validation
-              rules: [{required: true, message: "Please input a password!"}],
-            })(
-              <Input
-                name="password"
-                type="password"
-                data-testid="password-input"
-                setFieldsValue={formValues.password}
-                onInput={handleChange}
-                //form icon in the email field, change type for different icons, see antdesign docs
-                prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
-                placeholder="Password"
-              />
-            )}
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              data-testid="login-button"
-              htmlType="submit"
-              className="login-form-button"
-              disabled={hasErrors(getFieldsError())}
-              loading={loading}
+        <Spin spinning={loading}>
+          <h1>Login</h1>
+          <Form onSubmit={handleSubmit} className="login-form">
+            <Form.Item
+              validateStatus={emailError ? "error" : ""}
+              hasFeedback
+              help={emailError || ""}
             >
-              Login
-            </Button>
-            Forgot password? <Link to="/reset-password">click here to reset! </Link>
-            Or <Link to="/register">register here!</Link>
-            <a className="google-auth" href={`${baseURL}/auth/google`}>
-              <img
-                className="google-icon"
-                alt="google-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              {getFieldDecorator("email", {
+                //rules are for the form validation
+                rules: [
+                  {required: true, message: "Please input a valid email!"},
+                  {
+                    type: "email",
+                    message: "Invalid email",
+                  },
+                ],
+              })(
+                <Input
+                  data-testid="email-input"
+                  name="email"
+                  setFieldsValue={formValues.email}
+                  onInput={handleChange}
+                  //form icon in the email field, change type for different icons, see antdesign docs
+                  prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
+                  placeholder="Email"
+                />
+              )}
+            </Form.Item>
+            <Form.Item
+              validateStatus={passwordError ? "error" : ""}
+              help={passwordError || ""}
+              hasFeedback
+            >
+              {getFieldDecorator("password", {
+                //rules are for the form validation
+                rules: [{required: true, message: "Please input a password!"}],
+              })(
+                <Input
+                  name="password"
+                  type="password"
+                  data-testid="password-input"
+                  setFieldsValue={formValues.password}
+                  onInput={handleChange}
+                  //form icon in the email field, change type for different icons, see antdesign docs
+                  prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
+                  placeholder="Password"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                data-testid="login-button"
+                htmlType="submit"
+                className={styles.login_button}
+                disabled={hasErrors(getFieldsError())}
+                loading={loading}
+              >
+                Login
+              </Button>
+              Forgot password? <Link to="/reset-password">click here to reset! </Link>
+              Or <Link to="/register">register here!</Link>
+              <GoogleButton>SIGN IN WITH GOOGLE</GoogleButton>
+            </Form.Item>
+            {error ? (
+              <Alert
+                message={error.message}
+                type="error"
+                data-testid="server-alert"
+                closable
+                afterClose={() => setError(null)}
               />
-              SIGN IN WITH GOOGLE
-            </a>
-          </Form.Item>
-          {error ? (
-            <Alert
-              message={error}
-              type="error"
-              data-testid="server-alert"
-              closable
-              afterClose={() => setError(null)}
-            />
-          ) : null}
-        </Form>
+            ) : null}
+          </Form>
+        </Spin>
       </div>
     </div>
   );

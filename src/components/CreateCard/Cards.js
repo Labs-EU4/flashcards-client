@@ -105,6 +105,7 @@ function Cards(props) {
                   return (
                     <div className={styles.card}>
                       <Card
+                        data-testid="cardHolder"
                         style={{width: "100%", marginTop: 16}}
                         className={styles.innerCard}
                         actions={[
@@ -146,7 +147,7 @@ function Cards(props) {
 
 function mapStateToProps(state) {
   return {
-    currentDeck: state.currentDeckState,
+    currentDeck: state.deckState.currentDeckState,
   };
 }
 

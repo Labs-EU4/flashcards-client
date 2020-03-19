@@ -36,7 +36,7 @@ export function PublicDecks({getPublicDecks, decks}) {
 
 function mapStateToProps(state) {
   return {
-    decks: state.publicDeckState,
+    decks: state.deckState.publicDeckState,
   };
 }
 

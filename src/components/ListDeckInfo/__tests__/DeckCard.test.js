@@ -58,9 +58,3 @@ it("displays elements correctly", () => {
   expect(DislikeButton()).toBeInTheDocument();
   expect(Popover()).not.toBeInTheDocument();
 });
-
-it("displays popover when more button is clicked", () => {
-  rtl.fireEvent.click(MoreOptions());
-  expect(Popover()).toBeInTheDocument();
-  expect(Popover()).toBeVisible();
-});

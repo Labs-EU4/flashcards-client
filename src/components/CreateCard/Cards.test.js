@@ -8,6 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 
 let wrapper;
 let AddCard = () => wrapper.queryByText("Add a card");
+let DeckName = () => wrapper.queryByText("Deck name");
 
 beforeEach(() => {
   wrapper = rtl.render(
@@ -29,5 +30,10 @@ describe("Card component", () => {
   it('renders a "Add a card" text node', () => {
     expect(AddCard()).toBeInTheDocument();
     expect(AddCard()).toBeVisible();
+  });
+
+  it('renders a "Deck name" text node', () => {
+    expect(DeckName()).toBeInTheDocument();
+    expect(DeckName()).toBeVisible();
   });
 });
