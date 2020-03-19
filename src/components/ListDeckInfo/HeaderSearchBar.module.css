@@ -42,14 +42,11 @@ h1 {
     width: 100%;
   }
   .searchContainer {
-    display: flex;
     flex-direction: column;
   }
   .filters {
-    display: flex;
     justify-content: space-around;
     margin: 0 auto;
     width: 100%;
-    
   }
 }

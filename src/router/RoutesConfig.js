@@ -49,6 +49,7 @@ const RoutesConfig = [
     //Unprotected route takes path and a component prop
     component: PlayMode,
   },
+
   {
     path: "/register",
     component: Register,

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {axiosWithAuth} from "../../utils/axios";
-import {Card, Button, Icon, Popover, Modal, Input, Select, Avatar, Spin} from "antd";
-import {Link} from "react-router-dom";
+import {Card, Button, Icon, Modal, Input, Select, Avatar, Spin} from "antd";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
@@ -16,20 +15,9 @@ const Search = Input.Search;
 const Option = Select.Option;
 
 function Cards(props) {
-  // set the cards to state
-  // const [cards, setCards] = useState([{}]);
-
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  // function showModal() {
-  //   setVisible(true);
-  // }
-
-  // function handleOk() {
-  //   setVisible(false);
-  // }
 
   function handleCancel() {
     setVisible(false);
@@ -68,7 +56,6 @@ function Cards(props) {
           <div className={styles.container}>
             <div className={styles.title}>
               <h2 className={styles.heading}>Deck name</h2>
-              {/* <HeaderSearchBar /> */}
               <Search
                 placeholder="Search"
                 onSearch={value => console.log(value)}
@@ -92,7 +79,6 @@ function Cards(props) {
                 title="Want a new card?"
                 visible={show}
                 footer={null}
-                // onOk={handleOk}
                 onCancel={handleAdd}
               >
                 <AddCard toggleMode={toggleMode} />
