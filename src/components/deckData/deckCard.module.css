@@ -1,15 +1,11 @@
 .DeckCardContainer {
-  margin: 50px auto;
   height: auto;
   max-height: auto;
-  width: 320px;
+  width: 100%;
   overflow: auto;
-  background-color: lightgrey;
-}
-
-.MyDecks {
-  text-align: center;
-  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .deckCard {
@@ -18,4 +14,12 @@
 
 button {
   width: 16%;
+}
+
+.heading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 1.5rem;
 }

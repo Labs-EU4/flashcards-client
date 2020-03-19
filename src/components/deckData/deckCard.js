@@ -60,7 +60,7 @@ const DeckCard = props => {
 
   return (
     <div className={styles.DeckCardContainer}>
-      <h1 className={styles.MyDecks}>My Decks</h1>
+      <h1 className={styles.heading}>My Decks</h1>
 
       {props.personalDeckState.length === 0 ? (
         <h5>You have no decks</h5>
