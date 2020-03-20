@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Home.module.css";
 import RecentDecks from "../RecentDecks/RecentDecks";
 import Dashboard from "../../layout/Dashboard/Dashboard";
-import DeckContainer from "../deckData/DeckContainer";
+import DeckContainer from "../DeckBoard/DeckContainer";
 
 const Home = () => {
   return (
