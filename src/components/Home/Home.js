@@ -2,14 +2,14 @@ import React from "react";
 import styles from "./Home.module.css";
 import RecentDecks from "../RecentDecks/RecentDecks";
 import Dashboard from "../../layout/Dashboard/Dashboard";
-import DeckCard from "../deckData/deckCard";
+import DeckContainer from "../deckData/DeckContainer";
 
 const Home = () => {
   return (
     <>
       <Dashboard>
         <div className={styles.leftContent} data-testid="content-left">
-          <DeckCard />
+          <DeckContainer />
         </div>
         <div className={styles.rightContent} data-testid="content-right">
           <RecentDecks />

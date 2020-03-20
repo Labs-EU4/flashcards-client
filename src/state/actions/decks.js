@@ -59,7 +59,7 @@ export const getPersonalDecks = () => async dispatch => {
   }
 };
 
-export const getAllDecks = () => async dispatch => {
+export const getAllPersonalDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks");
     dispatch({

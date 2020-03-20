@@ -1,54 +1,39 @@
-import React, {useState, useEffect} from "react";
-import {Card, Avatar, Modal, Button, Form, Input, Select, Checkbox} from "antd";
-import DeckCardd from "./DeckCardd";
-import {
-  getAllDecks,
-  deleteDeck,
-  getDeckById,
-  updateDeck,
-} from "../../state/actions/decks";
-import {EditOutlined, DeleteOutlined, PlayCircleOutlined} from "@ant-design/icons";
-import styles from "./deckCard.module.css";
+import React, {useState} from "react";
+import {Card, Avatar, Icon} from "antd";
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {axiosWithAuth} from "../../utils/axios";
-import {currentDeckReducer} from "../../state/reducers/decks";
-
+import * as styles from "./deckCard.module.css";
+import EditModal from "./EditModal";
 const {Meta} = Card;
 
-const DeckCard = props => {
-  const [state, setState] = useState({visible: false});
-
-  useEffect(() => {
-    props.getAllDecks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+export default function DeckCard({deck, deleteDeck, updateDeck}) {
+  const [visible, setVisible] = useState(false);
   return (
-    <div className={styles.DeckCardContainer}>
-      <h1 className={styles.heading}>My Decks</h1>
-
-      {props.personalDeckState.length === 0 ? (
-        <h5>You have no decks</h5>
-      ) : (
-        props.personalDeckState.map(deck => {
-          return (
-            <DeckCardd
-              key={deck.deck_id}
-              deleteDeck={props.deleteDeck}
-              updateDeck={props.updateDeck}
-              deck={deck}
-            />
-          );
-        })
-      )}
-    </div>
+    <>
+      <Card
+        style={{width: 300}}
+        actions={[
+          <Link to={`/play/${deck.deck_id}`}>
+            <Icon type="play-circle" data-testid="play" />
+          </Link>,
+          <Icon type="edit" onClick={() => setVisible(!visible)} data-testid="edit" />,
+          <Icon
+            type="delete"
+            onClick={e => deleteDeck(deck.deck_id)}
+            data-testid="delete"
+          />,
+        ]}
+        className={styles.deckCard}
+      >
+        <Link>
+          <Meta avatar={<Avatar src="logo192.png" />} description={deck.deck_name} />
+        </Link>
+      </Card>
+      <EditModal
+        visible={visible}
+        deckValues={deck}
+        updateDeck={updateDeck}
+        setVisible={setVisible}
+      />
+    </>
   );
-};
-
-export default connect(state => state, {
-  getAllDecks,
-  deleteDeck,
-  getDeckById,
-  updateDeck,
-})(DeckCard);
+}

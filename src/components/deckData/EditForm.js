@@ -7,7 +7,6 @@ import diffArrays from "../../utils/diffArrays";
 import styles from "../../components/RecentDecks/RecentDecks.module.css";
 
 const NewDeckForm = props => {
-  const {getFieldsValue} = props.form;
   const initialValues = {
     name: props.deckValues.deck_name,
     tags:
@@ -39,7 +38,7 @@ const NewDeckForm = props => {
         name: formValues.name,
         addTags,
         removeTags,
-        // isPublic: formValues.isPublic === true ? "1" : "0",
+        isPublic: formValues.isPublic === true ? "1" : "0",
       })
     )
       .finally(() => {
@@ -121,14 +120,18 @@ const NewDeckForm = props => {
               tokenSeparators={[","]}
               data-testid="inputSelect"
               value={formValues.tags}
-              maxTagCount="3"
-              allowClear="true"
+              maxTagCount={3}
+              allowClear={true}
             >
               {children}
             </Select>
           </Form.Item>
           <Form.Item>
-            <Checkbox data-testid="inputCheck" onChange={changeCheckbox}>
+            <Checkbox
+              data-testid="inputCheck"
+              onChange={changeCheckbox}
+              checked={formValues.isPublic}
+            >
               Public
             </Checkbox>
           </Form.Item>
