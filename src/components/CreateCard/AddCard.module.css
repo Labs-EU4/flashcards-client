@@ -31,6 +31,10 @@
   align-items: center;
   margin-top: 12px;
 }
+/* 
+.cardDeck{
+  padding: 0 90px 0 0;
+} */
 
 
 @media (max-width: 500px) {
