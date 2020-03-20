@@ -16,26 +16,14 @@
 .mappedCard {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-left: 180px;
-  margin-right: 40px;
+  justify-content: center;
 }
 
 .card {
   width: 30%;
   margin-bottom: 15px;
+  margin-right: 14px;
 }
-
-.sort {
-  display: flex;
-  align-items: center;
-  margin-top: 12px;
-}
-/* 
-.cardDeck{
-  padding: 0 90px 0 0;
-} */
-
 
 @media (max-width: 500px) {
   .card {
@@ -87,4 +75,22 @@
     align-items: center;
     padding: 0 30px;
   }
+}
+
+.header {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 15px;
+  min-width: 70%;
+  align-self: center;
+}
+.mainContent {
+  height: 500px;
+  display: flex;
+}
+
+.deckName {
+  font-size: 30px;
+  margin-left: 240px;
+  font-family: Arial, Helvetica, sans-serif;
 }
