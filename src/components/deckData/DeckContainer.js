@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import DeckCard from "./DeckCard";
+import DeckCard from "./DeckCard.js";
 import {
   getAllPersonalDecks,
   deleteDeck,
