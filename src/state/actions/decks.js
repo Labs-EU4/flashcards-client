@@ -77,7 +77,6 @@ export const getAllDecks = () => async dispatch => {
 export const deleteDeck = id => async dispatch => {
   try {
     const response = await axiosWithAuth().delete("/decks/" + id);
-    console.log(response);
     dispatch({
       type: DELETE_DECK,
       payload: id,
