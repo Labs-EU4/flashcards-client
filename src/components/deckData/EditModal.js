@@ -7,8 +7,7 @@ export default function EditModal({visible, deckValues, setVisible}) {
     <Modal
       visible={visible}
       title="Edit Deck"
-      onOk={() => null}
-      onCancel={() => null}
+      onCancel={() => setVisible(false)}
       footer={null}
     >
       <EditForm deckValues={deckValues} setVisible={setVisible} />

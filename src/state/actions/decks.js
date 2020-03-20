@@ -38,7 +38,6 @@ export const fetchDeckById = deckId => async dispatch => {
 export const getPublicDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks/public");
-    console.log("public", response);
     dispatch({
       type: GET_PUBLIC_DECKS,
       payload: response.data.data,
@@ -51,7 +50,6 @@ export const getPublicDecks = () => async dispatch => {
 export const getPersonalDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks");
-    console.log("personal", response);
     dispatch({
       type: GET_PERSONAL_DECKS,
       payload: response.data.data,
@@ -76,7 +74,7 @@ export const getAllDecks = () => async dispatch => {
 
 export const deleteDeck = id => async dispatch => {
   try {
-    const response = await axiosWithAuth().delete("/decks/" + id);
+    await axiosWithAuth().delete("/decks/" + id);
     dispatch({
       type: DELETE_DECK,
       payload: id,

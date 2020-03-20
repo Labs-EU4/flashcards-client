@@ -3,20 +3,20 @@ import {Form, Input, Button, Alert, Checkbox, Select, Spin} from "antd";
 import {useDispatch} from "react-redux";
 import {deckTags} from "../../utils/deckTags";
 import {updateDeck} from "../../state/actions/decks";
+import diffArrays from "../../utils/diffArrays";
 import styles from "../../components/RecentDecks/RecentDecks.module.css";
 
 const NewDeckForm = props => {
-  const [formValues, setFormValues] = useState(
-    /* props.deckValues */ {
-      name: props.deckValues.deck_name,
-      tags:
-        props.deckValues.tags[0] === null
-          ? []
-          : props.deckValues.tags.map(tag => `${tag.id - 1}`),
-      isPublic: props.deckValues.public,
-    }
-  );
-
+  const {getFieldsValue} = props.form;
+  const initialValues = {
+    name: props.deckValues.deck_name,
+    tags:
+      props.deckValues.tags[0] === null
+        ? []
+        : props.deckValues.tags.map(tag => `${tag.id}`),
+    isPublic: props.deckValues.public,
+  };
+  const [formValues, setFormValues] = useState(initialValues);
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -28,17 +28,12 @@ const NewDeckForm = props => {
     e.preventDefault();
     const numberTags = formValues.tags.map(x => parseInt(x));
     const beforeTags =
-      props.deckValues.tags[0] === null
-        ? []
-        : props.deckValues.tags.map(tag => tag.id - 1);
-    const removeTags = beforeTags
-      .filter(tag => !numberTags.includes(tag))
-      .map(tag => tag + 1);
-    const addTags = numberTags
-      .filter(tag => !beforeTags.includes(tag))
-      .map(tag => tag + 1);
-    setState({...state, loading: true});
-    console.log(state);
+      props.deckValues.tags[0] === null ? [] : props.deckValues.tags.map(tag => tag.id);
+    const [removeTags, addTags] = diffArrays(beforeTags, numberTags);
+    setState({
+      ...state,
+      loading: true,
+    });
     dispatch(
       updateDeck(props.deckValues.deck_id, {
         name: formValues.name,
@@ -55,13 +50,13 @@ const NewDeckForm = props => {
           ...state,
           success: true,
         });
-        setFormValues({
-          name: "",
-          tags: [],
-          isPublic: false,
-        });
-        setTimeout(() => props.setVisible(false), 3000);
-        console.log(state);
+        setTimeout(() => {
+          props.setVisible(false);
+          setState({
+            success: null,
+            loading: false,
+          });
+        }, 3000);
       })
       .catch(err => {
         setState({
@@ -90,8 +85,8 @@ const NewDeckForm = props => {
   const {getFieldDecorator} = props.form;
   const children = [];
   const options = deckTags;
-  options.forEach((curr, index) => {
-    children.push(<Option key={index}>{curr}</Option>);
+  options.forEach(curr => {
+    children.push(<Option key={curr.id}>{curr.name}</Option>);
   });
   return (
     <div className={styles.containerupdateDeck}>

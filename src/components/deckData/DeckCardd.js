@@ -1,13 +1,11 @@
 import React, {useState} from "react";
-import {Card, Avatar} from "antd";
+import {Card, Avatar, Icon} from "antd";
 import {Link} from "react-router-dom";
-import {EditOutlined, DeleteOutlined, PlayCircleOutlined} from "@ant-design/icons";
 import * as styles from "./deckCard.module.css";
 import EditModal from "./EditModal";
 const {Meta} = Card;
 
 export default function DeckCard({deck, deleteDeck, updateDeck}) {
-  console.log("/n/n/n/", deck);
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -15,10 +13,10 @@ export default function DeckCard({deck, deleteDeck, updateDeck}) {
         style={{width: 300}}
         actions={[
           <Link to={`/play/${deck.deck_id}`}>
-            <PlayCircleOutlined key="play" />
+            <Icon type="play-circle" />
           </Link>,
-          <EditOutlined onClick={() => setVisible(!visible)} key="edit" />,
-          <DeleteOutlined onClick={e => deleteDeck(deck.deck_id)} key="delete" />,
+          <Icon type="edit" onClick={() => setVisible(!visible)} />,
+          <Icon type="delete" onClick={e => deleteDeck(deck.deck_id)} />,
         ]}
         className={styles.deckCard}
       >
