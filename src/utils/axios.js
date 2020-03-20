@@ -16,6 +16,7 @@ export const justAxios = () => {
 
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
+  console.log(token);
 
   const instance = axios.create({
     baseURL,

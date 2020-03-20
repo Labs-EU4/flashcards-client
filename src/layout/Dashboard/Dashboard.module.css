@@ -212,3 +212,24 @@
     margin-top: 12vh;
   }
 }
+
+.dashboardLeft {
+  width: 235px;
+  z-index: 1;
+}
+.dashboardLeftCollapsed {
+  width: 80px;
+  z-index: 1;
+}
+
+@media (max-width: 500px) {
+  .siderCollapsed,
+  .sider, .dashboardLeft {
+    z-index: 99;
+    position: relative;
+    width: 100%;
+    /* width: 235px; */
+    z-index: 1;
+  }
+}
+
