@@ -39,7 +39,7 @@ export function personalDecksReducer(state = initialDecks, action) {
     case READ_DECK:
       return action.payload;
     case CREATE_DECK:
-      return [...state, action.payload.deck];
+      return [...state, action.payload];
     case DELETE_DECK:
       return state.filter(deck => deck.id !== action.payload);
     default:

@@ -6,6 +6,7 @@ import {
   READ_DECK,
   DELETE_DECK,
   GET_DECK_BY_ID,
+  CREATE_DECK,
 } from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
@@ -76,6 +77,19 @@ export const deleteDeck = id => async dispatch => {
       type: DELETE_DECK,
       payload: id,
     });
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const createDeck = payload => async dispatch => {
+  try {
+    const response = await axiosWithAuth().post(`/decks`, payload);
+    dispatch({
+      type: CREATE_DECK,
+      payload: response.data.deck,
+    });
+    return response;
   } catch (err) {
     throw err;
   }
