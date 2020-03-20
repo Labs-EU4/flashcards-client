@@ -1,10 +1,8 @@
 import React from "react";
 import * as rtl from "@testing-library/react";
-import EditForm from "./EditForm";
-import {Provider} from "react-redux";
-import store from "../../state/store";
+import EditForm from "../EditForm";
 import {act} from "react-dom/test-utils";
-import * as actions from "../../state/actions/decks";
+import * as actions from "../../../state/actions/decks";
 
 //Dispatch mock
 const mockDispatch = jest.fn().mockResolvedValue("YAY!");
@@ -15,7 +13,7 @@ jest.mock("react-redux", () => ({
 
 //Action mock
 const mockUpdateDeck = jest.fn();
-jest.mock("../../state/actions/decks");
+jest.mock("../../../state/actions/decks");
 actions.updateDeck = mockUpdateDeck;
 // cleaning up
 afterEach(() => {

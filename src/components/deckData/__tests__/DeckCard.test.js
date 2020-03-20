@@ -1,6 +1,6 @@
 import React from "react";
 import {render, fireEvent, screen} from "@testing-library/react";
-import DeckCard from "./DeckCard";
+import DeckCard from "../DeckCard";
 import {BrowserRouter} from "react-router-dom";
 import {act} from "react-dom/test-utils";
 
