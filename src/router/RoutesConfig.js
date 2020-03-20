@@ -14,7 +14,6 @@ import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
 import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
-import Test from "../components/NewDeckForm/NewDeckForm";
 import decode from "jwt-decode";
 /*
   Routes config must be ordered the same way you'd 
