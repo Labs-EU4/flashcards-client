@@ -91,15 +91,18 @@
 }
 
 .navItemSeleted {
-  /* padding: 0; */
   width: 100% !important;
   background-color: #e6f6ff;
   border-right: 3px solid #2090ff;
   font-size: 1rem;
 }
 
+.navItem {
+  padding: 0 20px;
+}
+
 .menuItem {
-  padding: 0;
+  padding: 0 !important;
   width: 100%;
 }
 

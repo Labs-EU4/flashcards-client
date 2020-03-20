@@ -7,6 +7,7 @@ import {
   DELETE_DECK,
   GET_DECK_BY_ID,
   UPDATE_DECK,
+  CREATE_DECK,
 } from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
@@ -30,7 +31,6 @@ export const fetchDeckById = deckId => async dispatch => {
     const {deck} = response.data;
     dispatch(action(SET_DECK_IN_SESSION, deck));
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -67,7 +67,6 @@ export const getAllPersonalDecks = () => async dispatch => {
       payload: response.data.data,
     });
   } catch (err) {
-    console.log(err);
     throw err;
   }
 };
@@ -81,6 +80,19 @@ export const deleteDeck = id => async dispatch => {
     });
   } catch (err) {
     console.log(err);
+    throw err;
+  }
+};
+
+export const createDeck = payload => async dispatch => {
+  try {
+    const response = await axiosWithAuth().post(`/decks`, payload);
+    dispatch({
+      type: CREATE_DECK,
+      payload: response.data.deck,
+    });
+    return response;
+  } catch (err) {
     throw err;
   }
 };
