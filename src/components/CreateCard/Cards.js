@@ -14,7 +14,7 @@ const Search = Input.Search;
 const Option = Select.Option;
 
 function Cards(props) {
-  let [cardId, setCardId] = useState(0);
+  let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -27,12 +27,12 @@ function Cards(props) {
     setShow(false);
   }
 
-  async function toggleModal(id) {
-    await setCardId(id);
+  async function toggleModal(current) {
+    await setCard(current);
     setVisible(!visible);
   }
 
-  function toggleMode(id) {
+  function toggleMode() {
     setShow(!show);
   }
 
@@ -91,10 +91,11 @@ function Cards(props) {
               title="Are you sure you want to edit this card?"
               visible={visible}
               footer={null}
+              destroyOnClose={true}
               // onOk={handleOk}
               onCancel={handleCancel}
             >
-              <UpdateCard toggleModal={toggleModal} cardId={cardId} />
+              <UpdateCard toggleModal={toggleModal} card={card} />
             </Modal>
             <div className={styles.mappedCard}>
               {props.currentDeck.flashcards &&
@@ -114,7 +115,7 @@ function Cards(props) {
                               key="delete"
                               onClick={() => handleDelete(currentCard.id)}
                             />,
-                            <EditOutlined onClick={() => toggleModal(currentCard.id)} />,
+                            <EditOutlined onClick={() => toggleModal(currentCard)} />,
                           ]}
                         >
                           <Meta

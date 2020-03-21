@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.module.css";
 import {updateCard} from "../../state/actions/CardAction";
@@ -6,18 +6,25 @@ import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
 
 function UpdateCard(props) {
-  console.log(props.cardId, "card id");
+  // console.log(props.card.id, "card id");
   const [formValues, setFormValues] = useState({
-    deckId: "",
     questionText: "",
     answerText: "",
   });
+
+  useEffect(() => {
+    setFormValues({
+      questionText: props.card.question,
+      answerText: props.card.answer,
+    });
+  }, [props.card.answer, props.card.question]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const {getFieldDecorator} = props.form;
 
   const handleChange = e => {
+    console.log(formValues);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -25,19 +32,16 @@ function UpdateCard(props) {
   };
 
   const handleSubmit = e => {
-    console.log(props);
     e.preventDefault();
     const newCard = {
       deckId: props.currentDeckState.deck_id,
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
-    console.log(newCard);
 
     setLoading(true);
-    console.log(props.id);
 
-    props.updateCard(props.cardId, newCard);
+    props.updateCard(props.card.id, newCard);
     props.toggleModal();
     setLoading(false);
   };
@@ -49,6 +53,8 @@ function UpdateCard(props) {
           <Form.Item>
             {getFieldDecorator("questionText", {
               //rules are for the form validation
+              initialValue: formValues.questionText,
+
               rules: [
                 {required: true, message: "Please enter your question here"},
                 {
@@ -60,7 +66,7 @@ function UpdateCard(props) {
               <Input
                 name="questionText"
                 type="string"
-                setFieldsValue={formValues.questionText}
+                setfieldsvalue={formValues.questionText}
                 //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Question text goes here"
@@ -70,6 +76,7 @@ function UpdateCard(props) {
           </Form.Item>
           <Form.Item>
             {getFieldDecorator("answerText", {
+              initialValue: formValues.answerText,
               //rules are for the form validation
               rules: [
                 {required: true, message: "Please input a correct answer"},
@@ -82,7 +89,7 @@ function UpdateCard(props) {
               <Input
                 name="answerText"
                 type="string"
-                setFieldsValue={formValues.answerText}
+                setfieldsvalue={formValues.answerText}
                 //form icon in the answer field, change type for different icons, see antdesign docs
                 prefix={<Icon type="edit" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Enter a correct answer"
