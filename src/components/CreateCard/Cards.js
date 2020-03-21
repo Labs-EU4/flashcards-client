@@ -14,6 +14,7 @@ const Search = Input.Search;
 const Option = Select.Option;
 
 function Cards(props) {
+  let [cardId, setCardId] = useState(0);
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -26,11 +27,12 @@ function Cards(props) {
     setShow(false);
   }
 
-  function toggleModal() {
+  async function toggleModal(id) {
+    await setCardId(id);
     setVisible(!visible);
   }
 
-  function toggleMode() {
+  function toggleMode(id) {
     setShow(!show);
   }
 
@@ -85,6 +87,15 @@ function Cards(props) {
                 <AddCard toggleMode={toggleMode} />
               </Modal>
             </Spin>
+            <Modal
+              title="Are you sure you want to edit this card?"
+              visible={visible}
+              footer={null}
+              // onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <UpdateCard toggleModal={toggleModal} cardId={cardId} />
+            </Modal>
             <div className={styles.mappedCard}>
               {props.currentDeck.flashcards &&
               props.currentDeck.flashcards[0] !== null ? (
@@ -103,7 +114,7 @@ function Cards(props) {
                               key="delete"
                               onClick={() => handleDelete(currentCard.id)}
                             />,
-                            <EditOutlined onClick={toggleModal} />,
+                            <EditOutlined onClick={() => toggleModal(currentCard.id)} />,
                           ]}
                         >
                           <Meta
@@ -112,15 +123,6 @@ function Cards(props) {
                             description={currentCard.answer}
                           />
                         </Card>
-                        <Modal
-                          title="Are you sure you want to edit this card?"
-                          visible={visible}
-                          footer={null}
-                          // onOk={handleOk}
-                          onCancel={handleCancel}
-                        >
-                          <UpdateCard toggleModal={toggleModal} cardId={currentCard.id} />
-                        </Modal>
                       </div>
                     );
                   }
