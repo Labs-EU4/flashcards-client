@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.module.css";
-import {axiosWithAuth} from "../../utils/axios";
 import {updateCard} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
 
 function UpdateCard(props) {
+  console.log(props.cardId, "card id");
   const [formValues, setFormValues] = useState({
     deckId: "",
     questionText: "",

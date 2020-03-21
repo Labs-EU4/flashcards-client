@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {axiosWithAuth} from "../../utils/axios";
 import {Card, Button, Icon, Modal, Input, Select, Avatar, Spin} from "antd";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
@@ -37,9 +36,10 @@ function Cards(props) {
 
   //   Fetch cards after authentication
   useEffect(() => {
-    props.getDeckId(1);
+    // props.getDeckId(1);
     console.log(props.currentDeck.flashcards);
-  }, [props]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Function for deleting cards
   const handleDelete = id => {
@@ -79,6 +79,7 @@ function Cards(props) {
                 title="Want a new card?"
                 visible={show}
                 footer={null}
+                destroyOnClose={true}
                 onCancel={handleAdd}
               >
                 <AddCard toggleMode={toggleMode} />
@@ -86,39 +87,43 @@ function Cards(props) {
             </Spin>
             <div className={styles.mappedCard}>
               {props.currentDeck.flashcards &&
-              props.currentDeck.flashcards.length !== 0 ? (
+              props.currentDeck.flashcards[0] !== null ? (
                 props.currentDeck.flashcards.map(currentCard => {
-                  return (
-                    <div className={styles.card}>
-                      <Card
-                        data-testid="cardHolder"
-                        style={{width: "100%", marginTop: 16}}
-                        className={styles.innerCard}
-                        actions={[
-                          <DeleteOutlined
-                            key="delete"
-                            onClick={() => handleDelete(currentCard.id)}
-                          />,
-                          <EditOutlined onClick={toggleModal} />,
-                        ]}
-                      >
-                        <Meta
-                          avatar={<Avatar src="logo192.png" />}
-                          title={currentCard.question}
-                          description={currentCard.answer}
-                        />
-                      </Card>
-                      <Modal
-                        title="Are you sure you want to edit this card?"
-                        visible={visible}
-                        footer={null}
-                        // onOk={handleOk}
-                        onCancel={handleCancel}
-                      >
-                        <UpdateCard toggleModal={toggleModal} cardId={currentCard.id} />
-                      </Modal>
-                    </div>
-                  );
+                  if (currentCard === null) {
+                    return null;
+                  } else {
+                    return (
+                      <div className={styles.card}>
+                        <Card
+                          data-testid="cardHolder"
+                          style={{width: "100%", marginTop: 16}}
+                          className={styles.innerCard}
+                          actions={[
+                            <DeleteOutlined
+                              key="delete"
+                              onClick={() => handleDelete(currentCard.id)}
+                            />,
+                            <EditOutlined onClick={toggleModal} />,
+                          ]}
+                        >
+                          <Meta
+                            avatar={<Avatar src="logo192.png" />}
+                            title={currentCard.question}
+                            description={currentCard.answer}
+                          />
+                        </Card>
+                        <Modal
+                          title="Are you sure you want to edit this card?"
+                          visible={visible}
+                          footer={null}
+                          // onOk={handleOk}
+                          onCancel={handleCancel}
+                        >
+                          <UpdateCard toggleModal={toggleModal} cardId={currentCard.id} />
+                        </Modal>
+                      </div>
+                    );
+                  }
                 })
               ) : (
                 <h1>THERE ARE NO CARDS TO DISPLAY</h1>

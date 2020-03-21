@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import {Icon, Popover, Button} from "antd";
 import styles from "./DeckList.module.css";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {getDeckId} from "../../state/actions/CardAction";
 
 export default function DeckCard({deck}) {
+  let history = useHistory();
+  let dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   function hide() {
@@ -14,8 +18,17 @@ export default function DeckCard({deck}) {
     setVisible(!visible);
   }
 
+  function openDeck(id) {
+    dispatch(getDeckId(id));
+    history.push("/cards");
+  }
+
   return (
-    <div className={styles.deckCard} data-testid="deck_card_container">
+    <div
+      className={styles.deckCard}
+      data-testid="deck_card_container"
+      onClick={() => console.log("hi")}
+    >
       <div className={styles.deckOverview}>
         <div className={styles.header}>
           <h2 data-testid="deck_name">{deck.deck_name}</h2>
@@ -29,6 +42,7 @@ export default function DeckCard({deck}) {
           </div>
         </div>
         <div className={styles.actions}>
+          <button onClick={() => openDeck(deck.deck_id)}>open deck</button>
           <Icon type="like" style={{color: "rgba(0,0,0,.25)"}} data-testid="like" />
           <Icon type="dislike" style={{color: "rgba(0,0,0,.25)"}} data-testid="dislike" />
           <Popover
