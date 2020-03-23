@@ -2,12 +2,9 @@ import React, {useState} from "react";
 import {Icon, Popover, Button} from "antd";
 import styles from "./DeckList.module.css";
 import {Link, useHistory} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {getDeckId} from "../../state/actions/CardAction";
 
 export default function DeckCard({deck}) {
   let history = useHistory();
-  let dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   function hide() {
@@ -75,15 +72,6 @@ export default function DeckCard({deck}) {
           <Icon type="star" style={{color: "rgba(0,0,0,.25)"}} />
         </div>
       </div>
-      {/* <div className={styles.horizontalList}>
-        {deck.flashcards.map(card => {
-          return (
-            <Card title="Question" className={styles.card}>
-              {card.question}
-            </Card>
-          );
-        })}
-      </div> */}
     </div>
   );
 }

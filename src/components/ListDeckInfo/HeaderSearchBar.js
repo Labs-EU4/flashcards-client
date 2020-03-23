@@ -12,11 +12,9 @@ export default function HeaderSearchBar({page}) {
         <h1 className={styles.heading} data-testid="page">
           {page}
         </h1>
-        {/* <div className={styles.filters}> */}
         <Search
           placeholder="Search"
           onSearch={value => console.log(value)}
-          // style={{minWidth: "100px", maxWidth: "500px"}}
           style={{width: "240px"}}
         />
         <div>
@@ -26,7 +24,6 @@ export default function HeaderSearchBar({page}) {
             <Option value="Company">Option2</Option>
           </Select>
         </div>
-        {/* </div> */}
       </div>
     </div>
   );
