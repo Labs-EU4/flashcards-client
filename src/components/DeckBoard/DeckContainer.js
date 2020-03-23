@@ -42,7 +42,11 @@ export const DeckContainer = ({
   );
 };
 
-export default connect(state => state, {
+const mapStateToProps = state => ({
+  personalDeckState: state.deckState.personalDeckState,
+});
+
+export default connect(mapStateToProps, {
   getAllPersonalDecks,
   deleteDeck,
   getDeckById,

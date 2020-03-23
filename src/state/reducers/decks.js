@@ -1,3 +1,4 @@
+import {combineReducers} from "redux";
 import * as types from "../types";
 
 const initialDecks = [];
@@ -39,3 +40,10 @@ export function currentDeckReducer(state = initialCurrentDeckState, action) {
       return state;
   }
 }
+
+const decksStateReducer = combineReducers({
+  publicDeckState: publicDecksReducer,
+  personalDeckState: personalDecksReducer,
+  currentDeckState: currentDeckReducer,
+});
+export default decksStateReducer;
