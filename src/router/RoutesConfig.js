@@ -12,6 +12,8 @@ import Public from "../pages/PublicDecks/PublicDecks";
 import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
+import Cards from "../components/CreateCard/Cards";
+
 import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
 import decode from "jwt-decode";
@@ -59,10 +61,16 @@ const RoutesConfig = [
     component: Login,
   },
   {
+    path: "/deck/:id",
+    render: () => createPrivateRoute(Cards),
+  },
+
+  {
     path: "/play/:deckId",
     //Unprotected route takes path and a component prop
     component: PlayMode,
   },
+
   {
     path: "/register",
     component: Register,
@@ -87,10 +95,12 @@ const RoutesConfig = [
     path: "/reset-password",
     component: ForgotPassword,
   },
+
   {
     path: "/reset/:id",
     component: ResetPassword,
   },
+
   {
     path: "*",
     component: PageNotFound,

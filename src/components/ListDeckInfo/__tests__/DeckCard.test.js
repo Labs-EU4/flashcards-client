@@ -9,6 +9,21 @@ let mockDeck = {
   flashcards: ["just", "mock", "data"],
 };
 
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+    location: {
+      pathname: "random/text/okay",
+    },
+  }),
+}));
+
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: () => mockDispatch,
+}));
+
 const DeckName = () => {
   return wrapper.queryByTestId("deck_name");
 };

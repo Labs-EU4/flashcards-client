@@ -91,7 +91,6 @@ export const createDeck = payload => async dispatch => {
       type: CREATE_DECK,
       payload: response.data.deck,
     });
-    return response;
   } catch (err) {
     throw err;
   }

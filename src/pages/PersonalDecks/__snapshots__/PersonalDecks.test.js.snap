@@ -8,18 +8,18 @@ exports[`renders without crashing 1`] = `
     <div
       class="searchContainer"
     >
-      <h1
-        class="heading"
-        data-testid="page"
-      >
-        Deck Library
-      </h1>
       <div
-        class="filters"
+        class="cover"
       >
+        <h1
+          class="heading"
+          data-testid="page"
+        >
+          Deck Library
+        </h1>
         <span
           class="ant-input-search ant-input-affix-wrapper"
-          style="width: 20vw;"
+          style="width: 240px;"
         >
           <input
             class="ant-input"
@@ -341,18 +341,18 @@ exports[`renders without crashing v2 1`] = `
             <div
               class="searchContainer"
             >
-              <h1
-                class="heading"
-                data-testid="page"
-              >
-                Deck Library
-              </h1>
               <div
-                class="filters"
+                class="cover"
               >
+                <h1
+                  class="heading"
+                  data-testid="page"
+                >
+                  Deck Library
+                </h1>
                 <span
                   class="ant-input-search ant-input-affix-wrapper"
-                  style="width: 20vw;"
+                  style="width: 240px;"
                 >
                   <input
                     class="ant-input"
