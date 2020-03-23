@@ -9,13 +9,13 @@ import AddCard from "./AddCard";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
+import {useHistory} from "react-router-dom";
 
 const {Meta} = Card;
 
 function Cards(props) {
-  console.log(props);
+  let history = useHistory();
   let {id} = useParams();
-  console.log(id, "params id");
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
@@ -73,13 +73,17 @@ function Cards(props) {
                         data-testid="cardHolder"
                         style={{width: "100%", marginTop: 16}}
                         className={styles.innerCard}
-                        actions={[
-                          <DeleteOutlined
-                            key="delete"
-                            onClick={() => handleDelete(currentCard.id)}
-                          />,
-                          <EditOutlined onClick={() => toggleModal(currentCard)} />,
-                        ]}
+                        actions={
+                          history.location.state.source === "personal"
+                            ? [
+                                <DeleteOutlined
+                                  key="delete"
+                                  onClick={() => handleDelete(currentCard.id)}
+                                />,
+                                <EditOutlined onClick={() => toggleModal(currentCard)} />,
+                              ]
+                            : null
+                        }
                       >
                         <Meta
                           avatar={<Avatar src="logo192.png" />}
