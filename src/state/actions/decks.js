@@ -6,6 +6,7 @@ import {
   READ_DECK,
   DELETE_DECK,
   GET_DECK_BY_ID,
+  UPDATE_DECK,
   CREATE_DECK,
 } from "../types";
 import {axiosWithAuth} from "../../utils/axios";
@@ -58,7 +59,7 @@ export const getPersonalDecks = () => async dispatch => {
   }
 };
 
-export const getAllDecks = () => async dispatch => {
+export const getAllPersonalDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks");
     dispatch({
@@ -78,6 +79,7 @@ export const deleteDeck = id => async dispatch => {
       payload: id,
     });
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };
@@ -109,4 +111,16 @@ export const getDeckById = id => async dispatch => {
 
 export const editCurrentDeck = id => {
   axiosWithAuth().get("/decks" + id);
+};
+
+export const updateDeck = (id, deck) => async dispatch => {
+  try {
+    const response = await axiosWithAuth().put("/decks/" + id, deck);
+    dispatch({
+      type: UPDATE_DECK,
+      payload: response.data,
+    });
+  } catch (err) {
+    throw err;
+  }
 };
