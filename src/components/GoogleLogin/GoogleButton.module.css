@@ -7,8 +7,11 @@
   justify-content: center;
 }
 
-.google_icon {
-  width: 1.8rem;
-  height: 1.8rem;
+.googleIcon {
+  width: 50px !important;
   margin: 0 10px;
 }
+/* 
+.gstyle {
+  background-color: red;
+} */
