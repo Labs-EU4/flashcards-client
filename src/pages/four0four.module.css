@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #0783e9;
+}
+
+.resolve {
+    color: #0783e9;
+}
+
+.heading {
+    font-size: 17rem;
+    margin: 0;
+    color: #0783e9;
+}
+
+@media (max-width: 600px){
+    .heading {
+        font-size: 10rem;
+    }
+}
