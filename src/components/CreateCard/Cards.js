@@ -51,7 +51,7 @@ function Cards(props) {
 
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
-    <Dashboard className>
+    <>
       <div>
         <div className={styles.header}>
           <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
@@ -122,7 +122,7 @@ function Cards(props) {
           <UpdateCard toggleModal={toggleModal} card={card} />
         </Modal>
       </div>
-    </Dashboard>
+    </>
   );
 }
 

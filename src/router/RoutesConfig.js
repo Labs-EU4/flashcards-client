@@ -12,7 +12,7 @@ import Public from "../pages/PublicDecks/PublicDecks";
 import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
-import Cards from "../components/CreateCard/Cards";
+import DeckView from "../pages/ViewDeckCards/DeckCards";
 
 import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
@@ -62,7 +62,7 @@ const RoutesConfig = [
   },
   {
     path: "/deck/:id",
-    render: () => createPrivateRoute(Cards),
+    render: () => createPrivateRoute(DeckView),
   },
 
   {
