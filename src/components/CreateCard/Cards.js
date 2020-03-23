@@ -56,7 +56,7 @@ function Cards(props) {
     <Dashboard className>
       <div>
         <div className={styles.header}>
-          <p className={styles.deckName}>Deck name</p>
+          <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
           <HeaderSearchBar />
           <Button className={styles.btn} type="dashed" onClick={toggleMode}>
             Add a card
