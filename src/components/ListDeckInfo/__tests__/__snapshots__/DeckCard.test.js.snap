@@ -39,6 +39,9 @@ exports[`renders without crashing 1`] = `
       <div
         class="actions"
       >
+        <button>
+          open deck
+        </button>
         <i
           aria-label="icon: like"
           class="anticon anticon-like"

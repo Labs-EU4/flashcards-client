@@ -220,9 +220,7 @@ exports[`Card component renders without crashing 1`] = `
             >
               <p
                 class="deckName"
-              >
-                Deck name
-              </p>
+              />
               <div
                 class="searchContainer"
               >
