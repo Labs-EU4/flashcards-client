@@ -1,18 +1,14 @@
-/* if ("function" === typeof importScripts) {
+if ("function" === typeof importScripts) {
   importScripts(
-    "https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js"
+    "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
   );
 
   // Global workbox
   if (workbox) {
-    console.log("Workbox is loaded", workbox);
-    const {registerRoute} = workbox.routing;
-    const {CacheFirst, staleWhileRevalidate} = workbox.strategies;
-    const {CacheableResponse} = workbox.cacheableResponse;
-    self.__WB_MANIFEST;
+    console.log("Workbox is loaded");
 
     // Disable logging
-    workbox.setConfig({debug: false});
+    workbox.setConfig({debug: true});
 
     //`generateSW` and `generateSWString` provide the option
     // to force update an exiting service worker.
@@ -20,17 +16,16 @@
     // manually overriding the skipWaiting();
     self.addEventListener("install", event => {
       self.skipWaiting();
-      window.location.reload();
     });
 
     // Manual injection point for manifest files.
     // All assets under build/ and 5MB sizes are precached.
-    workbox.precaching.precacheAndRoute([]);
-
+    workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+    workbox.precaching.cleanupOutdatedCaches();
     // Font caching
-    registerRoute(
-      new RegExp("https://fonts.(?:.googleapis|gstatic).com/(.*)"),
-      workbox.strategies.cacheFirst({
+    workbox.routing.registerRoute(
+      new RegExp("https://fonts.(?:googleapis|gstatic).com/(.*)"),
+      new workbox.strategies.CacheFirst({
         cacheName: "googleapis",
         plugins: [
           new workbox.expiration.Plugin({
@@ -41,13 +36,13 @@
     );
 
     // Image caching
-    registerRoute(
-      /\.(?:png|gif|jpg|jpeg|svg)$/,
-      workbox.strategies.cacheFirst({
+    workbox.routing.registerRoute(
+      /\.(?:png|gif|jpg|jpeg|svg|webp)$/,
+      new workbox.strategies.CacheFirst({
         cacheName: "images",
         plugins: [
           new workbox.expiration.Plugin({
-            maxEntries: 600,
+            maxEntries: 60,
             maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
           }),
         ],
@@ -55,9 +50,9 @@
     );
 
     // JS, CSS caching
-    registerRoute(
+    workbox.routing.registerRoute(
       /\.(?:js|css|html)$/,
-      staleWhileRevalidate({
+      new workbox.strategies.StaleWhileRevalidate({
         cacheName: "static-resources",
         plugins: [
           new workbox.expiration.Plugin({
@@ -68,23 +63,23 @@
       })
     );
 
-    // API response caching
-    registerRoute(
-      /api/,
-      staleWhileRevalidate({
+    // Runtime response caching
+    workbox.routing.registerRoute(
+      /api\/(?:decks|cards|users|auth)/,
+      new workbox.strategies.StaleWhileRevalidate({
         cacheName: "api-cache",
         plugins: [
-          new CacheableResponse({
-            statuses: [200],
-            headers: {
-              "X-Is-Cacheable": "true",
-            },
+          new workbox.cacheableResponse.Plugin({
+            statuses: [0, 200],
+          }),
+          new workbox.expiration.Plugin({
+            maxEntries: 60,
+            maxAgeSeconds: 20 * 24 * 60 * 60, // 20 Days
           }),
         ],
       })
     );
   } else {
-    console.error("Workbox could not be loaded. No offline support.");
+    console.error("Workbox could not be loaded. No offline support");
   }
 }
- */
