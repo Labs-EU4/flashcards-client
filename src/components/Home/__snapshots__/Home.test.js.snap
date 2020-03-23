@@ -71,7 +71,7 @@ exports[`should take a snapshot 1`] = `
               >
                 <a
                   aria-current="page"
-                  class="navItemSeleted"
+                  class="navItem navItemSeleted"
                   href="/"
                 >
                   <i
@@ -99,11 +99,12 @@ exports[`should take a snapshot 1`] = `
                 </a>
               </li>
               <li
-                class="ant-menu-item"
+                class="ant-menu-item menuItem"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
                 <a
+                  class="navItem"
                   href="/deck-library"
                 >
                   <i
@@ -131,11 +132,12 @@ exports[`should take a snapshot 1`] = `
                 </a>
               </li>
               <li
-                class="ant-menu-item"
+                class="ant-menu-item menuItem"
                 role="menuitem"
                 style="padding-left: 24px;"
               >
                 <a
+                  class="navItem"
                   href="/discover-decks"
                 >
                   <i
@@ -215,7 +217,20 @@ exports[`should take a snapshot 1`] = `
           <div
             class="leftContent"
             data-testid="content-left"
-          />
+          >
+            <div
+              class="DeckCardContainer"
+            >
+              <h1
+                class="heading"
+              >
+                My Decks
+              </h1>
+              <h5>
+                You have no decks
+              </h5>
+            </div>
+          </div>
           <div
             class="rightContent"
             data-testid="content-right"
