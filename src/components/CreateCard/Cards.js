@@ -52,90 +52,78 @@ function Cards(props) {
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
 
-    <div className={styles.cardDeck}>
-      <Dashboard className>
-        <div className={styles.cardDeck}>
-          <div className={styles.container}>
-            <div className={styles.title}>
-              <h2 className={styles.heading}>Deck name</h2>
-              <Search
-                placeholder="Search"
-                onSearch={value => console.log(value)}
-                style={{width: "240px"}}
-                className={styles.search}
-              />
-              <div className={styles.sort}>
-                <h2 className={styles.describe}>Sort By:</h2>
-                <Select defaultValue="Home" style={{width: "150px", marginLeft: "10px"}}>
-                  <Option value="Home">Option 1</Option>
-                  <Option value="Company">Option2</Option>
-                </Select>
-              </div>
-
-              <Button className={styles.btn} type="dashed" onClick={toggleMode}>
-                Add a card
-              </Button>
-            </div>
-            <Spin spinning={loading} delay={300}>
-              <Modal
-                title="Want a new card?"
-                visible={show}
-                footer={null}
-                destroyOnClose={true}
-                onCancel={handleAdd}
-              >
-                <AddCard toggleMode={toggleMode} />
-              </Modal>
-            </Spin>
-            <Modal
-              title="Are you sure you want to edit this card?"
-              visible={visible}
-              footer={null}
-              destroyOnClose={true}
-              // onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <UpdateCard toggleModal={toggleModal} card={card} />
-            </Modal>
-            <div className={styles.mappedCard}>
-              {props.currentDeck.flashcards &&
-              props.currentDeck.flashcards[0] !== null ? (
-                props.currentDeck.flashcards.map(currentCard => {
-                  if (currentCard === null) {
-                    return null;
-                  } else {
-                    return (
-                      <div className={styles.card}>
-                        <Card
-                          data-testid="cardHolder"
-                          style={{width: "100%", marginTop: 16}}
-                          className={styles.innerCard}
-                          actions={[
-                            <DeleteOutlined
-                              key="delete"
-                              onClick={() => handleDelete(currentCard.id)}
-                            />,
-                            <EditOutlined onClick={() => toggleModal(currentCard)} />,
-                          ]}
-                        >
-                          <Meta
-                            avatar={<Avatar src="logo192.png" />}
-                            title={currentCard.question}
-                            description={currentCard.answer}
-                          />
-                        </Card>
-                      </div>
-                    );
-                  }
-                })
-              ) : (
-                <h1>THERE ARE NO CARDS TO DISPLAY</h1>
-              )}
-            </div>
+    // <div className={styles.cardDeck}>
+    <Dashboard className>
+      <div>
+        <div className={styles.header}>
+          <p className={styles.deckName}>Deck name</p>
+          <HeaderSearchBar />
+          <Button className={styles.btn} type="dashed" onClick={toggleMode}>
+            Add a card
+          </Button>
+        </div>
+        <div className={styles.mainContent}>
+          <div className={styles.mappedCard}>
+            {props.currentDeck.flashcards && props.currentDeck.flashcards[0] !== null ? (
+              props.currentDeck.flashcards.map(currentCard => {
+                if (currentCard === null) {
+                  return null;
+                } else {
+                  return (
+                    <div className={styles.card}>
+                      <Card
+                        data-testid="cardHolder"
+                        style={{width: "100%", marginTop: 16}}
+                        className={styles.innerCard}
+                        actions={[
+                          <DeleteOutlined
+                            key="delete"
+                            onClick={() => handleDelete(currentCard.id)}
+                          />,
+                          <EditOutlined onClick={() => toggleModal(currentCard)} />,
+                        ]}
+                      >
+                        <Meta
+                          avatar={<Avatar src="logo192.png" />}
+                          title={currentCard.question}
+                          description={currentCard.answer}
+                        />
+                      </Card>
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <h1>THERE ARE NO CARDS TO DISPLAY</h1>
+            )}
           </div>
         </div>
-      </Dashboard>
-    </div>
+      </div>
+
+      <div className={styles.cardDeck}>
+        <Modal
+          title="Want a new card?"
+          visible={show}
+          footer={null}
+          destroyOnClose={true}
+          onCancel={handleAdd}
+        >
+          <AddCard toggleMode={toggleMode} />
+        </Modal>
+        <Modal
+          title="Are you sure you want to edit this card?"
+          visible={visible}
+          footer={null}
+          destroyOnClose={true}
+          // onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <UpdateCard toggleModal={toggleModal} card={card} />
+        </Modal>
+      </div>
+      {/* </div> */}
+      {/* </Dashboard> */}
+    </Dashboard>
   );
 }
 

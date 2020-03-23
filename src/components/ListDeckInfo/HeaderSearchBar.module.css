@@ -5,6 +5,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
+  min-width: 700px;
+  
 }
 .heading {
   /* display: flex;
