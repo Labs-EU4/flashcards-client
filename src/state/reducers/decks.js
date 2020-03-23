@@ -41,9 +41,22 @@ export function currentDeckReducer(state = initialCurrentDeckState, action) {
   }
 }
 
+const initialPlayModeState = null;
+export const playModeReducer = (state = initialPlayModeState, action) => {
+  switch (action.type) {
+    case types.CLEAR_DECK_IN_SESSION:
+      return null;
+    case types.SET_DECK_IN_SESSION:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const decksStateReducer = combineReducers({
   publicDeckState: publicDecksReducer,
   personalDeckState: personalDecksReducer,
   currentDeckState: currentDeckReducer,
+  deckInPlaySession: playModeReducer,
 });
 export default decksStateReducer;
