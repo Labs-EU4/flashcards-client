@@ -5,8 +5,6 @@ export const addCard = newCard => dispatch => {
   axiosWithAuth()
     .post(`/cards`, newCard)
     .then(res => {
-      console.log(res);
-
       dispatch({
         type: ADD_CARD,
         payload: res.data.card,
@@ -63,7 +61,6 @@ export const getDeckId = id => dispatch => {
   axiosWithAuth()
     .get(`/decks/${id}`)
     .then(res => {
-      console.log(res.data.deck);
       dispatch({
         type: GET_DECK_BY_ID,
         payload: res.data.deck,
