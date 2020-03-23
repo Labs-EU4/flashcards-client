@@ -19,9 +19,7 @@ export default function DeckCard({deck}) {
   }
 
   function openDeck(id) {
-    console.log(id, "deck id");
-    dispatch(getDeckId(id));
-    history.push("/cards");
+    history.push(`/deck/${id}`);
   }
 
   return (

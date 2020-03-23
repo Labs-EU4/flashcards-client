@@ -61,7 +61,7 @@ const RoutesConfig = [
     component: Login,
   },
   {
-    path: "/cards",
+    path: "/deck/:id",
     render: () => createPrivateRoute(Cards),
   },
 

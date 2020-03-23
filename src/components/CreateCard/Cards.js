@@ -8,12 +8,14 @@ import Dashboard from "../../layout/Dashboard/Dashboard";
 import AddCard from "./AddCard";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import UpdateCard from "./UpdateCard";
+import {useParams} from "react-router";
 
 const {Meta} = Card;
-const Search = Input.Search;
-const Option = Select.Option;
 
 function Cards(props) {
+  console.log(props);
+  let {id} = useParams();
+  console.log(id, "params id");
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
@@ -38,15 +40,13 @@ function Cards(props) {
 
   //   Fetch cards after authentication
   useEffect(() => {
-    // props.getDeckId(1);
-    console.log(props.currentDeck.flashcards);
+    props.getDeckId(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Function for deleting cards
   const handleDelete = id => {
     props.deleteCard(id);
-    props.history.push("/cards");
   };
 
   return (
