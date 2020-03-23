@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
 if ("function" === typeof importScripts) {
   importScripts(
     "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
@@ -37,7 +39,7 @@ if ("function" === typeof importScripts) {
 
     // Image caching
     workbox.routing.registerRoute(
-      /\.(?:png|gif|jpg|jpeg|svg|webp)$/,
+      /.+\.(?:png|gif|jpg|jpeg|svg|webp)$/,
       new workbox.strategies.CacheFirst({
         cacheName: "images",
         plugins: [
@@ -51,7 +53,7 @@ if ("function" === typeof importScripts) {
 
     // JS, CSS caching
     workbox.routing.registerRoute(
-      /\.(?:js|css|html)$/,
+      /.+\.(?:js|css|html)$/,
       new workbox.strategies.StaleWhileRevalidate({
         cacheName: "static-resources",
         plugins: [
@@ -65,7 +67,7 @@ if ("function" === typeof importScripts) {
 
     // Runtime response caching
     workbox.routing.registerRoute(
-      /api\/(?:decks|cards|users|auth)/,
+      /.+api\/(?:decks|cards|users|auth)/,
       new workbox.strategies.StaleWhileRevalidate({
         cacheName: "api-cache",
         plugins: [
