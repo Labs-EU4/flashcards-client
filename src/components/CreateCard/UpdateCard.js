@@ -17,7 +17,8 @@ function UpdateCard(props) {
       questionText: props.card.question,
       answerText: props.card.answer,
     });
-  }, [props.card.answer, props.card.question]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
