@@ -48,10 +48,11 @@
 }
 
 .actions {
-  width: 10vw;
+  width: 20vw;
   display: flex;
   justify-content: space-between;
   font-size: 1rem;
+  align-items: center;
 }
 
 .gameOptions {

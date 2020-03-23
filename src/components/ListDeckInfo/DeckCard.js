@@ -38,7 +38,14 @@ export default function DeckCard({deck}) {
           </div>
         </div>
         <div className={styles.actions}>
-          <button onClick={() => openDeck(deck.deck_id)}>open deck</button>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            onClick={() => openDeck(deck.deck_id)}
+          >
+            Open Deck
+          </Button>
           <Icon type="like" style={{color: "rgba(0,0,0,.25)"}} data-testid="like" />
           <Icon type="dislike" style={{color: "rgba(0,0,0,.25)"}} data-testid="dislike" />
           <Popover
