@@ -1,17 +1,6 @@
-import * as types from "../types";
 import {combineReducers} from "redux";
+import * as types from "../types";
 
-const initialPlayModeState = null;
-export const playModeReducer = (state = initialPlayModeState, action) => {
-  switch (action.type) {
-    case types.CLEAR_DECK_IN_SESSION:
-      return null;
-    case types.SET_DECK_IN_SESSION:
-      return action.payload;
-    default:
-      return state;
-  }
-};
 const initialDecks = [];
 const initialCurrentDeckState = {};
 
@@ -27,13 +16,17 @@ export const publicDecksReducer = (state = initialDecks, action) => {
 export function personalDecksReducer(state = initialDecks, action) {
   switch (action.type) {
     case types.GET_PERSONAL_DECKS:
-      return action.payload;
+      return state;
     case types.READ_DECK:
       return action.payload;
+    case types.UPDATE_DECK:
+      return state.map(deck =>
+        deck.deck_id === action.payload.deck_id ? action.payload : deck
+      );
     case types.CREATE_DECK:
-      return [...state, action.payload];
+      return [...state, action.payload.deck];
     case types.DELETE_DECK:
-      return state.filter(deck => deck.id !== action.payload);
+      return state.filter(deck => deck.deck_id !== action.payload);
     default:
       return state;
   }
@@ -43,7 +36,7 @@ const currentDeck = {};
 
 export const currentDeckReducer = (state = currentDeck, action) => {
   switch (action.type) {
-    case types.GET_SINGLE_DECK:
+    case types.GET_DECK_BY_ID:
       return action.payload;
     case types.DELETE_CARD:
       return {
@@ -74,9 +67,9 @@ export const currentDeckReducer = (state = currentDeck, action) => {
 //   }
 // }
 
-export default combineReducers({
-  deckInPlaySession: playModeReducer,
+const decksStateReducer = combineReducers({
   publicDeckState: publicDecksReducer,
   personalDeckState: personalDecksReducer,
   currentDeckState: currentDeckReducer,
 });
+export default decksStateReducer;

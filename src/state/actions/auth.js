@@ -7,14 +7,6 @@ const action = (type, payload = null) => {
   return {type};
 };
 
-// function addTodoWithDispatch(payload) {
-//   const action = {
-//     type: ADD_TODO,
-//     payload
-//   }
-//   dispatch(action)
-// }
-
 export const googleAuthorized = (initialToken, history) => async dispatch => {
   dispatch(action(types.LOGIN_START));
   try {
@@ -72,7 +64,6 @@ export const login = loginData => async dispatch => {
     const response = await justAxios().post("/auth/login", loginData);
     const {user, token} = response.data.data;
     localStorage.setItem("token", token);
-    localStorage.setItem("UserId", user.id);
 
     dispatch({
       type: types.LOGIN_SUCCESS,

@@ -12,14 +12,10 @@ import Public from "../pages/PublicDecks/PublicDecks";
 import Personal from "../pages/PersonalDecks/PersonalDecks";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/ForgotPassword/ResetPassword";
-import DeckCards from "../components/deckData/deckCard";
-import AddCard from "../components/CreateCard/AddCard";
 import Cards from "../components/CreateCard/Cards";
-import UpdateCard from "../components/CreateCard/UpdateCard";
 
 import PlayMode from "../pages/PlayMode/PlayMode";
 import ConfirmSignUp from "../pages/ConfirmSignUp/ConfirmSignUp";
-import Test from "../components/NewDeckForm/NewDeckForm";
 import decode from "jwt-decode";
 /*
   Routes config must be ordered the same way you'd 
@@ -65,12 +61,8 @@ const RoutesConfig = [
     component: Login,
   },
   {
-    path: "/decks",
-    component: DeckCards,
-  },
-  {
     path: "/cards",
-    component: Cards,
+    render: () => createPrivateRoute(Cards),
   },
 
   {
@@ -103,15 +95,12 @@ const RoutesConfig = [
     path: "/reset-password",
     component: ForgotPassword,
   },
-  {path: "/updatecard", component: UpdateCard},
+
   {
     path: "/reset/:id",
     component: ResetPassword,
   },
-  {
-    path: "/addcard",
-    component: AddCard,
-  },
+
   {
     path: "*",
     component: PageNotFound,

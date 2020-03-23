@@ -1,4 +1,4 @@
-import {ADD_CARD, UPDATE_CARD, DELETE_CARD, FETCH_CARDS, GET_SINGLE_DECK} from "../types";
+import {ADD_CARD, UPDATE_CARD, DELETE_CARD, FETCH_CARDS, GET_DECK_BY_ID} from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
 export const addCard = newCard => dispatch => {
@@ -65,7 +65,7 @@ export const getDeckId = id => dispatch => {
     .then(res => {
       console.log(res.data.deck);
       dispatch({
-        type: GET_SINGLE_DECK,
+        type: GET_DECK_BY_ID,
         payload: res.data.deck,
       });
     })
