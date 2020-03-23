@@ -1,8 +1,8 @@
 .DeckCardContainer {
-  height: auto;
+  height: 100%;
   max-height: auto;
   width: 100%;
-  overflow: auto;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
