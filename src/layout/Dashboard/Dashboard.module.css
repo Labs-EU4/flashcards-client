@@ -102,8 +102,12 @@
   font-size: 1rem;
 }
 
+.navItem {
+  padding: 0 20px;
+}
+
 .menuItem {
-  padding: 0;
+  padding: 0 !important;
   width: 100%;
 }
 

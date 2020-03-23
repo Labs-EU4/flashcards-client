@@ -2,14 +2,18 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Home from "./Home";
+import {Provider} from "react-redux";
+import store from "../../state/store";
 import {BrowserRouter} from "react-router-dom";
 
 let wrapper;
 beforeEach(() => {
   wrapper = rtl.render(
-    <BrowserRouter>
-      <Home />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    </Provider>
   );
 });
 

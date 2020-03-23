@@ -17,6 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  /* margin-left: 60px; */
 }
 
 .card {
@@ -91,6 +92,6 @@
 
 .deckName {
   font-size: 30px;
-  margin-left: 90px;
+  margin-left: 50px;
   font-family: Arial, Helvetica, sans-serif;
 }

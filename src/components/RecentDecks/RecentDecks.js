@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import {Card, Avatar} from "antd";
+import {Card, Avatar, Icon} from "antd";
 import {axiosWithAuth} from "../../utils/axios";
 import styles from "./RecentDecks.module.css";
 
@@ -33,15 +33,36 @@ const RecentDecks = props => {
             return (
               <Card
                 style={{width: 300}}
-                actions={[<Link to={`/play/${deck.deck_id}`}>Play</Link>]}
+                actions={[
+                  <Link to={`/decks/${deck.deck_id}`}>
+                    <Icon type="play-circle" key="play" theme="outlined" />
+                  </Link>,
+                  <Icon
+                    type="edit"
+                    theme="outlined"
+                    onClick={async e => {
+                      try {
+                        await props.getDeckById(deck.deck_id);
+                        // showModal();
+                      } finally {
+                      }
+                    }}
+                    key="edit"
+                  />,
+                  <Icon
+                    type="delete"
+                    theme="outlined"
+                    onClick={e => props.deleteDeck(deck.deck_id)}
+                    key="delete"
+                  />,
+                ]}
                 loading={loading}
                 className={styles.deckCard}
-                key={index}
               >
                 <Meta
                   avatar={<Avatar src="logo192.png" />}
-                  description="This is the description"
-                  cardnumber="52"
+                  description={deck.deck_name}
+                  cardNumber="52"
                 />
               </Card>
             );

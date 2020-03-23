@@ -81,19 +81,32 @@ const Dashboard = props => {
               data-testid="menu"
             >
               <Menu.Item key="1" className={styles.menuItem}>
-                <NavLink to="/" activeClassName={styles.navItemSeleted} exact>
+                <NavLink
+                  to="/"
+                  activeClassName={styles.navItemSeleted}
+                  className={styles.navItem}
+                  exact
+                >
                   <Icon type="home" />
                   <span>Home</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="2" selected={true}>
-                <NavLink to="/deck-library" activeClassName={styles.navItemSeleted}>
+              <Menu.Item key="2" className={styles.menuItem}>
+                <NavLink
+                  to="/deck-library"
+                  activeClassName={styles.navItemSeleted}
+                  className={styles.navItem}
+                >
                   <Icon type="block" />
                   <span>Deck Library</span>
                 </NavLink>
               </Menu.Item>
-              <Menu.Item key="3">
-                <NavLink to="/discover-decks" activeClassName={styles.navItemSeleted}>
+              <Menu.Item key="3" className={styles.menuItem}>
+                <NavLink
+                  to="/discover-decks"
+                  activeClassName={styles.navItemSeleted}
+                  className={styles.navItem}
+                >
                   <Icon type="global" />
                   <span>Discover Decks</span>
                 </NavLink>

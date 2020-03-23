@@ -18,7 +18,7 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.formStyle form{
+.formStyle form {
   background-color: white;
   border-radius: 8px;
   width: 100%;
@@ -26,7 +26,7 @@
   max-width: 400px;
 }
 
-.formStyle h1{
+.formStyle h1 {
   color: white;
 }
 
