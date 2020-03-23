@@ -6,6 +6,7 @@ import {
   READ_DECK,
   DELETE_DECK,
   GET_DECK_BY_ID,
+  UPDATE_DECK,
   CREATE_DECK,
 } from "../types";
 import {axiosWithAuth} from "../../utils/axios";
@@ -30,7 +31,6 @@ export const fetchDeckById = deckId => async dispatch => {
     const {deck} = response.data;
     dispatch(action(SET_DECK_IN_SESSION, deck));
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -38,7 +38,6 @@ export const fetchDeckById = deckId => async dispatch => {
 export const getPublicDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks/public");
-    console.log("public", response);
     dispatch({
       type: GET_PUBLIC_DECKS,
       payload: response.data.data,
@@ -51,7 +50,6 @@ export const getPublicDecks = () => async dispatch => {
 export const getPersonalDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks");
-    console.log("personal", response);
     dispatch({
       type: GET_PERSONAL_DECKS,
       payload: response.data.data,
@@ -61,16 +59,14 @@ export const getPersonalDecks = () => async dispatch => {
   }
 };
 
-export const getAllDecks = () => async dispatch => {
+export const getAllPersonalDecks = () => async dispatch => {
   try {
-    console.log("decks");
     const response = await axiosWithAuth().get("/decks");
     dispatch({
       type: READ_DECK,
       payload: response.data.data,
     });
   } catch (err) {
-    console.log(err);
     throw err;
   }
 };
@@ -83,6 +79,7 @@ export const deleteDeck = id => async dispatch => {
       payload: id,
     });
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };
@@ -92,7 +89,7 @@ export const createDeck = payload => async dispatch => {
     const response = await axiosWithAuth().post(`/decks`, payload);
     dispatch({
       type: CREATE_DECK,
-      payload: response.data.deck,
+      payload: response.data,
     });
     return response;
   } catch (err) {
@@ -114,4 +111,16 @@ export const getDeckById = id => async dispatch => {
 
 export const editCurrentDeck = id => {
   axiosWithAuth().get("/decks" + id);
+};
+
+export const updateDeck = (id, deck) => async dispatch => {
+  try {
+    const response = await axiosWithAuth().put("/decks/" + id, deck);
+    dispatch({
+      type: UPDATE_DECK,
+      payload: response.data,
+    });
+  } catch (err) {
+    throw err;
+  }
 };

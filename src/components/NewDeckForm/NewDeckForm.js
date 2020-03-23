@@ -77,10 +77,11 @@ const NewDeckForm = props => {
   const {getFieldDecorator} = props.form;
   const children = [];
   const options = deckTags;
-  // eslint-disable-next-line array-callback-return
-  options.map((curr, index) => {
-    children.push(<Option key={index}>{curr}</Option>);
+  options.forEach(curr => {
+    children.push(<Option key={curr.id}>{curr.name}</Option>);
   });
+  // eslint-disable-next-line array-callback-return
+
   return (
     <div className={styles.containerCreateDeck}>
       <h1 className={styles.heading}>Create New Deck</h1>
@@ -139,6 +140,7 @@ const NewDeckForm = props => {
             data-testid="alertSuccess"
             description="Deck created!"
             type="success"
+            className={styles.alert}
           />
         ) : state.success === false ? (
           <Alert
@@ -146,6 +148,7 @@ const NewDeckForm = props => {
             description="Not able to create Deck! Please make sure you are authed."
             type="error"
             data-testid="alertInvalid"
+            className={styles.alert}
           />
         ) : null}
       </Form>
