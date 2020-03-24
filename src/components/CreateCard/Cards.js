@@ -4,17 +4,16 @@ import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
 import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
-import Dashboard from "../../layout/Dashboard/Dashboard";
 import AddCard from "./AddCard";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
+import {useHistory} from "react-router-dom";
 
 const {Meta} = Card;
 
 function Cards(props) {
-  console.log(props);
+  let history = useHistory();
   let {id} = useParams();
-  console.log(id, "params id");
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
@@ -50,7 +49,7 @@ function Cards(props) {
 
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
-    <Dashboard className>
+    <>
       <div>
         <div className={styles.header}>
           <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
@@ -61,7 +60,7 @@ function Cards(props) {
         </div>
         <div className={styles.mainContent}>
           <div className={styles.mappedCard}>
-            {props.currentDeck.flashcards && props.currentDeck.flashcards[0] !== null ? (
+            {props.currentDeck.flashcards && props.currentDeck.flashcards.length > 0 ? (
               props.currentDeck.flashcards.map(currentCard => {
                 if (currentCard === null) {
                   return null;
@@ -117,7 +116,7 @@ function Cards(props) {
           <UpdateCard toggleModal={toggleModal} card={card} />
         </Modal>
       </div>
-    </Dashboard>
+    </>
   );
 }
 

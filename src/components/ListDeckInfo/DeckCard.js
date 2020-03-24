@@ -3,7 +3,7 @@ import {Icon, Popover, Button} from "antd";
 import styles from "./DeckList.module.css";
 import {Link, useHistory} from "react-router-dom";
 
-export default function DeckCard({deck}) {
+export default function DeckCard({deck, page}) {
   let history = useHistory();
   const [visible, setVisible] = useState(false);
 
@@ -16,7 +16,10 @@ export default function DeckCard({deck}) {
   }
 
   function openDeck(id) {
-    history.push(`/deck/${id}`);
+    history.push({
+      pathname: `/deck/${id}`,
+      state: {source: page},
+    });
   }
 
   return (

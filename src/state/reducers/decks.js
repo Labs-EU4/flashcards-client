@@ -23,7 +23,7 @@ export function personalDecksReducer(state = initialDecks, action) {
         deck.deck_id === action.payload.deck_id ? action.payload : deck
       );
     case types.CREATE_DECK:
-      return [...state, action.payload.deck];
+      return [...state, action.payload];
     case types.DELETE_DECK:
       return state.filter(deck => deck.deck_id !== action.payload);
     default:
