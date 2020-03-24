@@ -3,7 +3,6 @@ import DeckCard from "./DeckCard";
 import styles from "./DeckList.module.css";
 
 export default function DecksList({decks, page}) {
-  console.log(page, "apdsfk");
   return (
     <div className={styles.main_content}>
       {decks.length > 0 ? (
