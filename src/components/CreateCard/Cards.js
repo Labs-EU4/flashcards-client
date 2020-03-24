@@ -62,7 +62,7 @@ function Cards(props) {
         </div>
         <div className={styles.mainContent}>
           <div className={styles.mappedCard}>
-            {props.currentDeck.flashcards && props.currentDeck.flashcards[0] !== null ? (
+            {props.currentDeck.flashcards && props.currentDeck.flashcards.length > 0 ? (
               props.currentDeck.flashcards.map(currentCard => {
                 if (currentCard === null) {
                   return null;

@@ -36,7 +36,7 @@ export default function DeckCard({deck, page}) {
               Author: {deck.author ? deck.author : "You"}
             </h3>
             <h3 className={styles.info_headings} data-testid="flashcards_count">
-              No. of Cards: {deck.flashcards[0] === null ? 0 : deck.flashcards.length}
+              No. of Cards: {deck.flashcards.length}
             </h3>
           </div>
         </div>
