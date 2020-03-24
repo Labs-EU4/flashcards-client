@@ -136,7 +136,7 @@ export const Login = props => {
             </Form.Item>
             {error ? (
               <Alert
-                message={error.message}
+                message={error}
                 type="error"
                 data-testid="server-alert"
                 closable
