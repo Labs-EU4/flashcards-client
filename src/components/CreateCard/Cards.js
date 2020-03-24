@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Card, Button, Icon, Modal, Input, Select, Avatar, Spin} from "antd";
+import {Card, Button, Modal} from "antd";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
@@ -53,13 +53,13 @@ function Cards(props) {
     //   Map the fetched cards to an ant design cards component for display on the browser
     <>
       <div>
-        <div className={styles.header}>
-          <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
+        <div className={styles.headercontainer}>
           <HeaderSearchBar className={styles.headersearch} />
           <Button className={styles.btn} type="dashed" onClick={toggleMode}>
             Add a card
           </Button>
         </div>
+        <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
         <div className={styles.mainContent}>
           <div className={styles.mappedCard}>
             {props.currentDeck.flashcards && props.currentDeck.flashcards.length > 0 ? (

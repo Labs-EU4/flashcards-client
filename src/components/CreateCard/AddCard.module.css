@@ -29,23 +29,15 @@
   box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
 }
 
-.header {
+.headercontainer {
   display: flex;
-  justify-content: space-evenly;
-  padding-top: 15px;
-  min-width: 70%;
-  align-self: center;
+  justify-content: space-between;
+  width: 70vw;
 }
 
 .deckName {
-  font-size: 30px;
-  margin-left: 90px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.headersearch {
-  background-color: red;
-  color: blue;
+  font-size: 2rem;
+  margin-top: 40px;
 }
 
 @media (max-width: 1400px) {
@@ -65,10 +57,10 @@
   }
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .mappedCard {
     margin-left: 5vw;
-    width: 800px;
+    width: 750px;
   }
   
   .card {
@@ -86,7 +78,7 @@
 @media (max-width: 1050px) {
   .mappedCard {
     margin-left: 8vw;
-    width: 700px;
+    width: 650px;
   }
   
   .card {
@@ -99,6 +91,16 @@
     width: 580px;
     margin-left: 10vw;
   }
+  .headercontainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 200px;
+    margin-top: 30px;
+    margin-left: 110px;
+  }
 }
 
 @media (max-width: 850px) {
@@ -108,17 +110,37 @@
   }
 
   .card {
-    width: 80%;
+    width: 60%;
+  }
+  .headercontainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn {
+    width: 200px;
+    margin-top: 30px;
+    margin-left: 90px;
   }
 }
 
-@media (max-width: 850px) {
+
+@media (max-width: 700px) {
   .mappedCard {
-    width: 580px;
-    margin-left: 16vw;
+    width: 550px;
+    margin-left: 18vw;
+  }
+  .btn {
+    width: 200px;
+    margin-top: 30px;
+    margin-left: 80px;
+  }
+
+  .headercontainer {
+    flex-direction: column;
+    align-items: center;
   }
 
   .card {
-    width: 80%;
+    width: 60%;
   }
 }
