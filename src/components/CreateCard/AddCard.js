@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.module.css";
-import {axiosWithAuth} from "../../utils/axios";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {addCard} from "../../state/actions/CardAction";
 import styles from "./AddCard.module.css";
 
 function AddCard(props) {
+  const deck_id = useSelector(state => state.deckState.currentDeckState.deck_id);
   const [formValues, setFormValues] = useState({
     questionText: "",
     answerText: "",
@@ -15,6 +15,7 @@ function AddCard(props) {
   const [error, setError] = useState("");
   const {getFieldDecorator} = props.form;
   const handleChange = e => {
+    console.log(formValues);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -22,9 +23,10 @@ function AddCard(props) {
   };
 
   const handleSubmit = e => {
+    console.log(e);
     e.preventDefault();
     const newCard = {
-      deckId: 1,
+      deckId: deck_id,
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
@@ -42,7 +44,7 @@ function AddCard(props) {
     <div className={styles.cardContainer}>
       <h1>Add a card</h1>
       <Spin spinning={loading} delay={300}>
-        <Form onSubmit={handleSubmit} className={styles.cardForm}>
+        <Form onSubmit={e => handleSubmit(e)} className={styles.cardForm}>
           <Form.Item>
             {getFieldDecorator("questionText", {
               //rules are for the form validation
@@ -56,13 +58,13 @@ function AddCard(props) {
             })(
               <Input
                 name="questionText"
-                type="string"
+                type="text"
                 // setFieldsValue={formValues.questionText}
-                setFieldsValue={formValues.questionText}
+                setfieldsvalue={formValues.questionText}
                 //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Question text goes here"
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
               />
             )}
           </Form.Item>
@@ -79,13 +81,13 @@ function AddCard(props) {
             })(
               <Input
                 name="answerText"
-                type="string"
+                type="text"
                 // setFieldsValue={formValues.answerText}
-                setFieldsValue={formValues.answerText}
+                setfieldsvalue={formValues.answerText}
                 //form icon in the answer field, change type for different icons, see antdesign docs
                 prefix={<Icon type="edit" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Enter a correct answer"
-                onChange={handleChange}
+                onChange={e => handleChange(e)}
               />
             )}
           </Form.Item>
@@ -110,4 +112,4 @@ function AddCard(props) {
 
 export const WrappedNormalLoginForm = Form.create({name: "normal_login"})(AddCard);
 
-export default connect(null, {addCard})(WrappedNormalLoginForm);
+export default connect(state => state, {addCard})(WrappedNormalLoginForm);

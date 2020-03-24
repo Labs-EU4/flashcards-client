@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {Icon, Popover, Button} from "antd";
 import styles from "./DeckList.module.css";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 export default function DeckCard({deck}) {
+  let history = useHistory();
   const [visible, setVisible] = useState(false);
 
   function hide() {
@@ -14,8 +15,16 @@ export default function DeckCard({deck}) {
     setVisible(!visible);
   }
 
+  function openDeck(id) {
+    history.push(`/deck/${id}`);
+  }
+
   return (
-    <div className={styles.deckCard} data-testid="deck_card_container">
+    <div
+      className={styles.deckCard}
+      data-testid="deck_card_container"
+      onClick={() => console.log("hi")}
+    >
       <div className={styles.deckOverview}>
         <div className={styles.header}>
           <h2 data-testid="deck_name">{deck.deck_name}</h2>
@@ -29,6 +38,14 @@ export default function DeckCard({deck}) {
           </div>
         </div>
         <div className={styles.actions}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            onClick={() => openDeck(deck.deck_id)}
+          >
+            Open Deck
+          </Button>
           <Icon type="like" style={{color: "rgba(0,0,0,.25)"}} data-testid="like" />
           <Icon type="dislike" style={{color: "rgba(0,0,0,.25)"}} data-testid="dislike" />
           <Popover
@@ -62,15 +79,6 @@ export default function DeckCard({deck}) {
           <Icon type="star" style={{color: "rgba(0,0,0,.25)"}} />
         </div>
       </div>
-      {/* <div className={styles.horizontalList}>
-        {deck.flashcards.map(card => {
-          return (
-            <Card title="Question" className={styles.card}>
-              {card.question}
-            </Card>
-          );
-        })}
-      </div> */}
     </div>
   );
 }

@@ -11,6 +11,21 @@ const DeckCard = () => {
   return wrapper.queryByTestId("deck_card_container");
 };
 
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+    location: {
+      pathname: "random/text/okay",
+    },
+  }),
+}));
+
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: () => mockDispatch,
+}));
+
 const mockDecks = [
   {
     deck_name: "Test Deck",

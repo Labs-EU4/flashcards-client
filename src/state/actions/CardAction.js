@@ -1,12 +1,10 @@
-import {ADD_CARD, UPDATE_CARD, DELETE_CARD, FETCH_CARDS, GET_SINGLE_DECK} from "../types";
+import {ADD_CARD, UPDATE_CARD, DELETE_CARD, FETCH_CARDS, GET_DECK_BY_ID} from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
 export const addCard = newCard => dispatch => {
   axiosWithAuth()
     .post(`/cards`, newCard)
     .then(res => {
-      console.log(res);
-
       dispatch({
         type: ADD_CARD,
         payload: res.data.card,
@@ -63,9 +61,8 @@ export const getDeckId = id => dispatch => {
   axiosWithAuth()
     .get(`/decks/${id}`)
     .then(res => {
-      console.log(res.data.deck);
       dispatch({
-        type: GET_SINGLE_DECK,
+        type: GET_DECK_BY_ID,
         payload: res.data.deck,
       });
     })

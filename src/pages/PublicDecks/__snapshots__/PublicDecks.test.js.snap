@@ -19,7 +19,7 @@ exports[`renders without crashing 1`] = `
         </h1>
         <span
           class="ant-input-search ant-input-affix-wrapper"
-          style="min-width: 100px; max-width: 500px;"
+          style="width: 240px;"
         >
           <input
             class="ant-input"
@@ -352,7 +352,7 @@ exports[`renders without crashing v2 1`] = `
                 </h1>
                 <span
                   class="ant-input-search ant-input-affix-wrapper"
-                  style="min-width: 100px; max-width: 500px;"
+                  style="width: 240px;"
                 >
                   <input
                     class="ant-input"

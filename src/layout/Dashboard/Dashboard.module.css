@@ -12,7 +12,7 @@
   z-index: 1;
 }
 
-.innerCard{
+.innerCard {
   margin-right: 10px;
 }
 
@@ -95,7 +95,6 @@
 }
 
 .navItemSeleted {
-  /* /* padding: 0;  */
   width: 100% !important;
   background-color: #e6f6ff;
   border-right: 3px solid #2090ff;
@@ -229,7 +228,8 @@
 
 @media (max-width: 500px) {
   .siderCollapsed,
-  .sider, .dashboardLeft {
+  .sider,
+  .dashboardLeft {
     z-index: 99;
     position: relative;
     width: 100%;
@@ -237,4 +237,3 @@
     z-index: 1;
   }
 }
-

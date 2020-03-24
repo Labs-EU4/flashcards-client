@@ -39,6 +39,14 @@ exports[`renders without crashing 1`] = `
       <div
         class="actions"
       >
+        <button
+          class="ant-btn login-form-button ant-btn-primary"
+          type="submit"
+        >
+          <span>
+            Open Deck
+          </span>
+        </button>
         <i
           aria-label="icon: like"
           class="anticon anticon-like"
