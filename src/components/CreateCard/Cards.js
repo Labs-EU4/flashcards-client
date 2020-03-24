@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Card, Button, Icon, Modal, Input, Select, Avatar, Spin} from "antd";
+import {Card, Button, Icon, Modal, Avatar} from "antd";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
 import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import Dashboard from "../../layout/Dashboard/Dashboard";
 import AddCard from "./AddCard";
-import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
 
@@ -74,11 +73,11 @@ function Cards(props) {
                         style={{width: "100%", marginTop: 16}}
                         className={styles.innerCard}
                         actions={[
-                          <DeleteOutlined
-                            key="delete"
+                          <Icon
+                            type="delete"
                             onClick={() => handleDelete(currentCard.id)}
                           />,
-                          <EditOutlined onClick={() => toggleModal(currentCard)} />,
+                          <Icon type="edit" onClick={() => toggleModal(currentCard)} />,
                         ]}
                       >
                         <Meta
