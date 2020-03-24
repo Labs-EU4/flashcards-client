@@ -12,6 +12,10 @@ function UpdateCard(props) {
     answerText: "",
   });
 
+  const hasErrors = fieldsError => {
+    return Object.keys(fieldsError).some(field => fieldsError[field]);
+  };
+
   useEffect(() => {
     setFormValues({
       questionText: props.card.question,
@@ -22,7 +26,7 @@ function UpdateCard(props) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const {getFieldDecorator} = props.form;
+  // const {getFieldDecorator} = props.form;
 
   const handleChange = e => {
     console.log(formValues);
@@ -46,18 +50,38 @@ function UpdateCard(props) {
     props.toggleModal();
     setLoading(false);
   };
+
+  const {
+    getFieldDecorator,
+    getFieldsError,
+    validateFields,
+    isFieldTouched,
+    getFieldError,
+  } = props.form;
+
+  useEffect(() => {
+    validateFields();
+  }, [validateFields]);
+
+  const questionError = isFieldTouched("questionText") && getFieldError("questionText");
+  const answerError = isFieldTouched("answerText") && getFieldError("answerText");
   return (
     <div className={styles.cardContainer}>
       <h1>Update a card</h1>
       <Spin spinning={loading} delay={300}>
         <Form onSubmit={handleSubmit} className={styles.cardForm}>
-          <Form.Item>
+          <Form.Item
+            name="questionText"
+            validateStatus={questionError ? "error" : ""}
+            hasFeedback
+            help={questionError || ""}
+          >
             {getFieldDecorator("questionText", {
               //rules are for the form validation
               initialValue: formValues.questionText,
 
               rules: [
-                {required: true, message: "Please enter your question here"},
+                {required: true, message: "Please enter the updated question"},
                 {
                   type: "string",
                   message: "type a question",
@@ -75,12 +99,17 @@ function UpdateCard(props) {
               />
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item
+            name="answerText"
+            validateStatus={answerError ? "error" : ""}
+            help={answerError || ""}
+            hasFeedback
+          >
             {getFieldDecorator("answerText", {
               initialValue: formValues.answerText,
               //rules are for the form validation
               rules: [
-                {required: true, message: "Please input a correct answer"},
+                {required: true, message: "Please input an updated answer"},
                 {
                   type: "string",
                   message: "enter an answer",
@@ -99,7 +128,12 @@ function UpdateCard(props) {
             )}
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className={styles.loginFormButton}
+              disabled={hasErrors(getFieldsError())}
+            >
               Edit card
             </Button>
           </Form.Item>
