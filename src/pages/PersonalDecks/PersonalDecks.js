@@ -28,7 +28,7 @@ export function PersonalDecks({getPersonalDecks, decks}) {
     <Dashboard>
       <div className={styles.personal}>
         <Header page={"Deck Library"} />
-        <List decks={decks} />
+        <List decks={decks} page={"personal"} />
       </div>
     </Dashboard>
   );
