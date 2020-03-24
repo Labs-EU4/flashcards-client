@@ -17,9 +17,9 @@ export default function HeaderSearchBar({page}) {
           onSearch={value => console.log(value)}
           style={{width: "240px"}}
         />
-        <div>
-          Sort By:
-          <Select defaultValue="Home">
+        <div className={styles.sort}>
+          Sort by:
+          <Select defaultValue="Home" className={styles.sortselect}>
             <Option value="Home">Option 1</Option>
             <Option value="Company">Option2</Option>
           </Select>

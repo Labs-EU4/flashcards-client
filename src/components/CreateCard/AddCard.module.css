@@ -16,65 +16,17 @@
 .mappedCard {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  width: 80vw;
+  margin-top: 50px;
 }
 
 .card {
-  width: 30%;
-  margin-bottom: 15px;
-  margin-right: 14px;
-}
-
-@media (max-width: 500px) {
-  .card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .heading {
-    font-size: 25px;
-  }
-}
-
-@media (max-width: 500px) {
-  .describe {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 500px) {
-  .btn {
-    margin-top: 27px;
-    width: 150px;
-  }
-}
-
-@media (max-width: 500px) {
-  .title {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-
-    justify-content: space-between;
-    margin-left: 12px;
-    align-items: center;
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .mappedCard {
-    display: flex;
-    flex-direction: column-reverse;
-    margin-left: 0px;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    padding: 0 30px;
-  }
+  width: 24%;
+  margin-bottom: 4vh;
+  -webkit-box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
+  box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
 }
 
 .header {
@@ -84,13 +36,89 @@
   min-width: 70%;
   align-self: center;
 }
-.mainContent {
-  height: 500px;
-  display: flex;
-}
 
 .deckName {
   font-size: 30px;
   margin-left: 90px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.headersearch {
+  background-color: red;
+  color: blue;
+}
+
+@media (max-width: 1400px) {
+  .mappedCard {
+    margin-left: 2vw;
+    width: 930px;
+  }
+  
+  .card {
+    width: 30%;
+  }
+
+  .deckName {
+    font-size: 25px;
+    margin-left: 90px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+@media (max-width: 1150px) {
+  .mappedCard {
+    margin-left: 5vw;
+    width: 800px;
+  }
+  
+  .card {
+    width: 30%;
+  }
+
+  .deckName {
+    font-size: 25px;
+    margin-left: 90px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+
+@media (max-width: 1050px) {
+  .mappedCard {
+    margin-left: 8vw;
+    width: 700px;
+  }
+  
+  .card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 970px) {
+  .mappedCard {
+    width: 580px;
+    margin-left: 10vw;
+  }
+}
+
+@media (max-width: 850px) {
+  .mappedCard {
+    width: 580px;
+    margin-left: 16vw;
+  }
+
+  .card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 850px) {
+  .mappedCard {
+    width: 580px;
+    margin-left: 16vw;
+  }
+
+  .card {
+    width: 80%;
+  }
 }

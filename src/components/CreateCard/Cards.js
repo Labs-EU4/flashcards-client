@@ -55,7 +55,7 @@ function Cards(props) {
       <div>
         <div className={styles.header}>
           <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
-          <HeaderSearchBar />
+          <HeaderSearchBar className={styles.headersearch} />
           <Button className={styles.btn} type="dashed" onClick={toggleMode}>
             Add a card
           </Button>
@@ -71,7 +71,7 @@ function Cards(props) {
                     <div className={styles.card}>
                       <Card
                         data-testid="cardHolder"
-                        style={{width: "100%", marginTop: 16}}
+                        style={{width: "100%", border: "1px solid blue"}}
                         className={styles.innerCard}
                         actions={[
                           <DeleteOutlined
@@ -82,7 +82,6 @@ function Cards(props) {
                         ]}
                       >
                         <Meta
-                          avatar={<Avatar src="logo192.png" />}
                           title={currentCard.question}
                           description={currentCard.answer}
                         />
