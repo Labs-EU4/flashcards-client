@@ -19,6 +19,9 @@ if ("function" === typeof importScripts) {
     self.addEventListener("install", event => {
       self.skipWaiting();
     });
+    self.addEventListener("activate", event => {
+      event.waitUntil(clients.claim());
+    });
 
     // Manual injection point for manifest files.
     // All assets under build/ and 5MB sizes are precached.
