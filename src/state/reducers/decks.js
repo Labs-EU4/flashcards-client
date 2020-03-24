@@ -2,7 +2,6 @@ import {combineReducers} from "redux";
 import * as types from "../types";
 
 const initialDecks = [];
-const initialCurrentDeckState = {};
 
 export const publicDecksReducer = (state = initialDecks, action) => {
   switch (action.type) {
@@ -58,14 +57,6 @@ export const currentDeckReducer = (state = currentDeck, action) => {
       return state;
   }
 };
-// export function currentDeckReducer(state = initialCurrentDeckState, action) {
-//   switch (action.type) {
-//     case GET_DECK_BY_ID:
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// }
 
 const initialPlayModeState = null;
 export const playModeReducer = (state = initialPlayModeState, action) => {
