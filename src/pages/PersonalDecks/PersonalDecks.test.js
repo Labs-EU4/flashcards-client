@@ -6,14 +6,6 @@ import {Provider} from "react-redux";
 import store from "../../state/store";
 import {BrowserRouter} from "react-router-dom";
 
-// const mockDecks = [
-//   {
-//     deck_name: "Test Deck",
-//     author: "Test",
-//     flashcards: ["test", "the", "flashcards"],
-//   },
-// ];
-
 const mockGetDecks = jest.fn(() => true);
 
 const PageHeader = () => {
@@ -26,7 +18,9 @@ const NoDecksMessage = () => {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<TestPersonalDecks getPersonalDecks={mockGetDecks} decks={[]} />);
+  wrapper = rtl.render(
+    <TestPersonalDecks getAllPersonalDecks={mockGetDecks} decks={[]} />
+  );
 });
 
 it("renders without crashing", () => {
@@ -42,7 +36,7 @@ it("renders without crashing v2", () => {
   const wrapper2 = rtl.render(
     <Provider store={store}>
       <BrowserRouter>
-        <PersonalDecks getPersonalDecks={mockGetDecks} decks={[]} />
+        <PersonalDecks getAllPersonalDecks={mockGetDecks} decks={[]} />
       </BrowserRouter>
     </Provider>
   );
