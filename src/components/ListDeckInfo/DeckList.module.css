@@ -1,0 +1,67 @@
+.main_content {
+  height: 100%;
+}
+
+.deckCard {
+  border: 3px solid #2090ff;
+  border-radius: 5px;
+  margin: 5vh auto;
+  width: 95%;
+}
+
+.horizontalList {
+  display: flex;
+  /* width: 95vw; */
+  /* height: 40vh; */
+  overflow-y: hidden;
+  /* margin: 5vh auto; */
+  /* background-color: gray; */
+  align-items: center;
+}
+
+.noName {
+  width: 100%;
+  margin: 10vh auto;
+  text-align: center;
+}
+
+.info {
+  display: flex;
+}
+
+.info_headings {
+  margin-right: 2rem;
+}
+
+.deckOverview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 1rem;
+}
+
+.card {
+  height: 34vh;
+  min-width: 25vw;
+  max-width: 25vw;
+}
+
+.actions {
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.gameOptions {
+  display: flex;
+}
+
+@media (max-width: 750px) {
+  .actions {
+    flex-direction: column;
+    height: 100%;
+  }
+}

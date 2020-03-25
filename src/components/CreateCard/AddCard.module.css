@@ -1,0 +1,142 @@
+.btn {
+  width: 150px;
+  font-size: 1rem;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-left: 150px;
+  margin-top: 15px;
+  padding: 0 40px;
+}
+
+.headercontainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.deckName {
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+.completeHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DONE */
+
+.componentcontainer {
+  width: calc(100%-100px);
+}
+
+.mappedCard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.card {
+  width: calc(100% / 4 - 20px);
+  margin: 0 10px 0 10px;
+  margin-bottom: 4vh;
+  -webkit-box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+}
+
+.nocards {
+  font-size: 1.4rem;
+  left: 45vw;
+  top: 48vh;
+  position: absolute;
+}
+
+@media (max-width: 1500px) {
+  .card {
+    width: calc(100% / 3 - 20px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .card {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media (max-width: 650px) {
+  .card {
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 1500px) {
+  .componentcontainer {
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 1255px) {
+  .deckName {
+    font-size: 1.6rem;
+  }
+  .componentcontainer {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width: 1190px) {
+  .deckName {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-left: 25%;
+  }
+  .headercontainer {
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 50px;
+  }
+  .btn {
+    position: relative;
+    bottom: -40px;
+  }
+}
+
+
+@media (max-width: 975px) {
+  .completeHeader {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .btn {
+    position: unset;
+    margin-top: 30px;
+  }
+  .deckName {
+    font-size: 1.6rem;
+    margin-left: unset;
+  }
+  .headercontainer {
+    margin-right: unset;
+  }
+  .componentcontainer {
+    margin-left: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .componentcontainer {
+    width: 100%;
+    margin-left: unset;
+  }
+}
+

@@ -3,6 +3,9 @@ import {BrowserRouter} from "react-router-dom";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import {RegisterForm} from "./Register";
+
+afterEach(rtl.cleanup);
+
 const mockRegister = jest.fn().mockResolvedValue(10);
 let wrapper;
 beforeEach(() => {
@@ -46,7 +49,7 @@ const confirmPasswordWarning = () => {
   return wrapper.queryByText("Passwords do not match");
 };
 it("renders without crashing", () => {
-  expect(wrapper.container).toMatchSnapshot();
+  expect(wrapper.container).toBeInTheDocument();
 });
 it("renders all expected elements", () => {
   expect(FormContainer()).toBeInTheDocument();
@@ -89,14 +92,23 @@ it("Calls correct action on submit", () => {
     ]
   `);
 });
-it("Displays correct warning messages on input fields", async () => {
-  rtl.fireEvent.keyUp(EmailInput(), {key: "A", code: 65, charCode: 65});
+it("Displays correct warning messages on input fields", () => {
+  rtl.fireEvent.change(EmailInput(), {target: {value: "A"}});
   expect(EmailWarning()).toBeInTheDocument();
-  rtl.fireEvent.keyUp(UsernameInput(), {key: "A", code: 65, charCode: 65});
+  rtl.fireEvent.change(UsernameInput(), {target: {value: "A"}});
   expect(UsernameWarning()).toBeInTheDocument();
-  rtl.fireEvent.keyUp(PasswordInput(), {key: "A", code: 65, charCode: 65});
+  rtl.fireEvent.change(PasswordInput(), {target: {value: "A"}});
   expect(PasswordWarning()).toBeInTheDocument();
-  rtl.fireEvent.keyUp(confirmPasswordInput(), {key: "B", code: 66, charCode: 66});
-  expect(await rtl.waitForElement(() => EmailWarning())).toBeInTheDocument();
+  rtl.fireEvent.change(confirmPasswordInput(), {target: {value: "B"}});
+  expect(confirmPasswordWarning()).toBeInTheDocument();
 });
-afterEach(rtl.cleanup);
+
+it("Displays correct success messages on input fields", () => {
+  rtl.fireEvent.change(EmailInput(), {target: {value: "test@email.com"}});
+  rtl.fireEvent.change(UsernameInput(), {target: {value: "tester"}});
+  rtl.fireEvent.change(PasswordInput(), {target: {value: "password"}});
+  rtl.fireEvent.change(confirmPasswordInput(), {target: {value: "password"}});
+  rtl.fireEvent.click(Button());
+  //second time mockRegister has been called in these tests
+  expect(mockRegister).toHaveBeenCalledTimes(2);
+});

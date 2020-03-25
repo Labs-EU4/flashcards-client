@@ -1,0 +1,33 @@
+.leftContent {
+  width: 100%;
+  background-color: #f9f9f9;
+  margin-right: 2%;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 2%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 1024px) {
+  .leftContent {
+    width: 96%;
+    margin: 2%;
+  }
+
+  .rightContent {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin: 2%;
+  }
+}

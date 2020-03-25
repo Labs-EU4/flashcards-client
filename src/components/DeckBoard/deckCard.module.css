@@ -1,0 +1,21 @@
+.DeckCardContainer {
+  height: auto;
+  max-height: 820px;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deckCard {
+  margin: 10px 10px;
+}
+
+.heading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+}
