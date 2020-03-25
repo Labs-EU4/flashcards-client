@@ -7,17 +7,14 @@ import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import AddCard from "./AddCard";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
-import {useHistory} from "react-router-dom";
 
 const {Meta} = Card;
 
 function Cards(props) {
-  let history = useHistory();
   let {id} = useParams();
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   function handleCancel() {
     setVisible(false);
