@@ -45,7 +45,7 @@ function Cards(props) {
   const handleDelete = id => {
     props.deleteCard(id);
   };
-
+  console.log(history);
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
     <div className={styles.componentcontainer}>
@@ -97,9 +97,7 @@ function Cards(props) {
                 }
               })
             ) : (
-              <div className={styles.nocards}>
-                <h1>There are no cards to display</h1>
-              </div>
+              <h1 className={styles.nocards}>There are no cards to display</h1>
             )}
           </div>
         </div>

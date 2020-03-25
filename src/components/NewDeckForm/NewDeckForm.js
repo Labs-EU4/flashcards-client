@@ -20,6 +20,11 @@ const NewDeckForm = props => {
     success: null,
   });
 
+  const location = id => ({
+    pathname: `/deck/${id}`,
+    state: {source: "personal"},
+  });
+
   const handleSubmit = e => {
     e.preventDefault();
     const numberTags = formValues.tags.map(x => parseInt(x));
@@ -38,7 +43,7 @@ const NewDeckForm = props => {
         })
         .then(res => {
           setTimeout(() => {
-            history.push(`/deck/${res.data.deck.deck_id}`);
+            history.push(location(res.data.deck.deck_id));
           }, 1400);
         })
         .catch(err => {
@@ -63,6 +68,18 @@ const NewDeckForm = props => {
           setTimeout(() => {
             history.push(`/deck/${res.data.deck.deck_id}`);
           }, 1400);
+        })
+        .catch(err => {
+          setState({
+            success: false,
+          });
+        });
+    } else if (formValues.name === "") {
+      dispatch(createDeck({...formValues, tags: numberTags, isPublic: "0"}))
+        .then(res => {
+          setState({
+            success: false,
+          });
         })
         .catch(err => {
           setState({
@@ -148,7 +165,7 @@ const NewDeckForm = props => {
             Create Deck
           </Button>
         </Form.Item>
-        {state.success ? (
+        {state.success === true ? (
           <Alert
             message="Success"
             data-testid="alertSuccess"
@@ -156,10 +173,18 @@ const NewDeckForm = props => {
             type="success"
             className={styles.alert}
           />
-        ) : state.success === false ? (
+        ) : state.success === false && formValues.name !== "" ? (
           <Alert
             message="Error"
             description="Not able to create Deck! Please make sure you are authed."
+            type="error"
+            data-testid="alertInvalid"
+            className={styles.alert}
+          />
+        ) : state.success === false && formValues.name === "" ? (
+          <Alert
+            message="Error"
+            description="Please add a deckname!"
             type="error"
             data-testid="alertInvalid"
             className={styles.alert}

@@ -7,6 +7,10 @@ const {Meta} = Card;
 
 export default function DeckCard({deck, deleteDeck, updateDeck}) {
   const [visible, setVisible] = useState(false);
+  const location = id => ({
+    pathname: `/deck/${id}`,
+    state: {source: "personal"},
+  });
   return (
     <>
       <Card
@@ -24,7 +28,7 @@ export default function DeckCard({deck, deleteDeck, updateDeck}) {
         ]}
         className={styles.deckCard}
       >
-        <Link to={`/deck/${deck.deck_id}`}>
+        <Link to={location(deck.deck_id)}>
           <Meta avatar={<Avatar src="logo192.png" />} description={deck.deck_name} />
         </Link>
       </Card>
