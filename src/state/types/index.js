@@ -24,6 +24,15 @@ export const READ_DECK = "READ_DECK";
 export const UPDATE_DECK = "UPDATE_DECK";
 export const DELETE_DECK = "DELETE_DECK";
 export const GET_DECK_BY_ID = "GET_DECK_BY_ID";
+
+export const GET_RECENT_SUCCESS = "GET_RECENT_SUCCESS";
+export const GET_RECENT_FAILURE = "GET_RECENT_FAILURE";
+export const GET_RECENT_START = "GET_RECENT_START";
+
+export const TOUCH_DECK_SUCCESS = "TOUCH_DECK_SUCCESS";
+export const TOUCH_DECK_FAILURE = "TOUCH_DECK_FAILURE";
+export const TOUCH_DECK_START = "TOUCH_DECK_START";
+
 //Play mode action types
 export const CLEAR_DECK_IN_SESSION = "CLEAR_DECK_IN_SESSION";
 export const SET_DECK_IN_SESSION = "SET_DECK_IN_SESSION";

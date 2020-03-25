@@ -70,10 +70,28 @@ export const playModeReducer = (state = initialPlayModeState, action) => {
   }
 };
 
+export const recentDecksReducer = (state = initialDecks, action) => {
+  switch (action.type) {
+    case types.GET_RECENT_START:
+    case types.GET_RECENT_FAILURE:
+      return state;
+    case types.GET_RECENT_SUCCESS:
+      return action.payload;
+    case types.TOUCH_DECK_START:
+    case types.TOUCH_DECK_FAILURE:
+      return state;
+    case types.TOUCH_DECK_SUCCESS:
+      return [action.payload, ...state].slice(0, 3);
+    default:
+      return state;
+  }
+};
+
 const decksStateReducer = combineReducers({
   publicDeckState: publicDecksReducer,
   personalDeckState: personalDecksReducer,
   currentDeckState: currentDeckReducer,
   deckInPlaySession: playModeReducer,
+  recentDecks: recentDecksReducer,
 });
 export default decksStateReducer;

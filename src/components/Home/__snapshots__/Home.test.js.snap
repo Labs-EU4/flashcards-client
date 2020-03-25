@@ -238,19 +238,49 @@ exports[`should take a snapshot 1`] = `
             <div
               class="container"
             >
-              <h1
-                class="heading"
-                data-testid="heading"
-              >
-                Recently played
-              </h1>
               <div
-                data-testid="decks"
+                class="ant-spin-nested-loading"
               >
+                <div>
+                  <div
+                    class="ant-spin ant-spin-spinning"
+                  >
+                    <span
+                      class="ant-spin-dot ant-spin-dot-spin"
+                    >
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                    </span>
+                  </div>
+                </div>
                 <div
-                  class="noDecks"
+                  class="ant-spin-container ant-spin-blur"
                 >
-                  You haven't completed a session yet!
+                  <h1
+                    class="heading"
+                    data-testid="heading"
+                  >
+                    Recently played
+                  </h1>
+                  <div
+                    data-testid="decks"
+                  >
+                    <div
+                      class="noDecks"
+                    >
+                      You haven't completed a session yet!
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

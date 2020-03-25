@@ -1,24 +1,20 @@
 import React, {useEffect, useState} from "react";
-import {Card, Button, Modal, Avatar} from "antd";
+import {Card, Button, Icon, Modal, Avatar} from "antd";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
 import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import AddCard from "./AddCard";
-import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
-import {useHistory} from "react-router-dom";
 
 const {Meta} = Card;
 
 function Cards(props) {
-  let history = useHistory();
   let {id} = useParams();
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   function handleCancel() {
     setVisible(false);
@@ -72,17 +68,13 @@ function Cards(props) {
                         data-testid="cardHolder"
                         style={{width: "100%", marginTop: 16}}
                         className={styles.innerCard}
-                        actions={
-                          history.location.state.source === "personal"
-                            ? [
-                                <DeleteOutlined
-                                  key="delete"
-                                  onClick={() => handleDelete(currentCard.id)}
-                                />,
-                                <EditOutlined onClick={() => toggleModal(currentCard)} />,
-                              ]
-                            : null
-                        }
+                        actions={[
+                          <Icon
+                            type="delete"
+                            onClick={() => handleDelete(currentCard.id)}
+                          />,
+                          <Icon type="edit" onClick={() => toggleModal(currentCard)} />,
+                        ]}
                       >
                         <Meta
                           avatar={<Avatar src="logo192.png" />}
