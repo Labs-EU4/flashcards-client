@@ -46,11 +46,13 @@ function Cards(props) {
 
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
-    <>
-      <div>
-        <div className={styles.header}>
-          <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
-          <HeaderSearchBar />
+    <div className={styles.componentcontainer}>
+      <div className={styles.container}>
+        <div className={styles.completeHeader}>
+          <div className={styles.headercontainer}>
+            <p className={styles.deckName}>{props.currentDeck.deck_name}</p>
+            <HeaderSearchBar />
+          </div>
           <Button className={styles.btn} type="dashed" onClick={toggleMode}>
             Add a card
           </Button>
@@ -66,7 +68,7 @@ function Cards(props) {
                     <div className={styles.card}>
                       <Card
                         data-testid="cardHolder"
-                        style={{width: "100%", marginTop: 16}}
+                        style={{width: "100%", border: "1px solid blue"}}
                         className={styles.innerCard}
                         actions={[
                           <Icon
@@ -77,7 +79,6 @@ function Cards(props) {
                         ]}
                       >
                         <Meta
-                          avatar={<Avatar src="logo192.png" />}
                           title={currentCard.question}
                           description={currentCard.answer}
                         />
@@ -87,7 +88,9 @@ function Cards(props) {
                 }
               })
             ) : (
-              <h1>THERE ARE NO CARDS TO DISPLAY</h1>
+              <div className={styles.nocards}>
+                <h1>There are no cards to display</h1>
+              </div>
             )}
           </div>
         </div>
@@ -113,7 +116,7 @@ function Cards(props) {
           <UpdateCard toggleModal={toggleModal} card={card} />
         </Modal>
       </div>
-    </>
+    </div>
   );
 }
 
