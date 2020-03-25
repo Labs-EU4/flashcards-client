@@ -18,8 +18,7 @@ exports[`renders without crashing 1`] = `
           Public Decks
         </h1>
         <span
-          class="ant-input-search ant-input-affix-wrapper"
-          style="width: 240px;"
+          class="ant-input-search search ant-input-affix-wrapper"
         >
           <input
             class="ant-input"
@@ -55,7 +54,9 @@ exports[`renders without crashing 1`] = `
         <div
           class="sort"
         >
-          Sort by:
+          <p>
+            Sort by:
+          </p>
           <div
             class="sortselect ant-select ant-select-enabled"
           >
@@ -353,8 +354,7 @@ exports[`renders without crashing v2 1`] = `
                   Public Decks
                 </h1>
                 <span
-                  class="ant-input-search ant-input-affix-wrapper"
-                  style="width: 240px;"
+                  class="ant-input-search search ant-input-affix-wrapper"
                 >
                   <input
                     class="ant-input"
@@ -390,7 +390,9 @@ exports[`renders without crashing v2 1`] = `
                 <div
                   class="sort"
                 >
-                  Sort by:
+                  <p>
+                    Sort by:
+                  </p>
                   <div
                     class="sortselect ant-select ant-select-enabled"
                   >
