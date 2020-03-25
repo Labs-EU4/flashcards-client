@@ -1,6 +1,6 @@
 .btn {
-  width: 100px;
-  margin-right: 25px;
+  width: 150px;
+  font-size: 1rem;
 }
 
 .title {
@@ -13,134 +13,123 @@
   padding: 0 40px;
 }
 
-.mappedCard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 80vw;
-  margin-top: 50px;
-}
-
-.card {
-  width: 24%;
-  margin-bottom: 4vh;
-  -webkit-box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
-  -moz-box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
-  box-shadow: 4px 10px 20px -9px rgba(0,0,0,0.75);
-}
-
 .headercontainer {
   display: flex;
   justify-content: space-between;
-  width: 70vw;
+  width: 100%;
 }
 
 .deckName {
   font-size: 2rem;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
-@media (max-width: 1400px) {
-  .mappedCard {
-    margin-left: 2vw;
-    width: 930px;
-  }
-  
-  .card {
-    width: 30%;
-  }
+.completeHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* DONE */
+
+.componentcontainer {
+  width: calc(100%-100px);
+}
+
+.mappedCard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.card {
+  width: calc(100% / 4 - 20px);
+  margin: 0 10px 0 10px;
+  margin-bottom: 4vh;
+  -webkit-box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width: 1500px) {
+  .card {
+    width: calc(100% / 3 - 20px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .card {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media (max-width: 650px) {
+  .card {
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 1500px) {
+  .componentcontainer {
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 1255px) {
   .deckName {
-    font-size: 25px;
-    margin-left: 90px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+  }
+  .componentcontainer {
+    margin-left: 100px;
   }
 }
 
-@media (max-width: 1200px) {
-  .mappedCard {
-    margin-left: 5vw;
-    width: 750px;
-  }
-  
-  .card {
-    width: 30%;
-  }
-
+@media (max-width: 1190px) {
   .deckName {
-    font-size: 25px;
-    margin-left: 90px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-}
-
-
-@media (max-width: 1050px) {
-  .mappedCard {
-    margin-left: 8vw;
-    width: 650px;
-  }
-  
-  .card {
-    width: 45%;
-  }
-}
-
-@media (max-width: 970px) {
-  .mappedCard {
-    width: 580px;
-    margin-left: 10vw;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-left: 25%;
   }
   .headercontainer {
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    margin-right: 50px;
   }
-
   .btn {
-    width: 200px;
-    margin-top: 30px;
-    margin-left: 110px;
+    position: relative;
+    bottom: -40px;
   }
 }
 
-@media (max-width: 850px) {
-  .mappedCard {
-    width: 580px;
-    margin-left: 16vw;
-  }
 
-  .card {
-    width: 60%;
+@media (max-width: 975px) {
+  .completeHeader {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .btn {
+    position: unset;
+    margin-top: 30px;
+  }
+  .deckName {
+    font-size: 1.6rem;
+    margin-left: unset;
   }
   .headercontainer {
-    flex-direction: column;
-    align-items: center;
+    margin-right: unset;
   }
-  .btn {
-    width: 200px;
-    margin-top: 30px;
-    margin-left: 90px;
+  .componentcontainer {
+    margin-left: 140px;
   }
 }
 
-
-@media (max-width: 700px) {
-  .mappedCard {
-    width: 550px;
-    margin-left: 18vw;
-  }
-  .btn {
-    width: 200px;
-    margin-top: 30px;
-    margin-left: 80px;
-  }
-
-  .headercontainer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 60%;
+@media (max-width: 600px) {
+  .componentcontainer {
+    width: 100%;
+    margin-left: unset;
   }
 }
+
