@@ -53,18 +53,6 @@ export const getPublicDecks = () => async dispatch => {
   }
 };
 
-export const getPersonalDecks = () => async dispatch => {
-  try {
-    const response = await axiosWithAuth().get("/decks");
-    dispatch({
-      type: GET_PERSONAL_DECKS,
-      payload: response.data.data,
-    });
-  } catch (err) {
-    throw err;
-  }
-};
-
 export const getAllPersonalDecks = () => async dispatch => {
   try {
     const response = await axiosWithAuth().get("/decks");
