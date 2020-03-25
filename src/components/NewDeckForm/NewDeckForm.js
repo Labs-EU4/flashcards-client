@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {Form, Input, Button, Alert, Checkbox, Select} from "antd";
 import {useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom";
 import {deckTags} from "../../utils/deckTags";
 import {createDeck} from "../../state/actions/decks";
 import styles from "../../components/RecentDecks/RecentDecks.module.css";
 //Hey
 const NewDeckForm = props => {
+  let history = useHistory();
   const [formValues, setFormValues] = useState({
     name: "",
     tags: [],
@@ -32,6 +34,12 @@ const NewDeckForm = props => {
             tags: [],
             isPublic: false,
           });
+          return res;
+        })
+        .then(res => {
+          setTimeout(() => {
+            history.push(`/deck/${res.data.deck.deck_id}`);
+          }, 1400);
         })
         .catch(err => {
           setState({
@@ -49,6 +57,12 @@ const NewDeckForm = props => {
             tags: [],
             isPublic: false,
           });
+          return res;
+        })
+        .then(res => {
+          setTimeout(() => {
+            history.push(`/deck/${res.data.deck.deck_id}`);
+          }, 1400);
         })
         .catch(err => {
           setState({
