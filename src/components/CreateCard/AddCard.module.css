@@ -54,6 +54,13 @@
   box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
 }
 
+.nocards {
+  font-size: 1.4rem;
+  left: 45vw;
+  top: 48vh;
+  position: absolute;
+}
+
 @media (max-width: 1500px) {
   .card {
     width: calc(100% / 3 - 20px);

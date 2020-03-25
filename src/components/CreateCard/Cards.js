@@ -88,9 +88,7 @@ function Cards(props) {
                 }
               })
             ) : (
-              <div className={styles.nocards}>
-                <h1>There are no cards to display</h1>
-              </div>
+              <h1 className={styles.nocards}>There are no cards to display</h1>
             )}
           </div>
         </div>
