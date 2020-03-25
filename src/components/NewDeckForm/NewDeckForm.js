@@ -20,6 +20,11 @@ const NewDeckForm = props => {
     success: null,
   });
 
+  const location = id => ({
+    pathname: `/deck/${id}`,
+    state: {source: "personal"},
+  });
+
   const handleSubmit = e => {
     e.preventDefault();
     const numberTags = formValues.tags.map(x => parseInt(x));
@@ -38,7 +43,7 @@ const NewDeckForm = props => {
         })
         .then(res => {
           setTimeout(() => {
-            history.push(`/deck/${res.data.deck.deck_id}`);
+            history.push(location(res.data.deck.deck_id));
           }, 1400);
         })
         .catch(err => {
