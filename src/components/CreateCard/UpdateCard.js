@@ -50,16 +50,7 @@ function UpdateCard(props) {
     setLoading(false);
   };
 
-  const {
-    getFieldDecorator,
-    getFieldsError,
-    validateFields,
-    isFieldTouched,
-    getFieldError,
-  } = props.form;
-  useEffect(() => {
-    validateFields();
-  }, [validateFields]);
+  const {getFieldDecorator, getFieldsError, isFieldTouched, getFieldError} = props.form;
 
   const questionTextError =
     isFieldTouched("questionText") && getFieldError("questionText");
