@@ -2,7 +2,7 @@
 
 <img src="./src/assets/appimages/profile.jpg" />
 
-# flashcards_frontend
+# decksify_frontend
 
 [Decksify Marketing Site](https://decksify.com/)
 
