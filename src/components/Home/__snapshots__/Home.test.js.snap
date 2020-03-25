@@ -270,7 +270,7 @@ exports[`should take a snapshot 1`] = `
                     class="heading"
                     data-testid="heading"
                   >
-                    Recently played
+                    Recent decks
                   </h1>
                   <div
                     data-testid="decks"
