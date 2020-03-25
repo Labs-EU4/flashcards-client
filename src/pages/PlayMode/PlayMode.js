@@ -9,9 +9,9 @@ import {
   clearDeckInPlaySession,
   storeUnfinishedSession,
   fetchDeckById,
+  touchDeck,
 } from "../../state/actions/decks";
 import {useEffect} from "react";
-import {Redirect} from "react-router-dom";
 import ErrorHandlingScreen from "../../components/PlayMode/ErrorHandlingScreen/ErrorHandlingScreen";
 
 export function PlayMode({
@@ -19,6 +19,7 @@ export function PlayMode({
   clearDeckInPlaySession,
   fetchDeckById,
   storeUnfinishedSession,
+  touchDeck,
   history,
   match,
 }) {
@@ -40,7 +41,12 @@ export function PlayMode({
       .catch(error => setError(error))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchDeckById, match.params.deckId, touchDeck]);
+  useEffect(() => {
+    if (deckInPlaySession) {
+      touchDeck(deckInPlaySession);
+    }
+  }, [deckInPlaySession, touchDeck]);
   function next(e) {
     if (current !== deckInPlaySession.flashcards.length - 1) {
       setCurrent(current + 1);
@@ -172,6 +178,7 @@ const connectedPlayMode = connect(mapStateToProps, {
   clearDeckInPlaySession,
   storeUnfinishedSession,
   fetchDeckById,
+  touchDeck,
 })(PlayMode);
 
 export default connectedPlayMode;

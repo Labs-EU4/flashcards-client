@@ -27,7 +27,7 @@ export const DeckContainer = ({
       {personalDeckState.length === 0 ? (
         <h5>You have no decks</h5>
       ) : (
-        personalDeckState.map(deck => {
+        personalDeckState.slice(0, 10).map(deck => {
           return (
             <DeckCard
               key={deck.deck_id}

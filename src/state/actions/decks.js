@@ -8,6 +8,12 @@ import {
   GET_DECK_BY_ID,
   UPDATE_DECK,
   CREATE_DECK,
+  GET_RECENT_START,
+  GET_RECENT_SUCCESS,
+  GET_RECENT_FAILURE,
+  TOUCH_DECK_FAILURE,
+  TOUCH_DECK_START,
+  TOUCH_DECK_SUCCESS,
 } from "../types";
 import {axiosWithAuth} from "../../utils/axios";
 
@@ -125,5 +131,27 @@ export const updateDeck = (id, deck) => async dispatch => {
     });
   } catch (err) {
     throw err;
+  }
+};
+
+export const getRecentDecks = () => async dispatch => {
+  try {
+    dispatch(action(GET_RECENT_START));
+    const response = await axiosWithAuth().get("/decks/access");
+    const recentDecks = response.data.data;
+    dispatch(action(GET_RECENT_SUCCESS, recentDecks));
+  } catch (error) {
+    dispatch(action(GET_RECENT_FAILURE));
+    throw error;
+  }
+};
+
+export const touchDeck = deck => async dispatch => {
+  try {
+    dispatch(action(TOUCH_DECK_START));
+    await axiosWithAuth().put(`/decks/access/${deck.deck_id}`);
+    dispatch(action(TOUCH_DECK_SUCCESS, deck));
+  } catch (error) {
+    dispatch(action(TOUCH_DECK_FAILURE));
   }
 };
