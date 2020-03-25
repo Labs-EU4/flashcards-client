@@ -23,7 +23,7 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
     <div className={styles.container}>
       <Spin spinning={loading}>
         <h1 className={styles.heading} data-testid="heading">
-          Recently played
+          Recent decks
         </h1>
         <div data-testid="decks">
           {recentDecks.length === 0 ? (
@@ -42,10 +42,12 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
                   className={styles.deckCard}
                   key={deck.deck_id}
                 >
-                  <Meta
-                    avatar={<Avatar src="logo192.png" />}
-                    description={deck.deck_name}
-                  />
+                  <Link to={`/decks/${deck.deck_id}`}>
+                    <Meta
+                      avatar={<Avatar src="logo192.png" />}
+                      description={deck.deck_name}
+                    />
+                  </Link>
                 </Card>
               );
             })

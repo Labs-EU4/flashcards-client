@@ -13,7 +13,7 @@ export default function ErrorHandlingScreen({
     history.goBack();
   };
   const goToEdit = () => {
-    history.push(`/edit/${deck_id}`);
+    history.push(`/deck/${deck_id}`);
   };
   if (error) {
     return (
@@ -29,7 +29,9 @@ export default function ErrorHandlingScreen({
     <main className={styles.main}>
       <h2>This deck has 0 cards in it.</h2>
       {user_id === author_id && author_id !== undefined ? (
-        <Button onClick={goToEdit}>Add cards to your deck!</Button>
+        <Button className={styles.button} onClick={goToEdit}>
+          Add cards to your deck!
+        </Button>
       ) : null}
       <Button size="large" type="primary" onClick={goBack}>
         Go back
