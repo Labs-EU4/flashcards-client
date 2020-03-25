@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {Card, Avatar, Icon, Spin} from "antd";
 import {getRecentDecks} from "../../state/actions/decks";
 import styles from "./RecentDecks.module.css";
@@ -18,7 +18,10 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
       })
       .catch(error => setError(error));
   }, [getRecentDecks]);
-
+  const location = id => ({
+    pathname: `/deck/${id}`,
+    state: {source: "personal"},
+  });
   return (
     <div className={styles.container}>
       <Spin spinning={loading}>
@@ -42,7 +45,7 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
                   className={styles.deckCard}
                   key={deck.deck_id}
                 >
-                  <Link to={`/decks/${deck.deck_id}`}>
+                  <Link to={location(deck.deck_id)}>
                     <Meta
                       avatar={<Avatar src="logo192.png" />}
                       description={deck.deck_name}

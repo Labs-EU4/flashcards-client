@@ -12,8 +12,12 @@ export default function ErrorHandlingScreen({
   const goBack = () => {
     history.goBack();
   };
+  const location = id => ({
+    pathname: `/deck/${id}`,
+    state: {source: "personal"},
+  });
   const goToEdit = () => {
-    history.push(`/deck/${deck_id}`);
+    history.push(location(deck_id));
   };
   if (error) {
     return (
