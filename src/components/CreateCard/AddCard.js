@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 import "../CreateCard/AddCard.module.css";
 import {connect, useSelector} from "react-redux";
@@ -12,8 +12,13 @@ function AddCard(props) {
     answerText: "",
   });
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState("");
-  const {getFieldDecorator} = props.form;
+  // const {getFieldDecorator} = props.form;
+
+  const hasErrors = fieldsError => {
+    return Object.keys(fieldsError).some(field => fieldsError[field]);
+  };
   const handleChange = e => {
     console.log(formValues);
     setFormValues({
@@ -25,27 +30,48 @@ function AddCard(props) {
   const handleSubmit = e => {
     console.log(e);
     e.preventDefault();
+    setLoading(true);
     const newCard = {
       deckId: deck_id,
       questionText: formValues.questionText,
       answerText: formValues.answerText,
     };
 
-    setLoading(true);
     props.addCard(newCard);
+    setLoading(false);
     setFormValues({
       questionText: "",
       answerText: "",
     });
-    setLoading(false);
+
     props.toggleMode();
   };
+
+  const {
+    getFieldDecorator,
+    getFieldsError,
+    validateFields,
+    isFieldTouched,
+    getFieldError,
+  } = props.form;
+  useEffect(() => {
+    validateFields();
+  }, [validateFields]);
+
+  const questionTextError =
+    isFieldTouched("questionText") && getFieldError("questionText");
+  const answerTextError = isFieldTouched("answerText") && getFieldError("answerText");
   return (
     <div className={styles.cardContainer}>
       <h1>Add a card</h1>
       <Spin spinning={loading} delay={300}>
         <Form onSubmit={e => handleSubmit(e)} className={styles.cardForm}>
-          <Form.Item>
+          <Form.Item
+            name="questionText"
+            validateStatus={questionTextError ? "error" : ""}
+            hasFeedback
+            help={questionTextError || ""}
+          >
             {getFieldDecorator("questionText", {
               //rules are for the form validation
               rules: [
@@ -68,7 +94,12 @@ function AddCard(props) {
               />
             )}
           </Form.Item>
-          <Form.Item>
+          <Form.Item
+            name="answerText"
+            validateStatus={answerTextError ? "error" : ""}
+            help={answerTextError || ""}
+            hasFeedback
+          >
             {getFieldDecorator("answerText", {
               //rules are for the form validation
               rules: [
@@ -92,13 +123,19 @@ function AddCard(props) {
             )}
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className={styles.loginFormButton}
+              disabled={hasErrors(getFieldsError())}
+            >
               ADD YOUR CARD
             </Button>
           </Form.Item>
           {error && (
             <Alert
               message={error}
+              description="Not able to add the card"
               type="error"
               closable
               afterClose={() => setError(null)}
