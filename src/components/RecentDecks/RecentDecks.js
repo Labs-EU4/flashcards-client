@@ -23,7 +23,7 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
     <div className={styles.container}>
       <Spin spinning={loading}>
         <h1 className={styles.heading} data-testid="heading">
-          Recently played
+          Recent decks
         </h1>
         <div data-testid="decks">
           {recentDecks.length === 0 ? (
