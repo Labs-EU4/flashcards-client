@@ -3,13 +3,14 @@ import List from "../../components/ListDeckInfo/DeckList";
 import Header from "../../components/ListDeckInfo/HeaderSearchBar";
 import styles from "./PersonalDecks.module.css";
 import Dashboard from "../../layout/Dashboard/Dashboard";
-import {getPersonalDecks} from "../../state/actions/decks";
+import {getAllPersonalDecks} from "../../state/actions/decks";
 import {connect} from "react-redux";
 
-export function TestPersonalDecks({getPersonalDecks, decks}) {
+export function TestPersonalDecks({getAllPersonalDecks, decks}) {
   useEffect(() => {
-    getPersonalDecks();
-  }, [getPersonalDecks]);
+    getAllPersonalDecks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.personal}>
@@ -19,10 +20,11 @@ export function TestPersonalDecks({getPersonalDecks, decks}) {
   );
 }
 
-export function PersonalDecks({getPersonalDecks, decks}) {
+export function PersonalDecks({getAllPersonalDecks, decks}) {
   useEffect(() => {
-    getPersonalDecks();
-  }, [getPersonalDecks]);
+    getAllPersonalDecks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Dashboard>
@@ -40,12 +42,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {getPersonalDecks})(PersonalDecks);
-
-// export default function Personal() {
-//   return (
-//     <Dashboard>
-//       <ConnectedDecksPage />
-//     </Dashboard>
-//   );
-// }
+export default connect(mapStateToProps, {getAllPersonalDecks})(PersonalDecks);

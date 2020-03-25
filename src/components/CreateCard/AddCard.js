@@ -20,7 +20,6 @@ function AddCard(props) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
   };
   const handleChange = e => {
-    console.log(formValues);
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value,
@@ -28,7 +27,6 @@ function AddCard(props) {
   };
 
   const handleSubmit = e => {
-    console.log(e);
     e.preventDefault();
     setLoading(true);
     const newCard = {

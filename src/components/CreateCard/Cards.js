@@ -7,10 +7,12 @@ import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import AddCard from "./AddCard";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
+import {useHistory} from "react-router-dom";
 
 const {Meta} = Card;
 
 function Cards(props) {
+  let history = useHistory();
   let {id} = useParams();
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);
@@ -70,13 +72,20 @@ function Cards(props) {
                         data-testid="cardHolder"
                         style={{width: "100%", border: "1px solid blue"}}
                         className={styles.innerCard}
-                        actions={[
-                          <Icon
-                            type="delete"
-                            onClick={() => handleDelete(currentCard.id)}
-                          />,
-                          <Icon type="edit" onClick={() => toggleModal(currentCard)} />,
-                        ]}
+                        actions={
+                          history.location.state.source === "personal"
+                            ? [
+                                <Icon
+                                  type="delete"
+                                  onClick={() => handleDelete(currentCard.id)}
+                                />,
+                                <Icon
+                                  type="edit"
+                                  onClick={() => toggleModal(currentCard)}
+                                />,
+                              ]
+                            : null
+                        }
                       >
                         <Meta
                           title={currentCard.question}
