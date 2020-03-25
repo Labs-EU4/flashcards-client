@@ -24,7 +24,7 @@ export default function DeckCard({deck, deleteDeck, updateDeck}) {
         ]}
         className={styles.deckCard}
       >
-        <Link>
+        <Link to={`/deck/${deck.deck_id}`}>
           <Meta avatar={<Avatar src="logo192.png" />} description={deck.deck_name} />
         </Link>
       </Card>
