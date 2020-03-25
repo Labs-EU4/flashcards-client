@@ -15,11 +15,11 @@ export default function HeaderSearchBar({page}) {
         <Search
           placeholder="Search"
           onSearch={value => console.log(value)}
-          style={{width: "240px"}}
+          className={styles.search}
         />
-        <div>
-          Sort By:
-          <Select defaultValue="Home">
+        <div className={styles.sort}>
+          <p>Sort by:</p>
+          <Select defaultValue="Home" className={styles.sortselect}>
             <Option value="Home">Option 1</Option>
             <Option value="Company">Option2</Option>
           </Select>
