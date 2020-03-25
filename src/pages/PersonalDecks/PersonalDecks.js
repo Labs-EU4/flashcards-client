@@ -22,7 +22,8 @@ export function TestPersonalDecks({getAllPersonalDecks, decks}) {
 export function PersonalDecks({getAllPersonalDecks, decks}) {
   useEffect(() => {
     getAllPersonalDecks();
-  }, [getAllPersonalDecks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Dashboard>

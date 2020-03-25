@@ -9,7 +9,8 @@ import {connect} from "react-redux";
 export function TestPublicDecks({getPublicDecks, decks}) {
   useEffect(() => {
     getPublicDecks();
-  }, [getPublicDecks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.public}>
