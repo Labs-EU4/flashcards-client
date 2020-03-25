@@ -18,8 +18,7 @@ exports[`renders without crashing 1`] = `
           Deck Library
         </h1>
         <span
-          class="ant-input-search ant-input-affix-wrapper"
-          style="width: 240px;"
+          class="ant-input-search search ant-input-affix-wrapper"
         >
           <input
             class="ant-input"
@@ -52,10 +51,14 @@ exports[`renders without crashing 1`] = `
             </i>
           </span>
         </span>
-        <div>
-          Sort By:
+        <div
+          class="sort"
+        >
+          <p>
+            Sort by:
+          </p>
           <div
-            class="ant-select ant-select-enabled"
+            class="sortselect ant-select ant-select-enabled"
           >
             <div
               aria-autocomplete="list"
@@ -351,8 +354,7 @@ exports[`renders without crashing v2 1`] = `
                   Deck Library
                 </h1>
                 <span
-                  class="ant-input-search ant-input-affix-wrapper"
-                  style="width: 240px;"
+                  class="ant-input-search search ant-input-affix-wrapper"
                 >
                   <input
                     class="ant-input"
@@ -385,10 +387,14 @@ exports[`renders without crashing v2 1`] = `
                     </i>
                   </span>
                 </span>
-                <div>
-                  Sort By:
+                <div
+                  class="sort"
+                >
+                  <p>
+                    Sort by:
+                  </p>
                   <div
-                    class="ant-select ant-select-enabled"
+                    class="sortselect ant-select ant-select-enabled"
                   >
                     <div
                       aria-autocomplete="list"

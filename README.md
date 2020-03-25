@@ -1,28 +1,23 @@
-
-
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8c0f3795-6190-4b12-9051-5abaa6aaab10/deploy-status)](https://app.netlify.com/sites/sandy-quickdecks/deploys)
-
 
 <img src="./src/assets/appimages/profile.jpg" />
 
-# flashcards_frontend 
+# decksify_frontend
 
-[QuickDecks Marketing Site](https://quickdecksapp.com/)
+[Decksify Marketing Site](https://decksify.com/)
 
-[QuickDecks Website](https://sandy-quickdecks.netlify.com/)
+[Decksify BackEnd](https://quickdecks.herokuapp.com/)
 
-[QuickDecks BackEnd](https://quickdecks.herokuapp.com/)
+[Notion Document](https://www.notion.so/6e1c96f1d2824e55a4707311718edbef?v=81bf898f7fcb43fd9191a1c3eba7e306)
 
-[Notion Document](https://www.notion.so/EU3-Flashcards-439539312aa04de7b17c2f80da7dd400)
+[Trello Board](https://trello.com/b/2J0Rpp3D/flashdecks)
 
-[Trello Board](https://trello.com/b/81h2pHYk/labseu3-flashcards)
-
-[UI/UX](https://www.figma.com/file/MdKOQKnxJ0avxAIdMPhLne/Quick-Decks?node-id=1%3A4)
+[UI/UX](https://www.figma.com/file/CxIib8j9KlIV8SwIv9Kl7v/Flashcards-LABS-EU-4-mockups?node-id=7898%3A352)
 
 [DB Design](https://dbdiagram.io/d/5def6f09edf08a25543eea12)
 
-
 ## Table of Contents
+
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
@@ -35,25 +30,24 @@
   - [Code Styling Conventions](#code-styling-conventions)
   - [Code Guidelines](#code-guidelines)
   - [Setup formatting on Editor](#setup-formatting-on-editor)
-  - [Prettier Setup for VS Code](#prettier-setup-for-vs-code )
+  - [Prettier Setup for VS Code](#prettier-setup-for-vs-code)
   - [APIs](#apis)
   - [Environment Variables](#environment-variables)
   - [Structure and Naming](#structure-and-naming)
   - [Workflow](#workflow)
   - [Built With](#built-with)
   - [Meet the Team `(Team)`](#team)
-   - [Team](#team)
-  - [Contributing](#contributing)  
-   - [Requests](#requests)
-    - [Pull Requests](#pull-requests)
-      - [Pull Request Guidelines](#pull-request-guidelines)
-    - [Feature Requests](#feature-requests)
-    - [Issue / Bug Request](#issue-bug-request)
-    - [Attribution](#attribution)
-    - [Backend Documentation](#backend-documentation)
+  - [Team](#team)
+  - [Contributing](#contributing)
+  - [Requests](#requests)
+  - [Pull Requests](#pull-requests)
+    - [Pull Request Guidelines](#pull-request-guidelines)
+  - [Feature Requests](#feature-requests)
+  - [Issue / Bug Request](#issue-bug-request)
+  - [Attribution](#attribution)
+  - [Backend Documentation](#backend-documentation)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
-
 
 # Getting Started
 
@@ -71,10 +65,10 @@ For development, you will only need Node.js installed on your environment.
 
 ## Installing
 
-    $ git clone git@github.com:LABS-EU3/flashcards_frontend.git
+    $ git clone https://github.com/Labs-EU4/flashcards-client
     $ cd flashcards_frontend
     $ npm install
-    
+
 ## Starting Development Server
 
     $ npm start
@@ -110,30 +104,23 @@ Ejects hidden modules into `package.json`.
 
 ## Scripts
 
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint . -c .eslintrc.json --ext js,jsx ",
-    "lint-fix": "eslint . -c .eslintrc.json --ext js,jsx, --fix",
-    "check-staged": "lint-staged "
-    
-## Code Styling Conventions
-- Tab Size: 2
-- Use the single quote `'` 
-- Always export objects even if only one function is being exported 
-- Always name your files accordingly
-- Only **one** index.js can exist and must be top level
-- `Async/Await` instead of `.then()` etc...
-- All component files should have the .jsx extension e.g login.jsx, signup.jsx.
-- Use relative units and values for example { fonts-size: 2rem; } instead of hard-coded pixels { fonts-size: 20px } etc
-- Use flexbox or percentages for layout instead of rems/ems/px
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|md|vue)\"",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --verbose --watchAll=false --coverage -u",
+    "eject": "react-scripts eject"
 
+## Code Styling Conventions
+
+- Ant design components and style
+- Use CSS modules
+- `Async/Await` and `.then()` etc...
 
 ## Code Guidelines
+
 - TDD is preferable but Test as soon as possible once you finish something
 - **Never work on the same file!**
-
 
 ## Setup formatting on Editor
 
@@ -145,27 +132,26 @@ On VsCode:
 Example:
 ![Format on save](https://res.cloudinary.com/elbon/image/upload/v1566300863/Screenshot_2019-08-20_at_12.31.41_PM.png)
 
+## Prettier Setup for VS Code
 
-## Prettier Setup for VS Code 
 - Install VS-Code extension below;
 
   - [x] Name: Prettier - Code formatter
   - [x] [VS Marketplace Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-
 ## APIs
+
 We use [Cloudinary](https://cloudinary.com/) for images/videos content delivery
 
-
 ## Environment Variables
+
 For the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
     PORT = port number on which the app will be open locally --> optional
     REACT_APP_API_HOST = link to your API host --> local backend url
-    REACT_APP_CLOUD_NAME = quick-decks --> app name
-    REACT_APP_CLOUDINARY_SECRET = cloudinary client secret key --> from cloudinary registration 
-    REACT_APP_CLOUDINARY_API_KEY = cloudinary client api key --> from cloudinary registration 
-    
+    REACT_APP_CLOUD_NAME = decksify --> app name
+    REACT_APP_CLOUDINARY_SECRET = cloudinary client secret key --> from cloudinary registration
+    REACT_APP_CLOUDINARY_API_KEY = cloudinary client api key --> from cloudinary registration
 
 ## Structure and Naming
 
@@ -175,59 +161,135 @@ For the app to function correctly, the user must set up their own environment va
   ├── assets
   |
   ├── components
-  |   ├── addCardForm
-  |   |   └── AddCardForm.js
+  |   ├──   CreateCard
+  |   |   └── AddCard.js
+  |   |   └── AddCard.module.css
+  |   |   └── Cards.js
+  |   |   └── UpdateCard.js
   |   |
-  |   ├── SearchBox
-  |   |   ├── SearchBox.js
-  |   |   └── styles.js
-  |   └── signupForm
-  |       └── SignupForm.js
-  ├── config
-  |   
-  ├── module
-  |   ├── dashboard
-  |   |   ├── dashboardActions.js
-  |   |   ├── dashboardReducer.js
-  |   |   └── dashboardTypes.js
-  |   └── user
-  |       ├── userActions.js
-  |       ├── userReducer.js
-  |       └── userTypes.js
-  |
+  |   ├── DeckBoard
+  |   |   ├── DeckCard.js
+  |   |   └── deckCard.module.css
+  |   |   └── DeckContainer.js
+  |   |   └── EditForm.js
+  |   |   └── EditModal.js
+  |   |
+  |   └── ErrorBoundary
+  |   |   └── ErrorBoundary.js
+  |   |
+  |   | ── ForgotPassword
+  |   |    └── FormComponent.js
+  |   |    └── FormComponentChangePassword.js
+  |   |
+  |   | ── formStyleComponent
+  |   |    └── FormHeader.js
+  |   |    └── FormStyleComponent.js
+  |   |    └── FormStyleComponent.css
+  |   |
+  |   | ── GoogleLogin
+  |   |    └── GoogleButton.js
+  |   |    └── GoogleButton.module.css
+  |   |     
+  |   | ──  Home
+  |   |    └── Home.js
+  |   |
+  |   | ──  ListDeckInfo
+  |   |    └── DeckCard.js
+  |   |    └── DeckList.js
+  |   |    └── DeckList.module.css
+  |   |    └── HeaderSearchBar.js
+  |   |    └── HeaderSearchBar.css
+  |   | 
+  |   | ──  NewDeckForm
+  |   |    └── NewDeckForm.js
+  |   |
+  |   | ──  RecentDecks
+  |   |    └── RecentDecks.js
+  |   |    └── RecentDecks.module.css
+  |   |
+  |   |  ──  SetRecoveryPassword
+  |   |    └── SetRecoveryPassword.js
+  |   |    └── SetRecoveryPassword.module.less  
+  |   |
+  ├── layout 
+  |   |──  Dashboard
+  |   |    └── Dashboard.js
+  |   |    └── Dashboard.module.css     
+  |   |
   ├── pages
-  |   ├── dashboard
-  |   |   ├── route
-  |   |   |   ├── DeckLibrary
-  |   |   |   |   ├── components
-  |   |   |   |   |   ├── DecksSection.js
-  |   |   |   |   |   └── TopComponent.js
-  |   |   |   |   └── DeckLibrary.js
-  |   |   |   ├── LeaderBoard
-  |   |   |   |   └── LeaderBoard.js
-  |   |   ├── Dashboard.js
-  |       └── DashboardLayout.js
+  |   ├── ConfirmSignUp
+  |   |   ├── ConfirmSignUp.js
+  |   |
+  |   ├── Dashboard
+  |   |   ├── dashboard.js
+  |   |
+  |   ├── ForgotPassword
+  |   |   ├── ForgotPassword.js
+  |   |   ├── ResetPassword.js
+  |   |
+  |   ├── GoogleLogin
+  |   |   ├── GoogleLogin.js
+  |   |   ├── GoogleLogin.module.less
+  |   |
+  |   ├── Login
+  |   |   ├── Login.js
+  |   |   ├── Login.module.css
+  |   |
+  |   ├── PersonalDecks
+  |   |   ├── PersonalDecks.js
+  |   |   ├── PersonalDecks.css
+  |   |
+  |   ├── PlayMode
+  |   |   ├── PlayMode.js
+  |   |   ├── PlayMode.module.less
+  |   |
+  |   ├── PublicDecks
+  |   |   ├── PublicDecks.js
+  |   |   ├── PublicDecks.module.css
+  |   |
+  |   ├── Register
+  |   |   ├── Register.js
+  |   |   ├── Register.module.css
+  |   |
+  |── router   
+  |   ├── index.js
+  |   |── RoutesConfig.js 
+  |   |── SwitchRoutes.js 
+  |   |   
+  |   |   
+  |   |  
+  |   |   
+  |   |   
+  |    
   ├── store
+  ├── config
   |
-  ├── style
-  |   ├── variables.js
-  |   |   ├── colours.js
-  |   |   ├── fonts.js
-  |   |   └── global.js
-  |   ├── background.js
-  |   └── typography.js
+  ├── state
+  |   ├── actions
+  |   |   ├── auth.js
+  |   |   ├── cardAction.js
+  |   |   └── decks.js
+  |   └── reducers
+  |       ├── auth.js
+  |       ├── decks.js
+  |    └── types
+  |       ├── index.js
+  |       
+  |       
+  |
   |
   ├── utils
   |   ├── auth.js
-  |   ├── CloudinaryService.js
-  |   └── useDispatchedActions.js
-  |   
+  |   ├── axios.js
+  |   └── deckTags.js
+  |   └── diffArrays.js
+  |   └── zipList.js
+  |
   ├── App.js
   |
   └── index.js
 
 ```
-
 
 ## Workflow
 
@@ -246,7 +308,7 @@ Example:
 
     ```js
     // src/component/Home.js
-    const Home = () => <h1>Welcome to FlashCards</h1>;
+    const Home = () => <h1>Welcome to Decksify</h1>;
 
     export default Home;
     ```
@@ -265,10 +327,10 @@ Example:
 
     ```js
     // src/modules/user/userActions.js
-    export const GET_HOME = 'GET_HOME';
+    export const GET_HOME = "GET_HOME";
 
     export const getHome = user => {
-      return { type: GET_HOME, payload: user };
+      return {type: GET_HOME, payload: user};
     };
     ```
 
@@ -276,12 +338,12 @@ Example:
 
     ```js
     // src/modules/user/userReducers.js
-    import { GET_HOME } from '../actions/home.js';
+    import {GET_HOME} from "../actions/home.js";
 
     const homeReducer = (state = initialState, action) => {
       switch (action.type) {
         case GET_HOME:
-          return { ...state, home: action.payload };
+          return {...state, home: action.payload};
         default:
           return state;
       }
@@ -294,7 +356,7 @@ Example:
 
     ```js
     // src/store/index.js
-    import userReducer from '../modules/user/userReducers';
+    import userReducer from "../modules/user/userReducers";
 
     const rootReducer = combineReducers({
       user: userReducer,
@@ -302,30 +364,26 @@ Example:
 
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-    const store = createStore(
-      rootReducer,
-      composeEnhancers(applyMiddleware(thunk)),
-    );
+    const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
     export default store;
-
     ```
-    
 
 ## Built With
 
-* [React](https://reactjs.org/) - The web framework used.
-* [Redux](https://redux.js.org/) - State management tool.
-* [Styled-components](https://www.styled-components.com/) - Write CSS in JavaScript.
-
+- [React](https://reactjs.org/) - The web framework used.
+- [Redux](https://redux.js.org/) - State management tool.
+- [ant-design](https://ant.design) - A UI design Language and React UI.
 
 ## [Team](#team)
 
-[Noble Obioma](https://github.com/nobioma1) | [Anna Winther](https://github.com/annawinther) | [John Omulosi](https://github.com/Omulosi) | [Richany Alina Nguon](https://github.com/richanynguon) |[Maaruf Dauda](https://github.com/emkayDauda) | [Oluwajoba Jobsy](https://github.com/Jobsy)<br>
-| --- | --- | --- | --- | --- | --- |
-[<img src="https://avatars1.githubusercontent.com/u/30900531?s=200&v=2" />](https://github.com/nobioma1) | [<img src="https://avatars1.githubusercontent.com/u/49450506?s=200&v=2" />](https://github.com/annawinther) | [<img src="https://avatars0.githubusercontent.com/u/10455781?s=200&v=2" />](https://github.com/Omulosi) | [<img src="https://avatars3.githubusercontent.com/u/49719812?s=200&v=2" />](https://github.com/richanynguon) | [<img src="https://avatars1.githubusercontent.com/u/29996742?s=200&v=2" />](https://github.com/emkayDauda) | [<img src="" />](https://github.com/Jobsy)
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/nobioma1) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/annawinther) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/Omulos) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/richanynguon) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/emkayDauda) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/Jobsy)
-
+| [Chioma Nkem-Eze](https://github.com/Ofega)                                                                                            | [Niklas Becker](https://github.com/niklasbec)                                                                                           | [Babatunde Adeniran](https://github.com/TUNESHMAN)                                                                                     | [Sergei Kabuldzhanov](https://github.com/sergeikabuldzhanov)                                                                            | [Darragh Ferry](https://github.com/Darragh1996)                                                            
+| [Maxwell Beard](https://github.com/maxjamb)
+| [Luis Schekerka](https://github.com/KingLouie1994)
+<br>                                     |
+| -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [<img src="https://avatars2.githubusercontent.com/u/23112599?s=400&v=4" />](https://github.com/Ofega) | [<img src="https://avatars1.githubusercontent.com/u/48069565?s=400&v=4" />](https://github.com/niklasbec) | [<img src="https://avatars2.githubusercontent.com/u/53819424?s=460&u=e1036cdfcb3bf3cf75a0c2fabb82a62d8f84a1e9&v=4" />](https://github.com/TUNESHMAN) | [<img src="https://avatars1.githubusercontent.com/u/55783724?s=400&v=4" />](https://github.com/sergeikabuldzhanov) | [<img src="https://avatars1.githubusercontent.com/u/26835105?s=400&v=4" />](https://github.com/Darragh1996) | [<img src="https://avatars3.githubusercontent.com/u/50669658?s=400&v=4" />](https://github.com/maxjamb) | [<img src="https://avatars0.githubusercontent.com/u/53607532?s=400&u=4198dc59a06dea2c75aa80b3ed88cbaa2bfc8715&v=4" />](https://github.com/KingLouie1994)                                      |
+| [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/Ofega)                   | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/niklasbec)                     | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/TUNESHMAN)                     | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/sergeikabuldzhanov)                   | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/Darragh1996)                   | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/maxjamb) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/KingLouie1994)
 
 ## Contributing
 
@@ -366,7 +424,6 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 * **Review approval should have been submitted before merging**
 
-
 ### Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
@@ -386,8 +443,7 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ### Backend Documentation
 
-See [FlashCards](https://github.com/LABS-EU3/flashcards_backend) for details on the backend of our project.
-
+See [Decksify](https://github.com/Labs-EU4/flashcards-server) for details on the backend of our project.
 
 ## License
 
@@ -401,7 +457,6 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 ## Acknowledgments
 
-* Lambda 
+- Lambda

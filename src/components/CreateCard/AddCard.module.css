@@ -1,6 +1,6 @@
 .btn {
-  width: 100px;
-  margin-right: 25px;
+  width: 150px;
+  font-size: 1rem;
 }
 
 .title {
@@ -13,84 +13,123 @@
   padding: 0 40px;
 }
 
-.mappedCard {
+.headercontainer {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.card {
-  width: 30%;
-  margin-bottom: 15px;
-  margin-right: 14px;
-}
-
-@media (max-width: 500px) {
-  .card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .heading {
-    font-size: 25px;
-  }
-}
-
-@media (max-width: 500px) {
-  .describe {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 500px) {
-  .btn {
-    margin-top: 27px;
-    width: 150px;
-  }
-}
-
-@media (max-width: 500px) {
-  .title {
-    display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-
-    justify-content: space-between;
-    margin-left: 12px;
-    align-items: center;
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .mappedCard {
-    display: flex;
-    flex-direction: column-reverse;
-    margin-left: 0px;
-    justify-content: center;
-    width: 100%;
-    align-items: center;
-    padding: 0 30px;
-  }
-}
-
-.header {
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 15px;
-  min-width: 70%;
-  align-self: center;
-}
-.mainContent {
-  height: 500px;
-  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .deckName {
-  font-size: 30px;
-  margin-left: 90px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  margin-top: 20px;
 }
+
+.completeHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DONE */
+
+.componentcontainer {
+  width: calc(100%-100px);
+}
+
+.mappedCard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.card {
+  width: calc(100% / 4 - 20px);
+  margin: 0 10px 0 10px;
+  margin-bottom: 4vh;
+  -webkit-box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 10px 20px -9px rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width: 1500px) {
+  .card {
+    width: calc(100% / 3 - 20px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .card {
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media (max-width: 650px) {
+  .card {
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 1500px) {
+  .componentcontainer {
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 1255px) {
+  .deckName {
+    font-size: 1.6rem;
+  }
+  .componentcontainer {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width: 1190px) {
+  .deckName {
+    font-size: 1.6rem;
+    text-align: center;
+    margin-left: 25%;
+  }
+  .headercontainer {
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 50px;
+  }
+  .btn {
+    position: relative;
+    bottom: -40px;
+  }
+}
+
+
+@media (max-width: 975px) {
+  .completeHeader {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .btn {
+    position: unset;
+    margin-top: 30px;
+  }
+  .deckName {
+    font-size: 1.6rem;
+    margin-left: unset;
+  }
+  .headercontainer {
+    margin-right: unset;
+  }
+  .componentcontainer {
+    margin-left: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .componentcontainer {
+    width: 100%;
+    margin-left: unset;
+  }
+}
+
