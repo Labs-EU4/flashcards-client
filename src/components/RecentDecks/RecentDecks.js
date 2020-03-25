@@ -42,10 +42,12 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
                   className={styles.deckCard}
                   key={deck.deck_id}
                 >
-                  <Meta
-                    avatar={<Avatar src="logo192.png" />}
-                    description={deck.deck_name}
-                  />
+                  <Link to={`/decks/${deck.deck_id}`}>
+                    <Meta
+                      avatar={<Avatar src="logo192.png" />}
+                      description={deck.deck_name}
+                    />
+                  </Link>
                 </Card>
               );
             })
