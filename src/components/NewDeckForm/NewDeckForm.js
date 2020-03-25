@@ -55,6 +55,18 @@ const NewDeckForm = props => {
             success: false,
           });
         });
+    } else if (formValues.name === "") {
+      dispatch(createDeck({...formValues, tags: numberTags, isPublic: "0"}))
+        .then(res => {
+          setState({
+            success: false,
+          });
+        })
+        .catch(err => {
+          setState({
+            success: false,
+          });
+        });
     }
   };
 
@@ -134,7 +146,7 @@ const NewDeckForm = props => {
             Create Deck
           </Button>
         </Form.Item>
-        {state.success ? (
+        {state.success === true ? (
           <Alert
             message="Success"
             data-testid="alertSuccess"
@@ -142,10 +154,18 @@ const NewDeckForm = props => {
             type="success"
             className={styles.alert}
           />
-        ) : state.success === false ? (
+        ) : state.success === false && formValues.name !== "" ? (
           <Alert
             message="Error"
             description="Not able to create Deck! Please make sure you are authed."
+            type="error"
+            data-testid="alertInvalid"
+            className={styles.alert}
+          />
+        ) : state.success === false && formValues.name === "" ? (
+          <Alert
+            message="Error"
+            description="Please add a deckname!"
             type="error"
             data-testid="alertInvalid"
             className={styles.alert}
