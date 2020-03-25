@@ -81,14 +81,11 @@ export const deleteDeck = id => async dispatch => {
 export const createDeck = payload => async dispatch => {
   try {
     const response = await axiosWithAuth().post(`/decks`, payload);
-    let newDeck = {...response.data.deck};
-    newDeck.deck_name = newDeck.name;
-    delete newDeck.name;
-    console.log(newDeck);
     dispatch({
       type: CREATE_DECK,
-      payload: newDeck,
+      payload: response.data.deck,
     });
+    return response;
   } catch (err) {
     throw err;
   }
