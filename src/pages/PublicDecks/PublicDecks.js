@@ -23,7 +23,8 @@ export function TestPublicDecks({getPublicDecks, decks}) {
 export function PublicDecks({getPublicDecks, decks}) {
   useEffect(() => {
     getPublicDecks();
-  }, [getPublicDecks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Dashboard>
@@ -42,11 +43,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {getPublicDecks})(PublicDecks);
-
-// export default function Public() {
-//   return (
-//     <Dashboard>
-//       <ConnectedDecksPage />
-//     </Dashboard>
-//   );
-// }

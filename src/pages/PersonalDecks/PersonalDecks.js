@@ -9,7 +9,8 @@ import {connect} from "react-redux";
 export function TestPersonalDecks({getAllPersonalDecks, decks}) {
   useEffect(() => {
     getAllPersonalDecks();
-  }, [getAllPersonalDecks]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.personal}>
