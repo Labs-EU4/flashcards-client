@@ -91,7 +91,8 @@
   background: white;
   width: 100%;
   min-height: 100vh;
-  padding: 1.5%;
+  max-height: 100vh;
+  padding: 1.5vh;
 }
 
 .navItemSeleted {
@@ -224,16 +225,4 @@
 .dashboardLeftCollapsed {
   width: 80px;
   z-index: 1;
-}
-
-@media (max-width: 500px) {
-  .siderCollapsed,
-  .sider,
-  .dashboardLeft {
-    z-index: 99;
-    position: relative;
-    width: 100%;
-    /* width: 235px; */
-    z-index: 1;
-  }
 }
