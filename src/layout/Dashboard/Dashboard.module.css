@@ -17,7 +17,8 @@
 }
 
 .sider {
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: white;
   width: 235px !important;
   max-width: 235px !important;
@@ -26,7 +27,8 @@
 }
 
 .siderCollapsed {
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: white;
   height: 100vh;
   border-right: solid 1px #e8e8e8;
@@ -91,7 +93,6 @@
   background: white;
   width: 100%;
   min-height: 100vh;
-  max-height: 100vh;
   padding: 1.5vh;
 }
 
@@ -146,15 +147,17 @@
   }
 
   .sider {
+    position: fixed;
     background-color: white;
     width: 100% !important;
     max-width: 100% !important;
-    height: 60vh;
     border-bottom: solid 1px #e8e8e8;
     border-right: none;
+    height: 60vh;
   }
 
   .siderCollapsed {
+    position: fixed;
     background-color: white;
     width: 100% !important;
     max-width: 100% !important;
