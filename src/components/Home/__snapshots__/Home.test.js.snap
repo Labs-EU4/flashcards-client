@@ -226,9 +226,11 @@ exports[`should take a snapshot 1`] = `
               >
                 My Decks
               </h1>
-              <h5>
+              <div
+                class="noDecks"
+              >
                 You have no decks
-              </h5>
+              </div>
             </div>
           </div>
           <div

@@ -137,13 +137,11 @@ exports[`Card component renders without crashing 1`] = `
         <div
           class="mappedCard"
         >
-          <div
+          <h1
             class="nocards"
           >
-            <h1>
-              There are no cards to display
-            </h1>
-          </div>
+            There are no cards to display
+          </h1>
         </div>
       </div>
     </div>
