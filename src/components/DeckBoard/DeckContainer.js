@@ -25,7 +25,7 @@ export const DeckContainer = ({
       <h1 className={styles.heading}>My Decks</h1>
 
       {personalDeckState.length === 0 ? (
-        <h5>You have no decks</h5>
+        <div className={styles.noDecks}>You have no decks</div>
       ) : (
         personalDeckState.slice(0, 10).map(deck => {
           return (

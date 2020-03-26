@@ -1,31 +1,59 @@
 .container {
   width: 100%;
-  min-height: 48.5vh;
+  min-height: 46.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f9f9f9;
   border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  margin-bottom: 20px;
+  overflow-y: auto;
+  margin-bottom: 2vh;
 }
 
 .heading {
   font-style: normal;
   font-weight: normal;
-  font-size: 2vw;
+  font-size: 2rem;
   text-align: center;
   padding-top: 1.5rem;
 }
 
 .noDecks {
-  font-size: 1.5vw;
+  font-size: 1.5rem;
   padding-top: 12vh;
 }
 
 .deckCard {
   margin-bottom: 10px;
+}
+
+.containerCreateDeck {
+  width: 100%;
+  min-height: 46.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin-top: 2vh;
+  overflow-y: auto;
+}
+
+.containerCreateDeck form {
+  width: 50%;
+}
+
+.containerCreateDeck button {
+  width: 40%;
+  margin-left: 30%;
+}
+
+.alert {
+  margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -54,30 +82,9 @@
     font-size: 4vw;
     padding: 4vh;
   }
-}
 
-.containerCreateDeck {
-  width: 100%;
-  min-height: 48.5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  transition: 0.3s;
-  margin-top: 5%;
-}
-
-.containerCreateDeck form{
-  width: 50%;
-}
-
-.containerCreateDeck button{
-  width: 40%;
-  margin-left: 30%;
-}
-
-.alert {
-  margin-bottom: 20px;
+  .containerCreateDeck button {
+    width: 100%;
+    margin-left: 0;
+  }
 }
