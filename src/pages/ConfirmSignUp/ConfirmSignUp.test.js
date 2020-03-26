@@ -2,9 +2,34 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import ConfirmSignUp from "./ConfirmSignUp";
-import axios from "axios";
+import * as axios from "../../utils/axios";
 
-jest.mock("axios");
+// jest.mock("../../utils/axios", () => {
+//   return {
+//     justAxios: () => {
+//       return {
+//         post: jest.fn().mockResolvedValue({
+//           data: {
+//             token: "token",
+//           },
+//         }),
+//       };
+//     },
+//   };
+
+// () => {
+//   return {
+//     justAxios: () => {
+//       return {
+//         post: jest.fn().mockResolvedValue({
+//           data: {
+//             token: "token",
+//           },
+//         }),
+//       };
+//     },
+//   };
+
 let wrapper;
 afterEach(rtl.cleanup);
 beforeEach(() => {
@@ -23,11 +48,20 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("is the component rendering correctly", () => {
-  // it("renders the loader", () => {
-  //   let queryValue = wrapper.getByTestId("loader");
-  //   expect(queryValue).toBeInTheDocument();
-  // });
   it("renders the logo", () => {
+    jest.mock("../../utils/axios", () => {
+      return {
+        justAxios: () => {
+          return {
+            post: jest.fn().mockResolvedValue({
+              data: {
+                token: "token",
+              },
+            }),
+          };
+        },
+      };
+    });
     let queryValue = wrapper.getByTestId("logo");
     expect(queryValue).toBeInTheDocument();
   });
@@ -35,24 +69,32 @@ describe("is the component rendering correctly", () => {
 
 describe("error tests", () => {
   it("it returns an error if token is invalid", async () => {
-    axios.post.mockImplementation(() => Promise.reject({data: "error"}));
+    jest.mock("../../utils/axios", () => {
+      return {
+        justAxios: () => {
+          return {
+            post: jest.fn().mockRejectedValue({data: "error"}),
+          };
+        },
+      };
+    });
     await rtl.waitForElement(() => wrapper.getByTestId("alertInvalid"));
     let queryValue = wrapper.getByTestId("alertInvalid");
     expect(queryValue).toBeVisible();
   });
-  axios.post.mockImplementation(() => Promise.reject({data: "error"}));
+
   it("it returns a button if token is invalid", async () => {
+    jest.mock("../../utils/axios", () => {
+      return {
+        justAxios: () => {
+          return {
+            post: jest.fn().mockRejectedValue({data: "error"}),
+          };
+        },
+      };
+    });
     await rtl.waitForElement(() => wrapper.getByTestId("button"));
     let queryValue = wrapper.getByTestId("button");
     expect(queryValue).toBeVisible();
   });
 });
-
-// describe("success tests", () => {
-//   it("it returns a success if token is valid", async () => {
-//     axios.post.mockImplementation(() => Promise.resolve({data: "success"}));
-//     await rtl.waitForElement(() => wrapper.getByTestId("alertSuccess"));
-//     let queryValue = wrapper.getByTestId("alertSuccess");
-//     expect(queryValue).toBeVisible();
-//   });
-// });
