@@ -30,7 +30,7 @@ export function PublicDecks({getPublicDecks, decks}) {
     <Dashboard>
       <div className={styles.public}>
         <Header page={"Public Decks"} />
-        <List decks={decks} page={"public"} />
+        <List decks={decks} />
       </div>
     </Dashboard>
   );

@@ -73,7 +73,7 @@ function Cards(props) {
                         style={{width: "100%", border: "1px solid blue", height: "100%"}}
                         className={styles.innerCard}
                         actions={
-                          history.location.state.source === "personal"
+                          props.userId === props.currentDeck.user_id
                             ? [
                                 <Icon
                                   type="delete"
@@ -130,6 +130,7 @@ function Cards(props) {
 function mapStateToProps(state) {
   return {
     currentDeck: state.deckState.currentDeckState,
+    userId: state.authState.user.id,
   };
 }
 

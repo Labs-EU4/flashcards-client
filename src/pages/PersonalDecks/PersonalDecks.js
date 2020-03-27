@@ -30,7 +30,7 @@ export function PersonalDecks({getAllPersonalDecks, decks}) {
     <Dashboard>
       <div className={styles.personal}>
         <Header page={"Deck Library"} />
-        <List decks={decks} page={"personal"} />
+        <List decks={decks} />
       </div>
     </Dashboard>
   );

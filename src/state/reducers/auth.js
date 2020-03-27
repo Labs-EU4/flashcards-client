@@ -2,8 +2,8 @@ import * as types from "../types";
 
 export const initialState = {
   isLoggedIn: false,
-  user: {},
-  token: null,
+  user: JSON.parse(localStorage.getItem("user")) || {},
+  token: localStorage.getItem("token") || null,
 };
 
 export default function authReducer(state = initialState, action) {
