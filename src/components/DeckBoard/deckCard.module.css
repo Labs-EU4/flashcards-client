@@ -19,3 +19,15 @@
   text-align: center;
   padding-top: 1.5rem;
 }
+
+.noDecks {
+  font-size: 1.5rem;
+  padding-top: 12vh;
+}
+
+@media only screen and (max-width: 1024px) {
+  .noDecks {
+    font-size: 1rem;
+    padding: 4vh;
+  }
+}

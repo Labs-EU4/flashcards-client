@@ -35,6 +35,7 @@
 
 .componentcontainer {
   width: calc(100%-100px);
+  height: 100%;
 }
 
 .mappedCard {
@@ -111,7 +112,6 @@
   }
 }
 
-
 @media (max-width: 975px) {
   .completeHeader {
     flex-direction: column;
@@ -139,4 +139,3 @@
     margin-left: unset;
   }
 }
-
