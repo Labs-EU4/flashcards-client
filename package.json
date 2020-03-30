@@ -25,7 +25,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --verbose --watchAll=false --coverage -u",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:open": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -63,13 +64,17 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.2.0",
+    "@testing-library/cypress": "^6.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "css-loader": "^3.4.2",
+    "cypress": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-prettier": "^3.1.2",
+    "faker": "^4.1.0",
     "husky": "^4.2.3",
     "jest-dom": "^4.0.0",
     "less": "^3.11.1",
