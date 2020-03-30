@@ -38,7 +38,7 @@ export function RegisterForm({registerNewUser, ...props}) {
         setIsLoading(true);
         delete user.confirmPassword;
         await registerNewUser(user);
-        await setAlert({
+        setAlert({
           message:
             "Account successflly created. Please check your email to verify your account.",
           type: "success",

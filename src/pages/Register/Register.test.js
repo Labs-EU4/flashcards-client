@@ -6,9 +6,13 @@ import {RegisterForm} from "./Register";
 
 afterEach(rtl.cleanup);
 
-const mockRegister = jest.fn().mockResolvedValue(10);
+const mockRegister = jest.fn();
+let promise;
 let wrapper;
 beforeEach(() => {
+  promise = Promise.resolve();
+  mockRegister.mockReset();
+  mockRegister.mockImplementationOnce(() => promise);
   wrapper = rtl.render(
     <BrowserRouter>
       <RegisterForm registerNewUser={mockRegister} />
@@ -67,7 +71,7 @@ it("does not make an axios call if some input fields are left blank", () => {
   rtl.fireEvent.submit(Form());
   expect(mockRegister).toHaveBeenCalledTimes(0);
 });
-it("Calls correct action on submit", () => {
+it("Calls correct action on submit", async () => {
   rtl.fireEvent.change(EmailInput(), {
     target: {value: "darragh@test.com"},
   });
@@ -81,16 +85,20 @@ it("Calls correct action on submit", () => {
     target: {value: "123456789"},
   });
   rtl.fireEvent.submit(Form());
+  await rtl.act(() => promise);
+  await rtl.wait(() =>
+    expect(wrapper.container.querySelector("i[aria-label='icon: loading']")).toBeNull()
+  );
   expect(mockRegister).toHaveBeenCalledTimes(1);
   expect(mockRegister.mock.calls[0]).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "email": "darragh@test.com",
-        "fullName": "Darragh Ferry",
-        "password": "123456789",
-      },
-    ]
-  `);
+  Array [
+    Object {
+      "email": "darragh@test.com",
+      "fullName": "Darragh Ferry",
+      "password": "123456789",
+    },
+  ]
+`);
 });
 it("Displays correct warning messages on input fields", () => {
   rtl.fireEvent.change(EmailInput(), {target: {value: "A"}});
@@ -103,12 +111,21 @@ it("Displays correct warning messages on input fields", () => {
   expect(confirmPasswordWarning()).toBeInTheDocument();
 });
 
-it("Displays correct success messages on input fields", () => {
+it("Displays correct success messages on input fields", async () => {
   rtl.fireEvent.change(EmailInput(), {target: {value: "test@email.com"}});
+  expect(EmailInput().value).toBe("test@email.com");
   rtl.fireEvent.change(UsernameInput(), {target: {value: "tester"}});
   rtl.fireEvent.change(PasswordInput(), {target: {value: "password"}});
   rtl.fireEvent.change(confirmPasswordInput(), {target: {value: "password"}});
   rtl.fireEvent.click(Button());
-  //second time mockRegister has been called in these tests
-  expect(mockRegister).toHaveBeenCalledTimes(2);
+  await rtl.act(() => promise);
+  expect(mockRegister).toHaveBeenCalledTimes(1);
+  expect(
+    await wrapper.findByText(
+      "Account successflly created. Please check your email to verify your account."
+    )
+  ).toBeVisible();
+  await rtl.wait(() =>
+    expect(wrapper.container.querySelector("i[aria-label='icon: loading']")).toBeNull()
+  );
 });
