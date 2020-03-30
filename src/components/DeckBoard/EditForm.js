@@ -108,7 +108,6 @@ const NewDeckForm = props => {
                 name="name"
                 data-testid="inputDeckName"
                 onChange={handleChange}
-                value={formValues.name}
               />
             )}
           </Form.Item>

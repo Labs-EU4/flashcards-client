@@ -20,11 +20,7 @@ export default function DeckCard({deck}) {
   }
 
   return (
-    <div
-      className={styles.deckCard}
-      data-testid="deck_card_container"
-      onClick={() => console.log("hi")}
-    >
+    <div className={styles.deckCard} data-testid="deck_card_container">
       <div className={styles.deckOverview}>
         <div className={styles.header}>
           <h2 data-testid="deck_name">{deck.deck_name}</h2>

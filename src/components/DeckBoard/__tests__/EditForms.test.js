@@ -3,9 +3,9 @@ import * as rtl from "@testing-library/react";
 import EditForm from "../EditForm";
 import {act} from "react-dom/test-utils";
 import * as actions from "../../../state/actions/decks";
-
+let promise;
 //Dispatch mock
-const mockDispatch = jest.fn().mockResolvedValue("YAY!");
+const mockDispatch = jest.fn();
 jest.mock("react-redux", () => ({
   useSelector: jest.fn(),
   useDispatch: () => mockDispatch,
@@ -23,6 +23,8 @@ afterEach(() => {
 let wrapper;
 const setVisibleMock = jest.fn();
 beforeEach(() => {
+  promise = Promise.resolve();
+  mockDispatch.mockImplementationOnce(() => promise);
   wrapper = rtl.render(<EditForm deckValues={deck} setVisible={setVisibleMock} />);
 });
 
@@ -41,11 +43,6 @@ describe("is the component rendering correctly", () => {
     let input = wrapper.getByTestId("inputCheck");
     expect(input).toBeInTheDocument();
   });
-
-  it("renders the checkbox", () => {
-    let input = wrapper.getByTestId("inputSelect");
-    expect(input).toBeInTheDocument();
-  });
 });
 
 describe("form starts with passed initial values", () => {
@@ -61,11 +58,10 @@ describe("form starts with passed initial values", () => {
     expect(tag2).toBeInTheDocument();
     expect(tag3).toBeInTheDocument();
   });
-  it("Calls the updateDeck action with right arguments on submit", () => {
+  it("Calls the updateDeck action with right arguments on submit", async () => {
     const button = wrapper.getByTestId(/button/);
-    act(() => {
-      rtl.fireEvent.click(button);
-    });
+    rtl.fireEvent.click(button);
+    await act(() => promise);
     expect(mockUpdateDeck.mock.calls[0]).toMatchInlineSnapshot(`
       Array [
         3,

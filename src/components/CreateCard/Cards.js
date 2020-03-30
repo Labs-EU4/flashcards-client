@@ -45,7 +45,6 @@ function Cards(props) {
   const handleDelete = id => {
     props.deleteCard(id);
   };
-  console.log(history);
   return (
     //   Map the fetched cards to an ant design cards component for display on the browser
     <div className={styles.componentcontainer}>

@@ -31,16 +31,3 @@ it("displays the right text", () => {
   expect(PageHeader()).toBeInTheDocument();
   expect(NoDecksMessage()).toBeInTheDocument();
 });
-
-it("renders without crashing v2", () => {
-  const wrapper2 = rtl.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <PersonalDecks getAllPersonalDecks={mockGetDecks} decks={[]} />
-      </BrowserRouter>
-    </Provider>
-  );
-  expect(wrapper2.container).toMatchSnapshot();
-});
-
-afterEach(rtl.cleanup);

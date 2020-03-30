@@ -185,7 +185,6 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="email"
             type="text"
             name="email"
-            value={user.email}
             onChange={event => {
               handleChange(event);
               formValidation(event);
@@ -204,7 +203,6 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="username"
             type="text"
             name="fullName"
-            value={user.fullName}
             onChange={event => {
               handleChange(event);
               formValidation(event);
@@ -223,7 +221,6 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="password"
             type="password"
             name="password"
-            value={user.password}
             onChange={event => {
               handleChange(event);
               formValidation(event);
@@ -242,7 +239,6 @@ export function RegisterForm({registerNewUser, ...props}) {
             placeholder="confirm password"
             type="password"
             name="confirmPassword"
-            value={user.confirmPassword}
             onChange={event => {
               handleChange(event);
               formValidation(event);

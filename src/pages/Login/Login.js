@@ -10,6 +10,14 @@ import FormHeader from "../../components/formStyleComponent/FormHeader";
 import {axiosWithAuth} from "../../utils/axios";
 
 export const Login = props => {
+  const {
+    getFieldDecorator,
+    getFieldsError,
+    validateFields,
+    isFieldTouched,
+    getFieldError,
+    setFieldsValue,
+  } = props.form;
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -24,6 +32,7 @@ export const Login = props => {
       ...formValues,
       [e.target.name]: e.target.value,
     });
+    setFieldsValue({[e.target.name]: e.target.value});
   };
 
   const handleSubmit = async e => {
@@ -40,13 +49,7 @@ export const Login = props => {
       props.form.resetFields();
     }
   };
-  const {
-    getFieldDecorator,
-    getFieldsError,
-    validateFields,
-    isFieldTouched,
-    getFieldError,
-  } = props.form;
+
   useEffect(() => {
     async function checkIfTokenValid() {
       if (localStorage.getItem("token")) {
@@ -61,7 +64,7 @@ export const Login = props => {
       }
     }
     checkIfTokenValid();
-    validateFields();
+    validateFields({suppressWarning: true});
   }, [props.history, validateFields]);
   const emailError = isFieldTouched("email") && getFieldError("email");
   const passwordError = isFieldTouched("password") && getFieldError("password");
@@ -69,8 +72,8 @@ export const Login = props => {
     <div className={backgroundStyles.formStyle}>
       <FormHeader />
       <div>
+        <h1>Login</h1>
         <Spin spinning={loading}>
-          <h1>Login</h1>
           <Form onSubmit={handleSubmit} className="login-form">
             <Form.Item
               validateStatus={emailError ? "error" : ""}
@@ -90,7 +93,6 @@ export const Login = props => {
                 <Input
                   data-testid="email-input"
                   name="email"
-                  setFieldsValue={formValues.email}
                   onInput={handleChange}
                   //form icon in the email field, change type for different icons, see antdesign docs
                   prefix={<Icon type="mail" style={{color: "rgba(0,0,0,.25)"}} />}
@@ -111,7 +113,6 @@ export const Login = props => {
                   name="password"
                   type="password"
                   data-testid="password-input"
-                  setFieldsValue={formValues.password}
                   onInput={handleChange}
                   //form icon in the email field, change type for different icons, see antdesign docs
                   prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}

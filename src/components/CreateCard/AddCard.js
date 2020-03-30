@@ -53,7 +53,7 @@ function AddCard(props) {
     getFieldError,
   } = props.form;
   useEffect(() => {
-    validateFields();
+    validateFields({suppressWarning: true});
   }, [validateFields]);
 
   const questionTextError =
@@ -83,8 +83,6 @@ function AddCard(props) {
               <Input
                 name="questionText"
                 type="text"
-                // setFieldsValue={formValues.questionText}
-                setfieldsvalue={formValues.questionText}
                 //form icon in the question field, change type for different icons, see antdesign docs
                 prefix={<Icon type="question" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Question text goes here"
@@ -111,8 +109,6 @@ function AddCard(props) {
               <Input
                 name="answerText"
                 type="text"
-                // setFieldsValue={formValues.answerText}
-                setfieldsvalue={formValues.answerText}
                 //form icon in the answer field, change type for different icons, see antdesign docs
                 prefix={<Icon type="edit" style={{color: "rgba(0,0,0,.25)"}} />}
                 placeholder="Enter a correct answer"

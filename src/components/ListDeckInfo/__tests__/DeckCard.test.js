@@ -2,27 +2,14 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import DeckCard from "../DeckCard";
+import {BrowserRouter} from "react-router-dom";
 
 let mockDeck = {
   deck_name: "Test Deck",
   author: "John Doe",
   flashcards: ["just", "mock", "data"],
+  deck_id: 1,
 };
-
-jest.mock("react-router-dom", () => ({
-  useHistory: () => ({
-    push: jest.fn(),
-    location: {
-      pathname: "random/text/okay",
-    },
-  }),
-}));
-
-const mockDispatch = jest.fn();
-jest.mock("react-redux", () => ({
-  useSelector: jest.fn(),
-  useDispatch: () => mockDispatch,
-}));
 
 const DeckName = () => {
   return wrapper.queryByTestId("deck_name");
@@ -54,7 +41,11 @@ const DislikeButton = () => {
 
 let wrapper;
 beforeEach(() => {
-  wrapper = rtl.render(<DeckCard deck={mockDeck} />);
+  wrapper = rtl.render(
+    <BrowserRouter>
+      <DeckCard deck={mockDeck} />
+    </BrowserRouter>
+  );
 });
 
 it("renders without crashing", () => {

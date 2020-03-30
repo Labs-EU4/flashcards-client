@@ -2,6 +2,13 @@ import React, {useState} from "react";
 import {Form, Icon, Input, Button, Spin, Alert} from "antd";
 
 export function SetRecoveryPasswordForm(props) {
+  const {
+    getFieldDecorator,
+    getFieldsError,
+    setFieldsValue,
+    validateFieldsAndScroll,
+    validateFields,
+  } = props.form;
   const [error, setError] = useState(null);
   const [confirmDirty, setConfirmDirty] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -14,7 +21,7 @@ export function SetRecoveryPasswordForm(props) {
   };
   const handleSubmit = async e => {
     e.preventDefault();
-    props.form.validateFieldsAndScroll((err, values) => {
+    validateFieldsAndScroll({suppressWarning: true}, (err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
       }
@@ -43,9 +50,8 @@ export function SetRecoveryPasswordForm(props) {
   };
 
   const validateToNextPassword = (rule, value, callback) => {
-    const {form} = props;
     if (value && confirmDirty) {
-      form.validateFields(["confirm"], {force: true});
+      validateFields(["confirm"], {force: true, suppressWarning: true});
     }
     callback();
   };
@@ -54,8 +60,8 @@ export function SetRecoveryPasswordForm(props) {
       ...formValues,
       [e.target.name]: e.target.value,
     });
+    setFieldsValue({[e.target.name]: e.target.value});
   };
-  const {getFieldDecorator, getFieldsError} = props.form;
   return (
     <Spin spinning={loading} delay={300}>
       <h3>Set a recovery password to finish your account creation</h3>
@@ -82,7 +88,6 @@ export function SetRecoveryPasswordForm(props) {
             <Input
               name="password"
               type="password"
-              setFieldsValue={formValues.password}
               onChange={handleChange}
               //form icon in the email field, change type for different icons, see antdesign docs
               prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}
@@ -108,7 +113,6 @@ export function SetRecoveryPasswordForm(props) {
             <Input
               type="password"
               name="confirm"
-              setFieldsValue={formValues.confirm}
               onChange={handleChange}
               //form icon in the confirm field, change type for different icons, see antdesign docs
               prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}} />}

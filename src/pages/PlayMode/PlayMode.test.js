@@ -32,6 +32,27 @@ test("It renders", () => {
   expect(screen.getByText(/What is data mining?/i)).toBeInTheDocument();
 });
 
+test("It renders error screen of there are no cards in the deck", () => {
+  // Arrange
+  const emptyDeck = {...deckData};
+  emptyDeck.flashcards = [];
+  render(
+    <PlayMode
+      deckInPlaySession={emptyDeck}
+      clearDeckInPlaySession={() => null}
+      storeUnfinishedSession={() => null}
+      history={() => null}
+      touchDeck={() => null}
+      fetchDeckById={jest.fn().mockResolvedValue(10)}
+      match={{params: {id: 1}}}
+    />
+  );
+  // Act
+
+  // Assert
+  expect(screen.getByText(/go back/i)).toBeInTheDocument();
+});
+
 var deckData = {
   deck_id: 1,
   user_id: 1,

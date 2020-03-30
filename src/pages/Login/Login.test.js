@@ -4,15 +4,19 @@ import "@testing-library/jest-dom/extend-expect";
 import {BrowserRouter} from "react-router-dom";
 import {WrappedNormalLoginForm as Login} from "./Login";
 
-const mockLogin = jest.fn().mockResolvedValue(10);
+let promise;
+const mockLogin = jest.fn();
 const mockHistory = {push: jest.fn()};
 let wrapper;
 beforeEach(() => {
-  rtl.cleanup();
   jest.resetAllMocks();
+  promise = Promise.resolve();
   wrapper = rtl.render(
     <BrowserRouter>
-      <Login login={mockLogin} history={mockHistory} />
+      <Login
+        login={mockLogin.mockImplementationOnce(() => promise)}
+        history={mockHistory}
+      />
     </BrowserRouter>
   );
 });
@@ -48,7 +52,7 @@ it("does not make an axios call if some input fields are left blank", () => {
   expect(mockLogin).toHaveBeenCalledTimes(0);
 });
 
-it("Calls correct action on submit", () => {
+it("Calls correct action on submit", async () => {
   rtl.fireEvent.change(EmailInput(), {
     target: {value: "darragh@test.com"},
   });
@@ -56,6 +60,7 @@ it("Calls correct action on submit", () => {
     target: {value: "123456789"},
   });
   rtl.fireEvent.click(Button());
+  await rtl.act(() => promise);
   expect(mockLogin).toHaveBeenCalledTimes(1);
   expect(mockLogin.mock.calls[0]).toMatchInlineSnapshot(`
     Array [

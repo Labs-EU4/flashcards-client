@@ -132,7 +132,6 @@ const NewDeckForm = props => {
               name="name"
               data-testid="inputDeckName"
               onChange={handleChange}
-              value={formValues.name}
             />
           )}
         </Form.Item>
@@ -144,8 +143,8 @@ const NewDeckForm = props => {
             tokenSeparators={[","]}
             data-testid="inputSelect"
             value={formValues.tags}
-            maxTagCount="3"
-            allowClear="true"
+            maxTagCount={3}
+            allowClear={true}
           >
             {children}
           </Select>
