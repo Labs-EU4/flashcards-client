@@ -64,7 +64,7 @@ export const login = loginData => async dispatch => {
     const response = await justAxios().post("/auth/login", loginData);
     const {user, token} = response.data.data;
     localStorage.setItem("token", token);
-
+    localStorage.setItem("user", JSON.stringify(user));
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: {
