@@ -14,7 +14,7 @@ const Home = ({history}) => {
         </div>
         <div className={styles.rightContent} data-testid="content-right">
           <RecentDecks history={history} />
-          <NewDeckForm />
+          <NewDeckForm history={history} />
         </div>
       </Dashboard>
     </>

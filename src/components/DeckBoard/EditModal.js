@@ -1,8 +1,8 @@
 import React from "react";
 import {Modal} from "antd";
-import EditForm from "./EditForm";
+import DeckForm from "./DeckForm";
 
-export default function EditModal({visible, deckValues, setVisible}) {
+export default function EditModal({visible, deckValues, setVisible, updateDeck}) {
   return (
     <Modal
       visible={visible}
@@ -10,7 +10,11 @@ export default function EditModal({visible, deckValues, setVisible}) {
       onCancel={() => setVisible(false)}
       footer={null}
     >
-      <EditForm deckValues={deckValues} setVisible={setVisible} />
+      <DeckForm
+        submitAction={updateDeck}
+        initialValues={deckValues}
+        setVisible={setVisible}
+      />
     </Modal>
   );
 }
