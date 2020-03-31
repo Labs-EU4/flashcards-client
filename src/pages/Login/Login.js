@@ -110,9 +110,13 @@ export const Login = props => {
                 rules: [
                   {required: true, message: "Please input a password!"},
                   {
-                    type: "range",
+                    type: "string",
                     min: 4,
                     message: "Password must be at least 4 characters long!",
+                  },
+                  {
+                    whitespace: true,
+                    message: "Can't only contain whitespace characters",
                   },
                 ],
               })(

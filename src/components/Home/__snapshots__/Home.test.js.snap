@@ -287,163 +287,180 @@ exports[`should take a snapshot 1`] = `
               </div>
             </div>
             <div
-              class="containerCreateDeck"
+              class="containerupdateDeck"
             >
               <h1
                 class="heading"
               >
-                Create New Deck
+                Create new deck!
               </h1>
-              <form
-                class="ant-form ant-form-horizontal login-form"
+              <div
+                class="ant-spin-nested-loading"
               >
                 <div
-                  class="ant-row ant-form-item"
+                  class="ant-spin-container"
                 >
-                  <div
-                    class="ant-col ant-form-item-control-wrapper"
+                  <form
+                    class="ant-form ant-form-horizontal login-form"
                   >
                     <div
-                      class="ant-form-item-control"
+                      class="ant-row ant-form-item"
                     >
-                      <span
-                        class="ant-form-item-children"
-                      >
-                        <input
-                          class="ant-input"
-                          data-__field="[object Object]"
-                          data-__meta="[object Object]"
-                          data-testid="inputDeckName"
-                          id="newDeckForm_text"
-                          name="name"
-                          placeholder="Deckname"
-                          type="text"
-                          value=""
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="ant-row ant-form-item"
-                >
-                  <div
-                    class="ant-col ant-form-item-control-wrapper"
-                  >
-                    <div
-                      class="ant-form-item-control"
-                    >
-                      <span
-                        class="ant-form-item-children"
+                      <div
+                        class="ant-col ant-form-item-control-wrapper"
                       >
                         <div
-                          class="ant-select ant-select-enabled ant-select-allow-clear"
-                          style="width: 100%;"
-                        >
-                          <div
-                            aria-autocomplete="list"
-                            aria-controls="test-uuid"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            class="ant-select-selection
-            ant-select-selection--multiple"
-                            data-testid="inputSelect"
-                            role="combobox"
-                          >
-                            <div
-                              class="ant-select-selection__rendered"
-                            >
-                              <ul>
-                                <li
-                                  class="ant-select-search ant-select-search--inline"
-                                >
-                                  <div
-                                    class="ant-select-search__field__wrap"
-                                  >
-                                    <input
-                                      autocomplete="off"
-                                      class="ant-select-search__field"
-                                      value=""
-                                    />
-                                    <span
-                                      class="ant-select-search__field__mirror"
-                                    >
-                                      
-                                       
-                                    </span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="ant-row ant-form-item"
-                >
-                  <div
-                    class="ant-col ant-form-item-control-wrapper"
-                  >
-                    <div
-                      class="ant-form-item-control"
-                    >
-                      <span
-                        class="ant-form-item-children"
-                      >
-                        <label
-                          class="ant-checkbox-wrapper"
+                          class="ant-form-item-control"
                         >
                           <span
-                            class="ant-checkbox"
+                            class="ant-form-item-children"
                           >
                             <input
-                              class="ant-checkbox-input"
-                              data-testid="inputCheck"
-                              type="checkbox"
+                              class="ant-input"
+                              data-__field="[object Object]"
+                              data-__meta="[object Object]"
+                              data-testid="inputDeckName"
+                              id="name"
+                              name="name"
+                              placeholder="Deck name"
+                              type="text"
                               value=""
                             />
-                            <span
-                              class="ant-checkbox-inner"
-                            />
                           </span>
-                          <span>
-                            Public
-                          </span>
-                        </label>
-                      </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div
-                  class="ant-row ant-form-item"
-                >
-                  <div
-                    class="ant-col ant-form-item-control-wrapper"
-                  >
                     <div
-                      class="ant-form-item-control"
+                      class="ant-row ant-form-item"
                     >
-                      <span
-                        class="ant-form-item-children"
+                      <div
+                        class="ant-col ant-form-item-control-wrapper"
                       >
-                        <button
-                          class="ant-btn ant-btn-primary"
-                          data-testid="button"
-                          id="create-deck-button"
-                          type="submit"
+                        <div
+                          class="ant-form-item-control has-success"
                         >
-                          <span>
-                            Create Deck
+                          <span
+                            class="ant-form-item-children"
+                          >
+                            <div
+                              class="ant-select ant-select-enabled ant-select-allow-clear"
+                              id="tags"
+                            >
+                              <div
+                                aria-autocomplete="list"
+                                aria-controls="test-uuid"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                class="ant-select-selection
+            ant-select-selection--multiple"
+                                data-__field="[object Object]"
+                                data-__meta="[object Object]"
+                                role="combobox"
+                              >
+                                <div
+                                  class="ant-select-selection__rendered"
+                                >
+                                  <div
+                                    class="ant-select-selection__placeholder"
+                                    style="display: block; user-select: none;"
+                                    unselectable="on"
+                                  >
+                                    Select tags
+                                  </div>
+                                  <ul>
+                                    <li
+                                      class="ant-select-search ant-select-search--inline"
+                                    >
+                                      <div
+                                        class="ant-select-search__field__wrap"
+                                      >
+                                        <input
+                                          autocomplete="off"
+                                          class="ant-select-search__field"
+                                          id="tags"
+                                          value=""
+                                        />
+                                        <span
+                                          class="ant-select-search__field__mirror"
+                                        >
+                                          
+                                           
+                                        </span>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
                           </span>
-                        </button>
-                      </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control-wrapper"
+                      >
+                        <div
+                          class="ant-form-item-control has-success"
+                        >
+                          <span
+                            class="ant-form-item-children"
+                          >
+                            <label
+                              class="ant-checkbox-wrapper"
+                            >
+                              <span
+                                class="ant-checkbox"
+                              >
+                                <input
+                                  class="ant-checkbox-input"
+                                  data-__field="[object Object]"
+                                  data-__meta="[object Object]"
+                                  id="isPublic"
+                                  type="checkbox"
+                                  value=""
+                                />
+                                <span
+                                  class="ant-checkbox-inner"
+                                />
+                              </span>
+                              <span>
+                                Public
+                              </span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="ant-row ant-form-item"
+                    >
+                      <div
+                        class="ant-col ant-form-item-control-wrapper"
+                      >
+                        <div
+                          class="ant-form-item-control"
+                        >
+                          <span
+                            class="ant-form-item-children"
+                          >
+                            <button
+                              class="ant-btn ant-btn-primary"
+                              type="submit"
+                            >
+                              <span>
+                                Create Deck
+                              </span>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </main>
