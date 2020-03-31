@@ -2,33 +2,7 @@ import React from "react";
 import * as rtl from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import ConfirmSignUp from "./ConfirmSignUp";
-import * as axios from "../../utils/axios";
-
-// jest.mock("../../utils/axios", () => {
-//   return {
-//     justAxios: () => {
-//       return {
-//         post: jest.fn().mockResolvedValue({
-//           data: {
-//             token: "token",
-//           },
-//         }),
-//       };
-//     },
-//   };
-
-// () => {
-//   return {
-//     justAxios: () => {
-//       return {
-//         post: jest.fn().mockResolvedValue({
-//           data: {
-//             token: "token",
-//           },
-//         }),
-//       };
-//     },
-//   };
+import {justAxios} from "../../utils/axios";
 
 let wrapper;
 afterEach(rtl.cleanup);
@@ -44,7 +18,7 @@ jest.mock("react-router-dom", () => ({
       pathname: "random/text/okay/token",
     },
   }),
-  Link: "a",
+  Link: props => <a href="/">{props.children}</a>,
 }));
 
 describe("is the component rendering correctly", () => {
