@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Form, Input, Button, Icon, Alert} from "antd";
 import {registerNewUser} from "../../state/actions/auth";
-import {baseURL} from "../../utils/axios";
 import styles from "./Register.module.css";
 import GoogleButton from "../../components/GoogleLogin/GoogleButton";
 import backgroundStyles from "../../components/formStyleComponent/FormStyleComponent.module.css";
@@ -96,7 +95,7 @@ export function RegisterForm({registerNewUser, ...props}) {
     let inputString = e.target.value;
     let inputType = e.target.name;
     if (inputType === "email") {
-      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       const email = inputString.match(emailRegex);
       if (email) {
         setFormInfo({...formInfo, email: {validationStatus: "success", help: null}});

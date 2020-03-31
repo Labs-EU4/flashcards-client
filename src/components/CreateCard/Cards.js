@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Card, Button, Icon, Modal, Avatar} from "antd";
+import {Card, Button, Icon, Modal} from "antd";
 import {getCards, deleteCard, getDeckId} from "../../state/actions/CardAction";
 import {connect} from "react-redux";
 import styles from "./AddCard.module.css";
@@ -7,12 +7,10 @@ import HeaderSearchBar from "../ListDeckInfo/HeaderSearchBar";
 import AddCard from "./AddCard";
 import UpdateCard from "./UpdateCard";
 import {useParams} from "react-router";
-import {useHistory} from "react-router-dom";
 
 const {Meta} = Card;
 
 function Cards(props) {
-  let history = useHistory();
   let {id} = useParams();
   let [card, setCard] = useState({});
   const [visible, setVisible] = useState(false);

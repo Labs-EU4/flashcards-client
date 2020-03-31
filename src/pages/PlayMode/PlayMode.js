@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Progress, Button, Icon, PageHeader, Alert, Spin} from "antd";
+import {Progress, Button, Icon, PageHeader, Spin} from "antd";
 import * as styles from "./PlayMode.module.less";
 import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
 import SummaryModal from "../../components/PlayMode/SummaryModal";
@@ -85,7 +85,7 @@ export function PlayMode({
     return <ErrorHandlingScreen history={history} error={error} />;
   }
   if (deckInPlaySession === null) {
-    return <Spin spinning={deckInPlaySession === null} delay={300}></Spin>;
+    return <Spin spinning={loading} delay={100}></Spin>;
   }
   if (deckInPlaySession.flashcards.length === 0) {
     return (

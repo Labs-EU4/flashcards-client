@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Card, Avatar, Icon, Spin} from "antd";
 import {getRecentDecks} from "../../state/actions/decks";
 import styles from "./RecentDecks.module.css";
@@ -18,9 +18,24 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
       })
       .catch(error => setError(error));
   }, [getRecentDecks]);
-  const location = id => ({
-    pathname: `/deck/${id}`,
-    state: {source: "personal"},
+  const cards = recentDecks.map((deck, index) => {
+    return (
+      <Card
+        style={{width: 300}}
+        actions={[
+          <Link to={`/play/${deck.deck_id}`}>
+            <Icon type="play-circle" theme="outlined" />
+          </Link>,
+        ]}
+        loading={loading}
+        className={styles.deckCard}
+        key={deck.deck_id}
+      >
+        <Link to={`/deck/${deck.deck_id}`}>
+          <Meta avatar={<Avatar src="logo192.png" />} description={deck.deck_name} />
+        </Link>
+      </Card>
+    );
   });
   return (
     <div className={styles.container}>
@@ -31,29 +46,10 @@ export const RecentDecks = ({recentDecks, getRecentDecks}) => {
         <div data-testid="decks">
           {recentDecks.length === 0 ? (
             <div className={styles.noDecks}>You haven't completed a session yet!</div>
+          ) : error ? (
+            <div className={styles.noDecks}>Something went wrong! Oh no!!!</div>
           ) : (
-            recentDecks.map((deck, index) => {
-              return (
-                <Card
-                  style={{width: 300}}
-                  actions={[
-                    <Link to={`/play/${deck.deck_id}`}>
-                      <Icon type="play-circle" theme="outlined" />
-                    </Link>,
-                  ]}
-                  loading={loading}
-                  className={styles.deckCard}
-                  key={deck.deck_id}
-                >
-                  <Link to={location(deck.deck_id)}>
-                    <Meta
-                      avatar={<Avatar src="logo192.png" />}
-                      description={deck.deck_name}
-                    />
-                  </Link>
-                </Card>
-              );
-            })
+            cards
           )}
         </div>
       </Spin>

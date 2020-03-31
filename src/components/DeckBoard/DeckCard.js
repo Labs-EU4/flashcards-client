@@ -22,7 +22,7 @@ export default function DeckCard({deck, deleteDeck, updateDeck}) {
           <Icon type="edit" onClick={() => setVisible(!visible)} data-testid="edit" />,
           <Icon
             type="delete"
-            onClick={e => deleteDeck(deck.deck_id)}
+            onClick={() => deleteDeck(deck.deck_id)}
             data-testid="delete"
           />,
         ]}

@@ -1,6 +1,6 @@
 import React from "react";
 import {Spin} from "antd";
-import {isAccountCreationFinished, setToken} from "../../utils/auth";
+import {isAccountCreationFinished} from "../../utils/auth";
 import SetRecoveryPasswordForm from "../../components/SetRecoveryPassword/SetRecoveryPassword";
 import styles from "./GoogleLogin.module.less";
 import {connect} from "react-redux";
@@ -24,9 +24,5 @@ export function GoogleLogin(props) {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return state.authState.isLoggedIn;
-};
 
 export default connect(null, {addRecoveryPassword, googleAuthorized})(GoogleLogin);

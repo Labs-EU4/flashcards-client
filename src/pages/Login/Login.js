@@ -107,7 +107,14 @@ export const Login = props => {
             >
               {getFieldDecorator("password", {
                 //rules are for the form validation
-                rules: [{required: true, message: "Please input a password!"}],
+                rules: [
+                  {required: true, message: "Please input a password!"},
+                  {
+                    type: "range",
+                    min: 4,
+                    message: "Password must be at least 4 characters long!",
+                  },
+                ],
               })(
                 <Input
                   name="password"

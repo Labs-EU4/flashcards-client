@@ -38,7 +38,7 @@ export const currentDeckReducer = (state = currentDeck, action) => {
     case types.DELETE_CARD:
       return {
         ...state,
-        flashcards: state.flashcards.filter(card => card.id != action.payload),
+        flashcards: state.flashcards.filter(card => card.id !== action.payload),
       };
     case types.ADD_CARD: {
       return {...state, flashcards: [action.payload, ...state.flashcards]};
