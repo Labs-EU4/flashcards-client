@@ -8,9 +8,9 @@ import {Route, Switch} from "react-router-dom";
   component. Must be used witha Switch import
 */
 
-const SwitchRoutes = ({routes}) => {
+const SwitchRoutes = ({routes, switchProps = {}, extraProps = {}}) => {
   return (
-    <Switch>
+    <Switch {...switchProps}>
       {routes.map((route, index) => {
         return (
           <Route
@@ -20,7 +20,7 @@ const SwitchRoutes = ({routes}) => {
             render={
               route.render
                 ? route.render
-                : props => <route.component {...props} routes={route.routes} />
+                : props => <route.component {...props} {...extraProps} route={route} />
             }
           />
         );

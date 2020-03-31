@@ -41,15 +41,13 @@ function checkToken() {
   }
 }
 
-function createPrivateRoute(Component) {
+const createPrivateRoute = Component => props =>
   //Creates a render callback for protected pages.
-  return localStorage.getItem("token") && checkToken() ? (
-    <Component />
+  localStorage.getItem("token") && checkToken() ? (
+    <Component {...props} />
   ) : (
     <Redirect to="/login" />
   );
-}
-
 const RoutesConfig = [
   {
     path: "/login/google/:token",
@@ -62,7 +60,7 @@ const RoutesConfig = [
   },
   {
     path: "/deck/:id",
-    render: () => createPrivateRoute(DeckView),
+    render: createPrivateRoute(DeckView),
   },
 
   {
@@ -77,15 +75,15 @@ const RoutesConfig = [
   },
   {
     path: "/deck-library",
-    render: () => createPrivateRoute(Personal),
+    render: createPrivateRoute(Personal),
   },
   {
     path: "/discover-decks",
-    render: () => createPrivateRoute(Public),
+    render: createPrivateRoute(Public),
   },
   {
     path: "/",
-    render: () => createPrivateRoute(Home),
+    render: createPrivateRoute(Home),
   },
   {
     path: "/confirm/:id",
