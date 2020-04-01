@@ -33,9 +33,18 @@ export const storeUnfinishedSession = sessionData => dispatch => {
 
 export const fetchDeckById = deckId => async dispatch => {
   try {
-    const response = await axiosWithAuth().get(`/decks/${deckId}`);
-    const {deck} = response.data;
-    dispatch(action(SET_DECK_IN_SESSION, deck));
+    const response = await axiosWithAuth().get(`/cards/spaced-repetition`, {
+      params: {
+        limit: 5,
+        deck_id: deckId,
+      },
+    });
+    console.log("RESPONSE", response.data.cards);
+    const deck = response.data.cards;
+    dispatch({
+      type: SET_DECK_IN_SESSION,
+      payload: deck,
+    });
   } catch (error) {
     throw error;
   }

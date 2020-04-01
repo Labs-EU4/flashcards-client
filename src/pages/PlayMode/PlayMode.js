@@ -5,6 +5,7 @@ import FlipCard from "../../components/PlayMode/FlipCard/FlipCard";
 import SummaryModal from "../../components/PlayMode/SummaryModal";
 import UserAnswerButtons from "../../components/PlayMode/UserAnswerButtons/UserAnswerButtons";
 import {connect} from "react-redux";
+import {axiosWithAuth} from "../../utils/axios";
 import {
   clearDeckInPlaySession,
   storeUnfinishedSession,
@@ -34,6 +35,7 @@ export function PlayMode({
   const [answer, setAnswer] = useState(null);
   const [numOfRightAnswers, setNumOfRightAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [cardRanks, setCardRanks] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -44,20 +46,75 @@ export function PlayMode({
   }, [fetchDeckById, match.params.deckId, touchDeck]);
   useEffect(() => {
     if (deckInPlaySession) {
-      touchDeck(deckInPlaySession);
+      touchDeck(deckInPlaySession[0]);
+      setCardRanks(
+        deckInPlaySession.map(card => {
+          return card.value;
+        })
+      );
+      axiosWithAuth().post("/cards/initialise", {
+        cardIds: deckInPlaySession
+          .filter(card => {
+            if (card.value === null) {
+              return card;
+            }
+          })
+          .map(card => {
+            return card.id;
+          }),
+      });
     }
   }, [deckInPlaySession, touchDeck]);
   function next(e) {
-    if (current !== deckInPlaySession.flashcards.length - 1) {
-      setCurrent(current + 1);
-      setAnswer(null);
-      if (answer) setNumOfRightAnswers(numOfRightAnswers + 1);
+    if (current !== deckInPlaySession.length - 1) {
+      if (answer) {
+        setNumOfRightAnswers(numOfRightAnswers + 1);
+        setCardRanks(
+          cardRanks.map((card, index) => {
+            if (index === current) {
+              return card + 1;
+            }
+            return card;
+          })
+        );
+      } else {
+        setCardRanks(
+          cardRanks.map((card, index) => {
+            if (index === current) {
+              return card - 1;
+            }
+            return card;
+          })
+        );
+      }
       setAnswer(null);
       setShowAnswer(false);
     } else {
-      if (answer) setNumOfRightAnswers(numOfRightAnswers + 1);
+      if (answer) {
+        setNumOfRightAnswers(numOfRightAnswers + 1);
+        setCardRanks(
+          cardRanks.map((card, index) => {
+            console.log(card, index);
+            if (index === current && card < 4) {
+              return card + 1;
+            }
+            return card;
+          })
+        );
+      } else {
+        setCardRanks(
+          cardRanks.map((card, index) => {
+            console.log(card, index);
+            if (index === current && card > 0) {
+              return card - 1;
+            }
+            return card;
+          })
+        );
+      }
       setFinished(true);
     }
+    setCurrent(current + 1);
   }
 
   function handleAnswer(e) {
@@ -74,12 +131,20 @@ export function PlayMode({
   }
 
   function finishSession() {
+    const cardIds = deckInPlaySession.map(card => {
+      return card.id;
+    });
+    console.log("over here", cardRanks);
+    axiosWithAuth().put("/cards", {
+      cardIds: cardIds,
+      ranks: cardRanks,
+    });
     clearDeckInPlaySession();
     setFinished(false);
     history.goBack();
   }
   const progress = deckInPlaySession
-    ? Math.floor((current / deckInPlaySession.flashcards.length) * 100)
+    ? Math.floor((current / deckInPlaySession.length) * 100)
     : 100;
   if (error) {
     return <ErrorHandlingScreen history={history} error={error} />;
@@ -87,7 +152,7 @@ export function PlayMode({
   if (deckInPlaySession === null) {
     return <Spin spinning={deckInPlaySession === null} delay={300}></Spin>;
   }
-  if (deckInPlaySession.flashcards.length === 0) {
+  if (deckInPlaySession.length === 0) {
     return (
       <ErrorHandlingScreen
         history={history}
@@ -101,7 +166,8 @@ export function PlayMode({
     <>
       <div className={styles.progress_block}>
         <PageHeader
-          title={deckInPlaySession.deck_name}
+          title="placeholder"
+          // {deckInPlaySession.deck_name}
           onBack={closeSession}
           backIcon={<Icon type="close" />}
         />
@@ -110,14 +176,14 @@ export function PlayMode({
           visible={finished}
           handleOk={finishSession}
           handleCancel={finishSession}
-          numOfCards={deckInPlaySession.flashcards.length}
+          numOfCards={deckInPlaySession.length}
           numOfRightAnswers={numOfRightAnswers}
         />
       </div>
-      {deckInPlaySession.flashcards.length ? (
+      {deckInPlaySession.length ? (
         !finished && (
           <FlipCard
-            card={deckInPlaySession.flashcards[current]}
+            card={deckInPlaySession[current]}
             showAnswer={showAnswer}
             revealAnswer={revealAnswer}
           />

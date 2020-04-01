@@ -20,6 +20,7 @@ export default function ErrorHandlingScreen({
     history.push(location(deck_id));
   };
   if (error) {
+    console.log(error);
     return (
       <main className={styles.main}>
         <h2>There was an error retrieveing this deck.</h2>

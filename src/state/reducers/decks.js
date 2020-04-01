@@ -56,7 +56,7 @@ export const currentDeckReducer = (state = currentDeck, action) => {
   }
 };
 
-const initialPlayModeState = null;
+const initialPlayModeState = [];
 export const playModeReducer = (state = initialPlayModeState, action) => {
   switch (action.type) {
     case types.CLEAR_DECK_IN_SESSION:
