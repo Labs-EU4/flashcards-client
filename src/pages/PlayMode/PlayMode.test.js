@@ -32,24 +32,25 @@ test("It renders", () => {
   expect(screen.getByText(/What is data mining?/i)).toBeInTheDocument();
 });
 
-var deckData = {
-  deck_id: 1,
-  user_id: 1,
-  deck_name: "Statistical Learning",
-  public: true,
-  created_at: "2020-03-05T10:31:48.748Z",
-  updated_at: "2020-03-05T10:31:48.748Z",
-  tags: [
-    {
-      id: 1,
-      name: "Accounting & Finance",
-    },
-    {
-      id: 2,
-      name: "Aeronautical & Manufacturing Engineering",
-    },
-  ],
-  flashcards: [
+var deckData =
+  // {
+  //   deck_id: 1,
+  //   user_id: 1,
+  //   deck_name: "Statistical Learning",
+  //   public: true,
+  //   created_at: "2020-03-05T10:31:48.748Z",
+  //   updated_at: "2020-03-05T10:31:48.748Z",
+  //   tags: [
+  //     {
+  //       id: 1,
+  //       name: "Accounting & Finance",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Aeronautical & Manufacturing Engineering",
+  //     },
+  //   ],
+  [
     {
       id: 1,
       deck_id: 1,
@@ -58,6 +59,7 @@ var deckData = {
       answer: "Its when biotech and infotech merge and people become data mines",
       created_at: "2020-01-08T10:44:38.761+00:00",
       updated_at: "2020-01-08T10:44:38.761+00:00",
+      value: 0,
     },
     {
       id: 2,
@@ -67,6 +69,7 @@ var deckData = {
       answer: "How you doing?",
       created_at: "2020-01-08T10:45:05.269+00:00",
       updated_at: "2020-01-08T10:45:05.269+00:00",
+      value: 0,
     },
-  ],
-};
+  ];
+// };

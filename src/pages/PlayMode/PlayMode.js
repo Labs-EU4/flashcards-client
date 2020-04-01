@@ -71,7 +71,7 @@ export function PlayMode({
         setNumOfRightAnswers(numOfRightAnswers + 1);
         setCardRanks(
           cardRanks.map((card, index) => {
-            if (index === current) {
+            if (index === current && card < 4) {
               return card + 1;
             }
             return card;
@@ -80,7 +80,7 @@ export function PlayMode({
       } else {
         setCardRanks(
           cardRanks.map((card, index) => {
-            if (index === current) {
+            if (index === current && card > 0) {
               return card - 1;
             }
             return card;
