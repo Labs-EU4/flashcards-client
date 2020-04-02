@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {axiosWithAuth} from "../../utils/axios";
 import {Icon, Popover, Button} from "antd";
 import styles from "./DeckList.module.css";
 import {Link, useHistory} from "react-router-dom";
 
 export default function DeckCard({deck}) {
   let history = useHistory();
+
   const [visible, setVisible] = useState(false);
 
   function hide() {
@@ -20,11 +22,7 @@ export default function DeckCard({deck}) {
   }
 
   return (
-    <div
-      className={styles.deckCard}
-      data-testid="deck_card_container"
-      onClick={() => console.log("hi")}
-    >
+    <div className={styles.deckCard} data-testid="deck_card_container">
       <div className={styles.deckOverview}>
         <div className={styles.header}>
           <h2 data-testid="deck_name">{deck.deck_name}</h2>
@@ -34,6 +32,9 @@ export default function DeckCard({deck}) {
             </h3>
             <h3 className={styles.info_headings} data-testid="flashcards_count">
               No. of Cards: {deck.flashcards.length}
+            </h3>
+            <h3 className={styles.info_headings} data-testid="mastery_score">
+              Mastered: {deck.rating_score ? `${deck.rating_score}%` : `0%`}
             </h3>
           </div>
         </div>
@@ -57,7 +58,12 @@ export default function DeckCard({deck}) {
                   <Button>Input</Button>
                   <Button>Cards</Button>
                 </div>
-                <Link to={`/play/${deck.deck_id}`}>
+                <Link
+                  to={{
+                    pathname: `/play/${deck.deck_id}`,
+                    state: {test: deck.rating_score},
+                  }}
+                >
                   <Button type="primary" onClick={hide}>
                     Start
                   </Button>

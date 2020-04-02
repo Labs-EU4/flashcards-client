@@ -6,6 +6,7 @@ import SummaryModal from "../../components/PlayMode/SummaryModal";
 import UserAnswerButtons from "../../components/PlayMode/UserAnswerButtons/UserAnswerButtons";
 import {connect} from "react-redux";
 import {axiosWithAuth} from "../../utils/axios";
+import {useLocation} from "react-router";
 import {
   clearDeckInPlaySession,
   storeUnfinishedSession,
@@ -36,6 +37,8 @@ export function PlayMode({
   const [numOfRightAnswers, setNumOfRightAnswers] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [cardRanks, setCardRanks] = useState([]);
+  let location = useLocation();
+  console.log("LOCATION", location.state);
 
   useEffect(() => {
     setLoading(true);
@@ -44,6 +47,7 @@ export function PlayMode({
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchDeckById, match.params.deckId, touchDeck]);
+
   useEffect(() => {
     if (deckInPlaySession) {
       touchDeck(deckInPlaySession[0]);
@@ -65,6 +69,7 @@ export function PlayMode({
       });
     }
   }, [deckInPlaySession, touchDeck]);
+
   function next(e) {
     if (current !== deckInPlaySession.length - 1) {
       if (answer) {
@@ -131,6 +136,23 @@ export function PlayMode({
   }
 
   function finishSession() {
+    const mastery =
+      (cardRanks.reduce((total, num) => {
+        return total + num;
+      }) /
+        (cardRanks.length * 4)) *
+      100;
+    if (location.state.test) {
+      axiosWithAuth().put("/decks/mastery", {
+        deck_id: deckInPlaySession[0].deck_id,
+        rating_score: mastery,
+      });
+    } else {
+      axiosWithAuth().post("/decks/mastery", {
+        deck_id: deckInPlaySession[0].deck_id,
+        rating_score: mastery,
+      });
+    }
     const cardIds = deckInPlaySession.map(card => {
       return card.id;
     });
